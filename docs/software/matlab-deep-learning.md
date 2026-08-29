@@ -6,6 +6,7 @@ tags:
   - MATLAB
   - GPU
   - Machine learning
+status: draft
 generated:
   by: "claude/fable-5"
   at: "2026-08-29T00:00:00Z"
@@ -18,6 +19,9 @@ sources:
 ---
 
 # MATLAB deep learning
+
+!!! warning "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 MATLAB has great tools for deep learning and convolutional neural networks (CNNs).
 These tools can make use of GPUs, which are available for use on the Xena cluster.

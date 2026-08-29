@@ -19,7 +19,7 @@ sources:
 # ORCA quantum chemistry
 
 !!! warning "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 ### Submitting an Orca script on Wheeler
 

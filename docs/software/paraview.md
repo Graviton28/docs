@@ -19,7 +19,7 @@ sources:
 # ParaView remote visualization
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 ParaView is an open-source, multi-platform data analysis and visualization application. ParaView users can quickly build visualizations to analyze their data using qualitative and quantitative techniques. The data exploration can be done interactively in 3D or programmatically using ParaView's batch processing capabilities.
 

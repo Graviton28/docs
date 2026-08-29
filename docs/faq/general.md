@@ -102,9 +102,9 @@ sources:
 
 ??? question "What GPUs are available?"
 
-    Easley has NVIDIA L40S and H100 GPUs, Hopper has A100s, and Xena has
-    K40s — see the [systems overview](../systems/overview.md). Request GPU
-    partitions in your job script; examples are in
+    Easley has NVIDIA L40S and H100 GPUs, and Hopper has A100s — see the
+    [systems overview](../systems/overview.md). Request GPU partitions in
+    your job script; examples are in
     [example Slurm scripts](../running-jobs/example-slurm-scripts.md).
 
 ??? question "Can I use CARC from my browser?"

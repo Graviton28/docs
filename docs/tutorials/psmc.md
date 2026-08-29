@@ -19,7 +19,7 @@ sources:
 # Demographic inference with PSMC
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 The [pairwise sequentially Markovian coalescent model](https://www.nature.com/articles/nature10231){target=_blank} is a popular method of leveraging single high-quality diploid genomes to infer the demographic history of a lineage over thousands to hundreds of thousands of years. It can be a great exploratory tool for genomic data, and can help you understand and generate biogeographic and evolutionary hypotheses. It leverages heterozygosity information to estimate local times of most recent common ancestor across the genome, which is then used to reconstruct demographic "stairway plots".
 

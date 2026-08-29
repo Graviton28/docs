@@ -20,6 +20,9 @@ sources:
 
 # Parallel Python with Dask and scikit-learn
 
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+
 [Dask](https://dask.org/){target=_blank} uses existing Python APIs and data structures to make it easy to switch between Numpy, Pandas, Scikit-learn to their Dask-powered equivalents. [SciKit-learn](https://scikit-learn.org/stable/){target=_blank} is a machine learning tool for Python.
 
 ### Log in to JupyterHub

@@ -43,8 +43,8 @@ UNM faculty, staff, and student researchers.</p>
 
     ---
 
-    Easley, Hopper, and Xena cluster specifications, storage spaces, quotas,
-    and usage policies.
+    Easley and Hopper cluster specifications, storage spaces, quotas, and
+    usage policies.
 
     [:octicons-arrow-right-24: Explore the systems](systems/index.md)
 

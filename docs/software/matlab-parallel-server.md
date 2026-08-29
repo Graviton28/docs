@@ -19,7 +19,7 @@ sources:
 # MATLAB Parallel Server
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 MATLAB supports parallelization on desktop computers which can be used to increase the speed of analysis drastically. MATLAB also provides the MATLAB Parallel Server (previously the MATLAB Distributed Computing Server) which allows you to write MATLAB code on your local desktop or laptop computer and perform the computation using the CARC high-performance clusters. This QuickByte leads you through the steps needed to set this up. If you run into problems please send an email to help@carc.unm.edu and we will be happy to help.
 

@@ -19,7 +19,7 @@ sources:
 # Bayesian phylogenetics with BEAST
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 Bayesian Evolutionary Analysis by Sampling Trees [(BEAST)](https://beast.community/index.html){target=_blank} is a software package that performs
 phylogenetic tree analysis with user specified molecular clock models using the widely popular Bayesian Markov chain Monte Carlo 

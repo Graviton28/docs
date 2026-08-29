@@ -19,7 +19,7 @@ sources:
 # RAD-seq analysis with Stacks
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 Stacks is a common and [well documented](https://catchenlab.life.illinois.edu/stacks/){target=_blank} pipeline for processing RADseq data. RADseq data is a method of reduced representation genomic sequencing, where genomic DNA is cut up with restriction enzymes, which are then targeted by sequencing adapters. This allows a researcher to get thousands of loci randomly scattered across the genome, which can be sequenced at moderate depths for low prices. This is sufficient for many population genomic analyses, such as tests of population structure, phylogenetics, gene flow, and even coarse attempts to locate regions of the genome that are under selection. Stacks can be run with or without a reference genome, but using a reference genome is reccomended for improved accuracy.
 

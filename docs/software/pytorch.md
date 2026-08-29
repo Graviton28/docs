@@ -7,6 +7,7 @@ tags:
   - GPU
   - Machine learning
   - PyTorch
+status: draft
 generated:
   by: "claude/fable-5"
   at: "2026-08-29T00:00:00Z"
@@ -19,6 +20,9 @@ sources:
 ---
 
 # PyTorch on CARC GPUs
+
+!!! warning "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 ### SSH in to Xena
 To connect to the Xena machine, you will need to use the secure shell command below with your username in place of $USERNAME. This will prompt you for your password. When typing your password, you will not get any visual feedback. If you have issues with connecting to the machine, please reach out to the CARC helpdesk. 

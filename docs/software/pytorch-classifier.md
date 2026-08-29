@@ -7,6 +7,7 @@ tags:
   - GPU
   - Machine learning
   - PyTorch
+status: draft
 generated:
   by: "claude/fable-5"
   at: "2026-08-29T00:00:00Z"

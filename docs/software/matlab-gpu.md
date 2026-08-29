@@ -5,6 +5,7 @@ type: Guide
 tags:
   - MATLAB
   - GPU
+status: draft
 generated:
   by: "claude/fable-5"
   at: "2026-08-29T00:00:00Z"
@@ -17,6 +18,9 @@ sources:
 ---
 
 # MATLAB on GPUs
+
+!!! warning "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 1. [Using a single GPU on Xena](#1)
      1. [Use GPU in Interactive Session](#1.1)

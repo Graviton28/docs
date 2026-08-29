@@ -74,7 +74,7 @@ def main():
         "",
         "> User and researcher documentation for the UNM Center for Advanced "
         "Research Computing (CARC): high-performance computing clusters "
-        "(Easley, Hopper, Xena), storage, Slurm scheduling, research software, "
+        "(Easley and Hopper), storage, Slurm scheduling, research software, "
         "tutorials, and training. The source repository is an Open Knowledge "
         "Format (OKF v0.2) bundle: every page carries YAML frontmatter with "
         "type, provenance (generated/sources), and lifecycle (status/"

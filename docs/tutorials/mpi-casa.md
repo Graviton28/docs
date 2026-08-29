@@ -18,6 +18,9 @@ sources:
 
 # Parallel CASA for radio astronomy
 
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+
 ### A Bit About CASA
 
 [CASA](https://casa.nrao.edu/){target=_blank} is the premier software for reducing radio data coming off of a variety of telescopes around the world, including the Jansky Very Large Array (VLA) and Atacama Large Millimeter Array (ALMA). 

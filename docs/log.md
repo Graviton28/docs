@@ -2,6 +2,9 @@
 
 ## 2026-08-29
 
+* **Update**: The Xena cluster has been retired. Removed Xena from the [Systems overview](systems/overview.md), [Facilities description](about/facilities.md), FAQ, and landing page; added it to the retired-systems list in [Cluster specifications](systems/cluster-specifications.md); marked Xena-specific GPU guides (PyTorch, MATLAB GPU/deep learning, deep-learning packages) as `status: draft` with legacy notices pending review against Hopper and Easley GPUs.
+* **Update**: Annotated all code across the corpus: tab-indented QuickBytes code now renders as language-fenced blocks with syntax highlighting; restructured [Installing deep learning packages](software/deep-learning-packages.md) (now curated in-repo); annotated inline code references in [Parallel R with the future package](software/parallel-r-future.md).
+
 * **Creation**: Added the Interactive computing section ([Open OnDemand](interactive/open-ondemand.md), [JupyterHub](interactive/jupyterhub.md)) and the FAQ section ([General FAQ](faq/general.md), [Troubleshooting](faq/troubleshooting.md)).
 * **Creation**: Added [Contributing to these docs](about/contributing.md) — the OKF frontmatter contract, verification workflow, and local build instructions for CARC staff.
 * **Update**: Added machine-readable `llms.txt` and `llms-full.txt` indexes generated from OKF frontmatter (`scripts/gen_llms_txt.py`, enforced in CI); moved the page table of contents into the left sidebar.

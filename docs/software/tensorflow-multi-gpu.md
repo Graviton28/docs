@@ -20,6 +20,9 @@ sources:
 
 # Multi-GPU TensorFlow
 
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+
 The relatively recent mainstream availability of complex algorithms and computationally efficient hardware has created a platform for innovations never before available to the scientific computing world. Since the development of early computer systems, computing times have been drastically reduced, making more complex computations feasible. The continuous cycle of improvements in computation speed and hardware, driving ever more complex computation goals, can be seen in how hardware has scaled to meet those goals. A key part of this cycle is the use of GPUs in high-performance computing for machine learning and deep learning algorithms.
 
 Most complex computing strategies can be simplified into basic linear algebra operations such as addition, multiplication, subtraction, and inversion. Of these, matrix multiplication and inversion are the most computationally expensive.

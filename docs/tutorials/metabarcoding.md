@@ -19,7 +19,7 @@ sources:
 # Metabarcoding analysis
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 Metabarcoding is the process of using next-generation sequencing platforms (Illumina, PacBio, or Oxford Nanopore) to sequence amplicons and determine the ecological community that is present. The most common applications are microbiome analyses to study the community of bacteria or fungi. Given that metabarcoding relies upon PCR, biases do occur (e.g. primer biases, variation in loci copy number, incomplete lineage sorting, etc.). However, other techniques such as metagenomic sequencing cannot fully assemble larger genomes such as fungal genomes and fail to capture all of the species present in high diversity samples. Thus, metabarcoding remains the best option to characterize microbial communities. 
 

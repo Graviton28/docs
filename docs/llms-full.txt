@@ -402,6 +402,9 @@ sources:
 
 # SSH keys and client configuration
 
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+
 Once you start computing you will be logging in to the CARC systems fairly often and having to type your username at the machine address will become tedious. In order to alleviate this tedium it is beneficial to generate ssh keys and a ssh config file. The ssh keys bypass the need to enter your password each time you log in, and the config file stores the addresses of all the machines you are logging in to. 
 
 ### SSH key generation
@@ -674,7 +677,7 @@ If you have any trouble at any point, please reach out to us at help@carc.unm.ed
 
 ---
 title: "Cluster specifications (legacy reference)"
-description: "Historical hardware tables for CARC clusters, including retired systems such as Wheeler, Taos, and Gibbs."
+description: "Historical hardware tables for CARC clusters, including retired systems such as Wheeler, Taos, Gibbs, and Xena."
 type: Reference
 tags:
   - Systems
@@ -695,7 +698,7 @@ sources:
 # Cluster specifications (legacy reference)
 
 !!! warning "Legacy content"
-    This page is kept for history and links. Wheeler, Taos, and Gibbs have been retired — see the [Systems overview](overview.md) for current clusters.
+    This page is kept for history and links. Wheeler, Taos, Gibbs, and Xena have been retired — see the [Systems overview](overview.md) for current clusters.
 
 ## CARC Supercomputer and Cluster Resources
 
@@ -732,7 +735,7 @@ sources:
 
 ---
 title: "Systems overview"
-description: "Current CARC clusters (Easley, Hopper, Xena), storage tiers, and web portals such as JupyterHub, Open OnDemand, and XDMoD."
+description: "Current CARC clusters (Easley and Hopper), storage tiers, and web portals such as JupyterHub, Open OnDemand, and XDMoD."
 type: Reference
 tags:
   - Systems
@@ -760,11 +763,10 @@ intelligence, and machine learning.
 | ------- | :---: | :-------: | ---- | ------------ | ----- |
 | **Easley** | 65 | 4,160 | 36× NVIDIA L40S (AI/ML) + 8× NVIDIA H100 (double precision) | NVIDIA NDR 800 Gbps InfiniBand | Newest cluster; 23.3 TB total RAM |
 | **Hopper** | 61 | 2,176 | 37× NVIDIA A100 | NVIDIA HDR 400 Gbps InfiniBand | General and GPU-accelerated workloads |
-| **Xena** | 32 | 720 | NVIDIA K40 | 56 Gbps InfiniBand | 70 TB local scratch |
 
 For queue limits and walltimes, see [resource limits](resource-limits.md).
-Historical specifications for retired systems (Wheeler, Taos, Gibbs) are kept
-in the [legacy cluster reference](cluster-specifications.md).
+Historical specifications for retired systems (Wheeler, Taos, Gibbs, and
+Xena) are kept in the [legacy cluster reference](cluster-specifications.md).
 
 ## Storage
 
@@ -839,7 +841,7 @@ sources:
 # Storage and compute usage policies
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](overview.md).
 
 Home directories have a soft limit of 100GB and a hard limit of 200GB. Once you exceed the soft limit we will ask you to reduce your usage. You will not be able to write data beyond the hard limit. Project space is limited to 250 GB. Scratch storage is limited to 1 TB (2 TB on Xena). Center-wide project scratch space is limited to 1 TB and user scratch is limited to 100G (/carc/scratch). To purchase additional storage please see our [pricing spreadsheet](https://carc.unm.edu/research/premium-research-computing-services.html){target=_blank}.
 
@@ -2920,6 +2922,9 @@ sources:
 
 # AlphaFold
 
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+
 Alphafold predicts the 3D structure of proteins from their amino acid sequence. A deep learning system that uses a combination of sequence alignment, evolutionary information, and physical principles to generate its predictions.
 Primarily written in python, the first version of alphafold was released in 2016, and has been updated as recently as 2022. There are two ways to run alphafold here at CARC. Option 1 is to use [localcolabfold.](https://github.com/YoshitakaMo/localcolabfold){target=_blank} You may find that Localcolabfold is easier to get running, however it will come with tradeoffs in certain areas, For Example, localcolabfold uses the pdb70 database, and there is not a great way to choose a different database to use. If you are unsure which version is best for you, we recommend you review the readme & issues for localcolabfold to determine if there are any features you may need. 
 
@@ -3145,7 +3150,7 @@ sources:
 # Conda channels and pip
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 #### Installing packages with pip
 
@@ -3304,7 +3309,7 @@ sources:
 # Managing conda environments
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 ### What is Anaconda?
 
@@ -3578,6 +3583,9 @@ sources:
 ---
 
 # Parallel Python with Dask and scikit-learn
+
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 [Dask](https://dask.org/){target=_blank} uses existing Python APIs and data structures to make it easy to switch between Numpy, Pandas, Scikit-learn to their Dask-powered equivalents. [SciKit-learn](https://scikit-learn.org/stable/){target=_blank} is a machine learning tool for Python.
 
@@ -3936,7 +3944,7 @@ sources:
 # Getting R software
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 ## Getting R in the first place
 
@@ -4218,6 +4226,9 @@ sources:
 
 # Gurobi optimizer with R
 
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+
 [Gurobi optimizer](https://www.gurobi.com/products/gurobi-optimizer/){target=_blank} is a problem solving software that can be used within R. It can solve integer, linear, and quadratic
 programming optimizations. These techniques can help to find the answers to complex models. 
 
@@ -4296,6 +4307,9 @@ sources:
 ---
 
 # MPI parallelization from JupyterHub
+
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 The following steps will show you the steps to use MPI through ipython's ipyparallel interface. 
 
@@ -4551,6 +4565,7 @@ tags:
   - MATLAB
   - GPU
   - Machine learning
+status: draft
 generated:
   by: "claude/fable-5"
   at: "2026-08-29T00:00:00Z"
@@ -4563,6 +4578,9 @@ sources:
 ---
 
 # MATLAB deep learning
+
+!!! warning "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 MATLAB has great tools for deep learning and convolutional neural networks (CNNs).
 These tools can make use of GPUs, which are available for use on the Xena cluster.
@@ -5042,6 +5060,7 @@ type: Guide
 tags:
   - MATLAB
   - GPU
+status: draft
 generated:
   by: "claude/fable-5"
   at: "2026-08-29T00:00:00Z"
@@ -5054,6 +5073,9 @@ sources:
 ---
 
 # MATLAB on GPUs
+
+!!! warning "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 1. [Using a single GPU on Xena](#1)
      1. [Use GPU in Interactive Session](#1.1)
@@ -5666,7 +5688,7 @@ sources:
 # MATLAB Parallel Server
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 MATLAB supports parallelization on desktop computers which can be used to increase the speed of analysis drastically. MATLAB also provides the MATLAB Parallel Server (previously the MATLAB Distributed Computing Server) which allows you to write MATLAB code on your local desktop or laptop computer and perform the computation using the CARC high-performance clusters. This QuickByte leads you through the steps needed to set this up. If you run into problems please send an email to help@carc.unm.edu and we will be happy to help.
 
@@ -5829,7 +5851,7 @@ sources:
 # Parallel MATLAB: profile setup and batch submission
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 ### Setting up the cluster profile
 In order to submit a PBS script that takes advantage of MATLAB Parallel Server you first need to set up a new cluster profile specific to Wheeler. Thankfully this has already been done and all you need to do as a user is import the profile and that only needs to be done once. If you would like to do this interactively you can start an interactive session with the following:
@@ -6975,7 +6997,7 @@ sources:
 # ParaView remote visualization
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 ParaView is an open-source, multi-platform data analysis and visualization application. ParaView users can quickly build visualizations to analyze their data using qualitative and quantitative techniques. The data exploration can be done interactively in 3D or programmatically using ParaView's batch processing capabilities.
 
@@ -7103,6 +7125,7 @@ tags:
   - GPU
   - Machine learning
   - PyTorch
+status: draft
 generated:
   by: "claude/fable-5"
   at: "2026-08-29T00:00:00Z"
@@ -7445,6 +7468,7 @@ tags:
   - GPU
   - Machine learning
   - PyTorch
+status: draft
 generated:
   by: "claude/fable-5"
   at: "2026-08-29T00:00:00Z"
@@ -7457,6 +7481,9 @@ sources:
 ---
 
 # PyTorch on CARC GPUs
+
+!!! warning "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 ### SSH in to Xena
 To connect to the Xena machine, you will need to use the secure shell command below with your username in place of $USERNAME. This will prompt you for your password. When typing your password, you will not get any visual feedback. If you have issues with connecting to the machine, please reach out to the CARC helpdesk. 
@@ -7597,7 +7624,7 @@ sources:
 # Installing R packages
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 ## Installing interactively
 
@@ -8513,6 +8540,9 @@ sources:
 
 # Multi-GPU TensorFlow
 
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+
 The relatively recent mainstream availability of complex algorithms and computationally efficient hardware has created a platform for innovations never before available to the scientific computing world. Since the development of early computer systems, computing times have been drastically reduced, making more complex computations feasible. The continuous cycle of improvements in computation speed and hardware, driving ever more complex computation goals, can be seen in how hardware has scaled to meet those goals. A key part of this cycle is the use of GPUs in high-performance computing for machine learning and deep learning algorithms.
 
 Most complex computing strategies can be simplified into basic linear algebra operations such as addition, multiplication, subtraction, and inversion. Of these, matrix multiplication and inversion are the most computationally expensive.
@@ -8662,6 +8692,9 @@ sources:
 ---
 
 # TensorFlow on CARC GPUs
+
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 The relatively recent mainstream availability of complex algorithms and computationally efficient hardware is creating a platform for new innovations never before available to the scientific computing world. Since the development of computer systems, computing times have been drastically reduced, making more complex computations feasible. The continuous cycle of improvements in computation speeds and hardware leading to ever more complex computations can be seen in the scaling of hardware to meet these more complex computation goals. A resolution to this cycle can be found in the utilization of GPU's in high-performance computing for Machine learning and deep learning algorithms.
 Most of the complex computing strategies can be simplified into basic linear algebra operations such as addition, multiplication, subtraction, inversion and such. Out of the listed operations, matrix multiplication and inversion are the most computationally expensive operations.
@@ -8817,7 +8850,7 @@ sources:
 # Bayesian phylogenetics with BEAST
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 Bayesian Evolutionary Analysis by Sampling Trees [(BEAST)](https://beast.community/index.html){target=_blank} is a software package that performs
 phylogenetic tree analysis with user specified molecular clock models using the widely popular Bayesian Markov chain Monte Carlo 
@@ -8880,7 +8913,7 @@ sources:
 # Variant calling with GATK
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 This QuickByte outlines how to run a pipeline based on Genome Analysis Toolkit v4 (GATK4) best practices, a common pipeline for processing genomic data from Illumina platforms. Major modifications from “true” best practices are done to facilitate using this pipeline for both model and non-model organisms. Additionally, we show how to best parallelize these steps on CARC. Here we outline the steps for a single sample without parallelization, then with parallelization for specific steps, and finally provide an example of a fully parallelized script. Extensive documentation (including other Best Practices pipelines) can be found [here](https://gatk.broadinstitute.org/hc/en-us/sections/360007226651-Best-Practices-Workflows){target=_blank}. Specifically, the Best Practices informing this pipeline are the [data pre-processing workflow](https://gatk.broadinstitute.org/hc/en-us/articles/360035535912-Data-pre-processing-for-variant-discovery){target=_blank} and the [germline short variant discovery workflow](https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels-){target=_blank}. We aim to give you sample commands to emulate these scripts workflows, which will also allow you to easily modify the pipeline.
 
@@ -9577,7 +9610,7 @@ sources:
 # Metabarcoding analysis
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 Metabarcoding is the process of using next-generation sequencing platforms (Illumina, PacBio, or Oxford Nanopore) to sequence amplicons and determine the ecological community that is present. The most common applications are microbiome analyses to study the community of bacteria or fungi. Given that metabarcoding relies upon PCR, biases do occur (e.g. primer biases, variation in loci copy number, incomplete lineage sorting, etc.). However, other techniques such as metagenomic sequencing cannot fully assemble larger genomes such as fungal genomes and fail to capture all of the species present in high diversity samples. Thus, metabarcoding remains the best option to characterize microbial communities. 
 
@@ -10071,6 +10104,9 @@ sources:
 
 # Parallel CASA for radio astronomy
 
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+
 ### A Bit About CASA
 
 [CASA](https://casa.nrao.edu/){target=_blank} is the premier software for reducing radio data coming off of a variety of telescopes around the world, including the Jansky Very Large Array (VLA) and Atacama Large Millimeter Array (ALMA). 
@@ -10379,7 +10415,7 @@ sources:
 # ORCA quantum chemistry
 
 !!! warning "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 ### Submitting an Orca script on Wheeler
 
@@ -10495,7 +10531,7 @@ sources:
 # Demographic inference with PSMC
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 The [pairwise sequentially Markovian coalescent model](https://www.nature.com/articles/nature10231){target=_blank} is a popular method of leveraging single high-quality diploid genomes to infer the demographic history of a lineage over thousands to hundreds of thousands of years. It can be a great exploratory tool for genomic data, and can help you understand and generate biogeographic and evolutionary hypotheses. It leverages heterozygosity information to estimate local times of most recent common ancestor across the genome, which is then used to reconstruct demographic "stairway plots".
 
@@ -10650,7 +10686,7 @@ sources:
 # SimCov epidemiological simulation
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 This tutorial contains instructions for compiling and running the SimCov immunology model on the Wheeler cluster.
 
@@ -10735,7 +10771,7 @@ sources:
 # RAD-seq analysis with Stacks
 
 !!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 Stacks is a common and [well documented](https://catchenlab.life.illinois.edu/stacks/){target=_blank} pipeline for processing RADseq data. RADseq data is a method of reduced representation genomic sequencing, where genomic DNA is cut up with restriction enzymes, which are then targeted by sequencing adapters. This allows a researcher to get thousands of loci randomly scattered across the genome, which can be sequenced at moderate depths for low prices. This is sufficient for many population genomic analyses, such as tests of population structure, phylogenetics, gene flow, and even coarse attempts to locate regions of the genome that are under selection. Stacks can be run with or without a reference genome, but using a reference genome is reccomended for improved accuracy.
 
@@ -11171,9 +11207,9 @@ sources:
 
 ??? question "What GPUs are available?"
 
-    Easley has NVIDIA L40S and H100 GPUs, Hopper has A100s, and Xena has
-    K40s — see the [systems overview](../systems/overview.md). Request GPU
-    partitions in your job script; examples are in
+    Easley has NVIDIA L40S and H100 GPUs, and Hopper has A100s — see the
+    [systems overview](../systems/overview.md). Request GPU partitions in
+    your job script; examples are in
     [example Slurm scripts](../running-jobs/example-slurm-scripts.md).
 
 ??? question "Can I use CARC from my browser?"
@@ -11665,10 +11701,6 @@ for high-speed communication between nodes.
 GPUs. Hopper is connected through an NVIDIA HDR 400 Gbps InfiniBand network
 and supports both general and GPU-accelerated workloads.
 
-**Xena Cluster** — 32 compute nodes with 720 CPU cores and NVIDIA K40 GPUs,
-connected through a 56 Gbps InfiniBand network. Xena also provides 70 TB of
-local scratch storage for active workloads.
-
 Together, these systems support a broad ecosystem of research software,
 including scientific computing tools, machine learning frameworks such as
 TensorFlow and PyTorch, data analytics platforms, and interactive
@@ -11839,6 +11871,9 @@ platforms. If you are unsure which platform fits your project, come to
 # Documentation update log
 
 ## 2026-08-29
+
+* **Update**: The Xena cluster has been retired. Removed Xena from the [Systems overview](systems/overview.md), [Facilities description](about/facilities.md), FAQ, and landing page; added it to the retired-systems list in [Cluster specifications](systems/cluster-specifications.md); marked Xena-specific GPU guides (PyTorch, MATLAB GPU/deep learning, deep-learning packages) as `status: draft` with legacy notices pending review against Hopper and Easley GPUs.
+* **Update**: Annotated all code across the corpus: tab-indented QuickBytes code now renders as language-fenced blocks with syntax highlighting; restructured [Installing deep learning packages](software/deep-learning-packages.md) (now curated in-repo); annotated inline code references in [Parallel R with the future package](software/parallel-r-future.md).
 
 * **Creation**: Added the Interactive computing section ([Open OnDemand](interactive/open-ondemand.md), [JupyterHub](interactive/jupyterhub.md)) and the FAQ section ([General FAQ](faq/general.md), [Troubleshooting](faq/troubleshooting.md)).
 * **Creation**: Added [Contributing to these docs](about/contributing.md) — the OKF frontmatter contract, verification workflow, and local build instructions for CARC staff.

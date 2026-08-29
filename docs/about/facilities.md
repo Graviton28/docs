@@ -45,10 +45,6 @@ for high-speed communication between nodes.
 GPUs. Hopper is connected through an NVIDIA HDR 400 Gbps InfiniBand network
 and supports both general and GPU-accelerated workloads.
 
-**Xena Cluster** — 32 compute nodes with 720 CPU cores and NVIDIA K40 GPUs,
-connected through a 56 Gbps InfiniBand network. Xena also provides 70 TB of
-local scratch storage for active workloads.
-
 Together, these systems support a broad ecosystem of research software,
 including scientific computing tools, machine learning frameworks such as
 TensorFlow and PyTorch, data analytics platforms, and interactive

@@ -1,6 +1,6 @@
 ---
 title: "Cluster specifications (legacy reference)"
-description: "Historical hardware tables for CARC clusters, including retired systems such as Wheeler, Taos, and Gibbs."
+description: "Historical hardware tables for CARC clusters, including retired systems such as Wheeler, Taos, Gibbs, and Xena."
 type: Reference
 tags:
   - Systems
@@ -21,7 +21,7 @@ sources:
 # Cluster specifications (legacy reference)
 
 !!! warning "Legacy content"
-    This page is kept for history and links. Wheeler, Taos, and Gibbs have been retired — see the [Systems overview](overview.md) for current clusters.
+    This page is kept for history and links. Wheeler, Taos, Gibbs, and Xena have been retired — see the [Systems overview](overview.md) for current clusters.
 
 ## CARC Supercomputer and Cluster Resources
 

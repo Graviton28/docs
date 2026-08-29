@@ -18,6 +18,9 @@ sources:
 
 # SSH keys and client configuration
 
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+
 Once you start computing you will be logging in to the CARC systems fairly often and having to type your username at the machine address will become tedious. In order to alleviate this tedium it is beneficial to generate ssh keys and a ssh config file. The ssh keys bypass the need to enter your password each time you log in, and the config file stores the addresses of all the machines you are logging in to. 
 
 ### SSH key generation

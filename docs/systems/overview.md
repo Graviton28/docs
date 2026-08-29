@@ -1,6 +1,6 @@
 ---
 title: "Systems overview"
-description: "Current CARC clusters (Easley, Hopper, Xena), storage tiers, and web portals such as JupyterHub, Open OnDemand, and XDMoD."
+description: "Current CARC clusters (Easley and Hopper), storage tiers, and web portals such as JupyterHub, Open OnDemand, and XDMoD."
 type: Reference
 tags:
   - Systems
@@ -28,11 +28,10 @@ intelligence, and machine learning.
 | ------- | :---: | :-------: | ---- | ------------ | ----- |
 | **Easley** | 65 | 4,160 | 36× NVIDIA L40S (AI/ML) + 8× NVIDIA H100 (double precision) | NVIDIA NDR 800 Gbps InfiniBand | Newest cluster; 23.3 TB total RAM |
 | **Hopper** | 61 | 2,176 | 37× NVIDIA A100 | NVIDIA HDR 400 Gbps InfiniBand | General and GPU-accelerated workloads |
-| **Xena** | 32 | 720 | NVIDIA K40 | 56 Gbps InfiniBand | 70 TB local scratch |
 
 For queue limits and walltimes, see [resource limits](resource-limits.md).
-Historical specifications for retired systems (Wheeler, Taos, Gibbs) are kept
-in the [legacy cluster reference](cluster-specifications.md).
+Historical specifications for retired systems (Wheeler, Taos, Gibbs, and
+Xena) are kept in the [legacy cluster reference](cluster-specifications.md).
 
 ## Storage
 

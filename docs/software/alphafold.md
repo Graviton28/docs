@@ -19,6 +19,9 @@ sources:
 
 # AlphaFold
 
+!!! note "Legacy content"
+    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+
 Alphafold predicts the 3D structure of proteins from their amino acid sequence. A deep learning system that uses a combination of sequence alignment, evolutionary information, and physical principles to generate its predictions.
 Primarily written in python, the first version of alphafold was released in 2016, and has been updated as recently as 2022. There are two ways to run alphafold here at CARC. Option 1 is to use [localcolabfold.](https://github.com/YoshitakaMo/localcolabfold){target=_blank} You may find that Localcolabfold is easier to get running, however it will come with tradeoffs in certain areas, For Example, localcolabfold uses the pdb70 database, and there is not a great way to choose a different database to use. If you are unsure which version is best for you, we recommend you review the readme & issues for localcolabfold to determine if there are any features you may need. 
 

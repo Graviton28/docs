@@ -98,7 +98,7 @@ PAGES: list[Page] = [
 
     # ---- Systems & storage
     Page("", "systems/overview.md", "Systems overview",
-         "Current CARC clusters (Easley, Hopper, Xena), storage tiers, and web portals such as JupyterHub, Open OnDemand, and XDMoD.",
+         "Current CARC clusters (Easley and Hopper), storage tiers, and web portals such as JupyterHub, Open OnDemand, and XDMoD.",
          "Reference", ["Systems", "Hardware"], stale_after=HW_STALE, repo="hand"),
     Page("resource_limits.md", "systems/resource-limits.md", "Storage and compute usage policies",
          "Storage quotas, Slurm fairshare policy, and per-cluster queue limits.",
@@ -110,9 +110,9 @@ PAGES: list[Page] = [
          "Manage file and directory permissions, including ACLs, on CARC BeeGFS scratch storage.",
          "Guide", ["Storage", "Security"]),
     Page("systems_information.md", "systems/cluster-specifications.md", "Cluster specifications (legacy reference)",
-         "Historical hardware tables for CARC clusters, including retired systems such as Wheeler, Taos, and Gibbs.",
+         "Historical hardware tables for CARC clusters, including retired systems such as Wheeler, Taos, Gibbs, and Xena.",
          "Reference", ["Systems", "Hardware", "Legacy"], status="deprecated", repo="webinfo",
-         note="This page is kept for history and links. Wheeler, Taos, and Gibbs have been retired — see the [Systems overview](overview.md) for current clusters."),
+         note="This page is kept for history and links. Wheeler, Taos, Gibbs, and Xena have been retired — see the [Systems overview](overview.md) for current clusters."),
 
     # ---- Running jobs
     Page("Intro_to_slurm.md", "running-jobs/slurm-intro.md", "Introduction to Slurm",
@@ -204,18 +204,18 @@ PAGES: list[Page] = [
          "Guide", ["MATLAB", "Parallel"]),
     Page("Using GPUs on Xena with MATLAB.md", "software/matlab-gpu.md", "MATLAB on GPUs",
          "Accelerate MATLAB computations with GPUs on CARC clusters.",
-         "Guide", ["MATLAB", "GPU"]),
+         "Guide", ["MATLAB", "GPU"], status="draft"),
     Page("MATLAB Deep Learning on Xena.md", "software/matlab-deep-learning.md", "MATLAB deep learning",
          "Train deep learning models in MATLAB using CARC GPU nodes.",
-         "Tutorial", ["MATLAB", "GPU", "Machine learning"]),
+         "Tutorial", ["MATLAB", "GPU", "Machine learning"], status="draft"),
 
     # ---- Software: AI & ML
     Page("PyTorch_1.9_Xena.md", "software/pytorch.md", "PyTorch on CARC GPUs",
          "Install and run GPU-enabled PyTorch on CARC clusters.",
-         "Guide", ["Python", "GPU", "Machine learning", "PyTorch"]),
+         "Guide", ["Python", "GPU", "Machine learning", "PyTorch"], status="draft"),
     Page("PyTorch_Classifier_Xena .ipynb", "software/pytorch-classifier.md", "PyTorch image classifier walkthrough",
          "End-to-end example: train an image classifier with PyTorch on a CARC GPU node.",
-         "Tutorial", ["Python", "GPU", "Machine learning", "PyTorch"], notebook=True),
+         "Tutorial", ["Python", "GPU", "Machine learning", "PyTorch"], notebook=True, status="draft"),
     Page("Tensorflow_documentation.md", "software/tensorflow.md", "TensorFlow on CARC GPUs",
          "Install and run GPU-enabled TensorFlow on CARC clusters.",
          "Guide", ["Python", "GPU", "Machine learning", "TensorFlow"], code_lang="python"),
@@ -482,10 +482,10 @@ def externalize_links(md: str) -> str:
     return "\n".join(out)
 
 
-LEGACY_RE = re.compile(r"\b(Wheeler|Taos|Gibbs)\b")
-LEGACY_NOTE = ("This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). "
+LEGACY_RE = re.compile(r"\b(Wheeler|Taos|Gibbs|Xena)\b", re.IGNORECASE)
+LEGACY_NOTE = ("This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). "
                "The workflow remains a useful example, but verify cluster names, partitions, "
-               "and module versions against the [current systems](%s).")
+               "GPU types, and module versions against the [current systems](%s).")
 
 
 def sh(cmd, cwd=None) -> str:

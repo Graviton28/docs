@@ -1,6 +1,6 @@
 # CARC Documentation
 
-> User and researcher documentation for the UNM Center for Advanced Research Computing (CARC): high-performance computing clusters (Easley, Hopper, Xena), storage, Slurm scheduling, research software, tutorials, and training. The source repository is an Open Knowledge Format (OKF v0.2) bundle: every page carries YAML frontmatter with type, provenance (generated/sources), and lifecycle (status/stale_after) fields.
+> User and researcher documentation for the UNM Center for Advanced Research Computing (CARC): high-performance computing clusters (Easley and Hopper), storage, Slurm scheduling, research software, tutorials, and training. The source repository is an Open Knowledge Format (OKF v0.2) bundle: every page carries YAML frontmatter with type, provenance (generated/sources), and lifecycle (status/stale_after) fields.
 
 Full corpus for ingestion: https://unm-carc.github.io/carc_documentation/llms-full.txt
 
@@ -18,8 +18,8 @@ Full corpus for ingestion: https://unm-carc.github.io/carc_documentation/llms-fu
 
 ## Systems & storage
 
-- [Cluster specifications (legacy reference)](https://unm-carc.github.io/carc_documentation/systems/cluster-specifications/): Historical hardware tables for CARC clusters, including retired systems such as Wheeler, Taos, and Gibbs. (deprecated; kept for history)
-- [Systems overview](https://unm-carc.github.io/carc_documentation/systems/overview/): Current CARC clusters (Easley, Hopper, Xena), storage tiers, and web portals such as JupyterHub, Open OnDemand, and XDMoD.
+- [Cluster specifications (legacy reference)](https://unm-carc.github.io/carc_documentation/systems/cluster-specifications/): Historical hardware tables for CARC clusters, including retired systems such as Wheeler, Taos, Gibbs, and Xena. (deprecated; kept for history)
+- [Systems overview](https://unm-carc.github.io/carc_documentation/systems/overview/): Current CARC clusters (Easley and Hopper), storage tiers, and web portals such as JupyterHub, Open OnDemand, and XDMoD.
 - [Storage and compute usage policies](https://unm-carc.github.io/carc_documentation/systems/resource-limits/): Storage quotas, Slurm fairshare policy, and per-cluster queue limits.
 - [Storage permissions on BeeGFS](https://unm-carc.github.io/carc_documentation/systems/storage-permissions/): Manage file and directory permissions, including ACLs, on CARC BeeGFS scratch storage.
 - [Storage and backups](https://unm-carc.github.io/carc_documentation/systems/storage/): CARC storage spaces (home, project, scratch), where to compute from, and what is backed up.
@@ -52,15 +52,15 @@ Full corpus for ingestion: https://unm-carc.github.io/carc_documentation/llms-fu
 - [Getting R software](https://unm-carc.github.io/carc_documentation/software/getting-r/): Available R versions and how to load them with environment modules.
 - [Gurobi optimizer with R](https://unm-carc.github.io/carc_documentation/software/gurobi-r/): Use the Gurobi optimization solver from R on CARC clusters.
 - [MPI parallelization from JupyterHub](https://unm-carc.github.io/carc_documentation/software/jupyterhub-mpi/): Run MPI-parallel Python (mpi4py/ipyparallel) from CARC JupyterHub sessions.
-- [MATLAB deep learning](https://unm-carc.github.io/carc_documentation/software/matlab-deep-learning/): Train deep learning models in MATLAB using CARC GPU nodes.
-- [MATLAB on GPUs](https://unm-carc.github.io/carc_documentation/software/matlab-gpu/): Accelerate MATLAB computations with GPUs on CARC clusters.
+- [MATLAB deep learning](https://unm-carc.github.io/carc_documentation/software/matlab-deep-learning/): Train deep learning models in MATLAB using CARC GPU nodes. (draft)
+- [MATLAB on GPUs](https://unm-carc.github.io/carc_documentation/software/matlab-gpu/): Accelerate MATLAB computations with GPUs on CARC clusters. (draft)
 - [Running MATLAB jobs](https://unm-carc.github.io/carc_documentation/software/matlab-jobs/): Run MATLAB non-interactively in Slurm batch jobs on CARC clusters.
 - [MATLAB Parallel Server](https://unm-carc.github.io/carc_documentation/software/matlab-parallel-server/): Use MATLAB Parallel Server to scale parpool jobs across multiple nodes.
 - [Parallel MATLAB: profile setup and batch submission](https://unm-carc.github.io/carc_documentation/software/parallel-matlab/): Configure a cluster profile and submit parallel MATLAB jobs.
 - [Parallel R with the future package](https://unm-carc.github.io/carc_documentation/software/parallel-r-future/): Parallelize R code across cores and nodes using the future framework.
 - [ParaView remote visualization](https://unm-carc.github.io/carc_documentation/software/paraview/): Run the ParaView server on CARC compute nodes and connect from your desktop client.
-- [PyTorch image classifier walkthrough](https://unm-carc.github.io/carc_documentation/software/pytorch-classifier/): End-to-end example: train an image classifier with PyTorch on a CARC GPU node.
-- [PyTorch on CARC GPUs](https://unm-carc.github.io/carc_documentation/software/pytorch/): Install and run GPU-enabled PyTorch on CARC clusters.
+- [PyTorch image classifier walkthrough](https://unm-carc.github.io/carc_documentation/software/pytorch-classifier/): End-to-end example: train an image classifier with PyTorch on a CARC GPU node. (draft)
+- [PyTorch on CARC GPUs](https://unm-carc.github.io/carc_documentation/software/pytorch/): Install and run GPU-enabled PyTorch on CARC clusters. (draft)
 - [Installing R packages](https://unm-carc.github.io/carc_documentation/software/r-packages/): Install R packages into your user library on CARC systems.
 - [R batch jobs with PBS (retired)](https://unm-carc.github.io/carc_documentation/software/r-pbs-jobs/): Historical instructions for submitting R jobs with PBS/Torque, which CARC has replaced with Slurm. (deprecated; kept for history)
 - [R on CARC systems](https://unm-carc.github.io/carc_documentation/software/r-usage/): Load R, run scripts in batch jobs, and use R interactively on CARC clusters.
