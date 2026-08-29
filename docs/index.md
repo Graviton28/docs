@@ -11,10 +11,6 @@ hide:
 
 <div class="carc-hero" markdown>
 
-<p class="carc-hero__tagline">The hub of computational research at The University of New Mexico —
-free high-performance computing, large-scale storage, and expert support for
-UNM faculty, staff, and student researchers.</p>
-
 <div class="carc-actions" markdown>
 [:material-rocket-launch: Get started](getting-started/index.md){ .md-button .md-button--primary }
 [:material-lifebuoy: Help ticket](https://support.alliance.unm.edu/){ .md-button target=_blank }
