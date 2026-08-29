@@ -1,0 +1,164 @@
+/* ==========================================================================
+   UNM CARC documentation theme
+   UNM brand: Cherry #BA0C2F + Turquoise #007A86 (accent), Silver #A7A8AA
+   Design inspired by the Jetstream2 documentation (gradient identity header,
+   card-based landing page) rebuilt for the Zensical modern theme.
+   ========================================================================== */
+
+/* --- Brand color tokens ------------------------------------------------- */
+
+:root > * {
+  --md-primary-fg-color:        #ba0c2f;   /* UNM cherry */
+  --md-primary-fg-color--light: #d64d6d;
+  --md-primary-fg-color--dark:  #8a0923;
+  --md-accent-fg-color:         #007a86;   /* UNM turquoise */
+  --md-accent-fg-color--transparent: rgba(0, 122, 134, 0.1);
+
+  --carc-cherry:           #ba0c2f;
+  --carc-cherry-dark:      #6d0a1f;
+  --carc-turquoise:        #007a86;
+  --carc-turquoise-bright: #00a9ba;
+  --carc-silver:           #a7a8aa;
+  --carc-gradient: linear-gradient(105deg,
+      #4d0715 0%,
+      #8a0923 30%,
+      #ba0c2f 58%,
+      #7c2440 74%,
+      #0b5f6a 92%,
+      #007a86 100%);
+}
+
+/* Dark scheme: lift the palette for contrast on slate backgrounds */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        #ff5c7c;
+  --md-primary-fg-color--light: #ff8ba3;
+  --md-primary-fg-color--dark:  #d64d6d;
+  --md-accent-fg-color:         #35c9d6;
+  --md-accent-fg-color--transparent: rgba(53, 201, 214, 0.1);
+  --md-typeset-a-color:         #4fd3e0;   /* turquoise links for legibility */
+}
+
+/* --- Identity header (cherry-to-turquoise gradient) ---------------------- */
+
+.md-header,
+.md-tabs {
+  background: var(--carc-gradient);
+  color: #ffffff;
+}
+
+.md-header { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); }
+
+.md-header a,
+.md-header .md-header__title,
+.md-tabs a {
+  color: #ffffff;
+}
+
+.md-tabs__link { opacity: 0.85; }
+.md-tabs__link--active,
+.md-tabs__link:hover { opacity: 1; }
+
+/* Keep header controls (search, palette toggle, repo) legible on gradient */
+.md-header .md-icon svg { fill: #ffffff; }
+.md-search__form { background-color: rgba(255, 255, 255, 0.12); }
+.md-search__input { color: #ffffff; }
+.md-search__input::placeholder { color: rgba(255, 255, 255, 0.75); }
+
+/* --- Landing page -------------------------------------------------------- */
+
+.carc-hero {
+  text-align: center;
+  margin: 1.5rem auto 2rem;
+  max-width: 42rem;
+}
+
+.carc-hero img.carc-hero__logo {
+  width: min(26rem, 85%);
+  margin-bottom: 0.75rem;
+}
+
+.carc-hero p.carc-hero__tagline {
+  font-size: 0.85rem;
+  color: var(--md-default-fg-color--light);
+}
+
+/* Quick-action button row */
+.carc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 1.2rem 0 0.4rem;
+}
+
+.carc-actions .md-button {
+  border-radius: 2rem;
+  padding: 0.45rem 1.2rem;
+}
+
+.carc-actions .md-button--primary {
+  background: var(--carc-gradient);
+  border-color: transparent;
+}
+
+/* Card grids: turquoise hover treatment */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border-radius: 0.5rem;
+  transition: border-color 125ms, box-shadow 125ms, transform 125ms;
+}
+
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid > .card:hover {
+  border-color: var(--carc-turquoise);
+  box-shadow: 0 6px 16px rgba(0, 122, 134, 0.18);
+  transform: translateY(-2px);
+}
+
+.md-typeset .grid.cards > ul > li > hr {
+  background: linear-gradient(90deg, var(--carc-cherry), var(--carc-turquoise));
+  height: 2px;
+  border: 0;
+}
+
+/* Partner strip */
+.carc-partners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1rem 0 0.5rem;
+}
+
+.carc-partners a {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 2rem;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.7rem;
+  color: var(--md-default-fg-color--light);
+  transition: border-color 125ms, color 125ms;
+}
+
+.carc-partners a:hover {
+  border-color: var(--carc-turquoise);
+  color: var(--carc-turquoise);
+}
+
+/* --- Content niceties ----------------------------------------------------- */
+
+/* Slightly wider content area, mirroring Jetstream2's 1200px layout */
+.md-grid { max-width: 76rem; }
+
+/* Provenance footer line added to migrated pages */
+.carc-provenance {
+  margin-top: 2.5rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  font-size: 0.64rem;
+  color: var(--md-default-fg-color--light);
+}
+
+/* Tables: header tint */
+.md-typeset table:not([class]) th {
+  background-color: var(--md-accent-fg-color--transparent);
+}

@@ -1,0 +1,121 @@
+[project]
+site_name = "CARC Documentation"
+# TODO: update site_url once the GitHub repository / Pages target is finalized.
+site_url = "https://unm-carc.github.io/carc_documentation/"
+site_description = "User and researcher documentation for the UNM Center for Advanced Research Computing (CARC): high-performance computing, storage, software, tutorials, and training."
+site_author = "UNM Center for Advanced Research Computing"
+copyright = "&copy; 2026 The University of New Mexico &mdash; Center for Advanced Research Computing"
+
+# TODO: update when the docs repository is pushed to the UNM-CARC organization.
+repo_url = "https://github.com/UNM-CARC/carc_documentation"
+repo_name = "UNM-CARC/carc_documentation"
+edit_uri = "edit/main/docs/"
+
+extra_css = ["stylesheets/extra.css"]
+
+nav = [
+  { "Home" = "index.md" },
+  { "Getting started" = [ "getting-started/index.md", "getting-started/overview.md", "getting-started/good-neighbor-policy.md", "getting-started/logging-in.md", "getting-started/password-reset.md", "getting-started/ssh-keys.md", "getting-started/x11-forwarding.md", "getting-started/transferring-data.md", "getting-started/linux-intro.md", "getting-started/learning-linux.md" ] },
+  { "Systems & storage" = [ "systems/index.md", "systems/overview.md", "systems/resource-limits.md", "systems/storage.md", "systems/storage-permissions.md", "systems/cluster-specifications.md" ] },
+  { "Running jobs" = [ "running-jobs/index.md", "running-jobs/slurm-intro.md", "running-jobs/submitting-jobs.md", "running-jobs/slurm-reference.md", "running-jobs/example-slurm-scripts.md", "running-jobs/slurm-accounting.md", "running-jobs/pbs-to-slurm.md", "running-jobs/modules.md", "running-jobs/gnu-parallel.md" ] },
+  { "Software" = [ "software/index.md", { "Python & Jupyter" = [ "software/conda-intro.md", "software/conda-environments.md", "software/conda-channels-pip.md", "software/conda-jupyterhub.md", "software/deep-learning-packages.md", "software/dask-scikit-learn.md", "software/jupyterhub-mpi.md" ] }, { "R" = [ "software/r-usage.md", "software/getting-r.md", "software/r-packages.md", "software/parallel-r-future.md", "software/gurobi-r.md", "software/r-pbs-jobs.md" ] }, { "MATLAB" = [ "software/matlab-jobs.md", "software/parallel-matlab.md", "software/matlab-parallel-server.md", "software/matlab-gpu.md", "software/matlab-deep-learning.md" ] }, { "AI & machine learning" = [ "software/pytorch.md", "software/pytorch-classifier.md", "software/tensorflow.md", "software/tensorflow-multi-gpu.md", "software/alphafold.md" ] }, { "Containers & tools" = [ "software/singularity.md", "software/spark.md", "software/paraview.md" ] } ] },
+  { "Tutorials" = [ "tutorials/index.md", "tutorials/gatk.md", "tutorials/metabarcoding.md", "tutorials/stacks.md", "tutorials/msprime.md", "tutorials/psmc.md", "tutorials/beast.md", "tutorials/simcov.md", "tutorials/vasp.md", "tutorials/orca.md", "tutorials/mpi-casa.md" ] },
+  { "Training" = [ "training/index.md", "training/videos.md", "training/workshops.md" ] },
+  { "Support" = [ "support/index.md", "support/help.md", "support/acknowledging-carc.md" ] },
+  { "About" = [ "about/index.md", "about/mission.md", "about/facilities.md", "about/partners.md", "log.md" ] },
+]
+
+[project.theme]
+favicon = "assets/favicon.svg"
+logo = "assets/carc-logo.svg"
+language = "en"
+features = [
+  "announce.dismiss",
+  "content.action.edit",
+  "content.action.view",
+  "content.code.annotate",
+  "content.code.copy",
+  "content.code.select",
+  "content.footnote.tooltips",
+  "content.tabs.link",
+  "content.tooltips",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  "navigation.instant.progress",
+  "navigation.path",
+  "navigation.tabs",
+  "navigation.tabs.sticky",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+  "search.suggest",
+  "toc.follow",
+]
+
+[project.theme.icon]
+repo = "fontawesome/brands/github"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/UNM-CARC"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/x-twitter"
+link = "https://twitter.com/unmcarc"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/youtube"
+link = "https://www.youtube.com/playlist?list=PLvr5gRBLi7VAzEB_t5aXOLHLfdIu2s1hZ"
+
+[project.markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+toc.permalink = true
+pymdownx.arithmatex.generic = true
+pymdownx.betterem = {}
+pymdownx.caret = {}
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.magiclink = {}
+pymdownx.mark = {}
+pymdownx.smartsymbols = {}
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tabbed.alternate_style = true
+pymdownx.tabbed.combine_header_slug = true
+pymdownx.tasklist.custom_checkbox = true
+pymdownx.tilde = {}
