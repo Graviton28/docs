@@ -308,6 +308,9 @@ PAGES: list[Page] = [
     Page("", "about/contributing.md", "Contributing to these docs",
          "How to edit pages, the OKF frontmatter contract, verifying migrated content, and building the site locally.",
          "Guide", ["About", "Contributing"], repo="hand"),
+    Page("", "about/ai-agents.md", "For AI agents",
+         "How agents and harnesses should consume this documentation: llms.txt, per-page Markdown with OKF frontmatter, and trust signals.",
+         "Reference", ["About", "AI agents", "OKF"], repo="hand"),
 ]
 
 SECTIONS = {

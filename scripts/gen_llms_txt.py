@@ -82,6 +82,11 @@ def main():
         "",
         f"Full corpus for ingestion: {base}llms-full.txt",
         "",
+        "Every page's Markdown source (OKF frontmatter included) is served at "
+        "its URL plus `index.md` — for example "
+        f"{base}running-jobs/slurm-intro/index.md. Agent guide: "
+        f"{base}about/ai-agents/",
+        "",
     ]
     full = [
         "# CARC Documentation — full corpus",

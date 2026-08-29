@@ -2,6 +2,8 @@
 
 ## 2026-08-29
 
+* **Update**: Made the deployed site directly consumable by AI agents: every page's Markdown source (OKF frontmatter intact) is now served at its URL plus `index.md`; rendered pages advertise it via `link rel=alternate` and `okf:*` meta tags (type, status, trust tier, generated-at); `robots.txt` points crawlers at `llms.txt`, the full corpus, and the mirror convention (`scripts/postbuild_agent_surface.py`, wired into CI). Added the [For AI agents](about/ai-agents.md) guide and a repository `AGENTS.md`/`CLAUDE.md` for coding harnesses.
+
 * **Update**: Embedded CARC YouTube recordings across the site: the [Video tutorials](training/videos.md) page now carries the full QuickBytes playlist, CARC Annual Meeting 2025 talks, and research presentations from the UNMCARC channel; ten guide pages (logging in, Slurm intro, storage, transfers, modules, conda, X11, GNU Parallel, SimCov, parallel R) embed their matching walkthrough via the migration pipeline.
 * **Creation**: Rebuilt the [Workshops and slides](training/workshops.md) page (previously a stub) as a curated catalog of 33 slide decks: the Introduction to CARC series, domain-focused workshops, course guest lectures, and legacy material.
 

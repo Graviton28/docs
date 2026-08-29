@@ -61,13 +61,24 @@ Validate conformance locally:
 python scripts/okf_validate.py docs
 ```
 
-The site also ships [llms.txt](https://llmstxt.org) indexes at
-`/llms.txt` (linked outline with descriptions) and `/llms-full.txt` (the full
-corpus, frontmatter included) so AI assistants can ingest the documentation
-directly. Regenerate after content changes — CI fails if they drift:
+The deployed site is directly consumable by AI agents:
+
+- `/llms.txt` ([convention](https://llmstxt.org)) — linked outline;
+  `/llms-full.txt` — the full corpus with frontmatter in one file.
+- **Markdown mirror**: any page URL + `index.md` returns that page's source
+  with OKF frontmatter (e.g. `/running-jobs/slurm-intro/index.md`).
+- Rendered pages carry `<link rel="alternate" type="text/markdown">` and
+  `okf:*` meta tags (type, status, trust tier, generated-at, stale-after).
+- `robots.txt` advertises all of the above; `docs/about/ai-agents.md` is the
+  human/agent-readable guide, and `AGENTS.md` guides coding agents working
+  in this repository.
+
+Regenerate the llms indexes after content changes (CI fails on drift), and
+run the agent-surface step after every build:
 
 ```bash
 python scripts/gen_llms_txt.py
+zensical build --clean && python scripts/postbuild_agent_surface.py
 ```
 
 ## Content sources

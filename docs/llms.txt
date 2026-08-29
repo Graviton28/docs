@@ -4,6 +4,8 @@
 
 Full corpus for ingestion: https://unm-carc.github.io/carc_documentation/llms-full.txt
 
+Every page's Markdown source (OKF frontmatter included) is served at its URL plus `index.md` — for example https://unm-carc.github.io/carc_documentation/running-jobs/slurm-intro/index.md. Agent guide: https://unm-carc.github.io/carc_documentation/about/ai-agents/
+
 ## Getting started
 
 - [Good Neighbor Use Policy](https://unm-carc.github.io/carc_documentation/getting-started/good-neighbor-policy/): Acceptable-use rules that all CARC users agree to: account sharing, data restrictions, job monitoring, and security.
@@ -99,6 +101,7 @@ Full corpus for ingestion: https://unm-carc.github.io/carc_documentation/llms-fu
 
 ## About CARC
 
+- [For AI agents](https://unm-carc.github.io/carc_documentation/about/ai-agents/): How agents and harnesses should consume this documentation: llms.txt, per-page Markdown with OKF frontmatter, and trust signals.
 - [Contributing to these docs](https://unm-carc.github.io/carc_documentation/about/contributing/): How to edit pages, the OKF frontmatter contract, verifying migrated content, and building the site locally.
 - [Facilities description](https://unm-carc.github.io/carc_documentation/about/facilities/): Boilerplate facilities description for grant proposals: clusters, storage, networking, and the data center.
 - [Mission and vision](https://unm-carc.github.io/carc_documentation/about/mission/): CARC's vision and mission: leading and growing the computational research community at UNM.
