@@ -15,14 +15,14 @@ extra_css = ["stylesheets/extra.css"]
 
 nav = [
   { "Home" = "index.md" },
-  { "Getting started" = [ "getting-started/index.md", "getting-started/overview.md", "getting-started/good-neighbor-policy.md", "getting-started/logging-in.md", "getting-started/password-reset.md", "getting-started/ssh-keys.md", "getting-started/x11-forwarding.md", "getting-started/transferring-data.md", "getting-started/linux-intro.md", "getting-started/learning-linux.md" ] },
-  { "Systems & storage" = [ "systems/index.md", "systems/overview.md", "systems/resource-limits.md", "systems/storage.md", "systems/storage-permissions.md", "systems/cluster-specifications.md" ] },
-  { "Running jobs" = [ "running-jobs/index.md", "running-jobs/slurm-intro.md", "running-jobs/submitting-jobs.md", "running-jobs/slurm-reference.md", "running-jobs/example-slurm-scripts.md", "running-jobs/slurm-accounting.md", "running-jobs/pbs-to-slurm.md", "running-jobs/modules.md", "running-jobs/gnu-parallel.md" ] },
-  { "Software" = [ "software/index.md", { "Python & Jupyter" = [ "software/conda-intro.md", "software/conda-environments.md", "software/conda-channels-pip.md", "software/conda-jupyterhub.md", "software/deep-learning-packages.md", "software/dask-scikit-learn.md", "software/jupyterhub-mpi.md" ] }, { "R" = [ "software/r-usage.md", "software/getting-r.md", "software/r-packages.md", "software/parallel-r-future.md", "software/gurobi-r.md", "software/r-pbs-jobs.md" ] }, { "MATLAB" = [ "software/matlab-jobs.md", "software/parallel-matlab.md", "software/matlab-parallel-server.md", "software/matlab-gpu.md", "software/matlab-deep-learning.md" ] }, { "AI & machine learning" = [ "software/pytorch.md", "software/pytorch-classifier.md", "software/tensorflow.md", "software/tensorflow-multi-gpu.md", "software/alphafold.md" ] }, { "Containers & tools" = [ "software/singularity.md", "software/spark.md", "software/paraview.md" ] } ] },
-  { "Tutorials" = [ "tutorials/index.md", "tutorials/gatk.md", "tutorials/metabarcoding.md", "tutorials/stacks.md", "tutorials/msprime.md", "tutorials/psmc.md", "tutorials/beast.md", "tutorials/simcov.md", "tutorials/vasp.md", "tutorials/orca.md", "tutorials/mpi-casa.md" ] },
-  { "Training" = [ "training/index.md", "training/videos.md", "training/workshops.md" ] },
-  { "Support" = [ "support/index.md", "support/help.md", "support/acknowledging-carc.md" ] },
-  { "About" = [ "about/index.md", "about/mission.md", "about/facilities.md", "about/partners.md", "log.md" ] },
+  { "Getting started" = [ { "Contents" = "getting-started/index.md" }, "getting-started/overview.md", "getting-started/good-neighbor-policy.md", "getting-started/logging-in.md", "getting-started/password-reset.md", "getting-started/ssh-keys.md", "getting-started/x11-forwarding.md", "getting-started/transferring-data.md", "getting-started/linux-intro.md", "getting-started/learning-linux.md" ] },
+  { "Systems & storage" = [ { "Contents" = "systems/index.md" }, "systems/overview.md", "systems/resource-limits.md", "systems/storage.md", "systems/storage-permissions.md", "systems/cluster-specifications.md" ] },
+  { "Running jobs" = [ { "Contents" = "running-jobs/index.md" }, "running-jobs/slurm-intro.md", "running-jobs/submitting-jobs.md", "running-jobs/slurm-reference.md", "running-jobs/example-slurm-scripts.md", "running-jobs/slurm-accounting.md", "running-jobs/pbs-to-slurm.md", "running-jobs/modules.md", "running-jobs/gnu-parallel.md" ] },
+  { "Software" = [ { "Contents" = "software/index.md" }, { "Python & Jupyter" = [ "software/conda-intro.md", "software/conda-environments.md", "software/conda-channels-pip.md", "software/conda-jupyterhub.md", "software/deep-learning-packages.md", "software/dask-scikit-learn.md", "software/jupyterhub-mpi.md" ] }, { "R" = [ "software/r-usage.md", "software/getting-r.md", "software/r-packages.md", "software/parallel-r-future.md", "software/gurobi-r.md", "software/r-pbs-jobs.md" ] }, { "MATLAB" = [ "software/matlab-jobs.md", "software/parallel-matlab.md", "software/matlab-parallel-server.md", "software/matlab-gpu.md", "software/matlab-deep-learning.md" ] }, { "AI & machine learning" = [ "software/pytorch.md", "software/pytorch-classifier.md", "software/tensorflow.md", "software/tensorflow-multi-gpu.md", "software/alphafold.md" ] }, { "Containers & tools" = [ "software/singularity.md", "software/spark.md", "software/paraview.md" ] } ] },
+  { "Tutorials" = [ { "Contents" = "tutorials/index.md" }, "tutorials/gatk.md", "tutorials/metabarcoding.md", "tutorials/stacks.md", "tutorials/msprime.md", "tutorials/psmc.md", "tutorials/beast.md", "tutorials/simcov.md", "tutorials/vasp.md", "tutorials/orca.md", "tutorials/mpi-casa.md" ] },
+  { "Training" = [ { "Contents" = "training/index.md" }, "training/videos.md", "training/workshops.md" ] },
+  { "Support" = [ { "Contents" = "support/index.md" }, "support/help.md", "support/acknowledging-carc.md" ] },
+  { "About" = [ { "Contents" = "about/index.md" }, "about/mission.md", "about/facilities.md", "about/partners.md", "log.md" ] },
 ]
 
 [project.theme]
@@ -40,7 +40,6 @@ features = [
   "content.tabs.link",
   "content.tooltips",
   "navigation.footer",
-  "navigation.indexes",
   "navigation.instant",
   "navigation.instant.prefetch",
   "navigation.instant.progress",
@@ -52,6 +51,7 @@ features = [
   "search.highlight",
   "search.suggest",
   "toc.follow",
+  "toc.integrate",
 ]
 
 [project.theme.icon]
