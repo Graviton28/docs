@@ -11,10 +11,6 @@ hide:
 
 <div class="carc-hero" markdown>
 
-<img class="carc-hero__logo" src="assets/carc-mark.svg" alt="CARC mark" width="140" />
-
-## Center for Advanced Research Computing { .carc-hero__title }
-
 <p class="carc-hero__tagline">The hub of computational research at The University of New Mexico —
 free high-performance computing, large-scale storage, and expert support for
 UNM faculty, staff, and student researchers.</p>
