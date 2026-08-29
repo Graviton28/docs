@@ -57,6 +57,15 @@ UNM faculty, staff, and student researchers.</p>
 
     [:octicons-arrow-right-24: Run your first job](running-jobs/index.md)
 
+-   :material-monitor-dashboard:{ .lg .middle } __Interactive computing__
+
+    ---
+
+    Work from your browser: Open OnDemand for files, shells, and apps;
+    JupyterHub for notebooks on compute nodes.
+
+    [:octicons-arrow-right-24: Compute interactively](interactive/index.md)
+
 -   :material-package-variant:{ .lg .middle } __Software__
 
     ---
@@ -74,6 +83,15 @@ UNM faculty, staff, and student researchers.</p>
     chemistry, materials, astronomy, and more.
 
     [:octicons-arrow-right-24: Follow a tutorial](tutorials/index.md)
+
+-   :material-help-circle:{ .lg .middle } __FAQ & troubleshooting__
+
+    ---
+
+    Quick answers about accounts, storage, and GPUs — and fixes for login,
+    quota, and job problems.
+
+    [:octicons-arrow-right-24: Find an answer](faq/index.md)
 
 -   :material-school:{ .lg .middle } __Training__
 
@@ -118,8 +136,10 @@ UNM faculty, staff, and student researchers.</p>
 * [Getting started](getting-started/index.md) - Accounts, policies, logging in, and moving data.
 * [Systems & storage](systems/index.md) - CARC clusters, storage spaces, quotas, and usage policies.
 * [Running jobs](running-jobs/index.md) - Schedule and manage work on CARC clusters with Slurm.
+* [Interactive computing](interactive/index.md) - Open OnDemand and JupyterHub in the browser.
 * [Software](software/index.md) - Language environments, ML frameworks, containers, and applications.
 * [Tutorials](tutorials/index.md) - Domain-science QuickBytes: complete worked examples.
+* [FAQ & troubleshooting](faq/index.md) - Quick answers and fixes for common problems.
 * [Training](training/index.md) - Workshops, courses, and video tutorials.
 * [Support](support/index.md) - Help tickets, office hours, and acknowledging CARC.
 * [About CARC](about/index.md) - Mission, facilities, partners, and the documentation log.

@@ -138,6 +138,14 @@ PAGES: list[Page] = [
          "Run many small tasks efficiently inside a single Slurm job with GNU Parallel.",
          "Guide", ["Slurm", "Parallel"]),
 
+    # ---- Interactive computing (hand-written)
+    Page("", "interactive/open-ondemand.md", "Open OnDemand",
+         "Use CARC clusters from your browser: files, shells, job management, and interactive apps.",
+         "Guide", ["Interactive", "Open OnDemand", "New users"], repo="hand"),
+    Page("", "interactive/jupyterhub.md", "JupyterHub",
+         "Run Jupyter notebooks on Hopper and Easley compute nodes through CARC JupyterHub.",
+         "Guide", ["Interactive", "Jupyter", "New users"], repo="hand"),
+
     # ---- Software: Python & Jupyter
     Page("anaconda_general_intro.md", "software/conda-intro.md", "Conda and Anaconda: introduction",
          "What conda is, how environments work, and how to use Anaconda/Miniconda on CARC systems.",
@@ -259,6 +267,14 @@ PAGES: list[Page] = [
          "Run mpiCASA for parallel radio astronomy imaging on CARC clusters.",
          "Tutorial", ["Astronomy", "MPI"]),
 
+    # ---- FAQ (hand-written)
+    Page("", "faq/general.md", "General FAQ",
+         "Quick answers about accounts, projects, cost, storage, software, and GPUs at CARC.",
+         "Reference", ["FAQ", "New users"], repo="hand"),
+    Page("", "faq/troubleshooting.md", "Troubleshooting",
+         "Diagnose the most common problems: login failures, quota errors, pending or failing jobs, and module conflicts.",
+         "Guide", ["FAQ", "Support"], repo="hand"),
+
     # ---- Training
     Page("", "training/videos.md", "Video tutorials",
          "CARC video tutorial playlists: introduction to computing at CARC and project management in ColdFront.",
@@ -285,6 +301,9 @@ PAGES: list[Page] = [
     Page("", "about/partners.md", "Partner cyberinfrastructure",
          "National and regional platforms CARC users can reach: ACCESS-CI, Jetstream2, CyVerse, and MESA.",
          "Reference", ["About", "Partners"], repo="hand"),
+    Page("", "about/contributing.md", "Contributing to these docs",
+         "How to edit pages, the OKF frontmatter contract, verifying migrated content, and building the site locally.",
+         "Guide", ["About", "Contributing"], repo="hand"),
 ]
 
 SECTIONS = {
@@ -294,10 +313,14 @@ SECTIONS = {
         "CARC clusters, storage spaces, quotas, and usage policies."),
     "running-jobs": ("Running jobs",
         "Schedule and manage work on CARC clusters with Slurm."),
+    "interactive": ("Interactive computing",
+        "Point-and-click access to CARC clusters: Open OnDemand and JupyterHub."),
     "software": ("Software",
         "Language environments, machine learning frameworks, containers, and applications on CARC systems."),
     "tutorials": ("Tutorials",
         "Domain-science QuickBytes: complete worked examples from genomics to materials science."),
+    "faq": ("FAQ & troubleshooting",
+        "Quick answers to common questions and fixes for the problems users hit most."),
     "training": ("Training",
         "Workshops, courses, and video tutorials from the CARC team."),
     "support": ("Support",

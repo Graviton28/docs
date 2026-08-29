@@ -187,6 +187,32 @@
   color: var(--md-default-fg-color--light);
 }
 
+/* FAQ question admonitions: turquoise instead of Material's default green */
+.md-typeset .admonition.question,
+.md-typeset details.question {
+  border-color: var(--carc-turquoise);
+}
+
+.md-typeset .question > .admonition-title,
+.md-typeset .question > summary {
+  background-color: rgba(0, 122, 134, 0.1);
+}
+
+.md-typeset .question > .admonition-title::before,
+.md-typeset .question > summary::before {
+  background-color: var(--carc-turquoise);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.question,
+[data-md-color-scheme="slate"] .md-typeset details.question {
+  border-color: var(--carc-turquoise-bright);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .question > .admonition-title::before,
+[data-md-color-scheme="slate"] .md-typeset .question > summary::before {
+  background-color: var(--carc-turquoise-bright);
+}
+
 /* Tables: header tint */
 .md-typeset table:not([class]) th {
   background-color: var(--md-accent-fg-color--transparent);

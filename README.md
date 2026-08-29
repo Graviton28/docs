@@ -31,7 +31,8 @@ zensical build --clean  # static site in ./site
 │   └── stylesheets/         # UNM cherry + turquoise theme (extra.css)
 ├── scripts/
 │   ├── migrate_quickbytes.py  # Reproducible migration from UNM-CARC/QuickBytes
-│   └── okf_validate.py        # OKF v0.2 conformance checker (run in CI)
+│   ├── okf_validate.py        # OKF v0.2 conformance checker (run in CI)
+│   └── gen_llms_txt.py        # Builds docs/llms.txt + docs/llms-full.txt
 └── .github/workflows/docs.yml # OKF validation + GitHub Pages deployment
 ```
 
@@ -58,6 +59,15 @@ Validate conformance locally:
 
 ```bash
 python scripts/okf_validate.py docs
+```
+
+The site also ships [llms.txt](https://llmstxt.org) indexes at
+`/llms.txt` (linked outline with descriptions) and `/llms-full.txt` (the full
+corpus, frontmatter included) so AI assistants can ingest the documentation
+directly. Regenerate after content changes — CI fails if they drift:
+
+```bash
+python scripts/gen_llms_txt.py
 ```
 
 ## Content sources
