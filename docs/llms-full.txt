@@ -12058,8 +12058,7 @@ any of them.
     where scientific data are automatically described, organized, and
     connected by metadata-aware AI agents.
 
-    <!-- TODO: replace with the MESA project site when it is live -->
-    [:octicons-arrow-right-24: MESA project](https://tysonswetnam.com/current_projects/){ target=_blank }
+    [:octicons-arrow-right-24: idss-mesa.github.io](https://idss-mesa.github.io){ target=_blank }
 
 </div>
 

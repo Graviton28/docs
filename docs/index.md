@@ -125,7 +125,7 @@ UNM faculty, staff, and student researchers.</p>
 [ACCESS-CI](https://access-ci.org){ target=_blank }
 [Jetstream2](https://docs.jetstream-cloud.org){ target=_blank }
 [CyVerse](https://cyverse.org){ target=_blank }
-[MESA](about/partners.md)
+[MESA](https://idss-mesa.github.io){ target=_blank }
 [Open OnDemand](https://ood.alliance.unm.edu){ target=_blank }
 </div>
 

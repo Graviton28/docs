@@ -83,5 +83,4 @@ python scripts/gen_llms_txt.py
 Pushing to `main` runs OKF validation and deploys to GitHub Pages via
 `.github/workflows/docs.yml` (set the repository's Pages source to
 "GitHub Actions"). **TODO:** update `site_url` and `repo_url` in
-`zensical.toml` when the final repository location is decided, and replace the
-MESA link in `docs/about/partners.md` when the project site is live.
+`zensical.toml` when the final repository location is decided.
