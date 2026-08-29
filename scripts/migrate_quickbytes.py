@@ -379,6 +379,47 @@ PATCHES = {
         ("\n\nparallel.cluster.generic.runProfileWizard()\n\n",
          "\n\n```matlab\nparallel.cluster.generic.runProfileWizard()\n```\n\n"),
     ],
+    # Blockquotes -> admonitions so errors/warnings carry proper symbols.
+    "systems/storage-permissions.md": [
+        ("The key point is:\n\n"
+         "> **Location does not determine quota usage. Group ownership does.**",
+         "The key point is:\n\n"
+         "!!! warning \"Key point\"\n\n"
+         "    **Location does not determine quota usage. Group ownership does.**"),
+        ("That can cause confusing quota errors such as:\n\n"
+         "> \"I copied the data to the project directory, so why am I out of personal quota?\"\n\n"
+         "The answer is usually:\n\n"
+         "> The files are in the right place, but they are owned by the wrong group.",
+         "That can cause confusing quota errors:\n\n"
+         "!!! danger \"Why am I out of personal quota?\"\n\n"
+         "    *\"I copied the data to the project directory, so why am I out of\n"
+         "    personal quota?\"*\n\n"
+         "    The answer is usually that the files are in the right place, but they\n"
+         "    are owned by the wrong group."),
+        ("This usually tells Linux:\n\n"
+         "> New files and directories created here should inherit the group ownership of the parent directory.\n\n"
+         "That helps project directories behave as shared spaces.\n\n"
+         "However, this is not foolproof.\n\n"
+         "Some copy tools, synchronization programs, editors, and applications may:\n\n"
+         "- preserve the source group\n"
+         "- explicitly set their own group\n"
+         "- create temporary files elsewhere and then move them into place\n"
+         "- use transfer behavior that bypasses the expected destination ownership\n\n"
+         "Because of this, users should always verify group ownership after large transfers.",
+         "This usually tells Linux:\n\n"
+         "!!! note \"What setgid means\"\n\n"
+         "    New files and directories created here should inherit the group\n"
+         "    ownership of the parent directory.\n\n"
+         "That helps project directories behave as shared spaces.\n\n"
+         "!!! warning \"setgid is not foolproof\"\n\n"
+         "    Some copy tools, synchronization programs, editors, and applications\n"
+         "    may:\n\n"
+         "    - preserve the source group\n"
+         "    - explicitly set their own group\n"
+         "    - create temporary files elsewhere and then move them into place\n"
+         "    - use transfer behavior that bypasses the expected destination ownership\n\n"
+         "    Because of this, always verify group ownership after large transfers."),
+    ],
 }
 
 LIST_ITEM_RE = re.compile(r"^\s*(\d+\.|[-*+])\s")

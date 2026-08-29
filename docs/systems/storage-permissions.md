@@ -30,7 +30,9 @@ This can be confusing because a file can be physically located inside a project 
 
 The key point is:
 
-> **Location does not determine quota usage. Group ownership does.**
+!!! warning "Key point"
+
+    **Location does not determine quota usage. Group ownership does.**
 
 ---
 
@@ -46,13 +48,15 @@ For example:
 
 But if the files are owned by the user's personal group rather than the project group, BeeGFS may charge that storage to the user's personal group quota instead.
 
-That can cause confusing quota errors such as:
+That can cause confusing quota errors:
 
-> "I copied the data to the project directory, so why am I out of personal quota?"
+!!! danger "Why am I out of personal quota?"
 
-The answer is usually:
+    *"I copied the data to the project directory, so why am I out of
+    personal quota?"*
 
-> The files are in the right place, but they are owned by the wrong group.
+    The answer is usually that the files are in the right place, but they
+    are owned by the wrong group.
 
 ---
 
@@ -227,20 +231,24 @@ The `s` in the group permission field means the directory has the setgid bit set
 
 This usually tells Linux:
 
-> New files and directories created here should inherit the group ownership of the parent directory.
+!!! note "What setgid means"
+
+    New files and directories created here should inherit the group
+    ownership of the parent directory.
 
 That helps project directories behave as shared spaces.
 
-However, this is not foolproof.
+!!! warning "setgid is not foolproof"
 
-Some copy tools, synchronization programs, editors, and applications may:
+    Some copy tools, synchronization programs, editors, and applications
+    may:
 
-- preserve the source group
-- explicitly set their own group
-- create temporary files elsewhere and then move them into place
-- use transfer behavior that bypasses the expected destination ownership
+    - preserve the source group
+    - explicitly set their own group
+    - create temporary files elsewhere and then move them into place
+    - use transfer behavior that bypasses the expected destination ownership
 
-Because of this, users should always verify group ownership after large transfers.
+    Because of this, always verify group ownership after large transfers.
 
 ---
 
