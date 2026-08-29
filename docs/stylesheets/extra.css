@@ -66,6 +66,32 @@
 
 /* --- Landing page -------------------------------------------------------- */
 
+/* Accessible-but-invisible page H1 (the hero carries the visual title) */
+.carc-visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.carc-hero .carc-hero__title {
+  margin: 0.2rem 0 0.4rem;
+  font-size: 1.6rem;
+  line-height: 1.2;
+  background: var(--carc-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-md-color-scheme="slate"] .carc-hero .carc-hero__title {
+  background: linear-gradient(105deg, #ff5c7c 0%, #ff8ba3 45%, #35c9d6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
 .carc-hero {
   text-align: center;
   margin: 1.5rem auto 2rem;

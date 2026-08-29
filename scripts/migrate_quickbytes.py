@@ -326,7 +326,7 @@ FILE_ASSETS = [
     ("vasp_assets/INCAR", "vasp/INCAR"),
     ("vasp_assets/KPOINTS", "vasp/KPOINTS"),
     ("vasp_assets/POSCAR", "vasp/POSCAR"),
-    ("vasp_assets/README_POTCAR.md", "vasp/README_POTCAR.md"),
+    ("vasp_assets/README_POTCAR.md", "vasp/README_POTCAR.txt"),
     ("R_at_CARC/parallel.r", "r/parallel.r"),
     ("R_at_CARC/parallel_r.pbs", "r/parallel_r.pbs"),
     ("R_at_CARC/sequential.R", "r/sequential.R"),

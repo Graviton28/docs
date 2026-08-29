@@ -1,0 +1,169 @@
+---
+title: "PBS to Slurm migration"
+description: "Translate PBS/Torque commands and scripts to their Slurm equivalents."
+type: Reference
+tags:
+  - Slurm
+  - PBS
+  - Legacy
+generated:
+  by: "claude/fable-5"
+  at: "2026-08-29T00:00:00Z"
+sources:
+  - id: quickbytes
+    resource: "https://github.com/UNM-CARC/QuickBytes/blob/master/pbs2slurm.md"
+    title: "UNM-CARC QuickBytes: pbs2slurm.md"
+    author: "team:unm-carc"
+    last_modified: "2026-06-25T10:51:21-06:00"
+---
+
+# PBS to Slurm migration
+
+Most CARC systems historically supported PBS/TORQUE for scheduling jobs in HPC environments. However, current CARC systems primarily use Slurm (Simple Linux Utility for Resource Management) for job scheduling.
+
+> **Note:** PBS is **not supported on Easley**. Although PBS may still be available on Hopper, we recommend using **Slurm** for all new jobs and workflows to ensure compatibility across CARC systems and to align with current support and documentation.
+
+Slurm differs from PBS in its syntax, commands for resource allocation, job submission and monitoring, and environment variables.
+
+Detailed Slurm documentation is available here:
+https://slurm.schedmd.com/documentation.html
+
+To submit jobs on Slurm-based systems, you must submit a Slurm job script. If you already have a PBS script, converting it to Slurm is usually straightforward.
+
+Additional references:
+
+* PBS job submission: http://carc.unm.edu/user-support-2/using-carc-systems1/running-jobs/submitting-jobs.html
+* Slurm QuickBytes: https://github.com/UNM-CARC/QuickBytes/blob/master/Intro_to_slurm.md
+
+---
+
+## Converting PBS Commands to Slurm Commands
+
+The table below lists commonly used PBS commands and their Slurm equivalents.
+
+| PBS Command             | Slurm Command                | Description                                     |
+| ----------------------- | ----------------------------- | ----------------------------------------------- |
+| `qsub <job_script.pbs>` | `sbatch <job_script.slurm>`  | Submit a batch job                              |
+| `qsub -I <options>`     | `salloc <options>`           | Request an interactive job                      |
+| `qstat -u <user>`       | `squeue -u <user>`           | Display jobs submitted by a user                |
+| `qstat -f <job-id>`     | `scontrol show job <job-id>` | Show detailed information for a job             |
+| `qdel <job-id>`         | `scancel <job-id>`           | Cancel a job                                    |
+| `pbsnodes <options>`    | `sinfo`                      | Display available nodes and cluster information |
+
+---
+
+## Resource Allocation Directives
+
+Both PBS and Slurm scripts begin with a shell interpreter declaration.
+
+Use:
+
+```bash
+#!/bin/bash
+```
+
+Resource directives are prefixed with:
+
+* `#PBS` for PBS
+* `#SBATCH` for Slurm
+
+Common resource allocation options are shown below.
+
+| PBS Directive            | Slurm Directive                               | Description                               |
+| ------------------------ | --------------------------------------------- | ----------------------------------------- |
+| `-N <name>`              | `--job-name=<name>`                           | Job name                                  |
+| `-l procs=<N>`           | `--ntasks=<N>`                                | Number of tasks/processes                 |
+| `-l nodes=a:ppn=b`       | `--nodes=a` + `--ntasks-per-node=b`           | Request `a` nodes with `b` tasks per node |
+| `-l walltime=<HH:MM:SS>` | `--time=<HH:MM:SS>`                           | Maximum wall-clock runtime                |
+| `-l mem=<memory>`        | `--mem=<memory>`                              | Memory requested per node                 |
+| `-M <email>`             | `--mail-user=<email>`                         | Email address for notifications           |
+| `-m <a,b,e>`             | `--mail-type=BEGIN,END,FAIL,REQUEUE,ALL`      | Email notification conditions             |
+| `-o <out_file>`          | `--output=<out_file>`                         | Standard output file                      |
+| `-e <error_file>`        | `--error=<error_file>`                        | Standard error file                       |
+| `-j oe`                  | Default behavior in many Slurm configurations | Combine stdout and stderr                 |
+
+> **Recommendation:** Prefer `--nodes` and `--ntasks-per-node` instead of collapsing everything into `--ntasks`, since this maps more directly to how resources are allocated in Slurm.
+
+---
+
+## Running Commands with `srun`
+
+In Slurm, program execution lines within a batch script should generally be prefixed with `srun`. This ensures the command is properly launched on the allocated compute resources (rather than just on the node that happens to execute the script), and lets Slurm track and account for the resources that command actually uses. For single-task jobs the difference may not be obvious, but for multi-task or multi-node jobs, omitting `srun` can cause your program to run incorrectly or only on a single task/node instead of being distributed as requested.
+
+```bash
+srun python test.py
+```
+
+---
+
+## Environment Variables
+
+PBS and Slurm expose similar environment variables during job execution.
+
+| PBS Variable        | Slurm Variable        | Description                                |
+| ------------------- | ---------------------- | ------------------------------------------ |
+| `$PBS_O_HOST`       | `$SLURM_SUBMIT_HOST`  | Host where the job was submitted           |
+| `$PBS_JOBID`        | `$SLURM_JOB_ID`       | Job ID                                     |
+| `$PBS_O_WORKDIR`    | `$SLURM_SUBMIT_DIR`   | Directory from which the job was submitted |
+| `cat $PBS_NODEFILE` | `$SLURM_JOB_NODELIST` | Allocated nodes                            |
+
+If you need individual node names in Slurm:
+
+```bash
+scontrol show hostnames $SLURM_JOB_NODELIST
+```
+
+---
+
+## Example: PBS Script
+
+Below is a sample PBS script that runs `test.py`.
+
+```bash
+#!/bin/bash
+
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=01:00:00
+#PBS -N test
+#PBS -o test.out
+#PBS -e test.err
+#PBS -m bae
+#PBS -M user@unm.edu
+
+cd "$PBS_O_WORKDIR"
+
+python test.py
+```
+
+---
+
+## Equivalent Slurm Script
+
+The equivalent Slurm script is:
+
+```bash
+#!/bin/bash
+
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --time=00:05:00
+#SBATCH --job-name=test
+#SBATCH --output=test.out
+#SBATCH --error=test.err
+
+cd "$SLURM_SUBMIT_DIR"
+
+module load miniconda3
+
+srun python test.py
+```
+
+Submit the job with:
+
+```bash
+sbatch job_script.slurm
+```
+
+*This quickbyte was validated on 6/25/2026*
+
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/pbs2slurm.md) (last source update 2026-06-25). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
