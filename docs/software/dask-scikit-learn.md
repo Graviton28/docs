@@ -177,17 +177,21 @@ print(search)
 ```
 
     RandomizedSearchCV(cv=3, error_score='raise-deprecating',
-              estimator=SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+```bash
+      estimator=SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+```
       decision_function_shape='ovr', degree=3, gamma='auto_deprecated',
       kernel='rbf', max_iter=-1, probability=False, random_state=None,
       shrinking=True, tol=0.001, verbose=False),
-              fit_params=None, iid='warn', n_iter=50, n_jobs=None,
-              param_distributions={'C': array([1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01,
-           1.e+02, 1.e+03, 1.e+04, 1.e+05, 1.e+06]), 'gamma': array([1.e-08, 1.e-07, 1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01,
-           1.e+00, 1.e+01, 1.e+02, 1.e+03, 1.e+04, 1.e+05, 1.e+06, 1.e+07,
-           1.e+08]), 'tol': array([0.0001, 0.001 , 0.01  , 0.1   ]), 'class_weight': [None, 'balanced']},
-              pre_dispatch='2*n_jobs', random_state=None, refit=True,
-              return_train_score='warn', scoring=None, verbose=10)
+```bash
+      fit_params=None, iid='warn', n_iter=50, n_jobs=None,
+      param_distributions={'C': array([1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01,
+   1.e+02, 1.e+03, 1.e+04, 1.e+05, 1.e+06]), 'gamma': array([1.e-08, 1.e-07, 1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01,
+   1.e+00, 1.e+01, 1.e+02, 1.e+03, 1.e+04, 1.e+05, 1.e+06, 1.e+07,
+   1.e+08]), 'tol': array([0.0001, 0.001 , 0.01  , 0.1   ]), 'class_weight': [None, 'balanced']},
+      pre_dispatch='2*n_jobs', random_state=None, refit=True,
+      return_train_score='warn', scoring=None, verbose=10)
+```
 
 
 

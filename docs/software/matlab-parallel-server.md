@@ -77,7 +77,9 @@ Review your profile settings and create the profile.
 
 You can create multiple profiles for different CARC clusters and numbers of workers.
 
+```matlab
 parallel.cluster.generic.runProfileWizard()
+```
 
 ## Setting your IP Address
 

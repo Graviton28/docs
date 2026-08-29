@@ -6,6 +6,7 @@ tags:
   - Python
   - GPU
   - Machine learning
+status: draft
 generated:
   by: "claude/fable-5"
   at: "2026-08-29T00:00:00Z"
@@ -14,95 +15,136 @@ sources:
     resource: "https://github.com/UNM-CARC/QuickBytes/blob/master/Install%20deep%20learning%20packages.md"
     title: "UNM-CARC QuickBytes: Install deep learning packages.md"
     author: "team:unm-carc"
-    last_modified: "2021-10-15T18:19:07-06:00"
+    last_modified: "2021-10-15T00:00:00Z"
 ---
 
 # Installing deep learning packages
 
-This step by step tutorial will guide you through installing deep learning and Machine learning tools in the Xena Server.
+!!! warning "Legacy content"
+    This guide was written for the retired Xena cluster and its NVIDIA K40
+    GPUs. The conda workflow below still applies, but choose framework builds
+    that match the GPUs on the [current clusters](../systems/overview.md)
+    (A100 on Hopper; L40S and H100 on Easley), and check exact package
+    versions before installing.
 
-### Setting up the conda environment for installation ###
+This step-by-step guide walks through installing deep learning and machine
+learning tools in a [conda environment](conda-intro.md) on CARC systems.
 
-1. Firstly load the Anaconda module to use the conda command.
+## Set up the conda environment
 
-	 	module load anaconda3
+1. Load the Anaconda module to get the `conda` command:
 
-2. Create the Conda Environment with a name.
- 
-	 	conda create --name <env_name> python==3.6
+    ```bash
+    module load anaconda3
+    ```
 
-3. Verify the installation of the environment.
+2. Create a conda environment with a name:
 
-		conda info --envs	
+    ```bash
+    conda create --name <env_name> python==3.6
+    ```
 
+3. Verify the environment was created:
 
-4. Load the environment.
+    ```bash
+    conda info --envs
+    ```
 
-	 	source activate <env_name> 
+4. Activate the environment:
 
+    ```bash
+    source activate <env_name>
+    ```
 
-5. Install the deep learning Packages (you can install one of these or as per your need)
-	
-	a.  **Tensorflow**: Install GPU version of the 	tensorflow for better performance
+## Install deep learning packages
 
-		 conda install -c anaconda tensorflow-gpu
+Install one or more of the following, as your work requires.
 
-	b.  **Keras**  GPU Version 
+=== "TensorFlow (GPU)"
 
-		 conda install -c anaconda keras-gpu  
+    ```bash
+    conda install -c anaconda tensorflow-gpu
+    ```
 
-	c.   **Pytorch** Non-GPU Version
+=== "Keras (GPU)"
 
-		conda install pytorch torchvision -c pytorch
-		 
-	d.   **Pytorch** GPU Version
+    ```bash
+    conda install -c anaconda keras-gpu
+    ```
 
-	First make sure that you have Python 3.7 installed in your current environment.
-	
-		conda create -n <env_name> python==3.7
-	
-	Next, activate your environment as per step 4 above. 
-		
-		source activate <env_name>
-	
-	Finally, install the following packages:
+=== "PyTorch (CPU)"
 
-  		conda install /projects/shared/pytorch/PyTorch1.5-K40-Compatible/pytorch-1.5.0-py3.7_cuda10.1.243_cudnn7.6.3_0.tar.bz2
-  		conda install cudatoolkit=10.1.243
+    ```bash
+    conda install pytorch torchvision -c pytorch
+    ```
 
-	To verify that the K40s are available to your pytorch run the following python code:
-	
-		import torch
-		from torch import nn, tensor
-		from torch.cuda import device_count
-		device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-		x=torch.rand(5,3)
-		print(x)
-		print("Is GPU Available?",torch.cuda.is_available()," CUDA device count:", torch.cuda.device_count(), "current_device:",torch.cuda.current_device())
-		x = torch.tensor([1, 2, 3], device=device)
-		y = torch.tensor([1,4,9]).to(device)
-		print(x,y)
-		print(x+y)
+=== "PyTorch (GPU, K40 legacy)"
 
-	Expected Output:
+    First make sure Python 3.7 is installed in your current environment:
 
-		tensor([[0.3220, 0.2174, 0.1226],
-        		[0.7249, 0.8111, 0.8414],
-        		[0.5974, 0.5169, 0.5242],
-        		[0.1436, 0.5150, 0.5688],
-        		[0.3298, 0.1289, 0.5349]])
-		Is GPU Available? True  CUDA device count: 1  current_device: 0
-		tensor([1, 2, 3], device='cuda:0') tensor([1, 4, 9], device='cuda:0')
-		tensor([ 2, 6, 12], device='cuda:0')
-		
-6. Install additional Machine Learning packages
-	
-	i.  **OpenCV**
+    ```bash
+    conda create -n <env_name> python==3.7
+    source activate <env_name>
+    ```
 
-		 conda install -c conda-forge opencv 
+    Then install the K40-compatible build that CARC staged in shared storage,
+    plus the matching CUDA toolkit:
 
-	ii. **numpy,pandas, matpotlib , scikit-learn**
+    ```bash
+    conda install /projects/shared/pytorch/PyTorch1.5-K40-Compatible/pytorch-1.5.0-py3.7_cuda10.1.243_cudnn7.6.3_0.tar.bz2
+    conda install cudatoolkit=10.1.243
+    ```
 
-		 conda install numpy pandas matplotlib scikit-learn
+## Verify GPU access from PyTorch
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Install%20deep%20learning%20packages.md){target=_blank} (last source update 2021-10-15). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
+Run the following Python code on a GPU node (request one first — see
+[example Slurm scripts](../running-jobs/example-slurm-scripts.md)):
+
+```python
+import torch
+from torch import nn, tensor
+from torch.cuda import device_count
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+x = torch.rand(5, 3)
+print(x)
+print("Is GPU Available?", torch.cuda.is_available(),
+      " CUDA device count:", torch.cuda.device_count(),
+      "current_device:", torch.cuda.current_device())
+x = torch.tensor([1, 2, 3], device=device)
+y = torch.tensor([1, 4, 9]).to(device)
+print(x, y)
+print(x + y)
+```
+
+Expected output:
+
+```text
+tensor([[0.3220, 0.2174, 0.1226],
+        [0.7249, 0.8111, 0.8414],
+        [0.5974, 0.5169, 0.5242],
+        [0.1436, 0.5150, 0.5688],
+        [0.3298, 0.1289, 0.5349]])
+Is GPU Available? True  CUDA device count: 1  current_device: 0
+tensor([1, 2, 3], device='cuda:0') tensor([1, 4, 9], device='cuda:0')
+tensor([ 2,  6, 12], device='cuda:0')
+```
+
+## Additional machine learning packages
+
+```bash
+# OpenCV
+conda install -c conda-forge opencv
+
+# numpy, pandas, matplotlib, scikit-learn
+conda install numpy pandas matplotlib scikit-learn
+```
+
+## Related pages
+
+* [PyTorch on CARC GPUs](pytorch.md)
+* [TensorFlow on CARC GPUs](tensorflow.md)
+* [Conda channels and pip](conda-channels-pip.md)
+* [Conda environments in JupyterHub](conda-jupyterhub.md)
+
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Install%20deep%20learning%20packages.md){target=_blank} (last source update 2021-10-15), then restructured with fenced code blocks and curated in this repository. Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

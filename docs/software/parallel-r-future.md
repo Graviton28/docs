@@ -18,14 +18,14 @@ sources:
 
 # Parallel R with the future package
 
-In R, numerous packages can be used to parallelize code (parallel, snow, foreach, etc.), but each of  these packages use unique syntaxes and none of them work for all cases of parallelization. Instead, the [future package](https://github.com/HenrikBengtsson/future){target=_blank} solves this problem! Briefly (seet the [future package](https://github.com/HenrikBengtsson/future){target=_blank} for details), the future package works in three steps:
+In R, numerous packages can be used to parallelize code (parallel, snow, foreach, etc.), but each of  these packages use unique syntaxes and none of them work for all cases of parallelization. Instead, the [future package](https://github.com/HenrikBengtsson/future){target=_blank} solves this problem! Briefly (see the [future package](https://github.com/HenrikBengtsson/future){target=_blank} for details), the future package works in three steps:
 
 1. Choose how you want to parallelize your code
-    - set the type of parallelization with the plan() object.  
+    - set the type of parallelization with the `plan()` object.  
 2. Choose which part of the code you would like to run in parallel
-    - place the part of the code that will be iterated within the future({}) object. 
+    - place the part of the code that will be iterated within the `future({})` object. 
 3. Evaluate the code. 
-    - run the iterations using the value() object. 
+    - run the iterations using the `value()` object. 
 
 The power of the future package is it separates the planning for the parallelization (steps 1 and 2) and then executes the code afterwards. This allows the user to control how and where to parallelize their code. Thus, the framework can be extended to any iterative process.
 
@@ -43,7 +43,7 @@ Table of Contents
 ## Packages 
 
 Before you run the code, I recommend installing R 4.0 and IRKernal via conda. Once you activate your conda environment, feel free to run the rest through jupyter: 
-https://wheeler.alliance.unm.edu:8000/
+the CARC JupyterHub on [Hopper](https://hopper.alliance.unm.edu){target=_blank} or [Easley](https://easley.alliance.unm.edu/jupyter){target=_blank}.
 
 Final note:
 make sure you are on a node with 8 cores on an interactive node or logged into Jupyter before running the code. 
@@ -114,12 +114,16 @@ supportsMulticore()
     
     The following objects are masked from ‘package:stats’:
     
-        filter, lag
+```bash
+filter, lag
+```
     
     
     The following objects are masked from ‘package:base’:
     
-        intersect, setdiff, setequal, union
+```bash
+intersect, setdiff, setequal, union
+```
     
     
 
@@ -246,7 +250,7 @@ Now we will re-write the for-loop so it is compatible with future. We will choos
 WARNING: if you plan to run this example locally on R-studio, you will need to change it to plan(multisession). 
 
 #### 1. Choose how you want to parallelize your code
-using the plan() object set to "multicore", we will establish we want to use all the cores available on the node. 
+using the `plan()` object set to "multicore", we will establish we want to use all the cores available on the node. 
 
 We will set the number of iterations to run to 50  and pre-allocate space for the future loop by creating the "command_set" object.  Since future puts every iteratation in a list, we will use a vector to pre-allocate empty lists for every iteration.
 
@@ -269,7 +273,7 @@ command_set <- vector(mode = "list", length = iterations)
 #### 2. Choose which part of the code you would like to run in parallel
 Here, we are rewriting the for-loop to work with future.
 
-We will place the section we want to iterate within the curly-brackets of the future() object. The output is written to a separate list within the y object (it creates a list of lists). When you run this code, it doesn't evaluate the loop but sets up the environments for each iteration to run in parallel. Thus, the time elapsed is all the time needed to plan the code. 
+We will place the section we want to iterate within the curly-brackets of the `future()` object. The output is written to a separate list within the y object (it creates a list of lists). When you run this code, it doesn't evaluate the loop but sets up the environments for each iteration to run in parallel. Thus, the time elapsed is all the time needed to plan the code. 
 
 WARNING: Setting up the lists prior to evaluation can slow down the parallelization effort (see appendix).
 
@@ -320,7 +324,9 @@ command_set[[1]]
     Label: ‘<none>’
     Expression:
     {
-        slow_function(i)
+```bash
+slow_function(i)
+```
     }
     Lazy evaluation: FALSE
     Asynchronous evaluation: TRUE
@@ -339,7 +345,7 @@ command_set[[1]]
 
 
 ####  3. Evaluate the code
-The value() object will take the list and run the code in parallel. Since the output is a list of lists, we can collapse it into an array with the unlist object. 
+The `value()` object will take the list and run the code in parallel. Since the output is a list of lists, we can collapse it into an array with the `unlist` object. 
 
 
 ```R
@@ -361,12 +367,14 @@ head(unlist(output)) # using head to limit output
 
 
 <ol>
-	<li>'Step 1 completed'</li>
-	<li>'Step 2 completed'</li>
-	<li>'Step 3 completed'</li>
-	<li>'Step 4 completed'</li>
-	<li>'Step 5 completed'</li>
-	<li>'Step 6 completed'</li>
+```bash
+<li>'Step 1 completed'</li>
+<li>'Step 2 completed'</li>
+<li>'Step 3 completed'</li>
+<li>'Step 4 completed'</li>
+<li>'Step 5 completed'</li>
+<li>'Step 6 completed'</li>
+```
 </ol>
 
 
@@ -485,16 +493,20 @@ round(time_Elapsed, 2)
 <table class="dataframe">
 <caption>A tibble: 6 × 6</caption>
 <thead>
-	<tr><th scope=col>country</th><th scope=col>continent</th><th scope=col>year</th><th scope=col>lifeExp</th><th scope=col>pop</th><th scope=col>gdpPercap</th></tr>
-	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+```bash
+<tr><th scope=col>country</th><th scope=col>continent</th><th scope=col>year</th><th scope=col>lifeExp</th><th scope=col>pop</th><th scope=col>gdpPercap</th></tr>
+<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+```
 </thead>
 <tbody>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1952</td><td>28.801</td><td> 8425333</td><td>779.4453</td></tr>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1957</td><td>30.332</td><td> 9240934</td><td>820.8530</td></tr>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1962</td><td>31.997</td><td>10267083</td><td>853.1007</td></tr>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1967</td><td>34.020</td><td>11537966</td><td>836.1971</td></tr>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1972</td><td>36.088</td><td>13079460</td><td>739.9811</td></tr>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1977</td><td>38.438</td><td>14880372</td><td>786.1134</td></tr>
+```bash
+<tr><td>Afghanistan</td><td>Asia</td><td>1952</td><td>28.801</td><td> 8425333</td><td>779.4453</td></tr>
+<tr><td>Afghanistan</td><td>Asia</td><td>1957</td><td>30.332</td><td> 9240934</td><td>820.8530</td></tr>
+<tr><td>Afghanistan</td><td>Asia</td><td>1962</td><td>31.997</td><td>10267083</td><td>853.1007</td></tr>
+<tr><td>Afghanistan</td><td>Asia</td><td>1967</td><td>34.020</td><td>11537966</td><td>836.1971</td></tr>
+<tr><td>Afghanistan</td><td>Asia</td><td>1972</td><td>36.088</td><td>13079460</td><td>739.9811</td></tr>
+<tr><td>Afghanistan</td><td>Asia</td><td>1977</td><td>38.438</td><td>14880372</td><td>786.1134</td></tr>
+```
 </tbody>
 </table>
 
@@ -552,15 +564,17 @@ model_done$lm_obj[[13]]
 
 Bosnia and Herzegovina
 <details>
-	<summary style=display:list-item;cursor:pointer>
-		<strong>Levels</strong>:
-	</summary>
-	<style>
-	.list-inline {list-style: none; margin:0; padding: 0}
-	.list-inline>li {display: inline-block}
-	.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-	</style>
-	<ol class=list-inline><li>'Afghanistan'</li><li>'Albania'</li><li>'Algeria'</li><li>'Angola'</li><li>'Argentina'</li><li>'Australia'</li><li>'Austria'</li><li>'Bahrain'</li><li>'Bangladesh'</li><li>'Belgium'</li><li>'Benin'</li><li>'Bolivia'</li><li>'Bosnia and Herzegovina'</li><li>'Botswana'</li><li>'Brazil'</li><li>'Bulgaria'</li><li>'Burkina Faso'</li><li>'Burundi'</li><li>'Cambodia'</li><li>'Cameroon'</li><li>'Canada'</li><li>'Central African Republic'</li><li>'Chad'</li><li>'Chile'</li><li>'China'</li><li>'Colombia'</li><li>'Comoros'</li><li>'Congo, Dem. Rep.'</li><li>'Congo, Rep.'</li><li>'Costa Rica'</li><li>'Cote d\'Ivoire'</li><li>'Croatia'</li><li>'Cuba'</li><li>'Czech Republic'</li><li>'Denmark'</li><li>'Djibouti'</li><li>'Dominican Republic'</li><li>'Ecuador'</li><li>'Egypt'</li><li>'El Salvador'</li><li>'Equatorial Guinea'</li><li>'Eritrea'</li><li>'Ethiopia'</li><li>'Finland'</li><li>'France'</li><li>'Gabon'</li><li>'Gambia'</li><li>'Germany'</li><li>'Ghana'</li><li>'Greece'</li><li>'Guatemala'</li><li>'Guinea'</li><li>'Guinea-Bissau'</li><li>'Haiti'</li><li>'Honduras'</li><li>'Hong Kong, China'</li><li>'Hungary'</li><li>'Iceland'</li><li>'India'</li><li>'Indonesia'</li><li>'Iran'</li><li>'Iraq'</li><li>'Ireland'</li><li>'Israel'</li><li>'Italy'</li><li>'Jamaica'</li><li>'Japan'</li><li>'Jordan'</li><li>'Kenya'</li><li>'Korea, Dem. Rep.'</li><li>'Korea, Rep.'</li><li>'Kuwait'</li><li>'Lebanon'</li><li>'Lesotho'</li><li>'Liberia'</li><li>'Libya'</li><li>'Madagascar'</li><li>'Malawi'</li><li>'Malaysia'</li><li>'Mali'</li><li>'Mauritania'</li><li>'Mauritius'</li><li>'Mexico'</li><li>'Mongolia'</li><li>'Montenegro'</li><li>'Morocco'</li><li>'Mozambique'</li><li>'Myanmar'</li><li>'Namibia'</li><li>'Nepal'</li><li>'Netherlands'</li><li>'New Zealand'</li><li>'Nicaragua'</li><li>'Niger'</li><li>'Nigeria'</li><li>'Norway'</li><li>'Oman'</li><li>'Pakistan'</li><li>'Panama'</li><li>'Paraguay'</li><li>'Peru'</li><li>'Philippines'</li><li>'Poland'</li><li>'Portugal'</li><li>'Puerto Rico'</li><li>'Reunion'</li><li>'Romania'</li><li>'Rwanda'</li><li>'Sao Tome and Principe'</li><li>'Saudi Arabia'</li><li>'Senegal'</li><li>'Serbia'</li><li>'Sierra Leone'</li><li>'Singapore'</li><li>'Slovak Republic'</li><li>'Slovenia'</li><li>'Somalia'</li><li>'South Africa'</li><li>'Spain'</li><li>'Sri Lanka'</li><li>'Sudan'</li><li>'Swaziland'</li><li>'Sweden'</li><li>'Switzerland'</li><li>'Syria'</li><li>'Taiwan'</li><li>'Tanzania'</li><li>'Thailand'</li><li>'Togo'</li><li>'Trinidad and Tobago'</li><li>'Tunisia'</li><li>'Turkey'</li><li>'Uganda'</li><li>'United Kingdom'</li><li>'United States'</li><li>'Uruguay'</li><li>'Venezuela'</li><li>'Vietnam'</li><li>'West Bank and Gaza'</li><li>'Yemen, Rep.'</li><li>'Zambia'</li><li>'Zimbabwe'</li></ol>
+```bash
+<summary style=display:list-item;cursor:pointer>
+	<strong>Levels</strong>:
+</summary>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Afghanistan'</li><li>'Albania'</li><li>'Algeria'</li><li>'Angola'</li><li>'Argentina'</li><li>'Australia'</li><li>'Austria'</li><li>'Bahrain'</li><li>'Bangladesh'</li><li>'Belgium'</li><li>'Benin'</li><li>'Bolivia'</li><li>'Bosnia and Herzegovina'</li><li>'Botswana'</li><li>'Brazil'</li><li>'Bulgaria'</li><li>'Burkina Faso'</li><li>'Burundi'</li><li>'Cambodia'</li><li>'Cameroon'</li><li>'Canada'</li><li>'Central African Republic'</li><li>'Chad'</li><li>'Chile'</li><li>'China'</li><li>'Colombia'</li><li>'Comoros'</li><li>'Congo, Dem. Rep.'</li><li>'Congo, Rep.'</li><li>'Costa Rica'</li><li>'Cote d\'Ivoire'</li><li>'Croatia'</li><li>'Cuba'</li><li>'Czech Republic'</li><li>'Denmark'</li><li>'Djibouti'</li><li>'Dominican Republic'</li><li>'Ecuador'</li><li>'Egypt'</li><li>'El Salvador'</li><li>'Equatorial Guinea'</li><li>'Eritrea'</li><li>'Ethiopia'</li><li>'Finland'</li><li>'France'</li><li>'Gabon'</li><li>'Gambia'</li><li>'Germany'</li><li>'Ghana'</li><li>'Greece'</li><li>'Guatemala'</li><li>'Guinea'</li><li>'Guinea-Bissau'</li><li>'Haiti'</li><li>'Honduras'</li><li>'Hong Kong, China'</li><li>'Hungary'</li><li>'Iceland'</li><li>'India'</li><li>'Indonesia'</li><li>'Iran'</li><li>'Iraq'</li><li>'Ireland'</li><li>'Israel'</li><li>'Italy'</li><li>'Jamaica'</li><li>'Japan'</li><li>'Jordan'</li><li>'Kenya'</li><li>'Korea, Dem. Rep.'</li><li>'Korea, Rep.'</li><li>'Kuwait'</li><li>'Lebanon'</li><li>'Lesotho'</li><li>'Liberia'</li><li>'Libya'</li><li>'Madagascar'</li><li>'Malawi'</li><li>'Malaysia'</li><li>'Mali'</li><li>'Mauritania'</li><li>'Mauritius'</li><li>'Mexico'</li><li>'Mongolia'</li><li>'Montenegro'</li><li>'Morocco'</li><li>'Mozambique'</li><li>'Myanmar'</li><li>'Namibia'</li><li>'Nepal'</li><li>'Netherlands'</li><li>'New Zealand'</li><li>'Nicaragua'</li><li>'Niger'</li><li>'Nigeria'</li><li>'Norway'</li><li>'Oman'</li><li>'Pakistan'</li><li>'Panama'</li><li>'Paraguay'</li><li>'Peru'</li><li>'Philippines'</li><li>'Poland'</li><li>'Portugal'</li><li>'Puerto Rico'</li><li>'Reunion'</li><li>'Romania'</li><li>'Rwanda'</li><li>'Sao Tome and Principe'</li><li>'Saudi Arabia'</li><li>'Senegal'</li><li>'Serbia'</li><li>'Sierra Leone'</li><li>'Singapore'</li><li>'Slovak Republic'</li><li>'Slovenia'</li><li>'Somalia'</li><li>'South Africa'</li><li>'Spain'</li><li>'Sri Lanka'</li><li>'Sudan'</li><li>'Swaziland'</li><li>'Sweden'</li><li>'Switzerland'</li><li>'Syria'</li><li>'Taiwan'</li><li>'Tanzania'</li><li>'Thailand'</li><li>'Togo'</li><li>'Trinidad and Tobago'</li><li>'Tunisia'</li><li>'Turkey'</li><li>'Uganda'</li><li>'United Kingdom'</li><li>'United States'</li><li>'Uruguay'</li><li>'Venezuela'</li><li>'Vietnam'</li><li>'West Bank and Gaza'</li><li>'Yemen, Rep.'</li><li>'Zambia'</li><li>'Zimbabwe'</li></ol>
+```
 </details>
 
 

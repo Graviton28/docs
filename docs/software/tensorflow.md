@@ -53,41 +53,51 @@ However, Numpy does not offer a method to create tensor functions and automatica
 
 ***Numpy Implementation of Matrix Addition***
 
-		import numpy as np
-		a=np.zeros((2,2))
-		b=np.zeros((2,2))
-		np.sum(b,axis=0)
-		a.shape
-		np.reshape(b,(1,3))
+```python
+	import numpy as np
+	a=np.zeros((2,2))
+	b=np.zeros((2,2))
+	np.sum(b,axis=0)
+	a.shape
+	np.reshape(b,(1,3))
+```
 
 
 
 ***Tensorflow Implementation of Matrix Addition***
 
-		import tensorflow as tf
-		tf.InteractiveSession()
-		a=tf.zeros((2,2))
-		b=tf.ones((2,2))
-		tf.reduce_sum(b,reduction_indices=1).eval()
-		a.get_shape()
-		tf.reshape(b,(1,3)).eval()
+```python
+	import tensorflow as tf
+	tf.InteractiveSession()
+	a=tf.zeros((2,2))
+	b=tf.ones((2,2))
+	tf.reduce_sum(b,reduction_indices=1).eval()
+	a.get_shape()
+	tf.reshape(b,(1,3)).eval()
+```
 
 It is important to note that tensorflow requires explicit evaluation, i.e, tensorflow computation defines a computational graph which only gets initialized with values after a session has been evaluated.
 
 Numpy for example
 
-		a=np.zeros((2,2)) ; print(a)
+```python
+	a=np.zeros((2,2)) ; print(a)
+```
 
 will immediately give the value of "a".
 
 However, for tensorflow:
 
-		a=tf.zeros((2,2))
-		print(a)
+```python
+	a=tf.zeros((2,2))
+	print(a)
+```
 
 will not return the value of "a" until it is evaluated with
 
-               print(ta.eval())
+```python
+       print(ta.eval())
+```
 
 So It is important to understand how tensorflow works and initializes the environment.
 
@@ -95,40 +105,48 @@ Tensorflow uses a "session object" which encapsulates the environment in which t
 
 A  Tensorflow (tf) session for performing multiplication is demonstrated below:
 
-		a= tf.constant(9999999)
-		b=tf.constant(111111111)
-		c=a*b
-		with tf.Session() as sess:
-		     print(sess.run(c))
-		     print(c.eval())
+```python
+	a= tf.constant(9999999)
+	b=tf.constant(111111111)
+	c=a*b
+	with tf.Session() as sess:
+	     print(sess.run(c))
+	     print(c.eval())
+```
 
 Tensorflow firstly structures the program, creates a graph integrating the variables, and uses session to exectute the process.
 
 *** Tensorflow Variables ***
 Similar to other programming language variables, tensorflow uses a variable object to store and update the parameters. They are stored in memory buffers that contain tensors. TensorFlow variables must be initialized before they have values! This is in contrast with constant tensors:
 
-		W=tf.Variable(tf.zeros((2,2)), name="weights")
-		R=tf.Variable(tf.random_normal((2,2)), name="Random_weights")
+```python
+	W=tf.Variable(tf.zeros((2,2)), name="weights")
+	R=tf.Variable(tf.random_normal((2,2)), name="Random_weights")
 
-		with tf.Session() as sess:
-		        sess.run(tf.initialize_all_variables())
-			print(sess.run(W))
-			print(sess.run(R))
+	with tf.Session() as sess:
+	        sess.run(tf.initialize_all_variables())
+		print(sess.run(W))
+		print(sess.run(R))
+```
 
 Converting numpy data to tensor:
 
-		a=np.zeros((3,3))
-		t_a=tf.convert_to_tensor(a)
-		with tf.Session() as sess:
-			print(sess.run(t_a))
+```python
+	a=np.zeros((3,3))
+	t_a=tf.convert_to_tensor(a)
+	with tf.Session() as sess:
+		print(sess.run(t_a))
+```
 
 For scalable variables for performing operations we can use `tf.placeholder` which defines a placeholder and provides entry points for the data to be viewed in a computational graph.  `feed_dict` is used in the below example to map from `tf.placeholder` variables to data (np arrays, list, etc).
 
 
-		input1= tf.placeholder(tf.float32)
-		input2 = tf.placeholder(tf.float32)
-		output = tf.multiply(input1, input2)
-		with tf.Session() as sess:
-			print(sess.run([output], feed_dict={input1:[7.], input2:[2.]}))
+```python
+	input1= tf.placeholder(tf.float32)
+	input2 = tf.placeholder(tf.float32)
+	output = tf.multiply(input1, input2)
+	with tf.Session() as sess:
+		print(sess.run([output], feed_dict={input1:[7.], input2:[2.]}))
+```
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Tensorflow_documentation.md){target=_blank} (last source update 2019-03-06). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

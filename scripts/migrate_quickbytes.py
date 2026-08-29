@@ -58,6 +58,8 @@ class Page:
     repo: str = "quickbytes"      # quickbytes | webinfo | hand
     notebook: bool = False
     note: str = ""                # extra admonition inserted after the H1
+    frozen: bool = False          # migrated once, now curated in-repo: never overwrite
+    code_lang: str = "bash"       # default language for fenced tab-indented code
 
 
 # --------------------------------------------------------------------------
@@ -161,7 +163,7 @@ PAGES: list[Page] = [
          "Guide", ["Python", "Conda", "Jupyter"]),
     Page("Install deep learning packages.md", "software/deep-learning-packages.md", "Installing deep learning packages",
          "Install GPU-enabled deep learning frameworks (PyTorch, TensorFlow) into conda environments.",
-         "Guide", ["Python", "GPU", "Machine learning"]),
+         "Guide", ["Python", "GPU", "Machine learning"], frozen=True),
     Page("parallel_jupyterhub_with_dask_and_scikit-learn.md", "software/dask-scikit-learn.md", "Parallel Python with Dask and scikit-learn",
          "Scale scikit-learn workloads across cluster nodes from JupyterHub using Dask.",
          "Tutorial", ["Python", "Jupyter", "Parallel", "Dask"]),
@@ -216,7 +218,7 @@ PAGES: list[Page] = [
          "Tutorial", ["Python", "GPU", "Machine learning", "PyTorch"], notebook=True),
     Page("Tensorflow_documentation.md", "software/tensorflow.md", "TensorFlow on CARC GPUs",
          "Install and run GPU-enabled TensorFlow on CARC clusters.",
-         "Guide", ["Python", "GPU", "Machine learning", "TensorFlow"]),
+         "Guide", ["Python", "GPU", "Machine learning", "TensorFlow"], code_lang="python"),
     Page("multiGPU_tensorflow_tutorial.md", "software/tensorflow-multi-gpu.md", "Multi-GPU TensorFlow",
          "Distribute TensorFlow training across multiple GPUs on a CARC node.",
          "Tutorial", ["Python", "GPU", "Machine learning", "TensorFlow"]),
@@ -357,6 +359,91 @@ FILE_ASSETS = [
     ("matlabImportWheelerProfile.pbs", "matlab/matlabImportWheelerProfile.pbs"),
     ("beginner_intro_slides_2022.pdf", "workshops/beginner_intro_slides_2022.pdf"),
 ]
+
+# Surgical, reproducible content fixes applied to migrated pages
+# (dest path -> list of literal (old, new) replacements).
+PATCHES = {
+    "software/parallel-r-future.md": [
+        ("seet the", "see the"),
+        ("the plan() object", "the `plan()` object"),
+        ("the future({}) object", "the `future({})` object"),
+        ("the value() object", "the `value()` object"),
+        ("The value() object", "The `value()` object"),
+        ("the future() object", "the `future()` object"),
+        ("with the unlist object", "with the `unlist` object"),
+        ("https://wheeler.alliance.unm.edu:8000/",
+         "the CARC JupyterHub on [Hopper](https://hopper.alliance.unm.edu){target=_blank} "
+         "or [Easley](https://easley.alliance.unm.edu/jupyter){target=_blank}."),
+    ],
+    "software/matlab-parallel-server.md": [
+        ("\n\nparallel.cluster.generic.runProfileWizard()\n\n",
+         "\n\n```matlab\nparallel.cluster.generic.runProfileWizard()\n```\n\n"),
+    ],
+}
+
+LIST_ITEM_RE = re.compile(r"^\s*(\d+\.|[-*+])\s")
+
+
+def fence_tab_indented_code(md: str, default_lang: str = "bash") -> str:
+    """Convert top-level tab-indented code runs into fenced blocks with a
+    sniffed language, so they get syntax highlighting and consistent styling.
+    Runs inside lists, existing fences, and 4-space-indented output blocks
+    (nbconvert) are left untouched."""
+
+    def is_code_line(l: str) -> bool:
+        if not l.strip():  # whitespace-only lines never *start* a run
+            return False
+        return bool(re.match(r"^[ ]{0,3}\t", l) or re.match(r"^ {8,}\S", l))
+
+    def dedent(l: str) -> str:
+        l = re.sub(r"^[ ]{0,3}\t", "", l, count=1)
+        return re.sub(r"^ {8}", "", l, count=1) if not l.startswith("\t") and re.match(r"^ {8,}", l) else l
+
+    def sniff(text: str) -> str:
+        if re.search(r"^\s*(import |from \w+ import |def |class )|print\(", text, re.MULTILINE):
+            return "python"
+        if re.search(r"library\(|\s<-\s|%>%|install\.packages", text):
+            return "r"
+        return default_lang
+
+    lines = md.splitlines()
+    out, i, fence, last_nonblank = [], 0, None, ""
+    while i < len(lines):
+        line = lines[i]
+        marker = line.lstrip()[:3]
+        if marker in ("```", "~~~"):
+            fence = None if fence == marker else (marker if fence is None else fence)
+            out.append(line)
+            last_nonblank = line
+            i += 1
+            continue
+        if fence:
+            out.append(line)
+            i += 1
+            continue
+        if is_code_line(line) and not LIST_ITEM_RE.match(last_nonblank):
+            j, block = i, []
+            while j < len(lines) and (is_code_line(lines[j]) or not lines[j].strip()):
+                block.append(lines[j])
+                j += 1
+            while block and not block[-1].strip():
+                block.pop()
+            if not block:  # degenerate run: emit as-is, guarantee progress
+                out.append(line)
+                i += 1
+                continue
+            code = [dedent(b) if b.strip() else "" for b in block]
+            lang = sniff("\n".join(code))
+            out += [f"```{lang}", *code, "```"]
+            i += len(block)
+            last_nonblank = "```"
+            continue
+        out.append(line)
+        if line.strip():
+            last_nonblank = line
+        i += 1
+    return "\n".join(out)
+
 
 def externalize_links(md: str) -> str:
     """Make external links open in new tabs: append {target=_blank} to
@@ -515,8 +602,15 @@ def normalize_body(md: str, p: Page, image_names: set, asset_map: dict, link_map
 
     body = re.sub(r"((?<!\!)\[[^\]]*\]\()\s*([^)\s]+)", link_sub, body)
 
+    # Fence top-level tab-indented code runs for syntax highlighting.
+    body = fence_tab_indented_code(body, p.code_lang)
+
     # External links open in new browser tabs.
     body = externalize_links(body)
+
+    # Surgical per-page fixes.
+    for old, new in PATCHES.get(p.dest, []):
+        body = body.replace(old, new)
 
     # Build the final document.
     out = [f"# {p.title}", ""]
@@ -618,9 +712,12 @@ def main():
     pages_by_dest = {p.dest: p for p in PAGES}
 
     # 4. Migrate.
-    migrated, skipped = [], []
+    migrated, skipped, frozen_kept = [], [], []
     for p in PAGES:
         if p.repo == "hand":
+            continue
+        if p.frozen and (DOCS / p.dest).exists():
+            frozen_kept.append(p.dest)  # curated in-repo; never overwrite
             continue
         repo_dir = QB_DIR if p.repo == "quickbytes" else WEBINFO_DIR
         repo_url = QB_URL if p.repo == "quickbytes" else WEBINFO_URL
@@ -646,6 +743,8 @@ def main():
 
     print(f"Migrated {len(migrated)} pages; copied {len(image_names)} images, "
           f"{len(asset_map)} downloadable assets.")
+    if frozen_kept:
+        print(f"Kept {len(frozen_kept)} frozen (curated) page(s): {', '.join(frozen_kept)}")
     if skipped:
         print("MISSING SOURCES:")
         for s in skipped:

@@ -65,18 +65,24 @@ To make logging in to CARC even easier we also recommend setting up a ssh config
 
 
     Host wheeler
-        hostname wheeler.alliance.unm.edu
-        user CHANGEME
-        port 22
+```bash
+hostname wheeler.alliance.unm.edu
+user CHANGEME
+port 22
+```
     Host hopper
-        hostname hopper.alliance.unm.edu
-        user CHANGEME
-        port 22
+```bash
+hostname hopper.alliance.unm.edu
+user CHANGEME
+port 22
+```
     Host xena
-        hostname xena.alliance.unm.edu
-        user CHANGEME
-        ForwardX11 yes
-        port 22
+```bash
+hostname xena.alliance.unm.edu
+user CHANGEME
+ForwardX11 yes
+port 22
+```
 
 
 # Troubleshooting & Git

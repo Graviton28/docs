@@ -48,7 +48,7 @@ Full corpus for ingestion: https://unm-carc.github.io/carc_documentation/llms-fu
 - [Conda and Anaconda: introduction](https://unm-carc.github.io/carc_documentation/software/conda-intro/): What conda is, how environments work, and how to use Anaconda/Miniconda on CARC systems.
 - [Conda environments in JupyterHub](https://unm-carc.github.io/carc_documentation/software/conda-jupyterhub/): Make your conda environments available as kernels in CARC JupyterHub.
 - [Parallel Python with Dask and scikit-learn](https://unm-carc.github.io/carc_documentation/software/dask-scikit-learn/): Scale scikit-learn workloads across cluster nodes from JupyterHub using Dask.
-- [Installing deep learning packages](https://unm-carc.github.io/carc_documentation/software/deep-learning-packages/): Install GPU-enabled deep learning frameworks (PyTorch, TensorFlow) into conda environments.
+- [Installing deep learning packages](https://unm-carc.github.io/carc_documentation/software/deep-learning-packages/): Install GPU-enabled deep learning frameworks (PyTorch, TensorFlow) into conda environments. (draft)
 - [Getting R software](https://unm-carc.github.io/carc_documentation/software/getting-r/): Available R versions and how to load them with environment modules.
 - [Gurobi optimizer with R](https://unm-carc.github.io/carc_documentation/software/gurobi-r/): Use the Gurobi optimization solver from R on CARC clusters.
 - [MPI parallelization from JupyterHub](https://unm-carc.github.io/carc_documentation/software/jupyterhub-mpi/): Run MPI-parallel Python (mpi4py/ipyparallel) from CARC JupyterHub sessions.

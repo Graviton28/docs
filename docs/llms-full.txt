@@ -449,18 +449,24 @@ To make logging in to CARC even easier we also recommend setting up a ssh config
 
 
     Host wheeler
-        hostname wheeler.alliance.unm.edu
-        user CHANGEME
-        port 22
+```bash
+hostname wheeler.alliance.unm.edu
+user CHANGEME
+port 22
+```
     Host hopper
-        hostname hopper.alliance.unm.edu
-        user CHANGEME
-        port 22
+```bash
+hostname hopper.alliance.unm.edu
+user CHANGEME
+port 22
+```
     Host xena
-        hostname xena.alliance.unm.edu
-        user CHANGEME
-        ForwardX11 yes
-        port 22
+```bash
+hostname xena.alliance.unm.edu
+user CHANGEME
+ForwardX11 yes
+port 22
+```
 
 
 # Troubleshooting & Git
@@ -3730,17 +3736,21 @@ print(search)
 ```
 
     RandomizedSearchCV(cv=3, error_score='raise-deprecating',
-              estimator=SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+```bash
+      estimator=SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+```
       decision_function_shape='ovr', degree=3, gamma='auto_deprecated',
       kernel='rbf', max_iter=-1, probability=False, random_state=None,
       shrinking=True, tol=0.001, verbose=False),
-              fit_params=None, iid='warn', n_iter=50, n_jobs=None,
-              param_distributions={'C': array([1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01,
-           1.e+02, 1.e+03, 1.e+04, 1.e+05, 1.e+06]), 'gamma': array([1.e-08, 1.e-07, 1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01,
-           1.e+00, 1.e+01, 1.e+02, 1.e+03, 1.e+04, 1.e+05, 1.e+06, 1.e+07,
-           1.e+08]), 'tol': array([0.0001, 0.001 , 0.01  , 0.1   ]), 'class_weight': [None, 'balanced']},
-              pre_dispatch='2*n_jobs', random_state=None, refit=True,
-              return_train_score='warn', scoring=None, verbose=10)
+```bash
+      fit_params=None, iid='warn', n_iter=50, n_jobs=None,
+      param_distributions={'C': array([1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01,
+   1.e+02, 1.e+03, 1.e+04, 1.e+05, 1.e+06]), 'gamma': array([1.e-08, 1.e-07, 1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01,
+   1.e+00, 1.e+01, 1.e+02, 1.e+03, 1.e+04, 1.e+05, 1.e+06, 1.e+07,
+   1.e+08]), 'tol': array([0.0001, 0.001 , 0.01  , 0.1   ]), 'class_weight': [None, 'balanced']},
+      pre_dispatch='2*n_jobs', random_state=None, refit=True,
+      return_train_score='warn', scoring=None, verbose=10)
+```
 
 
 
@@ -3760,6 +3770,7 @@ tags:
   - Python
   - GPU
   - Machine learning
+status: draft
 generated:
   by: "claude/fable-5"
   at: "2026-08-29T00:00:00Z"
@@ -3768,98 +3779,139 @@ sources:
     resource: "https://github.com/UNM-CARC/QuickBytes/blob/master/Install%20deep%20learning%20packages.md"
     title: "UNM-CARC QuickBytes: Install deep learning packages.md"
     author: "team:unm-carc"
-    last_modified: "2021-10-15T18:19:07-06:00"
+    last_modified: "2021-10-15T00:00:00Z"
 ---
 
 # Installing deep learning packages
 
-This step by step tutorial will guide you through installing deep learning and Machine learning tools in the Xena Server.
+!!! warning "Legacy content"
+    This guide was written for the retired Xena cluster and its NVIDIA K40
+    GPUs. The conda workflow below still applies, but choose framework builds
+    that match the GPUs on the [current clusters](../systems/overview.md)
+    (A100 on Hopper; L40S and H100 on Easley), and check exact package
+    versions before installing.
 
-### Setting up the conda environment for installation ###
+This step-by-step guide walks through installing deep learning and machine
+learning tools in a [conda environment](conda-intro.md) on CARC systems.
 
-1. Firstly load the Anaconda module to use the conda command.
+## Set up the conda environment
 
-	 	module load anaconda3
+1. Load the Anaconda module to get the `conda` command:
 
-2. Create the Conda Environment with a name.
- 
-	 	conda create --name <env_name> python==3.6
+    ```bash
+    module load anaconda3
+    ```
 
-3. Verify the installation of the environment.
+2. Create a conda environment with a name:
 
-		conda info --envs	
+    ```bash
+    conda create --name <env_name> python==3.6
+    ```
 
+3. Verify the environment was created:
 
-4. Load the environment.
+    ```bash
+    conda info --envs
+    ```
 
-	 	source activate <env_name> 
+4. Activate the environment:
 
+    ```bash
+    source activate <env_name>
+    ```
 
-5. Install the deep learning Packages (you can install one of these or as per your need)
-	
-	a.  **Tensorflow**: Install GPU version of the 	tensorflow for better performance
+## Install deep learning packages
 
-		 conda install -c anaconda tensorflow-gpu
+Install one or more of the following, as your work requires.
 
-	b.  **Keras**  GPU Version 
+=== "TensorFlow (GPU)"
 
-		 conda install -c anaconda keras-gpu  
+    ```bash
+    conda install -c anaconda tensorflow-gpu
+    ```
 
-	c.   **Pytorch** Non-GPU Version
+=== "Keras (GPU)"
 
-		conda install pytorch torchvision -c pytorch
-		 
-	d.   **Pytorch** GPU Version
+    ```bash
+    conda install -c anaconda keras-gpu
+    ```
 
-	First make sure that you have Python 3.7 installed in your current environment.
-	
-		conda create -n <env_name> python==3.7
-	
-	Next, activate your environment as per step 4 above. 
-		
-		source activate <env_name>
-	
-	Finally, install the following packages:
+=== "PyTorch (CPU)"
 
-  		conda install /projects/shared/pytorch/PyTorch1.5-K40-Compatible/pytorch-1.5.0-py3.7_cuda10.1.243_cudnn7.6.3_0.tar.bz2
-  		conda install cudatoolkit=10.1.243
+    ```bash
+    conda install pytorch torchvision -c pytorch
+    ```
 
-	To verify that the K40s are available to your pytorch run the following python code:
-	
-		import torch
-		from torch import nn, tensor
-		from torch.cuda import device_count
-		device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-		x=torch.rand(5,3)
-		print(x)
-		print("Is GPU Available?",torch.cuda.is_available()," CUDA device count:", torch.cuda.device_count(), "current_device:",torch.cuda.current_device())
-		x = torch.tensor([1, 2, 3], device=device)
-		y = torch.tensor([1,4,9]).to(device)
-		print(x,y)
-		print(x+y)
+=== "PyTorch (GPU, K40 legacy)"
 
-	Expected Output:
+    First make sure Python 3.7 is installed in your current environment:
 
-		tensor([[0.3220, 0.2174, 0.1226],
-        		[0.7249, 0.8111, 0.8414],
-        		[0.5974, 0.5169, 0.5242],
-        		[0.1436, 0.5150, 0.5688],
-        		[0.3298, 0.1289, 0.5349]])
-		Is GPU Available? True  CUDA device count: 1  current_device: 0
-		tensor([1, 2, 3], device='cuda:0') tensor([1, 4, 9], device='cuda:0')
-		tensor([ 2, 6, 12], device='cuda:0')
-		
-6. Install additional Machine Learning packages
-	
-	i.  **OpenCV**
+    ```bash
+    conda create -n <env_name> python==3.7
+    source activate <env_name>
+    ```
 
-		 conda install -c conda-forge opencv 
+    Then install the K40-compatible build that CARC staged in shared storage,
+    plus the matching CUDA toolkit:
 
-	ii. **numpy,pandas, matpotlib , scikit-learn**
+    ```bash
+    conda install /projects/shared/pytorch/PyTorch1.5-K40-Compatible/pytorch-1.5.0-py3.7_cuda10.1.243_cudnn7.6.3_0.tar.bz2
+    conda install cudatoolkit=10.1.243
+    ```
 
-		 conda install numpy pandas matplotlib scikit-learn
+## Verify GPU access from PyTorch
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Install%20deep%20learning%20packages.md){target=_blank} (last source update 2021-10-15). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
+Run the following Python code on a GPU node (request one first — see
+[example Slurm scripts](../running-jobs/example-slurm-scripts.md)):
+
+```python
+import torch
+from torch import nn, tensor
+from torch.cuda import device_count
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+x = torch.rand(5, 3)
+print(x)
+print("Is GPU Available?", torch.cuda.is_available(),
+      " CUDA device count:", torch.cuda.device_count(),
+      "current_device:", torch.cuda.current_device())
+x = torch.tensor([1, 2, 3], device=device)
+y = torch.tensor([1, 4, 9]).to(device)
+print(x, y)
+print(x + y)
+```
+
+Expected output:
+
+```text
+tensor([[0.3220, 0.2174, 0.1226],
+        [0.7249, 0.8111, 0.8414],
+        [0.5974, 0.5169, 0.5242],
+        [0.1436, 0.5150, 0.5688],
+        [0.3298, 0.1289, 0.5349]])
+Is GPU Available? True  CUDA device count: 1  current_device: 0
+tensor([1, 2, 3], device='cuda:0') tensor([1, 4, 9], device='cuda:0')
+tensor([ 2,  6, 12], device='cuda:0')
+```
+
+## Additional machine learning packages
+
+```bash
+# OpenCV
+conda install -c conda-forge opencv
+
+# numpy, pandas, matplotlib, scikit-learn
+conda install numpy pandas matplotlib scikit-learn
+```
+
+## Related pages
+
+* [PyTorch on CARC GPUs](pytorch.md)
+* [TensorFlow on CARC GPUs](tensorflow.md)
+* [Conda channels and pip](conda-channels-pip.md)
+* [Conda environments in JupyterHub](conda-jupyterhub.md)
+
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Install%20deep%20learning%20packages.md){target=_blank} (last source update 2021-10-15), then restructured with fenced code blocks and curated in this repository. Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
 ---8<--- https://unm-carc.github.io/carc_documentation/software/getting-r/
 
@@ -5672,7 +5724,9 @@ Review your profile settings and create the profile.
 
 You can create multiple profiles for different CARC clusters and numbers of workers.
 
+```matlab
 parallel.cluster.generic.runProfileWizard()
+```
 
 ## Setting your IP Address
 
@@ -5880,14 +5934,14 @@ sources:
 
 # Parallel R with the future package
 
-In R, numerous packages can be used to parallelize code (parallel, snow, foreach, etc.), but each of  these packages use unique syntaxes and none of them work for all cases of parallelization. Instead, the [future package](https://github.com/HenrikBengtsson/future){target=_blank} solves this problem! Briefly (seet the [future package](https://github.com/HenrikBengtsson/future){target=_blank} for details), the future package works in three steps:
+In R, numerous packages can be used to parallelize code (parallel, snow, foreach, etc.), but each of  these packages use unique syntaxes and none of them work for all cases of parallelization. Instead, the [future package](https://github.com/HenrikBengtsson/future){target=_blank} solves this problem! Briefly (see the [future package](https://github.com/HenrikBengtsson/future){target=_blank} for details), the future package works in three steps:
 
 1. Choose how you want to parallelize your code
-    - set the type of parallelization with the plan() object.  
+    - set the type of parallelization with the `plan()` object.  
 2. Choose which part of the code you would like to run in parallel
-    - place the part of the code that will be iterated within the future({}) object. 
+    - place the part of the code that will be iterated within the `future({})` object. 
 3. Evaluate the code. 
-    - run the iterations using the value() object. 
+    - run the iterations using the `value()` object. 
 
 The power of the future package is it separates the planning for the parallelization (steps 1 and 2) and then executes the code afterwards. This allows the user to control how and where to parallelize their code. Thus, the framework can be extended to any iterative process.
 
@@ -5905,7 +5959,7 @@ Table of Contents
 ## Packages 
 
 Before you run the code, I recommend installing R 4.0 and IRKernal via conda. Once you activate your conda environment, feel free to run the rest through jupyter: 
-https://wheeler.alliance.unm.edu:8000/
+the CARC JupyterHub on [Hopper](https://hopper.alliance.unm.edu){target=_blank} or [Easley](https://easley.alliance.unm.edu/jupyter){target=_blank}.
 
 Final note:
 make sure you are on a node with 8 cores on an interactive node or logged into Jupyter before running the code. 
@@ -5976,12 +6030,16 @@ supportsMulticore()
     
     The following objects are masked from ‘package:stats’:
     
-        filter, lag
+```bash
+filter, lag
+```
     
     
     The following objects are masked from ‘package:base’:
     
-        intersect, setdiff, setequal, union
+```bash
+intersect, setdiff, setequal, union
+```
     
     
 
@@ -6108,7 +6166,7 @@ Now we will re-write the for-loop so it is compatible with future. We will choos
 WARNING: if you plan to run this example locally on R-studio, you will need to change it to plan(multisession). 
 
 #### 1. Choose how you want to parallelize your code
-using the plan() object set to "multicore", we will establish we want to use all the cores available on the node. 
+using the `plan()` object set to "multicore", we will establish we want to use all the cores available on the node. 
 
 We will set the number of iterations to run to 50  and pre-allocate space for the future loop by creating the "command_set" object.  Since future puts every iteratation in a list, we will use a vector to pre-allocate empty lists for every iteration.
 
@@ -6131,7 +6189,7 @@ command_set <- vector(mode = "list", length = iterations)
 #### 2. Choose which part of the code you would like to run in parallel
 Here, we are rewriting the for-loop to work with future.
 
-We will place the section we want to iterate within the curly-brackets of the future() object. The output is written to a separate list within the y object (it creates a list of lists). When you run this code, it doesn't evaluate the loop but sets up the environments for each iteration to run in parallel. Thus, the time elapsed is all the time needed to plan the code. 
+We will place the section we want to iterate within the curly-brackets of the `future()` object. The output is written to a separate list within the y object (it creates a list of lists). When you run this code, it doesn't evaluate the loop but sets up the environments for each iteration to run in parallel. Thus, the time elapsed is all the time needed to plan the code. 
 
 WARNING: Setting up the lists prior to evaluation can slow down the parallelization effort (see appendix).
 
@@ -6182,7 +6240,9 @@ command_set[[1]]
     Label: ‘<none>’
     Expression:
     {
-        slow_function(i)
+```bash
+slow_function(i)
+```
     }
     Lazy evaluation: FALSE
     Asynchronous evaluation: TRUE
@@ -6201,7 +6261,7 @@ command_set[[1]]
 
 
 ####  3. Evaluate the code
-The value() object will take the list and run the code in parallel. Since the output is a list of lists, we can collapse it into an array with the unlist object. 
+The `value()` object will take the list and run the code in parallel. Since the output is a list of lists, we can collapse it into an array with the `unlist` object. 
 
 
 ```R
@@ -6223,12 +6283,14 @@ head(unlist(output)) # using head to limit output
 
 
 <ol>
-	<li>'Step 1 completed'</li>
-	<li>'Step 2 completed'</li>
-	<li>'Step 3 completed'</li>
-	<li>'Step 4 completed'</li>
-	<li>'Step 5 completed'</li>
-	<li>'Step 6 completed'</li>
+```bash
+<li>'Step 1 completed'</li>
+<li>'Step 2 completed'</li>
+<li>'Step 3 completed'</li>
+<li>'Step 4 completed'</li>
+<li>'Step 5 completed'</li>
+<li>'Step 6 completed'</li>
+```
 </ol>
 
 
@@ -6347,16 +6409,20 @@ round(time_Elapsed, 2)
 <table class="dataframe">
 <caption>A tibble: 6 × 6</caption>
 <thead>
-	<tr><th scope=col>country</th><th scope=col>continent</th><th scope=col>year</th><th scope=col>lifeExp</th><th scope=col>pop</th><th scope=col>gdpPercap</th></tr>
-	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+```bash
+<tr><th scope=col>country</th><th scope=col>continent</th><th scope=col>year</th><th scope=col>lifeExp</th><th scope=col>pop</th><th scope=col>gdpPercap</th></tr>
+<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+```
 </thead>
 <tbody>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1952</td><td>28.801</td><td> 8425333</td><td>779.4453</td></tr>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1957</td><td>30.332</td><td> 9240934</td><td>820.8530</td></tr>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1962</td><td>31.997</td><td>10267083</td><td>853.1007</td></tr>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1967</td><td>34.020</td><td>11537966</td><td>836.1971</td></tr>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1972</td><td>36.088</td><td>13079460</td><td>739.9811</td></tr>
-	<tr><td>Afghanistan</td><td>Asia</td><td>1977</td><td>38.438</td><td>14880372</td><td>786.1134</td></tr>
+```bash
+<tr><td>Afghanistan</td><td>Asia</td><td>1952</td><td>28.801</td><td> 8425333</td><td>779.4453</td></tr>
+<tr><td>Afghanistan</td><td>Asia</td><td>1957</td><td>30.332</td><td> 9240934</td><td>820.8530</td></tr>
+<tr><td>Afghanistan</td><td>Asia</td><td>1962</td><td>31.997</td><td>10267083</td><td>853.1007</td></tr>
+<tr><td>Afghanistan</td><td>Asia</td><td>1967</td><td>34.020</td><td>11537966</td><td>836.1971</td></tr>
+<tr><td>Afghanistan</td><td>Asia</td><td>1972</td><td>36.088</td><td>13079460</td><td>739.9811</td></tr>
+<tr><td>Afghanistan</td><td>Asia</td><td>1977</td><td>38.438</td><td>14880372</td><td>786.1134</td></tr>
+```
 </tbody>
 </table>
 
@@ -6414,15 +6480,17 @@ model_done$lm_obj[[13]]
 
 Bosnia and Herzegovina
 <details>
-	<summary style=display:list-item;cursor:pointer>
-		<strong>Levels</strong>:
-	</summary>
-	<style>
-	.list-inline {list-style: none; margin:0; padding: 0}
-	.list-inline>li {display: inline-block}
-	.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-	</style>
-	<ol class=list-inline><li>'Afghanistan'</li><li>'Albania'</li><li>'Algeria'</li><li>'Angola'</li><li>'Argentina'</li><li>'Australia'</li><li>'Austria'</li><li>'Bahrain'</li><li>'Bangladesh'</li><li>'Belgium'</li><li>'Benin'</li><li>'Bolivia'</li><li>'Bosnia and Herzegovina'</li><li>'Botswana'</li><li>'Brazil'</li><li>'Bulgaria'</li><li>'Burkina Faso'</li><li>'Burundi'</li><li>'Cambodia'</li><li>'Cameroon'</li><li>'Canada'</li><li>'Central African Republic'</li><li>'Chad'</li><li>'Chile'</li><li>'China'</li><li>'Colombia'</li><li>'Comoros'</li><li>'Congo, Dem. Rep.'</li><li>'Congo, Rep.'</li><li>'Costa Rica'</li><li>'Cote d\'Ivoire'</li><li>'Croatia'</li><li>'Cuba'</li><li>'Czech Republic'</li><li>'Denmark'</li><li>'Djibouti'</li><li>'Dominican Republic'</li><li>'Ecuador'</li><li>'Egypt'</li><li>'El Salvador'</li><li>'Equatorial Guinea'</li><li>'Eritrea'</li><li>'Ethiopia'</li><li>'Finland'</li><li>'France'</li><li>'Gabon'</li><li>'Gambia'</li><li>'Germany'</li><li>'Ghana'</li><li>'Greece'</li><li>'Guatemala'</li><li>'Guinea'</li><li>'Guinea-Bissau'</li><li>'Haiti'</li><li>'Honduras'</li><li>'Hong Kong, China'</li><li>'Hungary'</li><li>'Iceland'</li><li>'India'</li><li>'Indonesia'</li><li>'Iran'</li><li>'Iraq'</li><li>'Ireland'</li><li>'Israel'</li><li>'Italy'</li><li>'Jamaica'</li><li>'Japan'</li><li>'Jordan'</li><li>'Kenya'</li><li>'Korea, Dem. Rep.'</li><li>'Korea, Rep.'</li><li>'Kuwait'</li><li>'Lebanon'</li><li>'Lesotho'</li><li>'Liberia'</li><li>'Libya'</li><li>'Madagascar'</li><li>'Malawi'</li><li>'Malaysia'</li><li>'Mali'</li><li>'Mauritania'</li><li>'Mauritius'</li><li>'Mexico'</li><li>'Mongolia'</li><li>'Montenegro'</li><li>'Morocco'</li><li>'Mozambique'</li><li>'Myanmar'</li><li>'Namibia'</li><li>'Nepal'</li><li>'Netherlands'</li><li>'New Zealand'</li><li>'Nicaragua'</li><li>'Niger'</li><li>'Nigeria'</li><li>'Norway'</li><li>'Oman'</li><li>'Pakistan'</li><li>'Panama'</li><li>'Paraguay'</li><li>'Peru'</li><li>'Philippines'</li><li>'Poland'</li><li>'Portugal'</li><li>'Puerto Rico'</li><li>'Reunion'</li><li>'Romania'</li><li>'Rwanda'</li><li>'Sao Tome and Principe'</li><li>'Saudi Arabia'</li><li>'Senegal'</li><li>'Serbia'</li><li>'Sierra Leone'</li><li>'Singapore'</li><li>'Slovak Republic'</li><li>'Slovenia'</li><li>'Somalia'</li><li>'South Africa'</li><li>'Spain'</li><li>'Sri Lanka'</li><li>'Sudan'</li><li>'Swaziland'</li><li>'Sweden'</li><li>'Switzerland'</li><li>'Syria'</li><li>'Taiwan'</li><li>'Tanzania'</li><li>'Thailand'</li><li>'Togo'</li><li>'Trinidad and Tobago'</li><li>'Tunisia'</li><li>'Turkey'</li><li>'Uganda'</li><li>'United Kingdom'</li><li>'United States'</li><li>'Uruguay'</li><li>'Venezuela'</li><li>'Vietnam'</li><li>'West Bank and Gaza'</li><li>'Yemen, Rep.'</li><li>'Zambia'</li><li>'Zimbabwe'</li></ol>
+```bash
+<summary style=display:list-item;cursor:pointer>
+	<strong>Levels</strong>:
+</summary>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'Afghanistan'</li><li>'Albania'</li><li>'Algeria'</li><li>'Angola'</li><li>'Argentina'</li><li>'Australia'</li><li>'Austria'</li><li>'Bahrain'</li><li>'Bangladesh'</li><li>'Belgium'</li><li>'Benin'</li><li>'Bolivia'</li><li>'Bosnia and Herzegovina'</li><li>'Botswana'</li><li>'Brazil'</li><li>'Bulgaria'</li><li>'Burkina Faso'</li><li>'Burundi'</li><li>'Cambodia'</li><li>'Cameroon'</li><li>'Canada'</li><li>'Central African Republic'</li><li>'Chad'</li><li>'Chile'</li><li>'China'</li><li>'Colombia'</li><li>'Comoros'</li><li>'Congo, Dem. Rep.'</li><li>'Congo, Rep.'</li><li>'Costa Rica'</li><li>'Cote d\'Ivoire'</li><li>'Croatia'</li><li>'Cuba'</li><li>'Czech Republic'</li><li>'Denmark'</li><li>'Djibouti'</li><li>'Dominican Republic'</li><li>'Ecuador'</li><li>'Egypt'</li><li>'El Salvador'</li><li>'Equatorial Guinea'</li><li>'Eritrea'</li><li>'Ethiopia'</li><li>'Finland'</li><li>'France'</li><li>'Gabon'</li><li>'Gambia'</li><li>'Germany'</li><li>'Ghana'</li><li>'Greece'</li><li>'Guatemala'</li><li>'Guinea'</li><li>'Guinea-Bissau'</li><li>'Haiti'</li><li>'Honduras'</li><li>'Hong Kong, China'</li><li>'Hungary'</li><li>'Iceland'</li><li>'India'</li><li>'Indonesia'</li><li>'Iran'</li><li>'Iraq'</li><li>'Ireland'</li><li>'Israel'</li><li>'Italy'</li><li>'Jamaica'</li><li>'Japan'</li><li>'Jordan'</li><li>'Kenya'</li><li>'Korea, Dem. Rep.'</li><li>'Korea, Rep.'</li><li>'Kuwait'</li><li>'Lebanon'</li><li>'Lesotho'</li><li>'Liberia'</li><li>'Libya'</li><li>'Madagascar'</li><li>'Malawi'</li><li>'Malaysia'</li><li>'Mali'</li><li>'Mauritania'</li><li>'Mauritius'</li><li>'Mexico'</li><li>'Mongolia'</li><li>'Montenegro'</li><li>'Morocco'</li><li>'Mozambique'</li><li>'Myanmar'</li><li>'Namibia'</li><li>'Nepal'</li><li>'Netherlands'</li><li>'New Zealand'</li><li>'Nicaragua'</li><li>'Niger'</li><li>'Nigeria'</li><li>'Norway'</li><li>'Oman'</li><li>'Pakistan'</li><li>'Panama'</li><li>'Paraguay'</li><li>'Peru'</li><li>'Philippines'</li><li>'Poland'</li><li>'Portugal'</li><li>'Puerto Rico'</li><li>'Reunion'</li><li>'Romania'</li><li>'Rwanda'</li><li>'Sao Tome and Principe'</li><li>'Saudi Arabia'</li><li>'Senegal'</li><li>'Serbia'</li><li>'Sierra Leone'</li><li>'Singapore'</li><li>'Slovak Republic'</li><li>'Slovenia'</li><li>'Somalia'</li><li>'South Africa'</li><li>'Spain'</li><li>'Sri Lanka'</li><li>'Sudan'</li><li>'Swaziland'</li><li>'Sweden'</li><li>'Switzerland'</li><li>'Syria'</li><li>'Taiwan'</li><li>'Tanzania'</li><li>'Thailand'</li><li>'Togo'</li><li>'Trinidad and Tobago'</li><li>'Tunisia'</li><li>'Turkey'</li><li>'Uganda'</li><li>'United Kingdom'</li><li>'United States'</li><li>'Uruguay'</li><li>'Venezuela'</li><li>'Vietnam'</li><li>'West Bank and Gaza'</li><li>'Yemen, Rep.'</li><li>'Zambia'</li><li>'Zimbabwe'</li></ol>
+```
 </details>
 
 
@@ -8628,41 +8696,51 @@ However, Numpy does not offer a method to create tensor functions and automatica
 
 ***Numpy Implementation of Matrix Addition***
 
-		import numpy as np
-		a=np.zeros((2,2))
-		b=np.zeros((2,2))
-		np.sum(b,axis=0)
-		a.shape
-		np.reshape(b,(1,3))
+```python
+	import numpy as np
+	a=np.zeros((2,2))
+	b=np.zeros((2,2))
+	np.sum(b,axis=0)
+	a.shape
+	np.reshape(b,(1,3))
+```
 
 
 
 ***Tensorflow Implementation of Matrix Addition***
 
-		import tensorflow as tf
-		tf.InteractiveSession()
-		a=tf.zeros((2,2))
-		b=tf.ones((2,2))
-		tf.reduce_sum(b,reduction_indices=1).eval()
-		a.get_shape()
-		tf.reshape(b,(1,3)).eval()
+```python
+	import tensorflow as tf
+	tf.InteractiveSession()
+	a=tf.zeros((2,2))
+	b=tf.ones((2,2))
+	tf.reduce_sum(b,reduction_indices=1).eval()
+	a.get_shape()
+	tf.reshape(b,(1,3)).eval()
+```
 
 It is important to note that tensorflow requires explicit evaluation, i.e, tensorflow computation defines a computational graph which only gets initialized with values after a session has been evaluated.
 
 Numpy for example
 
-		a=np.zeros((2,2)) ; print(a)
+```python
+	a=np.zeros((2,2)) ; print(a)
+```
 
 will immediately give the value of "a".
 
 However, for tensorflow:
 
-		a=tf.zeros((2,2))
-		print(a)
+```python
+	a=tf.zeros((2,2))
+	print(a)
+```
 
 will not return the value of "a" until it is evaluated with
 
-               print(ta.eval())
+```python
+       print(ta.eval())
+```
 
 So It is important to understand how tensorflow works and initializes the environment.
 
@@ -8670,41 +8748,49 @@ Tensorflow uses a "session object" which encapsulates the environment in which t
 
 A  Tensorflow (tf) session for performing multiplication is demonstrated below:
 
-		a= tf.constant(9999999)
-		b=tf.constant(111111111)
-		c=a*b
-		with tf.Session() as sess:
-		     print(sess.run(c))
-		     print(c.eval())
+```python
+	a= tf.constant(9999999)
+	b=tf.constant(111111111)
+	c=a*b
+	with tf.Session() as sess:
+	     print(sess.run(c))
+	     print(c.eval())
+```
 
 Tensorflow firstly structures the program, creates a graph integrating the variables, and uses session to exectute the process.
 
 *** Tensorflow Variables ***
 Similar to other programming language variables, tensorflow uses a variable object to store and update the parameters. They are stored in memory buffers that contain tensors. TensorFlow variables must be initialized before they have values! This is in contrast with constant tensors:
 
-		W=tf.Variable(tf.zeros((2,2)), name="weights")
-		R=tf.Variable(tf.random_normal((2,2)), name="Random_weights")
+```python
+	W=tf.Variable(tf.zeros((2,2)), name="weights")
+	R=tf.Variable(tf.random_normal((2,2)), name="Random_weights")
 
-		with tf.Session() as sess:
-		        sess.run(tf.initialize_all_variables())
-			print(sess.run(W))
-			print(sess.run(R))
+	with tf.Session() as sess:
+	        sess.run(tf.initialize_all_variables())
+		print(sess.run(W))
+		print(sess.run(R))
+```
 
 Converting numpy data to tensor:
 
-		a=np.zeros((3,3))
-		t_a=tf.convert_to_tensor(a)
-		with tf.Session() as sess:
-			print(sess.run(t_a))
+```python
+	a=np.zeros((3,3))
+	t_a=tf.convert_to_tensor(a)
+	with tf.Session() as sess:
+		print(sess.run(t_a))
+```
 
 For scalable variables for performing operations we can use `tf.placeholder` which defines a placeholder and provides entry points for the data to be viewed in a computational graph.  `feed_dict` is used in the below example to map from `tf.placeholder` variables to data (np arrays, list, etc).
 
 
-		input1= tf.placeholder(tf.float32)
-		input2 = tf.placeholder(tf.float32)
-		output = tf.multiply(input1, input2)
-		with tf.Session() as sess:
-			print(sess.run([output], feed_dict={input1:[7.], input2:[2.]}))
+```python
+	input1= tf.placeholder(tf.float32)
+	input2 = tf.placeholder(tf.float32)
+	output = tf.multiply(input1, input2)
+	with tf.Session() as sess:
+		print(sess.run([output], feed_dict={input1:[7.], input2:[2.]}))
+```
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Tensorflow_documentation.md){target=_blank} (last source update 2019-03-06). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
@@ -8840,69 +8926,87 @@ Please note that you must cite any program you use in a paper. At the end of thi
 
 We will be using conda to make an environment to load within our PBS script. First, if you haven’t already, set up conda as follows:
 
-	module load miniconda3-4.7.12.1-gcc-4.8.5-lmtvtik
-	# can also use other conda modules
-	conda init bash
-	<exit and re-log or restart shell>
+```bash
+module load miniconda3-4.7.12.1-gcc-4.8.5-lmtvtik
+# can also use other conda modules
+conda init bash
+<exit and re-log or restart shell>
+```
 
 This following line will create an environment and install the most recent versions of what we need. We assume you run this before starting up your job.
 
-	conda create -n gatk-env -c bioconda -c conda-forge gatk4 bwa samtools picard trimmomatic
+```bash
+conda create -n gatk-env -c bioconda -c conda-forge gatk4 bwa samtools picard trimmomatic
+```
 
 Alternatively, you can load these as modules if you are on Wheeler (Xena only has Samtools now), but they may not be the most recent versions:
 
-	module load bwa-0.7.17-intel-18.0.2-7jvpfu2
-	module load samtools-1.9-gcc-7.3.0-tnzvvzt
-	module load picard-2.20.8-gcc-4.8.5-3yh2dzv
-	module load gatk-4.1.4.1-gcc-4.8.5-python3-fqiavji
-	module load trimmomatic-0.36-gcc-4.8.5-q3gx4rj
+```bash
+module load bwa-0.7.17-intel-18.0.2-7jvpfu2
+module load samtools-1.9-gcc-7.3.0-tnzvvzt
+module load picard-2.20.8-gcc-4.8.5-3yh2dzv
+module load gatk-4.1.4.1-gcc-4.8.5-python3-fqiavji
+module load trimmomatic-0.36-gcc-4.8.5-q3gx4rj
+```
 
 If you are parallelizing (see “Scatter-gather Parallel” and sample PBS script), you'll need this:
 
-	module load parallel-20170322-gcc-4.8.5-2ycpx7e
-	source $(which env_parallel.bash)
+```bash
+module load parallel-20170322-gcc-4.8.5-2ycpx7e
+source $(which env_parallel.bash)
+```
 
 The directories we will need (other than the home directory) are a raw_reads directory for the demultiplexed reads and the following for various intermediate files to go into. Alternatively, if you don’t want to move around all your reads, just replace the path in the BWA call with that path. Note that a few of these are only used with scatter-gather parallelization (reccomended for larger datasets).
 
-	mkdir clean_reads
-	mkdir alignments
-	# next three are only if you get optional metrics
-	mkdir alignments/alignment_summary
-	mkdir alignments/insert_metrics
-	mkdir alignments/depth
-	mkdir alignments/dedup_temp
-	mkdir bams
-	mkdir gvcfs
-	mkdir combined_vcfs
-	mkdir analysis_vcfs
-	# scatter-gather only
-	mkdir combined_vcfs/intervals
-	mkdir gvcfs/combined_intervals
+```bash
+mkdir clean_reads
+mkdir alignments
+# next three are only if you get optional metrics
+mkdir alignments/alignment_summary
+mkdir alignments/insert_metrics
+mkdir alignments/depth
+mkdir alignments/dedup_temp
+mkdir bams
+mkdir gvcfs
+mkdir combined_vcfs
+mkdir analysis_vcfs
+# scatter-gather only
+mkdir combined_vcfs/intervals
+mkdir gvcfs/combined_intervals
+```
 
 We will be using a few variables throughout this that we can set now. These are shortcuts for the path to our working directory and reference.
 
-	src=$PBS_O_WORKDIR
-	reference=$src/reference
+```bash
+src=$PBS_O_WORKDIR
+reference=$src/reference
+```
 
 ### Sample Names ###
 
 To keep our script short, and outputs easy to understand, we will use consistent sample names for each step, and keep the sample names in a file. We assume this file is named “sample_list”. The file should have one sample name per line. with a single blank line at the end. The one for the tutorial dataset looks like:
 
-	GRSG_JHWY140
-	GRSG_JHWY142
-	GUSG_GGS1
-	GUSG_GGS2
+```bash
+GRSG_JHWY140
+GRSG_JHWY142
+GUSG_GGS1
+GUSG_GGS2
+```
 	
 We will use this sample list in two ways. The first way is loops, and second is GNU parallel. You can see some examples in the PBS script at the end of the document. Here's a basic demonstration of how to us the list in a loop:
 
-	while read sample; do
-		RunTask -input ${sample}
-	done < $src/sample_list
+```bash
+while read sample; do
+	RunTask -input ${sample}
+done < $src/sample_list
+```
 
 And this is what GNU parallel looks like (note it's different for BWA, as we need to specify a specific number of jobs). Remember, we need to use env_parallel if we are using conda.
 	
-	cat $src/sample_list | env_parallel --sshloginfile $PBS_NODEFILE \
-		'RunTask -input {}.file'
+```bash
+cat $src/sample_list | env_parallel --sshloginfile $PBS_NODEFILE \
+	'RunTask -input {}.file'
+```
 
 For clarity, in most cases the commands are written as they would be for a for loop (i.e. with $sample instead of {}).
 
@@ -8920,32 +9024,38 @@ Because it is not covered by best practices, and is often done by the sequencing
 
 Although not a part of GATK's best practices, it is common practice to trim your reads before using them in analyses. We'll use trimmomatic for this. Trimmomatic performs very poorly with its internal thread command, so we'll use GNU parallel to run it in the final script. Note that trimmomatic doesn't have many command line flags, so we'll name variables ahead of time to keep them straight:
 
-	# note this assumes the provided fasta file is in your working directory.
-	adapters=$src/TruSeq3-PE.fa
+```bash
+# note this assumes the provided fasta file is in your working directory.
+adapters=$src/TruSeq3-PE.fa
 
-	read1=$src/raw_reads/${sample}_1.fastq.gz
-	read2=$src/raw_reads/${sample}_2.fastq.gz
-	paired_r1=$src/clean_reads/${sample}_paired_R1.fastq.gz
-	paired_r2=$src/clean_reads/${sample}_paired_R2.fastq.gz
-	unpaired_r1=$src/clean_reads/${sample}_unpaired_R1.fastq.gz
-	unpaired_r2=$src/clean_reads/${sample}_unpaired_R2.fastq.gz
-	# the minimum read length accepted, we do the liberal 30bp here
-	min_length=30
-	trimmomatic PE -threads 1 \
-		$read1 $read2 $paired_r1 $unpaired_r1 $paired_r2 $unpaired_r2 \
-		ILLUMINACLIP:${adapters}:2:30:10:2:True \
-		LEADING:3 TRAILING:3 MINLEN:${min_length}
+read1=$src/raw_reads/${sample}_1.fastq.gz
+read2=$src/raw_reads/${sample}_2.fastq.gz
+paired_r1=$src/clean_reads/${sample}_paired_R1.fastq.gz
+paired_r2=$src/clean_reads/${sample}_paired_R2.fastq.gz
+unpaired_r1=$src/clean_reads/${sample}_unpaired_R1.fastq.gz
+unpaired_r2=$src/clean_reads/${sample}_unpaired_R2.fastq.gz
+# the minimum read length accepted, we do the liberal 30bp here
+min_length=30
+trimmomatic PE -threads 1 \
+	$read1 $read2 $paired_r1 $unpaired_r1 $paired_r2 $unpaired_r2 \
+	ILLUMINACLIP:${adapters}:2:30:10:2:True \
+	LEADING:3 TRAILING:3 MINLEN:${min_length}
+```
 	
 If you don't have access to the CARC directory with the adapters file, it can be found in the conda install/spack package. The exact path will vary, but they'll be something like this:
 	
-	# spack
-	adapters=/opt/spack/opt/spack/linux-centos7-x86_64/gcc-4.8.5/trimmomatic-0.36-q3gx4rjeruluf75uhcdfkjoaujqnjhzf/bin/TruSeq3-SE.fa
-	# conda
-	adapters=~/.conda/pkgs/trimmomatic-0.39-1/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa
+```bash
+# spack
+adapters=/opt/spack/opt/spack/linux-centos7-x86_64/gcc-4.8.5/trimmomatic-0.36-q3gx4rjeruluf75uhcdfkjoaujqnjhzf/bin/TruSeq3-SE.fa
+# conda
+adapters=~/.conda/pkgs/trimmomatic-0.39-1/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa
+```
 
 If you're using the spack module, you call trimmomatic using java:
 
-	java -jar /opt/spack/opt/spack/linux-centos7-x86_64/gcc-4.8.5/trimmomatic-0.36-q3gx4rjeruluf75uhcdfkjoaujqnjhzf/bin/trimmomatic-0.36.jar PE ...
+```bash
+java -jar /opt/spack/opt/spack/linux-centos7-x86_64/gcc-4.8.5/trimmomatic-0.36-q3gx4rjeruluf75uhcdfkjoaujqnjhzf/bin/trimmomatic-0.36.jar PE ...
+```
 
 <a name="align"/>
 
@@ -8953,30 +9063,36 @@ If you're using the spack module, you call trimmomatic using java:
 
 This section prepares BAM files for variant calling. First, we need to index our reference and make a sequence dictionary. We'll index two ways, one for bwa and one for GATK:
 
-	bwa index -p $reference ${reference}.fa
-	samtools faidx ${reference}.fa -o ${reference}.fa.fai
-	picard CreateSequenceDictionary \
+```bash
+bwa index -p $reference ${reference}.fa
+samtools faidx ${reference}.fa -o ${reference}.fa.fai
+picard CreateSequenceDictionary \
+```
        		R=${reference}.fa \
        		O=${reference}.dict
 
 Then, we need to align demultiplexed reads to a reference. For this step, we will use the Burrough-Wheeler Aligner’s (BWA) mem algorithm. Another common option is [Bowtie](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml){target=_blank}. One important flag here is the -R flag, which is the read group and sample ID for a given sample. We assume that these samples are in the same read group. We can get a node's worth of parallelization with the -t command (it can't work across nodes). Therefore, in the sample script at the end we will show you how to further parallelize BWA. The base command looks like this:
 
-	bwa mem \
-		-t [# threads] -M \
-		-R "@RG\tID:${sample}\tPL:ILLUMINA\tLB:${sample}\tSM:${sample}" \
-		$reference \
-		$src/clean_reads/${sample}_paired_R1.fastq.gz \
-		$src/clean_reads/${sample}_paired_R2.fastq.gz \
-		> $src/alignments/${sample}.sam
+```bash
+bwa mem \
+	-t [# threads] -M \
+	-R "@RG\tID:${sample}\tPL:ILLUMINA\tLB:${sample}\tSM:${sample}" \
+	$reference \
+	$src/clean_reads/${sample}_paired_R1.fastq.gz \
+	$src/clean_reads/${sample}_paired_R2.fastq.gz \
+	> $src/alignments/${sample}.sam
+```
 
 The next step is to mark PCR duplicates to remove bias, sort the file, and convert it to the smaller BAM format for downstream use. GATK’s new MarkDuplicatesSpark performs all these tasks, but needs a temporary directory to store intermediate files. Note that although we aren't formally using Spark for parallelization, the line " --conf 'spark.executor.cores=8'" still speed it up, and makes (change the number of cores if the cores per node are higher than 8):
 
-	gatk MarkDuplicatesSpark \
-		-I $src/alignments/${sample}.sam \
-		-M $src/bams/${sample}_dedup_metrics.txt \
-		--tmp-dir $src/alignments/dedup_temp \
-		-O $src/bams/${sample}_dedup.bam \
-		 --conf "spark.executor.cores=8"
+```bash
+gatk MarkDuplicatesSpark \
+	-I $src/alignments/${sample}.sam \
+	-M $src/bams/${sample}_dedup_metrics.txt \
+	--tmp-dir $src/alignments/dedup_temp \
+	-O $src/bams/${sample}_dedup.bam \
+	 --conf "spark.executor.cores=8"
+```
 
 We recommend combining these steps per sample for efficiency and smoother troubleshooting. One issue is that we do not want large SAM files piling up. This can either be done by piping BWA output directly to MarkDuplicatesSpark or removing the SAM file after each loop. In case you want to save the SAM files, we did the latter (this isn’t a bad idea if you have the space, in case there is a problem with generating BAM files). If you are doing base recalibration, you can also add “rm ${sample}\_debup.bam” to get rid of needless BAM files. Later in the pipeline, we assume you did base recalibration, so will use the {sample}\_recal.bam file. If you did not use base recalibration, use {sample}\_dedup.bam file in its place.
 
@@ -8984,19 +9100,21 @@ We recommend combining these steps per sample for efficiency and smoother troubl
 
 An optional step (and one not taken in the tutorial) is to recalibrate base call scores. This applies machine learning to find where quality scores are over or underestimated based on things like read group and cycle number of a given base. This is recommended, but is rarely possible for non-model organisms, as a file of known polymorphisms is needed. Note, however, that it can take a strongly filtered VCF from the end of the pipeline, before running the entire pipeline again (but [others haven’t found much success with this method](https://evodify.com/gatk-in-non-model-organism/){target=_blank}). Here is how it looks, with the first line indexing the input VCF file if you haven't already.
 
-	gatk IndexFeatureFile -I $src[name-of-known-sites].vcf
+```bash
+gatk IndexFeatureFile -I $src[name-of-known-sites].vcf
 
-	gatk BaseRecalibrator \
-		-I $src/bams/${sample}_dedup.bam \
-		-R ${reference}.fa \
-		--known-sites $src/[name-of-known-sites].vcf \
-		-O $src/bams/${sample}_recal_data.table
-		
-	gatk ApplyBQSR \
-		-I $src/bams/${sample}_dedup.bam \
-		-R ${reference}.fa \
-		--bqsr-recal-file $src/bams/${sample}_recal_data.table \
-		-O $src/bams/${sample}_recal.bam
+gatk BaseRecalibrator \
+	-I $src/bams/${sample}_dedup.bam \
+	-R ${reference}.fa \
+	--known-sites $src/[name-of-known-sites].vcf \
+	-O $src/bams/${sample}_recal_data.table
+
+gatk ApplyBQSR \
+	-I $src/bams/${sample}_dedup.bam \
+	-R ${reference}.fa \
+	--bqsr-recal-file $src/bams/${sample}_recal_data.table \
+	-O $src/bams/${sample}_recal.bam
+```
 
 <a name="sumstat"/>
 
@@ -9004,19 +9122,21 @@ An optional step (and one not taken in the tutorial) is to recalibrate base call
 
 This step is optional, and is not part of GATK’s best practices, but is good to have. It will output important stats for assessing sample quality. Picard’s “CollectAlignmentSummaryMetrics” gives several helpful statistics about the alignment for a given sample. Picard’s “CollectInsertSizeMetrics” gives information about the distribution of insert sizes. Samtools’s “depth” gives information about the read depth of the sample. Note that "depth" has huge output files, so it may be best to skip it until needed.
 
-	picard CollectAlignmentSummaryMetrics \
-		R=${reference}.fa \
-		I=$src/bams/${sample}_recal.bam \
-		O=$src/alignments/alignment_summary/${sample}_alignment_summary.txt
-		
-	picard CollectInsertSizeMetrics \
-		INPUT=$src/bams/${sample}_recal.bam \
-		OUTPUT=$src/alignments/insert_metrics/${sample}_insert_size.txt \
-		HISTOGRAM_FILE=$src/${sample}_insert_hist.pdf
-		
-	samtools depth \
-		-a $src/bams/${sample}_recal.bam \
-		> $src/alignments/depth/${sample}_depth.txt
+```bash
+picard CollectAlignmentSummaryMetrics \
+	R=${reference}.fa \
+	I=$src/bams/${sample}_recal.bam \
+	O=$src/alignments/alignment_summary/${sample}_alignment_summary.txt
+
+picard CollectInsertSizeMetrics \
+	INPUT=$src/bams/${sample}_recal.bam \
+	OUTPUT=$src/alignments/insert_metrics/${sample}_insert_size.txt \
+	HISTOGRAM_FILE=$src/${sample}_insert_hist.pdf
+
+samtools depth \
+	-a $src/bams/${sample}_recal.bam \
+	> $src/alignments/depth/${sample}_depth.txt
+```
 
 <a name="haplo"/>
 
@@ -9024,20 +9144,24 @@ This step is optional, and is not part of GATK’s best practices, but is good t
 
 The simplest way is individually going through BAM files and calling SNPs on them using HaplotypeCaller in GVCF mode (“-ERC GVCF” flag), resulting in GVCFs as output.
 
-	gatk HaplotypeCaller \
-		-R ${reference}.fa \
-		-I $src/bams/${sample}_recal.bam \
-		-O $src/gvcfs/${sample}_raw.g.vcf.gz \
-		-ERC GVCF
+```bash
+gatk HaplotypeCaller \
+	-R ${reference}.fa \
+	-I $src/bams/${sample}_recal.bam \
+	-O $src/gvcfs/${sample}_raw.g.vcf.gz \
+	-ERC GVCF
+```
 
 One issue with HaplotypeCaller is that it takes a long time, but is not programmed to be parallelized by default. We can use GNU parallel to solve that problem in two ways. If you have many small inputs and don't want to do scatter-gather parallel, you can run one instance of HaplotypeCaller per core. Note that we restrict the memory such that each job can only max out the core it's on (you'll want to change from 6g based on the machine you're running this on):
 
-	cat $src/sample_list | env_parallel --sshloginfline $PBS_NODEFILE \
-		'gatk --java-options "-Xmx6g" HaplotypeCaller \
-		-R ${reference}.fa \
-		-I $src/bams/{}_recal.bam \
-		-O $src/gvcfs/${}_raw.g.vcf.gz \
-		-ERC GVCF'
+```bash
+cat $src/sample_list | env_parallel --sshloginfline $PBS_NODEFILE \
+	'gatk --java-options "-Xmx6g" HaplotypeCaller \
+	-R ${reference}.fa \
+	-I $src/bams/{}_recal.bam \
+	-O $src/gvcfs/${}_raw.g.vcf.gz \
+	-ERC GVCF'
+```
 
 If you are dealing with large files, HaplotypeCaller may take longer than your walltime. The Scatter-gather Parallel section will outline how to fix that by breaking the job (and the next section) into multiple intervals.
 
@@ -9047,44 +9171,56 @@ If you are dealing with large files, HaplotypeCaller may take longer than your w
 
 This next step has two options, GenomicsDBImport and CombineGVCFs. GATK recommends GenomicsDBImport, as it is more efficient for large datasets, but it performs poorly on references with many contigs. CombineGVCFs can take a long time for large datasets, but is easier to use. Note that GenomicsDBImport must have intervals (generally corresponding to contigs or chromosomes) specified. GenomicsDBImport can take a file specifying GVCFs, but because CombineGVCFs cannot take this input, we just make a list of samples to combine programmatically and plug it in. Here is how we generate that command:
 
-	gvcf_names=""
-	while read sample; do
-		gvcf_names="${gvcf_names}-V ${src}/gvcfs/${sample}_raw.g.vcf.gz "
-	done < $src/sample_list
+```bash
+gvcf_names=""
+while read sample; do
+	gvcf_names="${gvcf_names}-V ${src}/gvcfs/${sample}_raw.g.vcf.gz "
+done < $src/sample_list
+```
 
 If you do use GenomicsDBImport, or want to genotype contigs/chromosomes independently, we'll need intervals for it to work with (the same used for scatter-gather parallelization). Also, you'll need to pre-make a temp directory for holding files:
 
-	mkdir gendb_temp
-	cut -f 1 ${reference}.fa.fai > $src/intervals.list	
+```bash
+mkdir gendb_temp
+cut -f 1 ${reference}.fa.fai > $src/intervals.list	
+```
 
 For GenomicsDBImport, you'll need to get rid of the directory you use for the database (here genomic_database) if you already made it:
 
-	gatk GenomicsDBImport \
-		${gvcf_names} \
-		--genomicsdb-workspace-path $src/genomic_database \
-		--tmp-dir $src/gendb_temp \
-		-L $src/intervals.list
+```bash
+gatk GenomicsDBImport \
+	${gvcf_names} \
+	--genomicsdb-workspace-path $src/genomic_database \
+	--tmp-dir $src/gendb_temp \
+	-L $src/intervals.list
+```
 
 And an example for CombineGVCFs is:
 
-	gatk CombineGVCFs \
-		-R ${reference}.fa \
-		${gvcf_names} \
-		-O $src/combined_vcfs/combined_gvcf.g.vcf.gz
+```bash
+gatk CombineGVCFs \
+	-R ${reference}.fa \
+	${gvcf_names} \
+	-O $src/combined_vcfs/combined_gvcf.g.vcf.gz
+```
 
 The next step is to genotype the combined (cohort) GVCF file. Here’s a sample command for GenomicsDBImport:
 
-	gatk GenotypeGVCFs \
-		-R ${reference}.fa \
-		-V gendb://$src/genomic_database \
-		-O $src/combined_vcfs/combined_vcf.vcf.gz
+```bash
+gatk GenotypeGVCFs \
+	-R ${reference}.fa \
+	-V gendb://$src/genomic_database \
+	-O $src/combined_vcfs/combined_vcf.vcf.gz
+```
 	
 And one for CombineGVCFs:
 
-	gatk GenotypeGVCFs \
-		-R ${reference}.fa \
-		-V $src/combined_vcfs/combined_gvcf.g.vcf.gz \
-		-O $src/combined_vcfs/combined_vcf.vcf.gz
+```bash
+gatk GenotypeGVCFs \
+	-R ${reference}.fa \
+	-V $src/combined_vcfs/combined_gvcf.g.vcf.gz \
+	-O $src/combined_vcfs/combined_vcf.vcf.gz
+```
 
 <a name="select"/>
 
@@ -9092,29 +9228,33 @@ And one for CombineGVCFs:
 
 This first step is optional, but here we separate out indels and SNPs. Note that we don’t use indels down the line, but similar filters can be applied.
 
-	gatk SelectVariants \
-		-R ${reference}.fa \
-		-V $src/combined_vcfs/combined_vcf.vcf.gz \
-		-select-yype SNP \
-		-O $src/combined_vcfs/raw_snps.vcf.gz
+```bash
+gatk SelectVariants \
+	-R ${reference}.fa \
+	-V $src/combined_vcfs/combined_vcf.vcf.gz \
+	-select-yype SNP \
+	-O $src/combined_vcfs/raw_snps.vcf.gz
 
-	gatk SelectVariants \
-		-R ${reference}.fa \
-		-V $src/combined_vcfs/combined_vcf.vcf.gz \
-		-select-type INDEL \
-		-O $src/combined_vcfs/raw_indel.vcf.gz
+gatk SelectVariants \
+	-R ${reference}.fa \
+	-V $src/combined_vcfs/combined_vcf.vcf.gz \
+	-select-type INDEL \
+	-O $src/combined_vcfs/raw_indel.vcf.gz
+```
 
 Here are some good sample filters. The “DP_filter” is depth of coverage (you will probably want to change this), “Q_filter” is quality score, “QD_filter” is quality by depth (avoids artificial inflation of calls), "MQ_filter" is a mapping quality filter, and “FS_filter” is a strand bias filter (higher value means higher bias). Note that DP is better for low depth samples, while QD is better for high depth. More info can be found on [GATK’s website](https://gatk.broadinstitute.org/hc/en-us/articles/360035890471-Hard-filtering-germline-short-variants){target=_blank}.
 
-	gatk VariantFiltration \
-		-R ${reference}.fa \
-		-V $src/combined_vcfs/raw_snps.vcf.gz \
-		-O $src/analysis_vcfs/filtered_snps.vcf  \
-		-filter "DP < 4" --filter-name "DP_filter" \
-		-filter "QUAL < 30.0" --filter-name "Q_filter" \
-		-filter "QD < 2.0" --filter-name "QD_filter" \
-		-filter "FS > 60.0" --filter-name "FS_filter" \
-		-filter "MQ < 40.0" --filter-name "MQ_filter"
+```bash
+gatk VariantFiltration \
+	-R ${reference}.fa \
+	-V $src/combined_vcfs/raw_snps.vcf.gz \
+	-O $src/analysis_vcfs/filtered_snps.vcf  \
+	-filter "DP < 4" --filter-name "DP_filter" \
+	-filter "QUAL < 30.0" --filter-name "Q_filter" \
+	-filter "QD < 2.0" --filter-name "QD_filter" \
+	-filter "FS > 60.0" --filter-name "FS_filter" \
+	-filter "MQ < 40.0" --filter-name "MQ_filter"
+```
 
 This will give us our final VCF! Note that the filtered SNPs are still included, just with a filter tag. You can use something like SelectVariants' "exclude-filtered" flag or [VCFtools’](http://vcftools.sourceforge.net/){target=_blank} “--remove-filtered-all” flag to get rid of them.
 
@@ -9124,77 +9264,93 @@ This will give us our final VCF! Note that the filtered SNPs are still included,
 
 Scatter-gather is the process of breaking a job into intervals (i.e. contigs or scaffolds in a reference) and running HaplotypeCaller, CombineGVCFs, and GenotypeGVCFs on each interval in parallel. Then, at the end, all the invervals are gathered together with GatherGVCFs. This results in a massive speed-up due to the parallelization. This is fully implemented in the sample script below, with each step outlined here. The output of GatherVcfs is the same as what comes from GenotypeGVCFs in the non-parallel version. Here is how we run HaplotypeCaller, note that this is only one sample, see the sample script for running this on all samples:
 	
-	# make our interval list
-	cut -f 1 ${reference}.fa.fai > $src/intervals.list
-	
-	while read sample; do
-		mkdir ${src}/gvcfs/${sample}
-		cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
-			'gatk --java-options "-Xmx6g" HaplotypeCaller \
-			-R ${reference}.fa \
-			-I $src/bams/${sample}_recal.bam \
-			-O $src/gvcfs/${sample}/${sample}_{}_raw.g.vcf.gz \
-			-L {} \
-			-ERC GVCF'
-	done < $src/sample_list
+```bash
+# make our interval list
+cut -f 1 ${reference}.fa.fai > $src/intervals.list
+
+while read sample; do
+	mkdir ${src}/gvcfs/${sample}
+	cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
+		'gatk --java-options "-Xmx6g" HaplotypeCaller \
+		-R ${reference}.fa \
+		-I $src/bams/${sample}_recal.bam \
+		-O $src/gvcfs/${sample}/${sample}_{}_raw.g.vcf.gz \
+		-L {} \
+		-ERC GVCF'
+done < $src/sample_list
+```
 	
 You'll run then run CombineGVCFs. For each interval, you'll make a list of GVCF file paths for each sample you're including (the while loop below).
 
-	cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
-		'interval_list=""
-		# loop to generate list of sample-specific intervals to combine
-		while read sample; do
-			interval_list="${interval_list}-V ${src}/gvcfs/${sample}/${sample}_{}_raw.g.vcf.gz "
-		done < $src/sample_list
-		gatk --java-options "-Xmx6g" CombineGVCFs \
-			-R ${reference}.fa \
-			${interval_list} \
-			-O $src/gvcfs/combined_intervals/{}_raw.g.vcf.gz'
+```bash
+cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
+	'interval_list=""
+	# loop to generate list of sample-specific intervals to combine
+	while read sample; do
+		interval_list="${interval_list}-V ${src}/gvcfs/${sample}/${sample}_{}_raw.g.vcf.gz "
+	done < $src/sample_list
+	gatk --java-options "-Xmx6g" CombineGVCFs \
+		-R ${reference}.fa \
+		${interval_list} \
+		-O $src/gvcfs/combined_intervals/{}_raw.g.vcf.gz'
+```
 			
 Next, you run GenotypeGVCFs to get VCFs to gather afterwards. No fancy lists needed!
 
-	cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
-		'gatk --java-options "-Xmx6g" GenotypeGVCFs \
-			-R ${reference}.fa \
-			-V $src/gvcfs/combined_intervals/{}_raw.g.vcf.gz \
-			-O $src/combined_vcfs/intervals/{}_genotyped.vcf.gz'
+```bash
+cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
+	'gatk --java-options "-Xmx6g" GenotypeGVCFs \
+		-R ${reference}.fa \
+		-V $src/gvcfs/combined_intervals/{}_raw.g.vcf.gz \
+		-O $src/combined_vcfs/intervals/{}_genotyped.vcf.gz'
+```
 			
 If you have many samples, it may be best to use GenomicsDBImport. It is very similar, with both that step and the genotyping below. Note that the directory for --genomicsdb-workspace-path can't exist (unless you're updating it):
 
-	cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
-		'mkdir $src/gendb_temp/{}
-   	 	interval_list=""
+```bash
+cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
+	'mkdir $src/gendb_temp/{}
+ 	interval_list=""
+```
     		# loop to generate list of sample-specific intervals
-		while read sample; do
-			interval_list="${interval_list}-V ${src}/gvcfs/${sample}/${sample}_{}_raw.g.vcf.gz "
-		done < $src/sample_list
-		# run make the genomics databases
-		gatk --java-options "-Xmx6g" GenomicsDBImport \
-			 ${interval_list} \
-			--genomicsdb-workspace-path $src/genomics_databases/{} \
-			--tmp-dir $src/gendb_temp/{} \
-			-L {}'
+```bash
+	while read sample; do
+		interval_list="${interval_list}-V ${src}/gvcfs/${sample}/${sample}_{}_raw.g.vcf.gz "
+	done < $src/sample_list
+	# run make the genomics databases
+	gatk --java-options "-Xmx6g" GenomicsDBImport \
+		 ${interval_list} \
+		--genomicsdb-workspace-path $src/genomics_databases/{} \
+		--tmp-dir $src/gendb_temp/{} \
+		-L {}'
 
-	cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
-		'gatk --java-options "-Xmx6g" GenotypeGVCFs \
-		-R ${reference}.fa \
-		-V gendb://$src/genomics_databases/{} \
-		-O $src/combined_vcfs/intervals/{}_genotyped.vcf.gz'
+cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
+	'gatk --java-options "-Xmx6g" GenotypeGVCFs \
+	-R ${reference}.fa \
+	-V gendb://$src/genomics_databases/{} \
+	-O $src/combined_vcfs/intervals/{}_genotyped.vcf.gz'
+```
 
 The final (gather) step uses GatherVcfs, for which we'll make a file containing the paths to all input genotyped VCFs (generated in the while loop). Note the first line initializes a blank file for the gather list. After we make the gathered VCF, we need to index it for future analyses.
 
-	> $src/combined_vcfs/gather_list
-	while read interval; do
-   		echo ${src}/combined_vcfs/intervals/${interval}_genotyped.vcf.gz >> \
+```bash
+> $src/combined_vcfs/gather_list
+while read interval; do
+	echo ${src}/combined_vcfs/intervals/${interval}_genotyped.vcf.gz >> \
+```
        			$src/combined_vcfs/gather_list
-	done < $src/chromosomes.list
-	
-	gatk GatherVcfs \
+```bash
+done < $src/chromosomes.list
+
+gatk GatherVcfs \
+```
     		-I $src/combined_vcfs/gather_list \
     		-O combined_vcfs/combined_vcf.vcf.gz
 		
-	gatk IndexFeatureFile \
-		-I $src/combined_vcfs/raw_snps.vcf.gz
+```bash
+gatk IndexFeatureFile \
+	-I $src/combined_vcfs/raw_snps.vcf.gz
+```
 
 **NOTE THAT THIS FILE STILL NEEDS TO HAVE VARIANTS SELECTED AND FILTERED, SEE "Selecting and filtering variants" ABOVE**
 
@@ -9206,165 +9362,173 @@ Here is a sample PBS script combining everything we have above, with as much par
 
 To convert this to Slurm, replace $PBS_O_WORKDIR with $SLURM_SUBMIT_DIR and refer to [this conversion guide](../running-jobs/pbs-to-slurm.md) for the rest.
 	
-	#!/bin/bash
+```bash
+#!/bin/bash
 
-	#PBS -q default
-	#PBS -l nodes=4:ppn=8
-	#PBS -l walltime=10:00:00
-	#PBS -N gatk_tutorial
-	#PBS -m ae
-	#PBS -M youremail@school.edu
-	
-	# the PBS lines are for the default queue, using 4 nodes, and has a conservative 10 hour wall time
-	# it is named "gatk_tutorial" and sends an email to "youremail@school.edu" when done
+#PBS -q default
+#PBS -l nodes=4:ppn=8
+#PBS -l walltime=10:00:00
+#PBS -N gatk_tutorial
+#PBS -m ae
+#PBS -M youremail@school.edu
 
-	# load your conda environment
-	module load miniconda3-4.7.12.1-gcc-4.8.5-lmtvtik
-	eval "$(conda shell.bash hook)"
-	conda activate gatk-env
-	
-	# load GNU parallel, get env_parallel
-	module load parallel-20170322-gcc-4.8.5-2ycpx7e
-	source $(which env_parallel.bash)
-	
-	src=$PBS_O_WORKDIR
-	# this is "sagegrouse_reference" in the tutorial
-	reference=${src}/reference
-	
-	# indexing reference
-	bwa index -p $reference ${reference}.fa
-	samtools faidx ${reference}.fa -o ${reference}.fa.fai
-	picard CreateSequenceDictionary \
+# the PBS lines are for the default queue, using 4 nodes, and has a conservative 10 hour wall time
+# it is named "gatk_tutorial" and sends an email to "youremail@school.edu" when done
+
+# load your conda environment
+module load miniconda3-4.7.12.1-gcc-4.8.5-lmtvtik
+eval "$(conda shell.bash hook)"
+conda activate gatk-env
+
+# load GNU parallel, get env_parallel
+module load parallel-20170322-gcc-4.8.5-2ycpx7e
+source $(which env_parallel.bash)
+
+src=$PBS_O_WORKDIR
+# this is "sagegrouse_reference" in the tutorial
+reference=${src}/reference
+
+# indexing reference
+bwa index -p $reference ${reference}.fa
+samtools faidx ${reference}.fa -o ${reference}.fa.fai
+picard CreateSequenceDictionary \
+```
        		R=${reference}.fa \
        		O=${reference}.dict
 	
-	# Trimming section
-	adapters=~/.conda/pkgs/trimmomatic-0.39-1/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa
-	cat $src/sample_list | env_parallel --sshloginfile $PBS_NODEFILE \
-		'read1=$src/raw_reads/{}_1.fastq.gz
-		read2=$src/raw_reads/{}_2.fastq.gz
-		paired_r1=$src/clean_reads/{}_paired_R1.fastq.gz
-		paired_r2=$src/clean_reads/{}_paired_R2.fastq.gz
-		unpaired_r1=$src/clean_reads/{}_unpaired_R1.fastq.gz
-		unpaired_r2=$src/clean_reads/{}_unpaired_R2.fastq.gz
-		# the minimum read length accepted, we do the liberal 30bp here
-		min_length=30
-		trimmomatic PE -threads 1 \
-			$read1 $read2 $paired_r1 $unpaired_r1 $paired_r2 $unpaired_r2 \
-			ILLUMINACLIP:${adapters}:2:30:10:2:True \
-			LEADING:3 TRAILING:3 MINLEN:${min_length}'
-	
-	# Section for alignment and marking duplicates. 
-	# Note we parallelize such that BWA uses exactly one node.
-	# Then, we have a number of jobs equal to the number of nodes requested.
+```bash
+# Trimming section
+adapters=~/.conda/pkgs/trimmomatic-0.39-1/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa
+cat $src/sample_list | env_parallel --sshloginfile $PBS_NODEFILE \
+	'read1=$src/raw_reads/{}_1.fastq.gz
+	read2=$src/raw_reads/{}_2.fastq.gz
+	paired_r1=$src/clean_reads/{}_paired_R1.fastq.gz
+	paired_r2=$src/clean_reads/{}_paired_R2.fastq.gz
+	unpaired_r1=$src/clean_reads/{}_unpaired_R1.fastq.gz
+	unpaired_r2=$src/clean_reads/{}_unpaired_R2.fastq.gz
+	# the minimum read length accepted, we do the liberal 30bp here
+	min_length=30
+	trimmomatic PE -threads 1 \
+		$read1 $read2 $paired_r1 $unpaired_r1 $paired_r2 $unpaired_r2 \
+		ILLUMINACLIP:${adapters}:2:30:10:2:True \
+		LEADING:3 TRAILING:3 MINLEN:${min_length}'
 
-	cat $src/sample_list | env_parallel -j 1 --sshloginfile $PBS_NODEFILE \
-		'bwa mem \
-			-t 8 -M \
-			-R "@RG\tID:{}\tPL:ILLUMINA\tLB:{}\tSM:{}" \
-			$reference \
-			$src/clean_reads/{}_paired_R1.fastq.gz \
-			$src/clean_reads/{}_paired_R2.fastq.gz \
-			> $src/alignments/{}.sam
-		gatk MarkDuplicatesSpark \
-			-I $src/alignments/{}.sam \
-			-M $src/bams/{}_dedup_metrics.txt \
-			--tmp-dir $src/alignments/dedup_temp \
-			-O $src/bams/{}_dedup.bam \
-			 --conf "spark.executor.cores=8"
-		rm $src/alignments/{}.sam'
+# Section for alignment and marking duplicates. 
+# Note we parallelize such that BWA uses exactly one node.
+# Then, we have a number of jobs equal to the number of nodes requested.
 
-	# Collecting metrics in parallel
-	# Remember to change from _recal to _dedup if you can’t do base recalibration.
-	# Also, depth will take A LOT of room up, so you may not want to run it until you know what to do with it.
+cat $src/sample_list | env_parallel -j 1 --sshloginfile $PBS_NODEFILE \
+	'bwa mem \
+		-t 8 -M \
+		-R "@RG\tID:{}\tPL:ILLUMINA\tLB:{}\tSM:{}" \
+		$reference \
+		$src/clean_reads/{}_paired_R1.fastq.gz \
+		$src/clean_reads/{}_paired_R2.fastq.gz \
+		> $src/alignments/{}.sam
+	gatk MarkDuplicatesSpark \
+		-I $src/alignments/{}.sam \
+		-M $src/bams/{}_dedup_metrics.txt \
+		--tmp-dir $src/alignments/dedup_temp \
+		-O $src/bams/{}_dedup.bam \
+		 --conf "spark.executor.cores=8"
+	rm $src/alignments/{}.sam'
 
-	cat $src/sample_list | env_parallel --sshloginfile $PBS_NODEFILE \
-		'picard CollectAlignmentSummaryMetrics \
-			R=${reference}.fa \
-			I=$src/bams/{}_dedup.bam \
-			O=$src/alignments/alignment_summary/{}_alignment_summary.txt
-		picard CollectInsertSizeMetrics \
-			INPUT=$src/bams/{}_dedup.bam \
-			OUTPUT=$src/alignments/insert_metrics/{}_insert_size.txt \
-			HISTOGRAM_FILE=$src/alignments/insert_metrics/{}_insert_hist.pdf
-		samtools depth \
-			-a $src/bams/{}_dedup.bam \
-			> $src/alignments/depth/{}_depth.txt'
+# Collecting metrics in parallel
+# Remember to change from _recal to _dedup if you can’t do base recalibration.
+# Also, depth will take A LOT of room up, so you may not want to run it until you know what to do with it.
 
-	# Scatter-gather HaploType Caller, probably the most likely to need checkpoints.
-	# This can take a lot of different forms, this one is best for large files.
-	# Go to the HaplotypeCaller section for more info. 
-	
-	cut -f 1 ${reference}.fa.fai > $src/intervals.list
-	
+cat $src/sample_list | env_parallel --sshloginfile $PBS_NODEFILE \
+	'picard CollectAlignmentSummaryMetrics \
+		R=${reference}.fa \
+		I=$src/bams/{}_dedup.bam \
+		O=$src/alignments/alignment_summary/{}_alignment_summary.txt
+	picard CollectInsertSizeMetrics \
+		INPUT=$src/bams/{}_dedup.bam \
+		OUTPUT=$src/alignments/insert_metrics/{}_insert_size.txt \
+		HISTOGRAM_FILE=$src/alignments/insert_metrics/{}_insert_hist.pdf
+	samtools depth \
+		-a $src/bams/{}_dedup.bam \
+		> $src/alignments/depth/{}_depth.txt'
+
+# Scatter-gather HaploType Caller, probably the most likely to need checkpoints.
+# This can take a lot of different forms, this one is best for large files.
+# Go to the HaplotypeCaller section for more info. 
+
+cut -f 1 ${reference}.fa.fai > $src/intervals.list
+
+while read sample; do
+	mkdir ${src}/gvcfs/${sample}
+	cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
+		'gatk --java-options "-Xmx6g" HaplotypeCaller \
+		-R ${reference}.fa \
+		-I $src/bams/${sample}_dedup.bam \
+		-O $src/gvcfs/${sample}/${sample}_{}_raw.g.vcf.gz \
+		-L {} \
+		-ERC GVCF'
+done < $src/sample_list
+
+# Run CombineGVCFs per interval, each step combines all samples into one interval-specific GVCF
+cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
+	'interval_list=""
+	# loop to generate list of sample-specific intervals to combine
 	while read sample; do
-		mkdir ${src}/gvcfs/${sample}
-		cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
-			'gatk --java-options "-Xmx6g" HaplotypeCaller \
-			-R ${reference}.fa \
-			-I $src/bams/${sample}_dedup.bam \
-			-O $src/gvcfs/${sample}/${sample}_{}_raw.g.vcf.gz \
-			-L {} \
-			-ERC GVCF'
+		interval_list="${interval_list}-V ${src}/gvcfs/${sample}/${sample}_{}_raw.g.vcf.gz "
 	done < $src/sample_list
+	gatk --java-options "-Xmx6g" CombineGVCFs \
+		-R ${reference}.fa \
+		${interval_list} \
+		-O $src/gvcfs/combined_intervals/{}_raw.g.vcf.gz'
 
-	# Run CombineGVCFs per interval, each step combines all samples into one interval-specific GVCF
-	cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
-		'interval_list=""
-		# loop to generate list of sample-specific intervals to combine
-		while read sample; do
-			interval_list="${interval_list}-V ${src}/gvcfs/${sample}/${sample}_{}_raw.g.vcf.gz "
-		done < $src/sample_list
-		gatk --java-options "-Xmx6g" CombineGVCFs \
-			-R ${reference}.fa \
-			${interval_list} \
-			-O $src/gvcfs/combined_intervals/{}_raw.g.vcf.gz'
-	
-	# Run GenotypeGVCFs on each interval GVCF
-	cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
-		'gatk --java-options "-Xmx6g" GenotypeGVCFs \
-			-R ${reference}.fa \
-			-V $src/gvcfs/combined_intervals/{}_raw.g.vcf.gz \
-			-O $src/combined_vcfs/intervals/{}_genotyped.vcf.gz'
-	
-	# Make a file with a list of paths for GatherVcfs to use
-	> $src/combined_vcfs/gather_list
-	while read interval; do
-   		echo ${src}/combined_vcfs/intervals/${interval}_genotyped.vcf.gz >> \
+# Run GenotypeGVCFs on each interval GVCF
+cat $src/intervals.list | env_parallel --sshloginfile $PBS_NODEFILE \
+	'gatk --java-options "-Xmx6g" GenotypeGVCFs \
+		-R ${reference}.fa \
+		-V $src/gvcfs/combined_intervals/{}_raw.g.vcf.gz \
+		-O $src/combined_vcfs/intervals/{}_genotyped.vcf.gz'
+
+# Make a file with a list of paths for GatherVcfs to use
+> $src/combined_vcfs/gather_list
+while read interval; do
+	echo ${src}/combined_vcfs/intervals/${interval}_genotyped.vcf.gz >> \
+```
        			$src/combined_vcfs/gather_list
-	done < $src/intervals.list
-	
-	# Run GatherVcfs
-	gatk GatherVcfs \
+```bash
+done < $src/intervals.list
+
+# Run GatherVcfs
+gatk GatherVcfs \
+```
     		-I $src/combined_vcfs/gather_list \
     		-O $src/combined_vcfs/combined_vcf.vcf.gz
 
-	# Index the gathered VCF
-	gatk IndexFeatureFile \
-		-I $src/combined_vcfs/combined_vcf.vcf.gz
+```bash
+# Index the gathered VCF
+gatk IndexFeatureFile \
+	-I $src/combined_vcfs/combined_vcf.vcf.gz
 
-	# Select and filter variants
-	gatk SelectVariants \
-		-R ${reference}.fa \
-		-V $src/combined_vcfs/combined_vcf.vcf.gz \
-		-select-type SNP \
-		-O $src/combined_vcfs/raw_snps.vcf.gz
+# Select and filter variants
+gatk SelectVariants \
+	-R ${reference}.fa \
+	-V $src/combined_vcfs/combined_vcf.vcf.gz \
+	-select-type SNP \
+	-O $src/combined_vcfs/raw_snps.vcf.gz
 
-	gatk SelectVariants \
-		-R ${reference}.fa \
-		-V $src/combined_vcfs/combined_vcf.vcf.gz \
-		-select-type INDEL \
-		-O $src/combined_vcfs/raw_indel.vcf.gz
+gatk SelectVariants \
+	-R ${reference}.fa \
+	-V $src/combined_vcfs/combined_vcf.vcf.gz \
+	-select-type INDEL \
+	-O $src/combined_vcfs/raw_indel.vcf.gz
 
-	gatk VariantFiltration \
-		-R ${reference}.fa \
-		-V $src/combined_vcfs/raw_snps.vcf.gz \
-		-O $src/analysis_vcfs/filtered_snps.vcf  \
-		-filter "DP < 4" --filter-name "DP_filter" \
-		-filter "QUAL < 30.0" --filter-name "Q_filter" \
-		-filter "QD < 2.0" --filter-name "QD_filter" \
-		-filter "FS > 60.0" --filter-name "FS_filter" \
-		-filter "MQ < 40.0" --filter-name "MQ_filter"
+gatk VariantFiltration \
+	-R ${reference}.fa \
+	-V $src/combined_vcfs/raw_snps.vcf.gz \
+	-O $src/analysis_vcfs/filtered_snps.vcf  \
+	-filter "DP < 4" --filter-name "DP_filter" \
+	-filter "QUAL < 30.0" --filter-name "Q_filter" \
+	-filter "QD < 2.0" --filter-name "QD_filter" \
+	-filter "FS > 60.0" --filter-name "FS_filter" \
+	-filter "MQ < 40.0" --filter-name "MQ_filter"
+```
 
 <a name="tshoot"/>
 
@@ -9985,83 +10149,117 @@ This QuickByte describes msprime 1.0, which is a major update from the widely us
 
 Msprime is a python package, with reccomended download via conda. We reccomend you use miniconda for this, as we've had some bugs with installing this through anaconda in the past. We'll make an environment with it and a couple other important modules:
 
-	conda create -n msp1-env -c conda-forge msprime scikit-allel numpy
+```bash
+conda create -n msp1-env -c conda-forge msprime scikit-allel numpy
+```
 
 Then we'll activate the environment with "conda activate", but note that it needs to be "source activate" in a script:
 
-	conda activate msp1-env
+```bash
+conda activate msp1-env
+```
 
 In a script or in python command line, we'll import msprime as msp for convenience:
 
-	import msprime as msp
+```python
+import msprime as msp
+```
 
 The simulations themselves, at a base level, are very simple. All that's needed is a sample size of individuals "tracked" backwards. Note that these are assumed diploid unless ploidy is specified:
 
-	trees = msp.sim_ancestry(samples=10)
+```bash
+trees = msp.sim_ancestry(samples=10)
+```
 	
 Mutations can be added using sim_mutations, ideally changing the default mutation rate (here to the per-year songbird mutation rate):
 
-	mutations = msp.sim_mutations(trees, rate=2.3e-9)
+```bash
+mutations = msp.sim_mutations(trees, rate=2.3e-9)
+```
 
 This is just one locus, but we gain a lot more information by adding sequence length and recombination rates.
 
-	trees = msp.sim_ancestry(samples=10, recombination_rate=1e-8, sequence_length=1e6)
+```bash
+trees = msp.sim_ancestry(samples=10, recombination_rate=1e-8, sequence_length=1e6)
+```
 
 Unlike the older versions of msprime, outside of pre-made demographic scenarios, you need to add things like populations and merge events to a demography object. Migration rates are also set there. First, we'll initialize the demography and add two populations:
 
-	demo = msp.Demography()
-	demo.add_population(name="pop1", initial_size=10000)
-	demo.add_population(name="pop2", initial_size=20000)
+```bash
+demo = msp.Demography()
+demo.add_population(name="pop1", initial_size=10000)
+demo.add_population(name="pop2", initial_size=20000)
+```
 	
 Next, we'll set up an ancestral population and add a population split time (the size is equal to the size before a bottleneck we implement below):
 
-	demo.add_population(name="anc_pop12", initial_size=50000)
-	demo.add_population_split(time=5700, derived=["pop1","pop2"], ancestral="anc_pop12")
+```bash
+demo.add_population(name="anc_pop12", initial_size=50000)
+demo.add_population_split(time=5700, derived=["pop1","pop2"], ancestral="anc_pop12")
+```
 	
 Finally, we'll add symmetric migration (i.e. gene flow) between the two focal populations:
 
-	demo.set_symmetric_migration_rate(['pop1', 'pop2'], 0.001)
+```bash
+demo.set_symmetric_migration_rate(['pop1', 'pop2'], 0.001)
+```
 
 We can have the migration rate change over time too, here we increase the migration rate during the period between the split time (5700 generations ago) and 4000 generations go:
 
-	demo.add_symmetric_migration_rate_change(4000, ['pop1', 'pop2'], 0.01)
+```bash
+demo.add_symmetric_migration_rate_change(4000, ['pop1', 'pop2'], 0.01)
+```
 	
 The final common demographic event is population size change, which we'll set to have a bottleneck three quarters of the way through the simulation. That is, we set the population size of population 1 to be three times the present population 2500 years:
 	
-	demo.add_population_parameters_change(time=2500, initial_size=30000, population="pop1")
+```bash
+demo.add_population_parameters_change(time=2500, initial_size=30000, population="pop1")
+```
 
 Finally, we need to sort these events, as we added them out of order for instructional purposes:
 
-	demo.sort_events()
+```bash
+demo.sort_events()
+```
 
 A really helpful debugging feature is the print function for demography objects, it lists and explains the events and migration matrix!
 	
-	print(demo)
+```python
+print(demo)
+```
 
 Bringing this all together, our simulation will look like:
 
-	trees = msp.sim_ancestry(samples={"pop1":10, "pop2":10},
-                         demography=demo,
-                         recombination_rate=1e-8,
-                         sequence_length=1e7)
+```bash
+trees = msp.sim_ancestry(samples={"pop1":10, "pop2":10},
+                 demography=demo,
+                 recombination_rate=1e-8,
+                 sequence_length=1e7)
+```
 			 
 And we'll add mutations like this, using a yearly rate of 2.3e-9 and a generation time of 2.55 years (same as the case study):
 
-	mutations = msp.sim_mutations(trees, rate=5.9e-9)
+```bash
+mutations = msp.sim_mutations(trees, rate=5.9e-9)
+```
 
 ## Running MSPrime replicates on CARC ##
 
 It is best practice to run many replicates of any simulation you run to assess the robustness of any estimates you make. You can use [GNU Parallel (specifically env_parallel)](../running-jobs/gnu-parallel.md) to run these simulations, and can add these replicates directly to an output file. The following examples your python simulation script takes population size (popsize) and population divergence time (divtime) and have an output file like "$popsize_$divtime.out" that the script writes to. First we'll run 30 replicates. Note that the "echo {}" just to deal with the parallel iterator, so GNU parallel doesn't append it to the end of our python call by default.
 
-	env_parallel --sshloginfile $PBS_NODEFILE \
-		'echo {}; /path/to/python msprime_script.py --popsize 2000 --divtime 10000 \
-		--output ./outputs/1000_10000.out' ::: {1..30}
+```bash
+env_parallel --sshloginfile $PBS_NODEFILE \
+	'echo {}; /path/to/python msprime_script.py --popsize 2000 --divtime 10000 \
+	--output ./outputs/1000_10000.out' ::: {1..30}
+```
 
 You could also use GNU parallel to iterate over multiple parameter combinations, here we test multiple population sizes (2000, 3000, and 5000) and divergence times (1000, 5000, and 10000 generations). We'll assume the script has replicates coded into it.
 
-	env_parallel --sshloginfile $PBS_NODEFILE \
-		'/path/to/python msprime_script.py --popsize {1} --divtime {2} \
-		--output ./outputs/{1}_{2}' ::: 2000 3000 5000 ::: 1000 5000 10000
+```bash
+env_parallel --sshloginfile $PBS_NODEFILE \
+	'/path/to/python msprime_script.py --popsize {1} --divtime {2} \
+	--output ./outputs/{1}_{2}' ::: 2000 3000 5000 ::: 1000 5000 10000
+```
 
 ## Case study: Divergence between connected islands ##
 
@@ -10069,72 +10267,82 @@ Here we look at three islands interconnected at glacial maxima, modeled after Ch
 
 First, we have to write our python script. We'll use the argparse module to hand our arguments. Note that we'll set Isabel as the first population and Guadalcanal as the second (in a more complete version we can take island names as input and have a function to determine their sizes). It will output the population size of the first (Isabel) and second (Guadalcanal) island along with the F<sub>ST</sub>.
 
-	import os, sys, msprime as msp, numpy as np, allel, re, argparse
-	
-	def main():
-		# set up argparse
-		parse = argparse.ArgumentParser(description = "Get simulation parameters")
-		# two population densities for generality
-		parse.add_argument("-d1", "--density1", type=float, help="Density of first population")
-		parse.add_argument("-d2", "--density2", type=float, help="Density of second population")
-		parse.add_argument("-o", "--output", type=str, help="Path to output file")
-		args = parse.parse_args()
-		
-		# assign argparse values to variables
-		dens1, dens2, outfile = args.density1, args.density2, args.output
-		
-		# calculate population sizes, with Isabel and Guadalcanal being 2999 and 5302 km<sup>2</sup> respectively
-		size1 = dens1 * 2999
-		size2 = dens2 * 5302
-		
-		# set up number of samples and demography
-		samples = 30
-		demography = msp.Demography()
-		demography.add_population(name="pop1", initial_size=size1)
-		demography.add_population(name="pop2", initial_size=size2)
-		demography.add_population(name="anc_pop12", initial_size=size1+size2)
-		demography.add_population_split(time=5700, derived=["pop1","pop2"], ancestral="anc_pop12")
-		
-		# run simulation for 10 megabases
-		trees = msp.sim_ancestry(samples={"pop1":samples, "pop2":samples},
-			demography=demography,
-			recombination_rate=1e-8,
-			sequence_length=1e7)
-		
-		# add mutations with a common estimate of mutation rate in birds
-		mutations = msp.sim_mutations(trees, rate=5.9e-9)
-		
-		# get haplotypes from simulation
+```python
+import os, sys, msprime as msp, numpy as np, allel, re, argparse
+
+def main():
+	# set up argparse
+	parse = argparse.ArgumentParser(description = "Get simulation parameters")
+	# two population densities for generality
+	parse.add_argument("-d1", "--density1", type=float, help="Density of first population")
+	parse.add_argument("-d2", "--density2", type=float, help="Density of second population")
+	parse.add_argument("-o", "--output", type=str, help="Path to output file")
+	args = parse.parse_args()
+
+	# assign argparse values to variables
+	dens1, dens2, outfile = args.density1, args.density2, args.output
+
+	# calculate population sizes, with Isabel and Guadalcanal being 2999 and 5302 km<sup>2</sup> respectively
+	size1 = dens1 * 2999
+	size2 = dens2 * 5302
+
+	# set up number of samples and demography
+	samples = 30
+	demography = msp.Demography()
+	demography.add_population(name="pop1", initial_size=size1)
+	demography.add_population(name="pop2", initial_size=size2)
+	demography.add_population(name="anc_pop12", initial_size=size1+size2)
+	demography.add_population_split(time=5700, derived=["pop1","pop2"], ancestral="anc_pop12")
+
+	# run simulation for 10 megabases
+	trees = msp.sim_ancestry(samples={"pop1":samples, "pop2":samples},
+		demography=demography,
+		recombination_rate=1e-8,
+		sequence_length=1e7)
+
+	# add mutations with a common estimate of mutation rate in birds
+	mutations = msp.sim_mutations(trees, rate=5.9e-9)
+
+	# get haplotypes from simulation
+```
     		haplotypes = np.array(mutations.genotype_matrix())
     		genotypes = allel.HaplotypeArray(haplotypes).to_genotypes(ploidy=2)
 
-   		# calculate fst, assumes even sample size
+```bash
+	# calculate fst, assumes even sample size
+```
     		fst = allel.stats.fst.average_weir_cockerham_fst(genotypes,[list(range(0,samples)),list(range(samples,samples*2))],10)[0]
 		
-		# write output to file
-		output = open(outfile, "a")
+```bash
+	# write output to file
+	output = open(outfile, "a")
+```
     		output.write(str(int(size1))+"\t"+str(int(size2))+"\t"+str(fst)+"\n")
     		output.close()
 	
-	if __name__ == '__main__':
-		main()
+```bash
+if __name__ == '__main__':
+	main()
+```
 	
 Now that we have our scripted simulation, we'll write a PBS script to run it in parallel! We assumes you have a directory in your working directory called "output" and named your script "island_msp_twopop.py". We'll name files based on the denisty on Guadalcanal. We don't have it written in the script, but if you already have something in "output", this just appends to those files (i.e. "rm output\/*" beforehand). Note that this script excludes the header.
 	
-	# prepare GNU parallel
-	module load parallel-20170322-gcc-4.8.5-2ycpx7e
-	source $(which env_parallel.bash)
+```bash
+# prepare GNU parallel
+module load parallel-20170322-gcc-4.8.5-2ycpx7e
+source $(which env_parallel.bash)
 
-	# load our environment
-	module load miniconda3-4.7.12.1-gcc-4.8.5-lmtvtik
-	source activate msp1-env
-		
-	# make a shortcut for our working directory, where we assume all scripts are located.	
-	dir=$PBS_O_WORKDIR
-		
-	env_parallel --sshloginfile $PBS_NODEFILE \
-		'echo {2}; python $dir/island_msp_twopop.py -d1 25 -d2 {1} -o $dir/output/density_{1}.out' \
-		::: 3 4 5 10 15 20 25 30 ::: {1..30}
+# load our environment
+module load miniconda3-4.7.12.1-gcc-4.8.5-lmtvtik
+source activate msp1-env
+
+# make a shortcut for our working directory, where we assume all scripts are located.	
+dir=$PBS_O_WORKDIR
+
+env_parallel --sshloginfile $PBS_NODEFILE \
+	'echo {2}; python $dir/island_msp_twopop.py -d1 25 -d2 {1} -o $dir/output/density_{1}.out' \
+	::: 3 4 5 10 15 20 25 30 ::: {1..30}
+```
 		
 For interpretting these results, the empirical F<sub>ST</sub> value between Guadalcanal and Isabel is 0.077, and the best density match was 4 birds/km<sup>2</sup> (F<sub>ST</sub>=0.79). That means that to get the observed F<sub>ST</sub>, Guadalcanal would have to have 16% of the population density inferred on the other islands. Genetic diversity doesn't support this, suggesting that the gap between them formed an excess of population structure compared to the other islands!
 
@@ -10300,24 +10508,30 @@ The runtime and resource requirements will vary based on genome, but the only st
 
 Due to the inavailibility of PSMC on conda, high number of included utilities, and ease of installing locally, we suggest you install PSMC as shown below. You can install it anywhere, but we'll assume it's in the working directory you're using to run everything:
 
-	git clone https://github.com/lh3/psmc.git
-	cd psmc
-	make
-	cd utils
-	make
-	cd ../..
+```bash
+git clone https://github.com/lh3/psmc.git
+cd psmc
+make
+cd utils
+make
+cd ../..
+```
 
 Then we'll install some dependencies with conda as below.
 
-	conda create -n psmc-env -c bioconda -c conda-forge picard bcftools samtools bwa
+```bash
+conda create -n psmc-env -c bioconda -c conda-forge picard bcftools samtools bwa
+```
 
 At the top of any scripts used for this, change to your working directory and activate the environment like:
 
-	cd $SLURM_SUBMIT_DIR
-	# if using PBS, 'cd $PBS_O_WORKDIR'
-	module load miniconda3/4.8.2-pilj
-	eval "$(conda shell.bash hook)"
-	conda activate psmc-env
+```bash
+cd $SLURM_SUBMIT_DIR
+# if using PBS, 'cd $PBS_O_WORKDIR'
+module load miniconda3/4.8.2-pilj
+eval "$(conda shell.bash hook)"
+conda activate psmc-env
+```
 
 Then, we'll make a subdirectory for future bootstraps with "mkdir boot". If you are testing multiple references for consistency, I suggest putting everything for each reference in its own subdirectory.
 
@@ -10325,26 +10539,28 @@ Then, we'll make a subdirectory for future bootstraps with "mkdir boot". If you 
 
 Generating input is essentially a simplified version of [GATK's widely used pipeline](gatk.md) using [bcftools](http://samtools.github.io/bcftools/bcftools.html){target=_blank} to leverage its simplicity and ability to generate a consensus FASTA file with heterozygosity. First, reads are alligned to the reference with BWA. Then, bcftools' mpileup and call are used to obtain variant calls, which are filtered using bcftools' view command. Finally, a consensus sequence is generated and converted to a "PSMC FASTA" for use in PSMC itself. Code for running these steps is below, assuming your reference is "reference.fa" and read files are called "sample_R1.fastq.gz" and "sample_R2.fastq.gz".
 
-	# Align with BWA
-	bwa index -p reference reference.fa
-	# assuming you have 8 threads, not that this .sam file will be huge, and we'll remove it at the end
-	bwa mem -t 8 reference sample_R1.fastq.gz sample_R2.fastq.gz > bwa_alignment.sam
-	# convert .sam to .bam
-	samtools view -S -b bwa_alignment.sam > unsorted_alignment.bam
-	# sort the .bam file
-	picard SortSam I=unsorted_alignment.bam O=sorted_alignment.bam SORT_ORDER=coordinate
-	# remove old files, comment out if you want to keep them to troubleshoot
-	rm bwa_alignment.sam
-	rm unsorted_alignment.bam
-	
-	# pipeline combining bcftool's mpileup and call (consensus mode) using 8 threads, then samtools's vcfutils.pl
-	# the latter filters variants with a depth less than 10 or greater than 50, and those with quality score under 30
-	bcftools mpileup -Q 30 -q 30 -Ovu -f reference.fa sorted_alignment.bam --threads 8 | \
-		bcftools call -c --threads 8 | \
-		vcfutils.pl vcf2fq -d 10 -D 50 -Q 30 > variant_consensus.fq
-	
-	# generate PSMC input
-	./psmc/utils/fq2psmcfa variant_consensus.fq > psmc_input.psmcfa
+```bash
+# Align with BWA
+bwa index -p reference reference.fa
+# assuming you have 8 threads, not that this .sam file will be huge, and we'll remove it at the end
+bwa mem -t 8 reference sample_R1.fastq.gz sample_R2.fastq.gz > bwa_alignment.sam
+# convert .sam to .bam
+samtools view -S -b bwa_alignment.sam > unsorted_alignment.bam
+# sort the .bam file
+picard SortSam I=unsorted_alignment.bam O=sorted_alignment.bam SORT_ORDER=coordinate
+# remove old files, comment out if you want to keep them to troubleshoot
+rm bwa_alignment.sam
+rm unsorted_alignment.bam
+
+# pipeline combining bcftool's mpileup and call (consensus mode) using 8 threads, then samtools's vcfutils.pl
+# the latter filters variants with a depth less than 10 or greater than 50, and those with quality score under 30
+bcftools mpileup -Q 30 -q 30 -Ovu -f reference.fa sorted_alignment.bam --threads 8 | \
+	bcftools call -c --threads 8 | \
+	vcfutils.pl vcf2fq -d 10 -D 50 -Q 30 > variant_consensus.fq
+
+# generate PSMC input
+./psmc/utils/fq2psmcfa variant_consensus.fq > psmc_input.psmcfa
+```
 
 ## Running PSMC
 
@@ -10358,17 +10574,21 @@ However, before we run bootstrapping and plot this, we want to make sure out run
 
 After our first run, we will view the end of the resulting .psmc file, which will look something like the table below (with many lines skipped for brevity). Each line represents a time interval, and the fifth column (i.e. 3651.038295 in the first row) the number of recombinations that occur. You want to make sure this number is at least 20 in all intervals, although the GitHub says 10 is sufficient. An example of a good result is below, keep repeating until you get a sufficient result:
 	
-	RS	0	0.000000	1.282590	3651.038295	0.004395	0.002875
-	RS	1	0.005884	0.570172	8631.229543	0.010389	0.010062
-	RS	2	0.012114	0.786536	6563.160557	0.007900	0.006705
-	...
-	RS	75	7.181803	0.765618	56.699641	0.000068	0.000064
-	RS	76	7.610256	0.765618	34.277873	0.000041	0.000038
-	RS	77	8.063918	0.765618	43.762351	0.000053	0.000049
+```bash
+RS	0	0.000000	1.282590	3651.038295	0.004395	0.002875
+RS	1	0.005884	0.570172	8631.229543	0.010389	0.010062
+RS	2	0.012114	0.786536	6563.160557	0.007900	0.006705
+...
+RS	75	7.181803	0.765618	56.699641	0.000068	0.000064
+RS	76	7.610256	0.765618	34.277873	0.000041	0.000038
+RS	77	8.063918	0.765618	43.762351	0.000053	0.000049
+```
 
 An example of what worked well for me is below, with a notably different maximum coalescent time (biggest difference for me) and free parameters spanning shorter time intervals toward the present:
 
-	./psmc/psmc -N25 -t10 -r5 -p "8*1+30*2+4+6" -o sample.psmc sample.psmcfa
+```bash
+./psmc/psmc -N25 -t10 -r5 -p "8*1+30*2+4+6" -o sample.psmc sample.psmcfa
+```
 
 Next, we want to bootstrap our results and plot them.
 
@@ -10376,16 +10596,20 @@ Next, we want to bootstrap our results and plot them.
 
 Bootstrapping is a step that can fortunately be run in parallel. There's no set number of bootstraps needed, but we'll do 50 here. We'll run this with GNU parallel. First, you'll need to load a parallel module. Then, you'll run what is essentially the same command as before, but with the -b flag:
 
-	module load parallel/20190222-wsvg
-	
-	parallel '$SLURM_SUBMIT_DIR/psmc/psmc -N25 -t10 -r5 -b -p "8*1+30*2+4+6" \
-		-o $SLURM_SUBMIT_DIR/boot/sample_r{}.psmc $SLURM_SUBMIT_DIR/sample.psmcfa' \
-		::: $(seq 50)
-	cat sample.psmc boot/sample_r*.psmc > sample_combined.psmc
+```bash
+module load parallel/20190222-wsvg
+
+parallel '$SLURM_SUBMIT_DIR/psmc/psmc -N25 -t10 -r5 -b -p "8*1+30*2+4+6" \
+	-o $SLURM_SUBMIT_DIR/boot/sample_r{}.psmc $SLURM_SUBMIT_DIR/sample.psmcfa' \
+	::: $(seq 50)
+cat sample.psmc boot/sample_r*.psmc > sample_combined.psmc
+```
 	
 Unfortunately, perl issues make it difficult to plot the output on CARC, so we suggest you transfer the 'sample_combined.psmc' file to your personal computer. Then, install psmc on your computer like above, and run the command as follows. The -g flag specifies your organism's generation time, and -u the per-generation mutation rate (no scientific notation sadly):
 
-	/path/to/psmc/utils/psmc_plot.pl -p -g 2.2 -u 0.00000000506 bootstrapped_plot  sample_combined.psmc
+```bash
+/path/to/psmc/utils/psmc_plot.pl -p -g 2.2 -u 0.00000000506 bootstrapped_plot  sample_combined.psmc
+```
 
 Then you'll get an estimate of your focal population's detailed demographic history!
 
@@ -10523,39 +10747,49 @@ Stacks can easily be run on Wheeler with installed modules, and here we outline 
 
 Before you get started, you'll need a list of sample names to run bwa conveniently. This is a file we'll call "sample_list", and an example is below. For this and similar files, the first line describes what goes in each column and where tabs go, and the following lines give an example of what that looks like. For sample list, note that an empty newline should be at the end of the list.:
 
-	<SAMPLE NAME>
-	M_americana_Florida_MSBBIRD49539
-	M_americana_NM_MSBBIRD39487
-	......
+```bash
+<SAMPLE NAME>
+M_americana_Florida_MSBBIRD49539
+M_americana_NM_MSBBIRD39487
+......
+```
 
 Then, key to many pieces of population genetics software, Stacks needs a population map (popmap) for calculating metrics like F<sub>st</sub> and genetic dviersity. It will also allow the creation of certain imput files. It is simply a tab delimited file with one line per individual, with the first column representing the sample name and the second its population. Note that reduced versions of the popmaps can be made for running _gstacks_ and _populations_ for only a subset of your dataset.
 
-	<SAMPLE NAME>\t<SAMPLE POPULATION>
-	M_americana_Florida_MSBBIRD49539	EastBlackScoter
-	M_americana_NewMexico_MSBBIRD39487	WestBlackScoter
-	..................................	.....
+```bash
+<SAMPLE NAME>\t<SAMPLE POPULATION>
+M_americana_Florida_MSBBIRD49539	EastBlackScoter
+M_americana_NewMexico_MSBBIRD39487	WestBlackScoter
+..................................	.....
+```
 
 ### Demultiplexing with process_radtags ###
 
 Demultiplexing with Stacks is comparatively easy. You just need a file of barcode information (we'll call it BARCODES.file) and your raw, multiplexed reads. The barcode information file can be paired or unapired, and should look like:
 
-	<BARCODE1>\t<BARCODE2>\t<SAMPLE NAME>
-	ATGCAT	GTACGT	M_americana_Florida_MSBBIRD49539
-	ACGTAT	CTAGAT	M_americana_NewMexico_MSBBIRD39487
-	......	......	......
+```bash
+<BARCODE1>\t<BARCODE2>\t<SAMPLE NAME>
+ATGCAT	GTACGT	M_americana_Florida_MSBBIRD49539
+ACGTAT	CTAGAT	M_americana_NewMexico_MSBBIRD39487
+......	......	......
+```
 
 Here is how to run it, assuming you are dealing with paired end reads, gzipped fastq files, and used a single enzyme (ndeI) for your restriction digest. Note the the "raw_reads" directory is the one that you'll use for the aligning step at the start of the reference-based assembly:
 
-	process_radtags -p /path/to/MULTIPLEXED_READS/ -b /path/to/BARCODES.file -o /path/to/raw_reads/ \
-		-i gzfastq -e ndeI -c -q -r -E phred33 
+```bash
+process_radtags -p /path/to/MULTIPLEXED_READS/ -b /path/to/BARCODES.file -o /path/to/raw_reads/ \
+	-i gzfastq -e ndeI -c -q -r -E phred33 
+```
 
 The command is different for single end reads. You must specify each fastq input indiviually with the -f flag, as shown below. The rest is the same:
 
-	process_radtags -f /path/to/MULTIPLEXED_READS/RAW_READS_01.fastq.gz -b /path/to/BARCODES.file -o /path/to/raw_reads/ \
-		-i gzfastq -e ndeI -c -q -r -E phred33
-	process_radtags -f /path/to/MULTIPLEXED_READS/RAW_READS_02.fastq.gz -b /path/to/BARCODES.file -o /path/to/raw_reads/ \
-		-i gzfastq -e ndeI -c -q -r -E phred33
-	.......
+```bash
+process_radtags -f /path/to/MULTIPLEXED_READS/RAW_READS_01.fastq.gz -b /path/to/BARCODES.file -o /path/to/raw_reads/ \
+	-i gzfastq -e ndeI -c -q -r -E phred33
+process_radtags -f /path/to/MULTIPLEXED_READS/RAW_READS_02.fastq.gz -b /path/to/BARCODES.file -o /path/to/raw_reads/ \
+	-i gzfastq -e ndeI -c -q -r -E phred33
+.......
+```
 
 You can find full details on process_radtags [here](https://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php){target=_blank}.
 
@@ -10563,57 +10797,73 @@ You can find full details on process_radtags [here](https://catchenlab.life.illi
 
 We'll assume you demultiplex your reads before running the pipeline described below. The contents of this and the following section should all be put in a PBS/Slurm script, just make sure your directory names are correct. This method has several intermediate files, so we'll make directories to keep them separate (do this outside of script):
 
-	mkdir raw_reads
-	mkdir sam_files
-	mkdir bam_files
-	mkdir stacks_out
-	mkdir populations_out
+```bash
+mkdir raw_reads
+mkdir sam_files
+mkdir bam_files
+mkdir stacks_out
+mkdir populations_out
+```
 
 The modules you need are stacks, bwa, and samtools. All are availible on Conda, but you will almost certainly be running this on Wheeler (low resource use), which has recent versions of all three installed:
 
-	module load stacks-2.41-gcc-7.4.0-7r6auk7
-	module load bwa-0.7.17-intel-18.0.2-7jvpfu2
-	module load samtools-1.10-gcc-9.3.0-python3-ikifznw
+```bash
+module load stacks-2.41-gcc-7.4.0-7r6auk7
+module load bwa-0.7.17-intel-18.0.2-7jvpfu2
+module load samtools-1.10-gcc-9.3.0-python3-ikifznw
+```
 
 We'll also set some variables for refering to paths to stuff. We assume that the reference names (ReferenceBaseName):
 
-	src=$PBS_O_WORKDIR
-	bwa_ref=$src/ReferenceBaseName
-	threads=[number of threads]
+```bash
+src=$PBS_O_WORKDIR
+bwa_ref=$src/ReferenceBaseName
+threads=[number of threads]
+```
 
 Next, we need to index our reference:
 
-	bwa index -p $bwa_ref $bwa_ref.fa
+```bash
+bwa index -p $bwa_ref $bwa_ref.fa
+```
 
 This is the big step, which uses the Burroughs-Wheeler Aligner to align our reads to our reference. Note that this should be able to be done using pipes, but I've had issues with that, so we just remove the files at the end of each loop.
 
-	while read indiv
-	do
-		# echo is only to help you keep track of where the pipeline is
-		echo ${indiv}
-		# align reads to reference genome
-		bwa mem -t $threads $bwa_ref $src/raw_reads/${indiv}.fq.gz > $src/sam_files/${indiv}.sam
-		# covert sam file to bam file (makes it much smaller and easier to work with)
-		samtools view -bS $src/sam_files/${indiv}.sam > $src/bam_files/${indiv}_unsort.bam
-		# sorts bam file, which is needed for next analyses
-		samtools sort $src/bam_files/${indiv}_unsort.bam -o $src/bam_files/${indiv}.bam
-		rm $src/sam_files/${indiv}.sam
-		rm $src/bam_files/${indiv}_unsort.bam
-	done < sample_list
+```bash
+while read indiv
+do
+	# echo is only to help you keep track of where the pipeline is
+	echo ${indiv}
+	# align reads to reference genome
+	bwa mem -t $threads $bwa_ref $src/raw_reads/${indiv}.fq.gz > $src/sam_files/${indiv}.sam
+	# covert sam file to bam file (makes it much smaller and easier to work with)
+	samtools view -bS $src/sam_files/${indiv}.sam > $src/bam_files/${indiv}_unsort.bam
+	# sorts bam file, which is needed for next analyses
+	samtools sort $src/bam_files/${indiv}_unsort.bam -o $src/bam_files/${indiv}.bam
+	rm $src/sam_files/${indiv}.sam
+	rm $src/bam_files/${indiv}_unsort.bam
+done < sample_list
+```
 
 The next step is to run gstacks, which runs these "traditional" genomics files into something Stacks can work with to make output files:
 
-	gstacks -I $src/bam_files/ -M $src/popmap -O $src/stacks_out/ -t $threads
+```bash
+gstacks -I $src/bam_files/ -M $src/popmap -O $src/stacks_out/ -t $threads
+```
 
 Finally, we run populations! This specific command will give us a 75% complete matrix of SNPs, one random SNP per locus, F<sub>st</sub> values, PLINK .bed and .map files, and use kernel smoothing for specific statistics. We also output a Variant Call Format (VCF) file, which can be used to generate inputs for most programs:
 	
-	populations -P $src/stacks_out/ -M $src/popmap -O $src/populations_out/ \
-		--vcf -R .75 --write-random-snp --fstats --plink --smooth -t $threads
+```bash
+populations -P $src/stacks_out/ -M $src/popmap -O $src/populations_out/ \
+	--vcf -R .75 --write-random-snp --fstats --plink --smooth -t $threads
+```
 	
 A quick note, if you want input for RAxML or similar phylogenetic programs, you can get a interleaved phylip file by making a popmap file with each individual having its own population and specifying you want a phylip output. Please note that this is strict phylip format, meaning you want a maximum of 9 letters in your "population" column of the popmap (10 works, but will cause errors when input to certain programs). Also, this assumes you have a directory "populations_individual":
 
-	populations -P $src/stacks_out/ -M $src/popmap_individual -O $src/popualtions_individual/ \
-		-R .75 --phylip-var-all -t $threads
+```bash
+populations -P $src/stacks_out/ -M $src/popmap_individual -O $src/popualtions_individual/ \
+	-R .75 --phylip-var-all -t $threads
+```
 
 Learn more about the outputs and options for populations [on the Stacks website](https://catchenlab.life.illinois.edu/stacks/comp/populations.php){target=_blank}. Also, as mentioned above, you can easily subset your data by changing the popmap used in gstacks and populations, as each sample has alignments performed separately.
 
@@ -10623,15 +10873,19 @@ This is a lot simpler, but is generally considered less robust than a reference-
 
 First, you only need the Stacks module and one new directory (assumes reads are in "raw_reads").
 
-	mkdir stacks_denovo
-	module load stacks-2.41-gcc-7.4.0-7r6auk7
-	src=$PBS_O_WORKDIR
-	threads=[number of threads]
+```bash
+mkdir stacks_denovo
+module load stacks-2.41-gcc-7.4.0-7r6auk7
+src=$PBS_O_WORKDIR
+threads=[number of threads]
+```
 
 Then you just run a single line!
 
-	denovo_map.pl -T $threads -o $src/stacks_denovo/ --popmap $src/popmap --samples $src/raw_reads/ \
-		-X "<Extra parameters for populations here>"
+```bash
+denovo_map.pl -T $threads -o $src/stacks_denovo/ --popmap $src/popmap --samples $src/raw_reads/ \
+	-X "<Extra parameters for populations here>"
+```
 
 As I mentioned above, I mostly included this to demystify DeNovo Stacks, please read more on it before running anything! There are many parameters to optimize.
 
