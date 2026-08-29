@@ -13,6 +13,10 @@ sources:
     resource: "https://www.youtube.com/playlist?list=PLvr5gRBLi7VAzEB_t5aXOLHLfdIu2s1hZ"
     title: "QuickBytes playlist (YouTube)"
     author: "team:unm-carc"
+  - id: yt-cam2026
+    resource: "https://www.youtube.com/playlist?list=PLvr5gRBLi7VCveJGJHzQrtmI4Jw0AHVP7"
+    title: "UNM CARC Annual Meeting (CAM) 2026 playlist (YouTube)"
+    author: "team:unm-carc"
   - id: yt-channel
     resource: "https://www.youtube.com/@UNMCARC/videos"
     title: "UNMCARC YouTube channel"
@@ -65,6 +69,21 @@ it straight through here, or jump to an episode:
     | [Submitting Jobs on Xena with Slurm](https://www.youtube.com/watch?v=aOqT49bpUe8){target=_blank} | 35:22 |
     | [Parallelization 2: PBS Array Jobs and Embarrassingly Parallel Problems](https://www.youtube.com/watch?v=qSRDZ5JH6f4){target=_blank} | 15:34 |
 
+## CARC Annual Meeting 2026
+
+Recorded talks from [CAM 2026](https://www.youtube.com/playlist?list=PLvr5gRBLi7VCveJGJHzQrtmI4Jw0AHVP7){target=_blank}:
+
+<iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLvr5gRBLi7VCveJGJHzQrtmI4Jw0AHVP7" title="UNM CARC Annual Meeting (CAM) 2026 (playlist)" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+* [Director Address — Patrick Bridges](https://www.youtube.com/watch?v=pOvjeu3FYRk){target=_blank}
+* [Team Updates](https://www.youtube.com/watch?v=oICidaVD5ys){target=_blank}
+* [CARC Panel](https://www.youtube.com/watch?v=lqW3BnMNCkg){target=_blank}
+* [Security and Data Governance — Jeff Gassoway](https://www.youtube.com/watch?v=eFlZU-rgTmA){target=_blank}
+* [Quantum Information Science at the University of New Mexico — Ivan Deutsch](https://www.youtube.com/watch?v=zL_7ix9vcjE){target=_blank}
+* [Peptide Design Targeting PICK1 PDZ Domain Utilizing Computational Approaches — Emily Hendrix](https://www.youtube.com/watch?v=ooEeijiCxN4){target=_blank}
+* [Accelerating Behavioral Neuroscience with Supercomputing and Deep Learning — Monica Gonçalves Garcia](https://www.youtube.com/watch?v=FEBGn5l2qck){target=_blank}
+* [New Stream-Triggered MPI Abstractions — Patrick Bridges](https://www.youtube.com/watch?v=bseoEOt1IXY){target=_blank}
+
 ## CARC Annual Meeting 2025
 
 Recorded talks from CAM 2025:
@@ -81,17 +100,9 @@ Recorded talks from CAM 2025:
 
 ## Research talks and center events
 
-* [Director Address — Patrick Bridges](https://www.youtube.com/watch?v=pOvjeu3FYRk){target=_blank}
-* [New Stream-Triggered MPI Abstractions — Patrick Bridges](https://www.youtube.com/watch?v=bseoEOt1IXY){target=_blank}
 * [CARC AI Pipelining Support — Matthew Fricke](https://www.youtube.com/watch?v=qW245p1C5-I){target=_blank}
-* [Quantum Information Science at the University of New Mexico — Ivan Deutsch](https://www.youtube.com/watch?v=zL_7ix9vcjE){target=_blank}
-* [Security and Data Governance — Jeff Gassoway](https://www.youtube.com/watch?v=eFlZU-rgTmA){target=_blank}
-* [Peptide Design Targeting PICK1 PDZ Domain Utilizing Computational Approaches — Emily Hendrix](https://www.youtube.com/watch?v=ooEeijiCxN4){target=_blank}
-* [Accelerating Behavioral Neuroscience with Supercomputing and Deep Learning — Monica Gonçalves Garcia](https://www.youtube.com/watch?v=FEBGn5l2qck){target=_blank}
 * [ML as an Aid to Muon and Gravimetric Volcano Feature Detection — Katherine Cosburn](https://www.youtube.com/watch?v=mEr6XnlZtgk){target=_blank}
 * [Pulsars and Population Dynamics — Ethan Gyllenhaal and Seth Bruzewski](https://www.youtube.com/watch?v=N--A8GH6_SY){target=_blank}
-* [CARC Panel](https://www.youtube.com/watch?v=lqW3BnMNCkg){target=_blank}
-* [Team Updates](https://www.youtube.com/watch?v=oICidaVD5ys){target=_blank}
 * [Jacob McCullough CARC Presentation](https://www.youtube.com/watch?v=qLqAQDc_w_g){target=_blank}
 
 !!! tip "Suggest a topic"
