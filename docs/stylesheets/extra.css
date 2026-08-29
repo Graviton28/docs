@@ -94,14 +94,17 @@
 
 .carc-hero {
   text-align: center;
-  margin: 1.5rem auto 2rem;
+  margin: 0.5rem auto 1.6rem;
   max-width: 42rem;
 }
 
 .carc-hero img.carc-hero__logo {
-  width: min(26rem, 85%);
-  margin-bottom: 0.75rem;
+  width: 7.5rem;
+  margin-bottom: 0.25rem;
 }
+
+/* No permalink pilcrow or TOC entry decoration on the hero title */
+.carc-hero .carc-hero__title .headerlink { display: none; }
 
 .carc-hero p.carc-hero__tagline {
   font-size: 0.85rem;
