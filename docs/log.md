@@ -2,6 +2,9 @@
 
 ## 2026-08-29
 
+* **Update**: Embedded CARC YouTube recordings across the site: the [Video tutorials](training/videos.md) page now carries the full QuickBytes playlist, CARC Annual Meeting 2025 talks, and research presentations from the UNMCARC channel; ten guide pages (logging in, Slurm intro, storage, transfers, modules, conda, X11, GNU Parallel, SimCov, parallel R) embed their matching walkthrough via the migration pipeline.
+* **Creation**: Rebuilt the [Workshops and slides](training/workshops.md) page (previously a stub) as a curated catalog of 33 slide decks: the Introduction to CARC series, domain-focused workshops, course guest lectures, and legacy material.
+
 * **Update**: The Xena cluster has been retired. Removed Xena from the [Systems overview](systems/overview.md), [Facilities description](about/facilities.md), FAQ, and landing page; added it to the retired-systems list in [Cluster specifications](systems/cluster-specifications.md); marked Xena-specific GPU guides (PyTorch, MATLAB GPU/deep learning, deep-learning packages) as `status: draft` with legacy notices pending review against Hopper and Easley GPUs.
 * **Update**: Annotated all code across the corpus: tab-indented QuickBytes code now renders as language-fenced blocks with syntax highlighting; restructured [Installing deep learning packages](software/deep-learning-packages.md) (now curated in-repo); annotated inline code references in [Parallel R with the future package](software/parallel-r-future.md).
 

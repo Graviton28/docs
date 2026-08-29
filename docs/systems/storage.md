@@ -79,4 +79,10 @@ cp -r  $TEMP_DIR/* $PBS_O_WORKDIR
 rm -r $TEMP_DIR
 ```
 
+## Video walkthrough
+
+**Storage Systems** — from the [CARC video tutorials](../training/videos.md):
+
+<iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/WwsbLyl7d1A" title="Storage Systems" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/storage_and_backup.md){target=_blank} (last source update 2021-03-18). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

@@ -1034,4 +1034,10 @@ speedup_calc(iterations = seq(from = 10, 30, by = 10), cores = c(1,2,4,6, 8), wa
 ## Conclusion
 The future package will offer the best performance when there are fewer iterations but each iteration is very slow. With your code, try running one iteration to see how long it takes and then use that estimate with speedup_calc. Depending on the wait_time and number of iterations, the function will give an estimate on if parallelization is worthwhile (caveat: the code will be slower if you have a large global environment).
 
+## Video walkthrough
+
+**Parallel R with Future** — from the [CARC video tutorials](../training/videos.md):
+
+<iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/G5xGfF151Co" title="Parallel R with Future" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Parallel_R_with_Future.ipynb){target=_blank} (last source update 2021-08-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

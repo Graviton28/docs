@@ -79,4 +79,10 @@ qsub wheeler_simcov_run.pbs
 
 Outputs will be in a results folder by default
 
+## Video walkthrough
+
+**CS491/591: Computational Immunology — SimCov Compilation and Submission** — from the [CARC video tutorials](../training/videos.md):
+
+<iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/7x3voqNX0QY" title="CS491/591: Computational Immunology \u2014 SimCov Compilation and Submission" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/SimCov.md){target=_blank} (last source update 2022-09-21). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

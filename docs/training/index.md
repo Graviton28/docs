@@ -2,5 +2,5 @@
 
 Workshops, courses, and video tutorials from the CARC team.
 
-* [Video tutorials](videos.md) - CARC video tutorial playlists: introduction to computing at CARC and project management in ColdFront.
-* [Workshops and slides](workshops.md) - Slides from CARC workshops and courses, plus how to hear about upcoming sessions.
+* [Video tutorials](videos.md) - Embedded CARC recordings: the QuickBytes tutorial series, CARC Annual Meeting talks, and research presentations from the UNMCARC YouTube channel.
+* [Workshops and slides](workshops.md) - Slide decks from CARC workshops and university courses, organized by series, plus how to hear about upcoming sessions.

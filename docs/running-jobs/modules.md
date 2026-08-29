@@ -117,4 +117,10 @@ module purge
 
 *This quickbyte was validated on 6/22/2026*
 
+## Video walkthrough
+
+**Environment Modules** — from the [CARC video tutorials](../training/videos.md):
+
+<iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/tz-w3vc7cGQ" title="Environment Modules" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/module_management.md){target=_blank} (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

@@ -96,4 +96,10 @@ If you have any trouble at any point, please reach out to us at help@carc.unm.ed
 
 *This quickbyte was validated on 6/17/2026*
 
+## Video walkthrough
+
+**X11 Forwarding** — from the [CARC video tutorials](../training/videos.md):
+
+<iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/-5ic9JWHuqI" title="X11 Forwarding" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/X11_forwarding.md){target=_blank} (last source update 2026-06-17). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

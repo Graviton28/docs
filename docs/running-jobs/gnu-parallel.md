@@ -378,4 +378,10 @@ sbatch python_parallel.slurm
 
 *This QuickByte was updated and validated on June 23, 2026.*
 
+## Video walkthrough
+
+**Parallelization 3: GNU Parallel** — from the [CARC video tutorials](../training/videos.md):
+
+<iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/Rl06WD60afA" title="Parallelization 3: GNU Parallel" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/GNU%20Parallel.md){target=_blank} (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

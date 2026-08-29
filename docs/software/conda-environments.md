@@ -179,4 +179,10 @@ source activate environment_name
 ```
 For more information on managing environments visit the Conda documentation site at this [link](https://conda.io/docs/user-guide/index.html){target=_blank}, or by adding the flag `--help` to any `conda` command, for example, `conda create --help` will print a help page for creating environments.
 
+## Video walkthrough
+
+**Conda environments** — from the [CARC video tutorials](../training/videos.md):
+
+<iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/gMJzDSeGk50" title="Conda environments" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/anaconda_intro.md){target=_blank} (last source update 2020-01-28). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

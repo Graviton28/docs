@@ -60,6 +60,7 @@ class Page:
     note: str = ""                # extra admonition inserted after the H1
     frozen: bool = False          # migrated once, now curated in-repo: never overwrite
     code_lang: str = "bash"       # default language for fenced tab-indented code
+    videos: list = field(default_factory=list)  # [(youtube_id, title), ...] appended as embeds
 
 
 # --------------------------------------------------------------------------
@@ -76,7 +77,7 @@ PAGES: list[Page] = [
          "Policy", ["Policy", "New users"], repo="hand"),
     Page("logging_in.md", "getting-started/logging-in.md", "Logging in to CARC systems",
          "Connect to CARC clusters with SSH from Linux, macOS, or Windows.",
-         "Guide", ["SSH", "New users"]),
+         "Guide", ["SSH", "New users"], videos=[("Puhaf6tCNO0", "Logging into CARC Systems")]),
     Page("password_reset.md", "getting-started/password-reset.md", "Password reset and one-time passwords",
          "Reset your CARC password and manage one-time-password (OTP) settings.",
          "Guide", ["Accounts", "Security"]),
@@ -85,10 +86,10 @@ PAGES: list[Page] = [
          "Guide", ["SSH", "Security"]),
     Page("X11_forwarding.md", "getting-started/x11-forwarding.md", "X11 forwarding",
          "Display graphical applications from CARC machines on your local screen with X11 forwarding.",
-         "Guide", ["SSH", "Visualization"]),
+         "Guide", ["SSH", "Visualization"], videos=[("-5ic9JWHuqI", "X11 Forwarding")]),
     Page("transfer_data.md", "getting-started/transferring-data.md", "Transferring data",
          "Move data to and from CARC systems with scp, rsync, sftp, and Globus.",
-         "Guide", ["Data", "Storage"]),
+         "Guide", ["Data", "Storage"], videos=[("2UphEzHOHGM", "Transferring data")]),
     Page("linux_intro.md", "getting-started/linux-intro.md", "Introduction to Linux",
          "A first tour of the Linux command line for new HPC users.",
          "Tutorial", ["Linux", "New users"]),
@@ -105,7 +106,7 @@ PAGES: list[Page] = [
          "Policy", ["Policy", "Storage", "Slurm"], stale_after=HW_STALE, repo="webinfo"),
     Page("storage_and_backup.md", "systems/storage.md", "Storage and backups",
          "CARC storage spaces (home, project, scratch), where to compute from, and what is backed up.",
-         "Guide", ["Storage", "Data"]),
+         "Guide", ["Storage", "Data"], videos=[("WwsbLyl7d1A", "Storage Systems")]),
     Page("storage_permissions_BeeGFS.md", "systems/storage-permissions.md", "Storage permissions on BeeGFS",
          "Manage file and directory permissions, including ACLs, on CARC BeeGFS scratch storage.",
          "Guide", ["Storage", "Security"]),
@@ -117,7 +118,7 @@ PAGES: list[Page] = [
     # ---- Running jobs
     Page("Intro_to_slurm.md", "running-jobs/slurm-intro.md", "Introduction to Slurm",
          "Slurm basics on CARC clusters: partitions, interactive jobs, and your first batch script.",
-         "Guide", ["Slurm", "Jobs", "New users"]),
+         "Guide", ["Slurm", "Jobs", "New users"], videos=[("cIRyG8C3CVk", "Slurm Job Scheduler")]),
     Page("submitting_jobs.md", "running-jobs/submitting-jobs.md", "Submitting jobs",
          "Submit, monitor, and cancel batch and interactive jobs with Slurm.",
          "Guide", ["Slurm", "Jobs"]),
@@ -135,10 +136,10 @@ PAGES: list[Page] = [
          "Reference", ["Slurm", "PBS", "Legacy"]),
     Page("module_management.md", "running-jobs/modules.md", "Environment modules",
          "Find, load, and manage software with environment modules on CARC clusters.",
-         "Guide", ["Modules", "Software"]),
+         "Guide", ["Modules", "Software"], videos=[("tz-w3vc7cGQ", "Environment Modules")]),
     Page("GNU Parallel.md", "running-jobs/gnu-parallel.md", "GNU Parallel",
          "Run many small tasks efficiently inside a single Slurm job with GNU Parallel.",
-         "Guide", ["Slurm", "Parallel"]),
+         "Guide", ["Slurm", "Parallel"], videos=[("Rl06WD60afA", "Parallelization 3: GNU Parallel")]),
 
     # ---- Interactive computing (hand-written)
     Page("", "interactive/open-ondemand.md", "Open OnDemand",
@@ -154,7 +155,7 @@ PAGES: list[Page] = [
          "Guide", ["Python", "Conda"]),
     Page("anaconda_intro.md", "software/conda-environments.md", "Managing conda environments",
          "Create, activate, export, and remove conda environments on CARC clusters.",
-         "Guide", ["Python", "Conda"]),
+         "Guide", ["Python", "Conda"], videos=[("gMJzDSeGk50", "Conda environments")]),
     Page("anaconda_pip_channels.md", "software/conda-channels-pip.md", "Conda channels and pip",
          "Use conda channels (conda-forge, bioconda) and mix pip installs safely inside environments.",
          "Guide", ["Python", "Conda"]),
@@ -183,7 +184,8 @@ PAGES: list[Page] = [
          "Guide", ["R"]),
     Page("Parallel_R_with_Future.ipynb", "software/parallel-r-future.md", "Parallel R with the future package",
          "Parallelize R code across cores and nodes using the future framework.",
-         "Tutorial", ["R", "Parallel"], notebook=True),
+         "Tutorial", ["R", "Parallel"], notebook=True,
+         videos=[("G5xGfF151Co", "Parallel R with Future")]),
     Page("Gurobi optimizer with R.md", "software/gurobi-r.md", "Gurobi optimizer with R",
          "Use the Gurobi optimization solver from R on CARC clusters.",
          "Guide", ["R", "Optimization"]),
@@ -258,7 +260,7 @@ PAGES: list[Page] = [
          "Tutorial", ["Bioinformatics", "Phylogenetics"]),
     Page("SimCov.md", "tutorials/simcov.md", "SimCov epidemiological simulation",
          "Run the SimCov agent-based model of SARS-CoV-2 infection dynamics in lung tissue.",
-         "Tutorial", ["Simulation", "Epidemiology"]),
+         "Tutorial", ["Simulation", "Epidemiology"], videos=[("7x3voqNX0QY", "CS491/591: Computational Immunology — SimCov Compilation and Submission")]),
     Page("test_vasp_quickbyte.md", "tutorials/vasp.md", "VASP materials simulation",
          "Set up and run VASP density-functional-theory calculations on CARC clusters.",
          "Tutorial", ["Materials science", "Chemistry"]),
@@ -279,11 +281,11 @@ PAGES: list[Page] = [
 
     # ---- Training
     Page("", "training/videos.md", "Video tutorials",
-         "CARC video tutorial playlists: introduction to computing at CARC and project management in ColdFront.",
+         "Embedded CARC recordings: the QuickBytes tutorial series, CARC Annual Meeting talks, and research presentations from the UNMCARC YouTube channel.",
          "Reference", ["Training", "Videos"], repo="hand"),
     Page("workshop_slides.md", "training/workshops.md", "Workshops and slides",
-         "Slides from CARC workshops and courses, plus how to hear about upcoming sessions.",
-         "Reference", ["Training", "Workshops"]),
+         "Slide decks from CARC workshops and university courses, organized by series, plus how to hear about upcoming sessions.",
+         "Reference", ["Training", "Workshops"], frozen=True),
 
     # ---- Support
     Page("", "support/help.md", "Getting help",
@@ -671,6 +673,27 @@ def normalize_body(md: str, p: Page, image_names: set, asset_map: dict, link_map
     return "\n".join(out).rstrip() + "\n"
 
 
+def video_embed(vid: str, title: str) -> str:
+    return (f'<iframe class="carc-video" '
+            f'src="https://www.youtube-nocookie.com/embed/{vid}" '
+            f'title={json.dumps(title)} loading="lazy" '
+            f'allow="accelerometer; clipboard-write; encrypted-media; gyroscope; '
+            f'picture-in-picture; web-share" '
+            f'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>')
+
+
+def video_section(p: Page) -> str:
+    if not p.videos:
+        return ""
+    head = "## Video walkthrough" + ("s" if len(p.videos) > 1 else "")
+    parts = [f"\n{head}\n"]
+    for vid, title in p.videos:
+        parts.append(f"**{title}** — from the "
+                     f"[CARC video tutorials](../training/videos.md):\n")
+        parts.append(video_embed(vid, title) + "\n")
+    return "\n".join(parts)
+
+
 def provenance_footer(p: Page, repo_url: str, repo_dir: Path) -> str:
     if not p.src:
         return ""
@@ -772,7 +795,8 @@ def main():
         else:
             raw = src.read_text(encoding="utf-8", errors="replace")
         body = normalize_body(raw, p, image_names, asset_map, link_map)
-        doc = frontmatter(p, repo_dir, repo_url) + "\n" + body + provenance_footer(p, repo_url, repo_dir)
+        doc = (frontmatter(p, repo_dir, repo_url) + "\n" + body
+               + video_section(p) + provenance_footer(p, repo_url, repo_dir))
         dest = DOCS / p.dest
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(doc, encoding="utf-8")

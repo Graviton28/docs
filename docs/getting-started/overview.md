@@ -82,6 +82,19 @@ restrictions on regulated data (HIPAA, PHI, PCI, FERPA, CUI) in the
 * [Run your first Slurm job](../running-jobs/slurm-intro.md).
 * New to the command line? Start with the [introduction to Linux](linux-intro.md).
 
+## Video walkthroughs
+
+**Creating an Account** — from the [CARC video tutorials](../training/videos.md):
+
+<iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/ewyqLP-Eo_4" title="Creating an Account" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+**CARC Project Management with ColdFront** — for PIs and project managers:
+
+<iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/HJcjOSNWp1U" title="CARC Project Management with ColdFront" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+More episodes — including the [Annual Project Review](https://www.youtube.com/watch?v=MGxMfmShVWk){target=_blank}
+walkthrough — are on the [video tutorials page](../training/videos.md).
+
 ## Questions?
 
 Submit a help request to <help@carc.unm.edu>, open a ticket at

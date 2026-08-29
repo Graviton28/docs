@@ -41,4 +41,10 @@ If you are unsure of your current password, please reference [the password reset
 
 *This quickbyte was validated on 5/21/2024*
 
+## Video walkthrough
+
+**Logging into CARC Systems** — from the [CARC video tutorials](../training/videos.md):
+
+<iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/Puhaf6tCNO0" title="Logging into CARC Systems" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/logging_in.md){target=_blank} (last source update 2026-06-25). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
