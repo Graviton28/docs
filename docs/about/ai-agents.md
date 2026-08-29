@@ -36,7 +36,7 @@ through these endpoints rather than scraping rendered HTML.
 | [`/llms-full.txt`](../llms-full.txt) | The entire corpus in one file — every page's Markdown with frontmatter, prefixed by its canonical URL |
 | Any page URL + `index.md` | That page's Markdown source with full OKF frontmatter (e.g. `/running-jobs/slurm-intro/index.md`) |
 | `/sitemap.xml`, `/robots.txt` | Standard crawl surface; robots.txt repeats these pointers |
-| [Source repository](https://github.com/UNM-CARC/carc_documentation){target=_blank} | The bundle itself, plus `AGENTS.md` with contribution rules for coding agents |
+| [Source repository](https://github.com/UNM-CARC/docs){target=_blank} | The bundle itself, plus `AGENTS.md` with contribution rules for coding agents |
 
 Every rendered page also declares its Markdown twin and OKF signals in HTML:
 

@@ -91,7 +91,10 @@ zensical build --clean && python scripts/postbuild_agent_surface.py
 
 ## Deployment
 
-Pushing to `main` runs OKF validation and deploys to GitHub Pages via
-`.github/workflows/docs.yml` (set the repository's Pages source to
-"GitHub Actions"). **TODO:** update `site_url` and `repo_url` in
-`zensical.toml` when the final repository location is decided.
+Pushing to `main` on [UNM-CARC/docs](https://github.com/UNM-CARC/docs) runs
+OKF validation, checks the llms.txt indexes for drift, builds the site, adds
+the agent surface, and deploys to GitHub Pages at
+<https://unm-carc.github.io/docs/> via `.github/workflows/docs.yml`. The
+workflow enables Pages automatically (`configure-pages` with
+`enablement: true`); if the first deploy fails on permissions, set
+Settings → Pages → Source to "GitHub Actions" once.

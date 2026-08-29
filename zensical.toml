@@ -1,14 +1,12 @@
 [project]
 site_name = "CARC Documentation"
-# TODO: update site_url once the GitHub repository / Pages target is finalized.
-site_url = "https://unm-carc.github.io/carc_documentation/"
+site_url = "https://unm-carc.github.io/docs/"
 site_description = "User and researcher documentation for the UNM Center for Advanced Research Computing (CARC): high-performance computing, storage, software, tutorials, and training."
 site_author = "UNM Center for Advanced Research Computing"
 copyright = "&copy; 2026 The University of New Mexico &mdash; Center for Advanced Research Computing"
 
-# TODO: update when the docs repository is pushed to the UNM-CARC organization.
-repo_url = "https://github.com/UNM-CARC/carc_documentation"
-repo_name = "UNM-CARC/carc_documentation"
+repo_url = "https://github.com/UNM-CARC/docs"
+repo_name = "UNM-CARC/docs"
 edit_uri = "edit/main/docs/"
 
 extra_css = ["stylesheets/extra.css"]
