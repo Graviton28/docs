@@ -21,7 +21,7 @@ R Programming in HPC
 ====================
 
 ## What is R?
-R is a programming language and a software environment for statistical computing and graphics techniques. This is widely used now a days by statisticians and data miners for developing software tools required for data analysis. The R language is primarily derived from the S language developed at Bell Laboratories in 1975. R provides various tools and techniques for linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering etc. More history and documentation of R are available at this [link](https://cran.r-project.org/manuals.html)
+R is a programming language and a software environment for statistical computing and graphics techniques. This is widely used now a days by statisticians and data miners for developing software tools required for data analysis. The R language is primarily derived from the S language developed at Bell Laboratories in 1975. R provides various tools and techniques for linear and nonlinear modelling, statistical tests, time series analysis, classification, clustering etc. More history and documentation of R are available at this [link](https://cran.r-project.org/manuals.html){target=_blank}
 ## How to run R?
 First login to one of the CARC machines via SSH.
 
@@ -97,4 +97,4 @@ Execute the script again and the look at the new output.
 [1] 3.744463 7.954163 3.363275
 ```
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_usage.md) (last source update 2019-03-20). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_usage.md){target=_blank} (last source update 2019-03-20). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

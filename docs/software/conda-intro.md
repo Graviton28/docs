@@ -26,6 +26,6 @@ Conda is more than just a package manager however, it also creates and manages t
 
 The next couple of pages will provide a brief introduction on how to use Conda to create and maintain locally administered environments on the CARC machines. 
 
-For more information on the usage and various features of Conda, please visit their website at this [link](https://conda.io/docs/).
+For more information on the usage and various features of Conda, please visit their website at this [link](https://conda.io/docs/){target=_blank}.
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/anaconda_general_intro.md) (last source update 2020-01-28). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/anaconda_general_intro.md){target=_blank} (last source update 2020-01-28). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

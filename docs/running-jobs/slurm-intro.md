@@ -21,7 +21,7 @@ sources:
 
 ## Getting Started
 
-For a general introduction to Slurm — including an overview of its architecture, key commands (`sinfo`, `squeue`, `srun`, `sbatch`, `scancel`, `scontrol`), and basic job submission examples — refer to the **[official Slurm Quick Start User Guide](https://slurm.schedmd.com/quickstart.html)**. The guide is well-maintained and covers the core concepts you need to get up and running.
+For a general introduction to Slurm — including an overview of its architecture, key commands (`sinfo`, `squeue`, `srun`, `sbatch`, `scancel`, `scontrol`), and basic job submission examples — refer to the **[official Slurm Quick Start User Guide](https://slurm.schedmd.com/quickstart.html){target=_blank}**. The guide is well-maintained and covers the core concepts you need to get up and running.
 
 The sections below supplement that guide with information specific to CARC Easley at the University of New Mexico.
 
@@ -117,11 +117,11 @@ scancel --me             # Cancel all of your jobs
 
 ## Additional Resources
 
-- [Official Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html)
-- [CARC at UNM Documentation](https://carc.unm.edu)
+- [Official Slurm Quick Start Guide](https://slurm.schedmd.com/quickstart.html){target=_blank}
+- [CARC at UNM Documentation](https://carc.unm.edu){target=_blank}
 - For help, contact the CARC support team or visit the CARC user portal.
 
 
 *This quickbyte was validated on 6/22/2026.*
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Intro_to_slurm.md) (last source update 2026-07-06). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Intro_to_slurm.md){target=_blank} (last source update 2026-07-06). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

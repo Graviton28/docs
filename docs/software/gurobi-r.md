@@ -18,7 +18,7 @@ sources:
 
 # Gurobi optimizer with R
 
-[Gurobi optimizer](https://www.gurobi.com/products/gurobi-optimizer/) is a problem solving software that can be used within R. It can solve integer, linear, and quadratic
+[Gurobi optimizer](https://www.gurobi.com/products/gurobi-optimizer/){target=_blank} is a problem solving software that can be used within R. It can solve integer, linear, and quadratic
 programming optimizations. These techniques can help to find the answers to complex models. 
 
 
@@ -71,4 +71,4 @@ Now let's runs a quick model as an example of what Gurobi can do and to see if e
 [1] 1 0 1
 ```
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Gurobi%20optimizer%20with%20R.md) (last source update 2021-02-17). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Gurobi%20optimizer%20with%20R.md){target=_blank} (last source update 2021-02-17). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

@@ -110,4 +110,4 @@ rm $TEMP_DIR
 ```
 Now you can simply submit your job to the queue with `sbatch orca_submission.sh`.
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/orca_wheeler_taos.md) (last source update 2020-07-15). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/orca_wheeler_taos.md){target=_blank} (last source update 2020-07-15). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

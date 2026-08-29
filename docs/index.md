@@ -21,9 +21,9 @@ UNM faculty, staff, and student researchers.</p>
 
 <div class="carc-actions" markdown>
 [:material-rocket-launch: Get started](getting-started/index.md){ .md-button .md-button--primary }
-[:material-lifebuoy: Help ticket](https://support.alliance.unm.edu/){ .md-button }
-[:material-monitor-dashboard: Open OnDemand](https://ood.alliance.unm.edu){ .md-button }
-[:material-list-status: System status](https://carc.unm.edu/systems/downtime-notices.html){ .md-button }
+[:material-lifebuoy: Help ticket](https://support.alliance.unm.edu/){ .md-button target=_blank }
+[:material-monitor-dashboard: Open OnDemand](https://ood.alliance.unm.edu){ .md-button target=_blank }
+[:material-list-status: System status](https://carc.unm.edu/systems/downtime-notices.html){ .md-button target=_blank }
 </div>
 
 </div>

@@ -21,7 +21,7 @@ sources:
 !!! note "Legacy content"
     This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). The workflow remains a useful example, but verify cluster names, partitions, and module versions against the [current systems](../systems/overview.md).
 
-Stacks is a common and [well documented](https://catchenlab.life.illinois.edu/stacks/) pipeline for processing RADseq data. RADseq data is a method of reduced representation genomic sequencing, where genomic DNA is cut up with restriction enzymes, which are then targeted by sequencing adapters. This allows a researcher to get thousands of loci randomly scattered across the genome, which can be sequenced at moderate depths for low prices. This is sufficient for many population genomic analyses, such as tests of population structure, phylogenetics, gene flow, and even coarse attempts to locate regions of the genome that are under selection. Stacks can be run with or without a reference genome, but using a reference genome is reccomended for improved accuracy.
+Stacks is a common and [well documented](https://catchenlab.life.illinois.edu/stacks/){target=_blank} pipeline for processing RADseq data. RADseq data is a method of reduced representation genomic sequencing, where genomic DNA is cut up with restriction enzymes, which are then targeted by sequencing adapters. This allows a researcher to get thousands of loci randomly scattered across the genome, which can be sequenced at moderate depths for low prices. This is sufficient for many population genomic analyses, such as tests of population structure, phylogenetics, gene flow, and even coarse attempts to locate regions of the genome that are under selection. Stacks can be run with or without a reference genome, but using a reference genome is reccomended for improved accuracy.
 
 Stacks can easily be run on Wheeler with installed modules, and here we outline how with some simple "quality of life" adjustments and tips. We'll be focused on the reference based method, as the non-reference-based is sufficiently run through a driver script provided by the developers of Stacks (denovo_map.pl). We'll quickly mention it at the end. This can often be run on a single node on Wheeler, as the only intense step tends to be alignment, which is quick due to the small size of RADseq data. For example, a dataset of ~90 bird individuals with an average of 1 million reads/sample took four hours on one node. Organisms with larger genomes will take more time and memory.
 
@@ -65,7 +65,7 @@ The command is different for single end reads. You must specify each fastq input
 		-i gzfastq -e ndeI -c -q -r -E phred33
 	.......
 
-You can find full details on process_radtags [here](https://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php).
+You can find full details on process_radtags [here](https://catchenlab.life.illinois.edu/stacks/comp/process_radtags.php){target=_blank}.
 
 ## Reference Based Assembly ##
 
@@ -123,11 +123,11 @@ A quick note, if you want input for RAxML or similar phylogenetic programs, you 
 	populations -P $src/stacks_out/ -M $src/popmap_individual -O $src/popualtions_individual/ \
 		-R .75 --phylip-var-all -t $threads
 
-Learn more about the outputs and options for populations [on the Stacks website](https://catchenlab.life.illinois.edu/stacks/comp/populations.php). Also, as mentioned above, you can easily subset your data by changing the popmap used in gstacks and populations, as each sample has alignments performed separately.
+Learn more about the outputs and options for populations [on the Stacks website](https://catchenlab.life.illinois.edu/stacks/comp/populations.php){target=_blank}. Also, as mentioned above, you can easily subset your data by changing the popmap used in gstacks and populations, as each sample has alignments performed separately.
 
 ## DeNovo Assembly ##
 
-This is a lot simpler, but is generally considered less robust than a reference-based approach. It is described in full [here](https://catchenlab.life.illinois.edu/stacks/comp/denovo_map.php). There is a lot to think about for parameters when building loci, and we use default ones here, [read up on the Stacks website about them](https://catchenlab.life.illinois.edu/stacks/param_tut.php).
+This is a lot simpler, but is generally considered less robust than a reference-based approach. It is described in full [here](https://catchenlab.life.illinois.edu/stacks/comp/denovo_map.php){target=_blank}. There is a lot to think about for parameters when building loci, and we use default ones here, [read up on the Stacks website about them](https://catchenlab.life.illinois.edu/stacks/param_tut.php){target=_blank}.
 
 First, you only need the Stacks module and one new directory (assumes reads are in "raw_reads").
 
@@ -143,4 +143,4 @@ Then you just run a single line!
 
 As I mentioned above, I mostly included this to demystify DeNovo Stacks, please read more on it before running anything! There are many parameters to optimize.
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Stacks_quickbyte.md) (last source update 2021-03-03). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Stacks_quickbyte.md){target=_blank} (last source update 2021-03-03). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

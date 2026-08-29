@@ -20,7 +20,7 @@ sources:
 
 # Parallel Python with Dask and scikit-learn
 
-[Dask](https://dask.org/) uses existing Python APIs and data structures to make it easy to switch between Numpy, Pandas, Scikit-learn to their Dask-powered equivalents. [SciKit-learn](https://scikit-learn.org/stable/) is a machine learning tool for Python.
+[Dask](https://dask.org/){target=_blank} uses existing Python APIs and data structures to make it easy to switch between Numpy, Pandas, Scikit-learn to their Dask-powered equivalents. [SciKit-learn](https://scikit-learn.org/stable/){target=_blank} is a machine learning tool for Python.
 
 ### Log in to JupyterHub
 
@@ -195,4 +195,4 @@ print(search)
 
 ```
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/parallel_jupyterhub_with_dask_and_scikit-learn.md) (last source update 2019-10-23). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/parallel_jupyterhub_with_dask_and_scikit-learn.md){target=_blank} (last source update 2019-10-23). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

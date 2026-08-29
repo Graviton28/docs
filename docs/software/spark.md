@@ -328,4 +328,4 @@ Since the dataset is generated with a fixed seed, the counts are deterministic â
 - **Spark SQL** â€” run actual SQL against DataFrames via `spark.sql(...)`.
 - Official docs: <https://spark.apache.org/docs/3.5.1/>
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/spark_tutorial.md) (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/spark_tutorial.md){target=_blank} (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

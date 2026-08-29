@@ -26,10 +26,10 @@ Your home directory, `/users/your-user-name/`, is shared across all CARC machine
 
 There are several options available for data transfer that employ a GUI for ease of use. Several options are listed below, linked to the homepage for each piece of software, with documentation on how to use it.
 
-* [FileZilla](https://filezilla-project.org/)
-* [WinSCP](https://winscp.net/eng/index.php)
-* [Fetch](https://fetchsoftworks.com/)
-* [CyberDuck](https://cyberduck.io/)
+* [FileZilla](https://filezilla-project.org/){target=_blank}
+* [WinSCP](https://winscp.net/eng/index.php){target=_blank}
+* [Fetch](https://fetchsoftworks.com/){target=_blank}
+* [CyberDuck](https://cyberduck.io/){target=_blank}
 
 FileZilla is available for both Windows and Unix systems, whereas WinSCP is Windows-only and Fetch is macOS-only. GUI-based programs are very user-friendly and well-suited to those who are less comfortable with the Linux command-line interface. Unfortunately, the programs listed above, and other GUI-based programs, use File Transfer Protocol (FTP), which has a relatively low transfer speed and is best suited to smaller file sizes.
 
@@ -67,4 +67,4 @@ As you can see, the syntax for these two programs is very similar; however, the 
 
 *This quickbyte was validated on 6/22/2026*
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/transfer_data.md) (last source update 2026-06-22). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/transfer_data.md){target=_blank} (last source update 2026-06-22). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

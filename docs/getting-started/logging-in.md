@@ -41,4 +41,4 @@ If you are unsure of your current password, please reference [the password reset
 
 *This quickbyte was validated on 5/21/2024*
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/logging_in.md) (last source update 2026-06-25). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/logging_in.md){target=_blank} (last source update 2026-06-25). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

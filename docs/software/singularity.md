@@ -266,4 +266,4 @@ ABORT  : Retval = 255
 We have several modules with different singularity versions. Enter the following command to see them all: 
 ```module avail singularity```
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/singularity-markdown-version.md) (last source update 2020-03-26). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/singularity-markdown-version.md){target=_blank} (last source update 2020-03-26). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

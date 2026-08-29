@@ -18,7 +18,7 @@ sources:
 
 # Parallel R with the future package
 
-In R, numerous packages can be used to parallelize code (parallel, snow, foreach, etc.), but each of  these packages use unique syntaxes and none of them work for all cases of parallelization. Instead, the [future package](https://github.com/HenrikBengtsson/future) solves this problem! Briefly (seet the [future package](https://github.com/HenrikBengtsson/future) for details), the future package works in three steps:
+In R, numerous packages can be used to parallelize code (parallel, snow, foreach, etc.), but each of  these packages use unique syntaxes and none of them work for all cases of parallelization. Instead, the [future package](https://github.com/HenrikBengtsson/future){target=_blank} solves this problem! Briefly (seet the [future package](https://github.com/HenrikBengtsson/future){target=_blank} for details), the future package works in three steps:
 
 1. Choose how you want to parallelize your code
     - set the type of parallelization with the plan() object.  
@@ -437,10 +437,10 @@ round(time_Elapsed, 2)
 
 ## 2. Tidyverse example using the furrr package
 
-To change [tidyverse code](https://www.tidyverse.org/), all that is needed is to set up the parallelization (plan object) and then replace the map object with future_map. The evaluation step is completed with the future_map object. 
+To change [tidyverse code](https://www.tidyverse.org/){target=_blank}, all that is needed is to set up the parallelization (plan object) and then replace the map object with future_map. The evaluation step is completed with the future_map object. 
 
 ### Setup
-This example uses the gapminder dataset and creates a linear model for each country. The datafame becomes a nested dataframe by country so we can use the purrr package to iterate over each country and compute the linear model. See this link to the [purrr package](https://purrr.tidyverse.org/) and the [repurrrsive](https://github.com/jennybc/repurrrsive) for more details. 
+This example uses the gapminder dataset and creates a linear model for each country. The datafame becomes a nested dataframe by country so we can use the purrr package to iterate over each country and compute the linear model. See this link to the [purrr package](https://purrr.tidyverse.org/){target=_blank} and the [repurrrsive](https://github.com/jennybc/repurrrsive){target=_blank} for more details. 
 
 
 ```R
@@ -578,7 +578,7 @@ Bosnia and Herzegovina
 ## 3. Bayesian example using multiple nodes via the future.batchtools package
 This example runs multiple Bayesian models in parallel by submitting each model (iteration) to a separate node. This is very useful because each model can already run in parallel, thus CARC enables you to run all of your Bayesian parallelized models at once. the future.batchtools packages will use information in the batchtools.torque.tmpl file in your current directory to submit jobs. This file can be modified to change parameters such as length of walltime, number of cores, etc (see file below). 
 
-These Bayesian models are joint-species distribution models (jSDMs) which fit the distributions of bird species and determines how it relates to their habitat, phylogeny, and traits. The code will run four Bayesian models that differ in their thinning and then write the models to file. The data and model objects are pre-built and loaded with the hmsc_setup.RData file and are derived from the [bird example](https://www2.helsinki.fi/en/researchgroups/statistical-ecology/hmsc) from their book. 
+These Bayesian models are joint-species distribution models (jSDMs) which fit the distributions of bird species and determines how it relates to their habitat, phylogeny, and traits. The code will run four Bayesian models that differ in their thinning and then write the models to file. The data and model objects are pre-built and loaded with the hmsc_setup.RData file and are derived from the [bird example](https://www2.helsinki.fi/en/researchgroups/statistical-ecology/hmsc){target=_blank} from their book. 
 
 For the sequential version, I already set up it using future. You can check your future code by running it sequentially by using plan(sequential).
 
@@ -1020,4 +1020,4 @@ speedup_calc(iterations = seq(from = 10, 30, by = 10), cores = c(1,2,4,6, 8), wa
 ## Conclusion
 The future package will offer the best performance when there are fewer iterations but each iteration is very slow. With your code, try running one iteration to see how long it takes and then use that estimate with speedup_calc. Depending on the wait_time and number of iterations, the function will give an estimate on if parallelization is worthwhile (caveat: the code will be slower if you have a large global environment).
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Parallel_R_with_Future.ipynb) (last source update 2021-08-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Parallel_R_with_Future.ipynb){target=_blank} (last source update 2021-08-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

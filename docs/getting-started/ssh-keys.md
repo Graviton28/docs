@@ -103,4 +103,4 @@ This will ensure git will use the default key on the system when cloning with ss
 
 *This quickbyte was validated on 3/27/2025*
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/ssh_keygen_config.md) (last source update 2025-03-27). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/ssh_keygen_config.md){target=_blank} (last source update 2025-03-27). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

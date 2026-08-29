@@ -117,7 +117,7 @@ ans =
 #### Using Arrays on GPU <a name="1.1.2"></a>
 
 In order to utilize the GPU, data must be loaded into a `gpuArray` object.
-For a full description of the `gpuArray` object, please visit the official MathWorks Documentation at [https://www.mathworks.com/help/parallel-computing/gpuarray.html](https://www.mathworks.com/help/parallel-computing/gpuarray.html)
+For a full description of the `gpuArray` object, please visit the official MathWorks Documentation at [https://www.mathworks.com/help/parallel-computing/gpuarray.html](https://www.mathworks.com/help/parallel-computing/gpuarray.html){target=_blank}
 
 ##### Initialize Array <a name="1.1.3"></a>
 First, create a normal array using any method you like.
@@ -189,7 +189,7 @@ ans =
 
 ```
 
-To see a list of MATLAB functions that are supported using gpus, visit [https://www.mathworks.com/help/parallel-computing/gpuarray.html](https://www.mathworks.com/help/parallel-computing/gpuarray.html)
+To see a list of MATLAB functions that are supported using gpus, visit [https://www.mathworks.com/help/parallel-computing/gpuarray.html](https://www.mathworks.com/help/parallel-computing/gpuarray.html){target=_blank}
 
 You can also create your own functions to pass into `arrayfun`.
 
@@ -390,4 +390,4 @@ You can also view the `logistic_map.jpg` image using your preferred method.
 
 Coming Soon! (Maybe)
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Using%20GPUs%20on%20Xena%20with%20MATLAB.md) (last source update 2022-05-25). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Using%20GPUs%20on%20Xena%20with%20MATLAB.md){target=_blank} (last source update 2022-05-25). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

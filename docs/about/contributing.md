@@ -18,8 +18,8 @@ sources:
 # Contributing to these docs
 
 This documentation is a git repository of Markdown files, built with
-[Zensical](https://zensical.org) and structured as an
-[Open Knowledge Format (OKF) v0.2](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
+[Zensical](https://zensical.org){target=_blank} and structured as an
+[Open Knowledge Format (OKF) v0.2](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md){target=_blank}
 knowledge bundle — every page is readable by people *and* consumable by AI
 agents, with provenance and trust signals in its frontmatter.
 
@@ -84,8 +84,8 @@ python3 scripts/gen_llms_txt.py        # regenerate llms.txt indexes
 ## The pipeline scripts
 
 * `scripts/migrate_quickbytes.py` — the reproducible migration from
-  [UNM-CARC/QuickBytes](https://github.com/UNM-CARC/QuickBytes) and
-  [webinfo](https://github.com/UNM-CARC/webinfo). It owns the page mapping
+  [UNM-CARC/QuickBytes](https://github.com/UNM-CARC/QuickBytes){target=_blank} and
+  [webinfo](https://github.com/UNM-CARC/webinfo){target=_blank}. It owns the page mapping
   and regenerates every section `index.md`; if you add a page, add it to the
   mapping there so the indexes stay complete.
 * `scripts/okf_validate.py` — fails CI if any page breaks OKF conformance

@@ -22,9 +22,9 @@ X11 Forwarding allows any graphical user interface to open on your local machine
 
 ## On a Mac
 
-macOS does not include an X11 server, so you will need to install [XQuartz](https://www.xquartz.org) before using X11 forwarding. You can install it in one of two ways:
+macOS does not include an X11 server, so you will need to install [XQuartz](https://www.xquartz.org){target=_blank} before using X11 forwarding. You can install it in one of two ways:
 
-**Option 1 — Download the installer** from [xquartz.org](https://www.xquartz.org) and run the `.dmg` package.
+**Option 1 — Download the installer** from [xquartz.org](https://www.xquartz.org){target=_blank} and run the `.dmg` package.
 
 **Option 2 — Install via Homebrew** (if you have Homebrew installed):
 
@@ -34,11 +34,11 @@ brew install --cask xquartz
 
 After installing, log out and back in before using X11 forwarding.
 
-> **Note:** If you are on the latest version of macOS, check the [XQuartz releases page](https://github.com/XQuartz/XQuartz/releases) to confirm your macOS version is supported before installing.
+> **Note:** If you are on the latest version of macOS, check the [XQuartz releases page](https://github.com/XQuartz/XQuartz/releases){target=_blank} to confirm your macOS version is supported before installing.
 
 ## On a PC (Windows)
 
-Download and install [MobaXterm](https://mobaxterm.mobatek.net). It combines an SSH client, X server, and file transfer client into one application and handles X11 forwarding automatically — no additional configuration required. The free Home Edition is sufficient for CARC use.
+Download and install [MobaXterm](https://mobaxterm.mobatek.net){target=_blank}. It combines an SSH client, X server, and file transfer client into one application and handles X11 forwarding automatically — no additional configuration required. The free Home Edition is sufficient for CARC use.
 
 ## Step by Step Example of X11 Forwarding with MATLAB
 
@@ -96,4 +96,4 @@ If you have any trouble at any point, please reach out to us at help@carc.unm.ed
 
 *This quickbyte was validated on 6/17/2026*
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/X11_forwarding.md) (last source update 2026-06-17). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/X11_forwarding.md){target=_blank} (last source update 2026-06-17). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

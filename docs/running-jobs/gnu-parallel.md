@@ -378,4 +378,4 @@ sbatch python_parallel.slurm
 
 *This QuickByte was updated and validated on June 23, 2026.*
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/GNU%20Parallel.md) (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/GNU%20Parallel.md){target=_blank} (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

@@ -100,4 +100,4 @@ matlab -r -nodisplay parallel_matlab > parallel_matlab.out
 ```
 Submit your PBS script with `qsub parallel_matlab.pbs` and hopefully all goes swimmingly. If you require assistance with MATLAB parallel computing please send an email to help@carc.unm.edu.
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Parallel%20MATLAB%20profile%20setup%20and%20batch%20submission.md) (last source update 2022-05-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Parallel%20MATLAB%20profile%20setup%20and%20batch%20submission.md){target=_blank} (last source update 2022-05-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

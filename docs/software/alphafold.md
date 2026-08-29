@@ -20,7 +20,7 @@ sources:
 # AlphaFold
 
 Alphafold predicts the 3D structure of proteins from their amino acid sequence. A deep learning system that uses a combination of sequence alignment, evolutionary information, and physical principles to generate its predictions.
-Primarily written in python, the first version of alphafold was released in 2016, and has been updated as recently as 2022. There are two ways to run alphafold here at CARC. Option 1 is to use [localcolabfold.](https://github.com/YoshitakaMo/localcolabfold) You may find that Localcolabfold is easier to get running, however it will come with tradeoffs in certain areas, For Example, localcolabfold uses the pdb70 database, and there is not a great way to choose a different database to use. If you are unsure which version is best for you, we recommend you review the readme & issues for localcolabfold to determine if there are any features you may need. 
+Primarily written in python, the first version of alphafold was released in 2016, and has been updated as recently as 2022. There are two ways to run alphafold here at CARC. Option 1 is to use [localcolabfold.](https://github.com/YoshitakaMo/localcolabfold){target=_blank} You may find that Localcolabfold is easier to get running, however it will come with tradeoffs in certain areas, For Example, localcolabfold uses the pdb70 database, and there is not a great way to choose a different database to use. If you are unsure which version is best for you, we recommend you review the readme & issues for localcolabfold to determine if there are any features you may need. 
 
 # Alphafold w/ LocalColabFold:
 
@@ -50,7 +50,7 @@ localColabFold runs with the command `colabfold_batch`. The only other thing you
      
      srun colabfold_batch $INPUT_FILE_PATH $OUTPUTDIR
 
-Reference the [localcolabfold documentation](https://github.com/YoshitakaMo/localcolabfold?tab=readme-ov-file#flags) for flags you may find useful.
+Reference the [localcolabfold documentation](https://github.com/YoshitakaMo/localcolabfold?tab=readme-ov-file#flags){target=_blank} for flags you may find useful.
 
 
 # Alphafold w/ Singularity Image:
@@ -219,4 +219,4 @@ After a successful job, you will notice multiple output files. They will be plac
     
 Now that it is on your local computer, you can now view this file on your computer if you have the proper software to view a pdb file.
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/alphafold.md) (last source update 2024-07-23). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/alphafold.md){target=_blank} (last source update 2024-07-23). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

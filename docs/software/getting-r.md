@@ -277,4 +277,4 @@ Type 'q()' to quit R.
 
 The third option is to user JupyterHub. To do so direct your browser to https://wheeler.alliance.unm.edu:8000 and log in with your CARC credentials. Click on the "New" drop down menu and select "R". Now you have a R session running on Wheeler through JupyterHub.
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_at_CARC/getting_R_software.md) (last source update 2019-12-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_at_CARC/getting_R_software.md){target=_blank} (last source update 2019-12-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

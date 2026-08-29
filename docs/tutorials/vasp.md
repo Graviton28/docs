@@ -168,4 +168,4 @@ A common issue that new UNM CARC users may experience when running this script i
 
 If the `cat` command prints that you need to be in the "vasp6" group, please email `help@carc.unm.edu` mentioning that you need access to the VASP software. In addition, please include your research group's license number in the email.
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/test_vasp_quickbyte.md) (last source update 2026-07-06). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/test_vasp_quickbyte.md){target=_blank} (last source update 2026-07-06). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

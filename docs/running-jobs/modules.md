@@ -22,7 +22,7 @@ sources:
 
 There are many software packages installed on CARC systems, as well as standard built-in functions native to Unix. To manage these additional software packages, CARC systems use modules. These modules set the appropriate environment variables and dependencies for software optimization and to avoid conflicts with other software.
 
-For more information, visit [this page](https://lmod.readthedocs.io/en/latest/010_user.html), or use the command `module help`.
+For more information, visit [this page](https://lmod.readthedocs.io/en/latest/010_user.html){target=_blank}, or use the command `module help`.
 
 ### Using modules to set application environments
 
@@ -117,4 +117,4 @@ module purge
 
 *This quickbyte was validated on 6/22/2026*
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/module_management.md) (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/module_management.md){target=_blank} (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

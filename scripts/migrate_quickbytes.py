@@ -358,6 +358,43 @@ FILE_ASSETS = [
     ("beginner_intro_slides_2022.pdf", "workshops/beginner_intro_slides_2022.pdf"),
 ]
 
+def externalize_links(md: str) -> str:
+    """Make external links open in new tabs: append {target=_blank} to
+    [text](http...) links, add target=_blank into existing attr blocks, and
+    patch raw HTML anchors. Internal/relative and mailto: links are left
+    untouched; fenced code blocks are skipped. Idempotent."""
+    out, fence = [], None
+    for line in md.splitlines():
+        stripped = line.lstrip()
+        marker = stripped[:3]
+        if marker in ("```", "~~~"):
+            if fence is None:
+                fence = marker
+            elif marker == fence:
+                fence = None
+            out.append(line)
+            continue
+        if fence:
+            out.append(line)
+            continue
+        # external md links with an existing attr block: ensure target=
+        def attr_sub(m):
+            attrs = m.group(3)
+            if "target=" in attrs:
+                return m.group(0)
+            return f"{m.group(1)}{attrs.rstrip()} target=_blank }}"
+        line = re.sub(r"((?<!\!)\[[^\]]*\]\((https?://[^)\s]+)\)\{)([^}]*)\}",
+                      attr_sub, line)
+        # external md links without an attr block
+        line = re.sub(r"((?<!\!)\[[^\]]*\]\((https?://[^)\s]+)\))(?!\{)",
+                      r"\1{target=_blank}", line)
+        # raw HTML anchors to external URLs
+        line = re.sub(r'(<a\s+)(?![^>]*\btarget=)([^>]*href="https?://[^"]*")',
+                      r'\1target="_blank" \2', line)
+        out.append(line)
+    return "\n".join(out)
+
+
 LEGACY_RE = re.compile(r"\b(Wheeler|Taos|Gibbs)\b")
 LEGACY_NOTE = ("This page mentions retired CARC systems (Wheeler, Taos, or Gibbs). "
                "The workflow remains a useful example, but verify cluster names, partitions, "
@@ -478,6 +515,9 @@ def normalize_body(md: str, p: Page, image_names: set, asset_map: dict, link_map
 
     body = re.sub(r"((?<!\!)\[[^\]]*\]\()\s*([^)\s]+)", link_sub, body)
 
+    # External links open in new browser tabs.
+    body = externalize_links(body)
+
     # Build the final document.
     out = [f"# {p.title}", ""]
     notes = []
@@ -502,8 +542,8 @@ def provenance_footer(p: Page, repo_url: str, repo_dir: Path) -> str:
     date = last_modified(repo_dir, p.src)[:10]
     url = f"{repo_url}/blob/master/{urllib.parse.quote(p.src)}"
     return (f"\n<p class=\"carc-provenance\" markdown>Migrated from "
-            f"[UNM-CARC QuickBytes]({url}) (last source update {date}). "
-            f"Spotted a problem? [Open an issue or pull request]({QB_URL}).</p>\n")
+            f"[UNM-CARC QuickBytes]({url}){{target=_blank}} (last source update {date}). "
+            f"Spotted a problem? [Open an issue or pull request]({QB_URL}){{target=_blank}}.</p>\n")
 
 
 def write_index(section: str, pages_by_dest: dict):

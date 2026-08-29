@@ -26,7 +26,7 @@ MATLAB supports parallelization on desktop computers which can be used to increa
 Please ensure you have the MATLAB Parallel Toolbox installed on your local comnputer.
 
 ## How MATLAB Parallel Works Behind the Scenes
-MATLAB parallel allows the MATLAB session you interact with on your local computer, also known as the MATLAB client, with the PBS scheduler at CARC to create jobs that run on a core, also known as the MATLAB worker. The PBS (Portable BAtch system) scheduler allocates resources requested to users. One of the advantages of using MATLAB at CARC is the ability to scale up, or use many nodes for data intensive and/or computationally complex computations. To do this, you will request more workers from the PBS scheduler by following the tutorial bellow (Workers window). If you request multiple workers, it is important to keep in mind that one worker will be running the batch script you have sent from your MATLAB client. This worker is sending your scripts to the other workers that will perform your computations. You can think about this lead MATLAB worker as a mirror of your MATLAB client that communicates with the PBS scheduler and your scripts to accomplish your job. For more help on how to alter your scripts to take advantage of the scaleing up abilities at CARC please visit the Mathworks [tutorials](https://www.mathworks.com/help/parallel-computing/what-is-parallel-computing.html).
+MATLAB parallel allows the MATLAB session you interact with on your local computer, also known as the MATLAB client, with the PBS scheduler at CARC to create jobs that run on a core, also known as the MATLAB worker. The PBS (Portable BAtch system) scheduler allocates resources requested to users. One of the advantages of using MATLAB at CARC is the ability to scale up, or use many nodes for data intensive and/or computationally complex computations. To do this, you will request more workers from the PBS scheduler by following the tutorial bellow (Workers window). If you request multiple workers, it is important to keep in mind that one worker will be running the batch script you have sent from your MATLAB client. This worker is sending your scripts to the other workers that will perform your computations. You can think about this lead MATLAB worker as a mirror of your MATLAB client that communicates with the PBS scheduler and your scripts to accomplish your job. For more help on how to alter your scripts to take advantage of the scaleing up abilities at CARC please visit the Mathworks [tutorials](https://www.mathworks.com/help/parallel-computing/what-is-parallel-computing.html){target=_blank}.
 
 
 ### MATLAB Parallel Server Client Configuration
@@ -131,7 +131,7 @@ We have found it best to restart MATLAB at this point, otherwise setting the hos
 ### Writing Parallel Matlab Code
 
 
-Once you have set the hostname you can run your parallel MATLAB code. Mathworks provides extensive documentation on using parallelism in MATLAB: [Mathworks Docs](https://www.mathworks.com/help/parallel-computing/getting-started-with-parallel-computing-toolbox.html)
+Once you have set the hostname you can run your parallel MATLAB code. Mathworks provides extensive documentation on using parallelism in MATLAB: [Mathworks Docs](https://www.mathworks.com/help/parallel-computing/getting-started-with-parallel-computing-toolbox.html){target=_blank}
 
 The very simple program that follows demonstrates how to run parallel code using MATLAB. The code uses parfor, which can often be used to replace a for loop in serial MATLAB code, to distibute the work across 10 parallel workers.
 
@@ -155,4 +155,4 @@ qstat -u <username>
 
 If you are testing small scripts, they may run before you can type qstat. To watch your jobs, you can type watch before the qstat (or anyother) command and it will re-run the command every 2sec. This is a good way to watch progress.
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/ParallelMatlabServer.md) (last source update 2021-02-24). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/ParallelMatlabServer.md){target=_blank} (last source update 2021-02-24). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

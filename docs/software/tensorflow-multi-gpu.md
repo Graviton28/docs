@@ -44,7 +44,7 @@ Fig 1. Time for matrix inversion vs. size of matrix N
 
 Fig 2. Time for matrix multiplication vs. size of matrix N
 
-The implementation code for these benchmarks can be found [here](https://github.com/ceodspspectrum/CARC_WORK/tree/master/master).
+The implementation code for these benchmarks can be found [here](https://github.com/ceodspspectrum/CARC_WORK/tree/master/master){target=_blank}.
 
 ### TensorFlow Basics
 
@@ -136,12 +136,12 @@ This replaces the old pattern of defining `tf.placeholder` variables and feeding
 
 ### Learning More TensorFlow
 
-Rather than reproduce a full general-purpose TensorFlow walkthrough here, we recommend going straight to the source: the [official TensorFlow tutorials](https://www.tensorflow.org/tutorials) maintained by Google. These are kept up to date with the current TensorFlow API and run as ready-to-use Jupyter/Colab notebooks with no local setup required.
+Rather than reproduce a full general-purpose TensorFlow walkthrough here, we recommend going straight to the source: the [official TensorFlow tutorials](https://www.tensorflow.org/tutorials){target=_blank} maintained by Google. These are kept up to date with the current TensorFlow API and run as ready-to-use Jupyter/Colab notebooks with no local setup required.
 
-A good starting point is the [TensorFlow 2 quickstart for beginners](https://www.tensorflow.org/tutorials/quickstart/beginner), which walks through loading a dataset, building a simple Keras model, and training/evaluating it. For a deeper, lower-level walkthrough, the [quickstart for experts](https://www.tensorflow.org/tutorials/quickstart/advanced) covers the same task using TensorFlow's more customizable API.
+A good starting point is the [TensorFlow 2 quickstart for beginners](https://www.tensorflow.org/tutorials/quickstart/beginner){target=_blank}, which walks through loading a dataset, building a simple Keras model, and training/evaluating it. For a deeper, lower-level walkthrough, the [quickstart for experts](https://www.tensorflow.org/tutorials/quickstart/advanced){target=_blank} covers the same task using TensorFlow's more customizable API.
 
-> **Note:** if you've used TensorFlow before and your code still uses `tf.Session()`, `tf.placeholder`, or `tf.initialize_all_variables()` — that's the TensorFlow 1.x API, fully superseded by eager execution in TensorFlow 2.x. See Google's [Effective TensorFlow 2](https://www.tensorflow.org/guide/effective_tf2) guide and the official [migration guide](https://www.tensorflow.org/guide/migrate) if you need to update older code.
+> **Note:** if you've used TensorFlow before and your code still uses `tf.Session()`, `tf.placeholder`, or `tf.initialize_all_variables()` — that's the TensorFlow 1.x API, fully superseded by eager execution in TensorFlow 2.x. See Google's [Effective TensorFlow 2](https://www.tensorflow.org/guide/effective_tf2){target=_blank} guide and the official [migration guide](https://www.tensorflow.org/guide/migrate){target=_blank} if you need to update older code.
 
 *This quickbyte was validated on 6/22/2026*
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/multiGPU_tensorflow_tutorial.md) (last source update 2026-06-24). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/multiGPU_tensorflow_tutorial.md){target=_blank} (last source update 2026-06-24). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

@@ -38,7 +38,7 @@ Fig 1. Time for Matrix Inversion vs size of Matrix N
 
 Fig 2. Time for Matrix Multiplication vs size of Matrix N
 
-The implementations can be found [here.](https://github.com/ceodspspectrum/CARC_WORK/tree/master/master)
+The implementations can be found [here.](https://github.com/ceodspspectrum/CARC_WORK/tree/master/master){target=_blank}
 
 
 Tensorflow is an open source deep learning library provided by Google. It provides primitives for functions definitions on tensor and a mechanism to compute their derivatives automatically. It uses a tensor to represent any multidimensional array of numbers.
@@ -131,4 +131,4 @@ For scalable variables for performing operations we can use `tf.placeholder` whi
 		with tf.Session() as sess:
 			print(sess.run([output], feed_dict={input1:[7.], input2:[2.]}))
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Tensorflow_documentation.md) (last source update 2019-03-06). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Tensorflow_documentation.md){target=_blank} (last source update 2019-03-06). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

@@ -18,7 +18,7 @@ sources:
 
 # Password reset and one-time passwords
 
-To reset your password, you can use the link [here](https://mokey.alliance.unm.edu/auth/login)
+To reset your password, you can use the link [here](https://mokey.alliance.unm.edu/auth/login){target=_blank}
 
 After entering your CARC username, you can follow the prompts and reset your password. 
 
@@ -26,4 +26,4 @@ You can also log in with the above link to find other information about your CAR
 
 *This quickbyte was validated on 6/22/2026*
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/password_reset.md) (last source update 2026-06-22). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/password_reset.md){target=_blank} (last source update 2026-06-22). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

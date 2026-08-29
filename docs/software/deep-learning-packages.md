@@ -105,4 +105,4 @@ This step by step tutorial will guide you through installing deep learning and M
 
 		 conda install numpy pandas matplotlib scikit-learn
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Install%20deep%20learning%20packages.md) (last source update 2021-10-15). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Install%20deep%20learning%20packages.md){target=_blank} (last source update 2021-10-15). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

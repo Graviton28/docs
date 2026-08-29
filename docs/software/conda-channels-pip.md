@@ -151,6 +151,6 @@ $ conda config --append channels bioconda
 ```
 This will permanently add the BioConda channel to your configuration file meaning Conda will automatically search BioConda as well as the default channels when looking for packages.
 
-For more information on managing channels and installing with pip please refer to the Conda support documentation at this [link](https://conda.io/docs/user-guide/tasks/manage-channels.html).
+For more information on managing channels and installing with pip please refer to the Conda support documentation at this [link](https://conda.io/docs/user-guide/tasks/manage-channels.html){target=_blank}.
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/anaconda_pip_channels.md) (last source update 2020-01-28). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/anaconda_pip_channels.md){target=_blank} (last source update 2020-01-28). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

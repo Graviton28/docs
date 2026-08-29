@@ -20,7 +20,7 @@ sources:
 
 There are two ways you can run your jobs, namely submitting a Slurm script and running a job interactively. Either way, jobs are submitted to CARC by the command `sbatch`. For more information on available options type `man sbatch`
 ### Submitting the Slurm Script to the Batch Scheduler
-In order to run our simple Slurm script, we will need to submit it to the batch scheduler using the command `sbatch` followed by the name of the script we would like to run. For more information please see our page on writing a [Slurm batch script](https://github.com/UNM-CARC/QuickBytes/blob/master/pbs_scripts2.md).
+In order to run our simple Slurm script, we will need to submit it to the batch scheduler using the command `sbatch` followed by the name of the script we would like to run. For more information please see our page on writing a [Slurm batch script](https://github.com/UNM-CARC/QuickBytes/blob/master/pbs_scripts2.md){target=_blank}.
 In the following example, we submit our simple `hello.sbatch` script to the batch scheduler using `sbatch`. Note that it returns the job identifier when the job is successfully submitted. You can use this job identifier to query the status of your job from your shell.  
 For example:
 
@@ -68,4 +68,4 @@ bash  helloworld_parallel.sbatch
 ```
 ran the commands found within our `helloworld_parallel.sbatch` script.
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/submitting_jobs.md) (last source update 2025-12-03). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/submitting_jobs.md){target=_blank} (last source update 2025-12-03). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

@@ -20,7 +20,7 @@ sources:
 
 ### A Bit About CASA
 
-[CASA](https://casa.nrao.edu/) is the premier software for reducing radio data coming off of a variety of telescopes around the world, including the Jansky Very Large Array (VLA) and Atacama Large Millimeter Array (ALMA). 
+[CASA](https://casa.nrao.edu/){target=_blank} is the premier software for reducing radio data coming off of a variety of telescopes around the world, including the Jansky Very Large Array (VLA) and Atacama Large Millimeter Array (ALMA). 
 
 ### Getting Some Data to Play With
 
@@ -58,4 +58,4 @@ Actually it doesn't like the alias when you run the command
    Can also do 'exec(open('./filename').read())'
        Shortcut as execfile 'filename.py'
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/mpiCASA.md) (last source update 2021-03-08). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/mpiCASA.md){target=_blank} (last source update 2021-03-08). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

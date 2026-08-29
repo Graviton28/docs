@@ -134,4 +134,4 @@ ParaView comes with several executables that serve different purposes. These are
 
 *This quickbyte was validated on 6/9/2024*
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/paraview.md) (last source update 2024-06-09). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/paraview.md){target=_blank} (last source update 2024-06-09). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

@@ -90,4 +90,4 @@ dir.create(Sys.getenv("R_LIBS_USER", recursive=T, mode="0777"))
 
 The first two lines are only necessary when you have not created a personal library for that major version of R yet, otherwise you just need to specify the repos you are downloading packages from and specify your personal library as the install location. You shouldn't need to specify the library since you have appended your library path, but it doesn't hurt to be explicit.
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_at_CARC/installing_packages.md) (last source update 2019-12-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes).</p>
+<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_at_CARC/installing_packages.md){target=_blank} (last source update 2019-12-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
