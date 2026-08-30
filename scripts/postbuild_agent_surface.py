@@ -67,7 +67,9 @@ def trust_tier(fm: dict) -> str:
 
 
 def head_block(fm: dict) -> str:
-    lines = ['<link rel="alternate" type="text/markdown" '
+    lines = ['<meta name="robots" content="index, follow, max-snippet:-1, '
+             'max-image-preview:large, max-video-preview:-1">',
+             '<link rel="alternate" type="text/markdown" '
              'title="Markdown source (OKF v0.2 frontmatter)" href="index.md">']
     def meta(name, value):
         if value:
@@ -123,9 +125,11 @@ def main():
         injected += 1
 
     # 3. robots.txt — explicitly welcome AI fetchers alongside the blanket allow.
-    ai_agents = ["Google-Extended", "GPTBot", "OAI-SearchBot", "ChatGPT-User",
+    ai_agents = ["Googlebot", "Google-Extended", "GoogleOther", "Google-CloudVertexBot",
+                 "GPTBot", "OAI-SearchBot", "ChatGPT-User",
                  "ClaudeBot", "Claude-User", "Claude-SearchBot", "PerplexityBot",
-                 "cohere-ai", "Applebot-Extended", "CCBot"]
+                 "cohere-ai", "Applebot-Extended", "CCBot", "meta-externalagent",
+                 "Amazonbot", "DuckAssistBot", "MistralAI-User"]
     ai_block = "".join(f"User-agent: {a}\nAllow: /\n\n" for a in ai_agents)
     (site / "robots.txt").write_text(
         "# CARC Documentation — https://carc.unm.edu\n"
