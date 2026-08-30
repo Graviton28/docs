@@ -69,6 +69,7 @@ Check the live monitors directly:
 * [UNM IT alerts](https://italerts.unm.edu/){ target=_blank } — campus-wide IT outage notices
 * [Network performance](http://perfsonar.alliance.unm.edu){ target=_blank } — perfSONAR measurements for the CARC network
 * [Easley external DNS check](https://dnschecker.org/#A/easley.alliance.unm.edu){ target=_blank } — worldwide resolution of easley.alliance.unm.edu
+* [System usage (XDMoD)](https://xdmod.alliance.unm.edu/){ target=_blank } — utilization metrics by system and principal investigator
 
 ## Networking
 

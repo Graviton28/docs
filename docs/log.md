@@ -2,7 +2,7 @@
 
 ## 2026-08-30
 
-* **Update**: System-status links now point straight at the live monitors — the [cluster login & website status board](https://stats.uptimerobot.com/kqt0LYLwFd), [UNM IT alerts](https://italerts.unm.edu/), [perfSONAR network performance](http://perfsonar.alliance.unm.edu), and the [Easley DNS check](https://dnschecker.org/#A/easley.alliance.unm.edu) — instead of the intermediary carc.unm.edu downtime page. The landing button and troubleshooting steps use the cluster status board; the support card and systems overview list all four.
+* **Update**: System-status links now point straight at the live monitors — the [cluster login & website status board](https://stats.uptimerobot.com/kqt0LYLwFd), [UNM IT alerts](https://italerts.unm.edu/), [perfSONAR network performance](http://perfsonar.alliance.unm.edu), the [Easley DNS check](https://dnschecker.org/#A/easley.alliance.unm.edu), and [XDMoD usage metrics](https://xdmod.alliance.unm.edu/) — instead of the intermediary carc.unm.edu downtime page. The landing button and troubleshooting steps use the cluster status board; the support card and systems overview list all five.
 
 * **Update**: The header logo is now a Googie starburst — the same 12-ray construction as the homepage hero's atomic bursts (alternating ray lengths, tip dots, cycling colors), in the cream/turquoise/white subset that reads on the cherry header.
 

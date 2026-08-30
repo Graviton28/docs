@@ -65,6 +65,8 @@ student researchers.
 
     [:octicons-arrow-right-24: Easley external DNS check](https://dnschecker.org/#A/easley.alliance.unm.edu){ target=_blank }
 
+    [:octicons-arrow-right-24: System usage (XDMoD)](https://xdmod.alliance.unm.edu/){ target=_blank }
+
 </div>
 
 ## When you open a ticket
