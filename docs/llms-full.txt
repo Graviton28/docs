@@ -11187,7 +11187,7 @@ Common reason codes:
 | `Priority` | Others are ahead of you (fairshare) | Wait, or request fewer/shorter resources; see [fairshare](../running-jobs/slurm-accounting.md) |
 | `Resources` | Not enough free nodes for your request | Reduce cores/memory/GPUs or choose another partition |
 | `QOSMax*` / limits | You've hit a partition or account limit | Check [resource limits](../systems/resource-limits.md) |
-| `ReqNodeNotAvail` | Nodes down or reserved (often maintenance) | Check the status page |
+| `ReqNodeNotAvail` | Nodes down or reserved (often maintenance) | Check the [system status page](https://carc.unm.edu/systems/downtime-notices.html){ target=_blank } |
 | `InvalidAccount` | Wrong `--account` | List yours: `sacctmgr show assoc user=$USER format=account` |
 
 ## My job failed or was killed
