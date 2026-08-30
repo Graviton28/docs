@@ -18,12 +18,9 @@ sources:
 
 # RAD-seq analysis with Stacks
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 Stacks is a common and [well documented](https://catchenlab.life.illinois.edu/stacks/){target=_blank} pipeline for processing RADseq data. RADseq data is a method of reduced representation genomic sequencing, where genomic DNA is cut up with restriction enzymes, which are then targeted by sequencing adapters. This allows a researcher to get thousands of loci randomly scattered across the genome, which can be sequenced at moderate depths for low prices. This is sufficient for many population genomic analyses, such as tests of population structure, phylogenetics, gene flow, and even coarse attempts to locate regions of the genome that are under selection. Stacks can be run with or without a reference genome, but using a reference genome is reccomended for improved accuracy.
 
-Stacks can easily be run on Wheeler with installed modules, and here we outline how with some simple "quality of life" adjustments and tips. We'll be focused on the reference based method, as the non-reference-based is sufficiently run through a driver script provided by the developers of Stacks (denovo_map.pl). We'll quickly mention it at the end. This can often be run on a single node on Wheeler, as the only intense step tends to be alignment, which is quick due to the small size of RADseq data. For example, a dataset of ~90 bird individuals with an average of 1 million reads/sample took four hours on one node. Organisms with larger genomes will take more time and memory.
+Stacks can easily be run on CARC systems with installed modules, and here we outline how with some simple "quality of life" adjustments and tips. We'll be focused on the reference based method, as the non-reference-based is sufficiently run through a driver script provided by the developers of Stacks (denovo_map.pl). We'll quickly mention it at the end. This can often be run on a single node, as the only intense step tends to be alignment, which is quick due to the small size of RADseq data. For example, a dataset of ~90 bird individuals with an average of 1 million reads/sample took four hours on one node. Organisms with larger genomes will take more time and memory.
 
 ## Preliminaries ##
 
@@ -89,7 +86,7 @@ mkdir stacks_out
 mkdir populations_out
 ```
 
-The modules you need are stacks, bwa, and samtools. All are availible on Conda, but you will almost certainly be running this on Wheeler (low resource use), which has recent versions of all three installed:
+The modules you need are stacks, bwa, and samtools. All are availible on Conda, but you will almost certainly be running this on a CARC cluster, which has recent versions of all three installed:
 
 ```bash
 module load stacks-2.41-gcc-7.4.0-7r6auk7

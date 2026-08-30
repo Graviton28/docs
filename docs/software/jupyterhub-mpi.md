@@ -20,9 +20,6 @@ sources:
 
 # MPI parallelization from JupyterHub
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 The following steps will show you the steps to use MPI through ipython's ipyparallel interface. 
 
 ### Create a PBS profile on CARC 
@@ -54,15 +51,15 @@ watch qstat -tn -u <username>
 You should see something like the following:
 
 Every 2.0s: qstat -t -n -u $USER     Wed Oct 23 09:15:14 2019                                                                                      
-wheeler-sn.alliance.unm.edu:
+hopper.alliance.unm.edu:
                                                                                   Req'd       Req'd	  Elap
 Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
 ----------------------- ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
-258370.wheeler-sn.alli  mfricke     default  jupyterhub        21730     1	1	--   08:00:00 R  00:06:45
+258370.hopper.alli  mfricke     default  jupyterhub        21730     1	1	--   08:00:00 R  00:06:45
    wheeler291/1
-258371.wheeler-sn.alli  mfricke     default  ipython_controll  22553     1	1	--   01:00:00 R  00:06:11
+258371.hopper.alli  mfricke     default  ipython_controll  22553     1	1	--   01:00:00 R  00:06:11
    wheeler291/2
-258372.wheeler-sn.alli  mfricke     default  ipython_engine	3213     2     16	--   01:00:00 R  00:06:11
+258372.hopper.alli  mfricke     default  ipython_engine	3213     2     16	--   01:00:00 R  00:06:11
    wheeler176/0-7+wheeler175/0-7
 ```
 

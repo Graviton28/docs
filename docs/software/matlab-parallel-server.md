@@ -18,9 +18,6 @@ sources:
 
 # MATLAB Parallel Server
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 MATLAB supports parallelization on desktop computers which can be used to increase the speed of analysis drastically. MATLAB also provides the MATLAB Parallel Server (previously the MATLAB Distributed Computing Server) which allows you to write MATLAB code on your local desktop or laptop computer and perform the computation using the CARC high-performance clusters. This QuickByte leads you through the steps needed to set this up. If you run into problems please send an email to help@carc.unm.edu and we will be happy to help.
 
 Please ensure you have the MATLAB Parallel Toolbox installed on your local comnputer.
@@ -48,7 +45,7 @@ Select no for shared job location.
 
 ![Wizard3](../assets/images/quickbytes/ParallelMatlabWizard3.png)
 
-Enter the address of the cluster you would like to use: for example, wheeler.alliance.unm.edu or xena.alliance.unm.edu.
+Enter the address of the cluster you would like to use: for example, hopper.alliance.unm.edu.
 
 Enter </users/> for the path to the PBS scripts (remote job storage location) that MATLAB will create on the cluster.
 
@@ -58,8 +55,8 @@ Select unique subfolders.
 
 Select the number of workers and number of threads per worker. This may depend on the program you are running but in general you should have one worker per core on the cluster. For set up and validation leave the number of workers at 1. Leave the threads per worker at 1 unless your software requires more threads.
 
-Specify the path to the matlab installation on the compute nodes: /opt/local/MATLAB/R2019a (or 2020a) for the Xena cluster, and /opt/local/MATLAB/R2019a for the Wheeler cluster. It is important that you are running the same version of MATLAB as you are 
-running on the wheeler cluster. 
+Specify the path to the MATLAB installation on the compute nodes (shown by `module show matlab` on the cluster). It is important that you are running the same version of MATLAB as you are 
+running on the cluster. 
 
 ![Wizard6](../assets/images/quickbytes/ParallelMatlabWizard6.png)
 
@@ -150,7 +147,7 @@ delete(p);                      % Clean up the worker pool
 To check that your jobs are indeed running at CARC, you can log in (ssh) to the cluster you have submitted your job to and check your job status. The command bellow shows only your jobs. 
 
 ```
-ssh username@wheeler.alliance.unm.edu 
+ssh username@hopper.alliance.unm.edu 
 
 qstat -u <username>
 ```

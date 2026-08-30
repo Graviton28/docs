@@ -18,16 +18,13 @@ sources:
 
 # Variant calling with GATK
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 This QuickByte outlines how to run a pipeline based on Genome Analysis Toolkit v4 (GATK4) best practices, a common pipeline for processing genomic data from Illumina platforms. Major modifications from “true” best practices are done to facilitate using this pipeline for both model and non-model organisms. Additionally, we show how to best parallelize these steps on CARC. Here we outline the steps for a single sample without parallelization, then with parallelization for specific steps, and finally provide an example of a fully parallelized script. Extensive documentation (including other Best Practices pipelines) can be found [here](https://gatk.broadinstitute.org/hc/en-us/sections/360007226651-Best-Practices-Workflows){target=_blank}. Specifically, the Best Practices informing this pipeline are the [data pre-processing workflow](https://gatk.broadinstitute.org/hc/en-us/articles/360035535912-Data-pre-processing-for-variant-discovery){target=_blank} and the [germline short variant discovery workflow](https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels-){target=_blank}. We aim to give you sample commands to emulate these scripts workflows, which will also allow you to easily modify the pipeline.
 
 The goal of this pipeline is to output Single Nucleotide Polymorphisms (SNPs) and optionally indels for a given dataset. This same pipeline can be used for humans, model organisms, and non-model organisms. Spots that can leverage information from model organisms are noted, but those steps can be bypassed. Because sample size and depth of coverage are often lower in non-model organisms, filtering recommendations and memory requirements will vary. Note that this assumes you are using paired-end data and will differ slightly if you use unpaired.
 
 The basic steps are aligning and processing raw reads into binary alignment map (BAM) files, optionally getting descriptive metrics about the samples’ sequencing and alignment, calling variants to produce genomic variant call format (GVCF) files, genotyping those GVCFs to produce VCFs, and filtering those variants for analysis.
 
-For CARC users, we have provided some test data to run this on from a paper on [the conservation genomics of sagegrouse](https://academic.oup.com/gbe/article/11/7/2023/5499175){target=_blank}. It is two sets of gzipped fastq files per species (i.e. eight total, 4 read and 4 read 2), a file with adapter sequences to trim, and a reference genome. They are located at /projects/shared/tutorials/GATK/. Copy them into your space like "cp /projects/shared/tutorials/quickbytes/GATK/* ~/path/to/directory". A .pbs script for running the pipeline (seen below) is also included, but you may learn more by running each step individually. The whole process with the script with 4 nodes on wheeler takes about 5.5 hours. If you run this script, note that it should output a filtered VCF file that's ~350 Mb.
+For CARC users, we have provided some test data to run this on from a paper on [the conservation genomics of sagegrouse](https://academic.oup.com/gbe/article/11/7/2023/5499175){target=_blank}. It is two sets of gzipped fastq files per species (i.e. eight total, 4 read and 4 read 2), a file with adapter sequences to trim, and a reference genome. They are located at /projects/shared/tutorials/GATK/. Copy them into your space like "cp /projects/shared/tutorials/quickbytes/GATK/* ~/path/to/directory". A .pbs script for running the pipeline (seen below) is also included, but you may learn more by running each step individually. The whole process with the script with 4 nodes takes about 5.5 hours. If you run this script, note that it should output a filtered VCF file that's ~350 Mb.
 
 Please note that you must cite any program you use in a paper. At the end of this, we have provided citations you would include for the programs we ran here.
 
@@ -78,7 +75,7 @@ This following line will create an environment and install the most recent versi
 conda create -n gatk-env -c bioconda -c conda-forge gatk4 bwa samtools picard trimmomatic
 ```
 
-Alternatively, you can load these as modules if you are on Wheeler (Xena only has Samtools now), but they may not be the most recent versions:
+Alternatively, you can load these as modules, but they may not be the most recent versions:
 
 ```bash
 module load bwa-0.7.17-intel-18.0.2-7jvpfu2

@@ -83,12 +83,8 @@ icon = "fontawesome/brands/github"
 link = "https://github.com/UNM-CARC"
 
 [[project.extra.social]]
-icon = "fontawesome/brands/x-twitter"
-link = "https://twitter.com/unmcarc"
-
-[[project.extra.social]]
 icon = "fontawesome/brands/youtube"
-link = "https://www.youtube.com/playlist?list=PLvr5gRBLi7VAzEB_t5aXOLHLfdIu2s1hZ"
+link = "https://www.youtube.com/@UNMCARC"
 
 [project.markdown_extensions]
 abbr = {}

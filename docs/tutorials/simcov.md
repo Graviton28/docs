@@ -18,10 +18,7 @@ sources:
 
 # SimCov epidemiological simulation
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
-This tutorial contains instructions for compiling and running the SimCov immunology model on the Wheeler cluster.
+This tutorial contains instructions for compiling and running the SimCov immunology model on CARC systems.
 
 ## Download the SimCov Source Code from GitHub
 
@@ -35,7 +32,7 @@ git clone --recurse-submodules https://github.com/AdaptiveComputationLab/simcov.
 ```
 
 ## Build SimCov from Source
-Load Wheeler modules and set UPCXX variables (NOTE: modules subject to change use 'module spider' to find availability):
+Load the required modules and set UPCXX variables (NOTE: modules subject to change use 'module spider' to find availability):
 ```
 export UPCXX_THREADMODE=seq
 export UPCXX_CODEMODE=opt
@@ -52,7 +49,7 @@ cd simcov
 The config files are in ~/simcov and end with ".config". You can edit them with a text editor.
 
 ## Submit a SimCov Job 
-A wheeler PBS script is provided for you. We have submitted the script below to the simcov developers - so hopefully by the time you pull simcov the code below will already be in the wheeler_simcov_run.pbs. If not update the script to contain the following: 
+A sample batch script is provided by the developers. We have submitted the script below to the simcov developers - so hopefully by the time you pull simcov the code below will already be in the repository's sample submission script. If not update the script to contain the following: 
  
 This PBS submission script will run simcov on a compute node using covid_default.config:
 ```

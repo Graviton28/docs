@@ -18,9 +18,6 @@ sources:
 
 # Getting R software
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 ## Getting R in the first place
 
 There are three options for accessing R at Carc and I will run through both approaches since there are pros and cons to each.
@@ -28,7 +25,7 @@ There are three options for accessing R at Carc and I will run through both appr
 The first option is to activate an installed R module. When logged in to a CARC system you can use the `module avail` command to see which R versions are available. If you have a CARC account open a terminal and log in to follow along. 
 
 ```
-yourusername@wheeler-sn$ module avail r-
+yourusername@hopper$ module avail r-
 ```
 
 which will print out the following (although I have truncated the output):
@@ -59,11 +56,11 @@ Use "module spider" to find all possible modules.
 Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
 ```
 
-These are all of the currently available R modules installed on Wheeler. In order to activate a R software module you use the `module load` command. For example:
+These are the R modules available on the cluster. In order to activate a R software module you use the `module load` command. For example:
 
 ```
-yourusername@wheeler-sn$ module load r-3.6.0-gcc-7.3.0-python2-7akol5t
-yourusername@wheeler-sn$ R
+yourusername@hopper$ module load r-3.6.0-gcc-7.3.0-python2-7akol5t
+yourusername@hopper$ R
 
 R version 3.6.0 (2019-04-26) -- "Planting of a Tree"
 Copyright (C) 2019 The R Foundation for Statistical Computing
@@ -92,8 +89,8 @@ Will load R-3.6.0 that has been compiled with GCC-7.3.0. Normally you will be ru
 The second option is to create a custom local Anaconda environment with the version of R that would like to run. In order to do this you need to first load an Anaconda software module and then create a new environment according to your specifications. For example, the following commands will create an Anaconda environment with R-3.4.3:
 
 ```
-yourusername@wheeler-sn$ module load anaconda3
-yourusername@wheeler-sn$ conda create --yes --name my_r_env r=3.4.3
+yourusername@hopper$ module load anaconda3
+yourusername@hopper$ conda create --yes --name my_r_env r=3.4.3
 Solving environment: done
 
 ## Package Plan ##
@@ -249,9 +246,9 @@ Executing transaction: done
 Then to use your newly created R environment you need to 1) make sure you have the Anaconda software module loaded, and 2), activate your conda envioronment.
 
 ```
-yourusername@wheeler-sn$ module load anaconda3
-yourusername@wheeler-sn$ source activate my_r_env
-yourusername@wheeler-sn$ R
+yourusername@hopper$ module load anaconda3
+yourusername@hopper$ source activate my_r_env
+yourusername@hopper$ R
 
 R version 3.4.3 (2017-11-30) -- "Kite-Eating Tree"
 Copyright (C) 2017 The R Foundation for Statistical Computing
@@ -275,6 +272,6 @@ Type 'q()' to quit R.
 ```
 ### Option 3
 
-The third option is to user JupyterHub. To do so direct your browser to https://wheeler.alliance.unm.edu:8000 and log in with your CARC credentials. Click on the "New" drop down menu and select "R". Now you have a R session running on Wheeler through JupyterHub.
+The third option is to user JupyterHub. To do so direct your browser to https://hopper.alliance.unm.edu and log in with your CARC credentials. Click on the "New" drop down menu and select "R". Now you have a R session running on the cluster through JupyterHub.
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_at_CARC/getting_R_software.md){target=_blank} (last source update 2019-12-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>

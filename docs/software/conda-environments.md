@@ -18,16 +18,13 @@ sources:
 
 # Managing conda environments
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 ### What is Anaconda?
 
 Fundamentally, Anaconda is a distribution of Python and R with a collection of associated packages optimized for data science. The installation and management of these packages is handled with the Anaconda package manager Conda. Conda is more than just a package manager however, it also creates and manages the environments that packages are installed in to. The usage of environments means you can have multiple versions of certain software installed in different environments and avoid conflicts or incompatibilities between software or dependencies. This is accomplished by installing packages into a separate directory which is then appended to your `PATH` when that environment is activated.
 
 ### Creating a new conda environment
 
-Let's create an environment on Wheeler to run a python machine learning script that uses the TensorFlow library, python version 3.5, and the pandas library. Once you log in to Wheeler using `ssh` load the anaconda software module with the command:
+Let's create an environment on Hopper to run a python machine learning script that uses the TensorFlow library, python version 3.5, and the pandas library. Once you log in to Hopper using `ssh` load the anaconda software module with the command:
 
 `module load anaconda3`
 

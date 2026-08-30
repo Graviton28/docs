@@ -18,9 +18,6 @@ sources:
 
 # Parallel CASA for radio astronomy
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 ### A Bit About CASA
 
 [CASA](https://casa.nrao.edu/){target=_blank} is the premier software for reducing radio data coming off of a variety of telescopes around the world, including the Jansky Very Large Array (VLA) and Atacama Large Millimeter Array (ALMA). 
@@ -42,8 +39,8 @@ Do we want singleGPU? Can request more nodes obviously. tasks-per-node we don't 
 Might want to create aliases for casa and mpi casa, just to make things quick
 
 ```bash
-alias casa='/users/sbruzew/xena-scratch/casa-blah-blah/bin/casa'
-alias mpicasa='/users/sbruzew/xena-scratch/casa-blah-blah/bin/mpicasa'
+alias casa='/path/to/casa/bin/casa'
+alias mpicasa='/path/to/casa/bin/mpicasa'
 ```
 
 Actually it doesn't like the alias when you run the command

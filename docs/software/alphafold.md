@@ -19,9 +19,6 @@ sources:
 
 # AlphaFold
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 Alphafold predicts the 3D structure of proteins from their amino acid sequence. A deep learning system that uses a combination of sequence alignment, evolutionary information, and physical principles to generate its predictions.
 Primarily written in python, the first version of alphafold was released in 2016, and has been updated as recently as 2022. There are two ways to run alphafold here at CARC. Option 1 is to use [localcolabfold.](https://github.com/YoshitakaMo/localcolabfold){target=_blank} You may find that Localcolabfold is easier to get running, however it will come with tradeoffs in certain areas, For Example, localcolabfold uses the pdb70 database, and there is not a great way to choose a different database to use. If you are unsure which version is best for you, we recommend you review the readme & issues for localcolabfold to determine if there are any features you may need. 
 
@@ -76,64 +73,13 @@ and move into that directory with
     cd alphafold
 
 ## Running Alphafold ##
-Inside the alphafold directory, you will be able to run the program using the slurm script, this script will differ based on the machine you are using. Xena is the machine at CARC that has GPU resources, so you will need to use xena if you hope to run using the gpus. 
+Inside the alphafold directory, you will be able to run the program using the slurm script, this script will differ based on the machine you are using. GPU nodes are available on the current CARC clusters — see the [systems overview](../systems/overview.md). 
 
-Choose one of the scripts below, in this case we will be using Hopper. Create a new file using your favorite editor. For example, 
+We will use the Hopper script below. Create a new file using your favorite editor. For example, 
 
     vim alphafold.sh
     
 then hit `i` to go into insert mode, and past the contents from the below script into this file. You can then add your email to get alerts about the run. When you are finished editing this file, type `ESC` to exit insert mode, followed by `:wq` to write & quite the file, this will save your changes. 
-
-### Xena Script ###
-Here, we are passing two additional flags when running the script, the first is `--partition=singleGPU` which will make sure we are assigned a node that only has a single gpu. The second is `-G 1` which is what tells the program to use the gpu. 
-While optimizing, you might find that switching to one of the nodes with multiple gpus will increase your speed. You can achieve this by instead adding the `--partition=dualGPU` as well as `-G 2`.
-
-    #SBATCH --job-name alphafold
-    #SBATCH --time=08:00:00
-    #SBATCH --ntasks=1
-    #SBATCH --cpus-per-task=8
-    #SBATCH --mem=20G
-    #SBATCH --partition=singleGPU
-    #SBATCH --output alphafold.out
-    #SBATCH --error alphafold.err
-    #SBATCH -G 1
-    
-    #SBATCH --mail-user < your email > 
-    #SBATCH --mail-type all
-    
-    module load singularity
-    
-    # Specify input/output paths
-    SINGULARITY_IMAGE_PATH=/projects/shared/singularity/
-    ALPHAFOLD_DATA_PATH=/carc/scratch/shared/alphafold/data/70
-    ALPHAFOLD_MODELS=$ALPHAFOLD_DATA_PATH/params
-    ALPHAFOLD_INPUT_FASTA=$SLURM_SUBMIT_DIR/input_test.fasta
-    NOW=$(date +"%Y_%m_%d_%H_%M_%S")
-    ALPHAFOLD_OUTPUT_DIR=$SLURM_SUBMIT_DIR/alphafold_output-$NOW
-    
-    mkdir -p $ALPHAFOLD_OUTPUT_DIR
-    
-    #Run the command
-    singularity run  --nv \
-     --bind $ALPHAFOLD_DATA_PATH:/data \
-     --bind $ALPHAFOLD_MODELS \
-     --bind $ALPHAFOLD_OUTPUT_DIR:/alphafold_output \
-     --bind $ALPHAFOLD_INPUT_FASTA:/input.fasta \
-     --bind .:/etc \
-     --pwd  /app/alphafold $SINGULARITY_IMAGE_PATH/alphafold-2.0.sif \
-     --fasta_paths=/input.fasta  \
-     --uniref90_database_path=/data/uniref90/uniref90.fasta  \
-     --data_dir=/data \
-     --mgnify_database_path=/data/mgnify/mgy_clusters.fa   \
-     --bfd_database_path=/data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt \
-     --uniclust30_database_path=/data/uniclust30/uniclust30_2018_08/uniclust30_2018_08 \
-     --pdb70_database_path=/data/pdb70/pdb70  \
-     --template_mmcif_dir=/data/pdb_mmcif/mmcif_files  \
-     --obsolete_pdbs_path=/data/pdb_mmcif/obsolete.dat \
-     --max_template_date=2020-05-14   \
-     --output_dir=/alphafold_output  \
-     --model_names='model_1' \
-     --preset=casp14
 
 ### Hopper Script ###
 

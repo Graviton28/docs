@@ -18,14 +18,11 @@ sources:
 
 # Demographic inference with PSMC
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 The [pairwise sequentially Markovian coalescent model](https://www.nature.com/articles/nature10231){target=_blank} is a popular method of leveraging single high-quality diploid genomes to infer the demographic history of a lineage over thousands to hundreds of thousands of years. It can be a great exploratory tool for genomic data, and can help you understand and generate biogeographic and evolutionary hypotheses. It leverages heterozygosity information to estimate local times of most recent common ancestor across the genome, which is then used to reconstruct demographic "stairway plots".
 
 It is implemented [by the authors of the original paper on GitHub](https://github.com/lh3/psmc){target=_blank}, but the documentation is difficult to understand and the method of calling variants is a bit outdated. Here I'll outline a simple pipeline for generating a consensus sequence using [high coverage (>18x) reads and sites with a depth of at least 10 reads](https://onlinelibrary.wiley.com/doi/10.1111/mec.13540){target=_blank} and a reference genome. Then, I'll go over how to run PSMC and perform bootstrapping. Note that nothing but the bootstrapping can work across different nodes, so if you find bootstrapping takes too long you can run it as a seperate job with more nodes.
 
-The runtime and resource requirements will vary based on genome, but the only step that can work across nodes is bootstrap generation. Wheeler will work for some samples, but nodes with more cores may be needed for others due to wall time limits.
+The runtime and resource requirements will vary based on genome, but the only step that can work across nodes is bootstrap generation. Standard nodes will work for some samples, but nodes with more cores may be needed for others due to wall time limits.
 
 
 ## Installation and setup

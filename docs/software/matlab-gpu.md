@@ -19,10 +19,7 @@ sources:
 
 # MATLAB on GPUs
 
-!!! warning "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
-1. [Using a single GPU on Xena](#1)
+1. [Using a single GPU](#1)
      1. [Use GPU in Interactive Session](#1.1)
           1. [Identify and Select GPU](#1.1.1)
           2. [Using Arrays on GPU](#1.1.2)
@@ -35,28 +32,28 @@ sources:
           2. [PBS Script](#1.2.2)
           3. [Slurm Script](#1.2.3)
           4. [Submit Job to Queue](#1.2.4)
-2. [Using Multiple GPUs on a single Xena node](#2)
+2. [Using multiple GPUs on a single node](#2)
     1. [MATLAB Script](#2.2)
     2. [Slurm Script](#2.2)
     3. [Submit Job to Queue](#2.3) 
 3. [Using Multiple Nodes with their own GPUs](#3)
 
 
-## Using a single GPU on Xena <a name="1"></a>
+## Using a single GPU <a name="1"></a>
 
 MATLAB allows the utilization of a single GPU that is part of a machine.
-The following sections show how to access and utilize a GPU on xena.
+The following sections show how to access and utilize a GPU.
 
 ### Use GPU in Interactive Session <a name="1.1"></a>
 
-First, we will open MATLAB in an interactive session on a xena compute node.
+First, we will open MATLAB in an interactive session on a GPU compute node.
 
 #### Identify and Select GPU <a name="1.1.1"></a>
 
 Start by requesting an interactive session:
 
 ```bash
-xena:~$ srun -G 1 --pty bash
+hopper:~$ srun -G 1 --pty bash
 ```
 
 Once you have a node allocated to you, load the MATLAB module and start a MATLAB session:
@@ -85,7 +82,7 @@ To get information about the available gpus, use this function:
 ```bash
 >> gpuDeviceTable
 ```
-That will print something that looks like this on Xena:
+That will print something like this:
 ```bash
 ans =
 
@@ -272,26 +269,20 @@ matlab -nodisplay -r gpu_matlab > gpu_matlab.out
 
 #### Submit Job to Queue <a name="1.2.4"></a>
 
-Now we can submit the job to the scheduler from the xena head node:
+Now we can submit the job to the scheduler from the head node:
 
-PBS script version:
 ```bash
-xena:~$ qsub gpu_matlab.pbs
-```
-
-Slurm script version:
-```bash
-xena:~$ sbatch gpu_matlab.sh
+hopper:~$ sbatch gpu_matlab.sh
 ```
 
 View the results:
 ```bash
-xena:~$ cat gpu_matlab.out
+hopper:~$ cat gpu_matlab.out
 ```
 
-## Using Multiple GPUs on a single Xena node <a name="2"></a>
+## Using multiple GPUs on a single node <a name="2"></a>
 
-Xena contains some nodes with two GPUs.
+Some CARC nodes contain multiple GPUs.
 MATLAB allows for the utilization of multiple GPUs on a single node in the same way you use multiple CPUs.
 To show how this works, below is an example MATLAB script that will create a logistic map using all available GPU's on the assigned node.
 
@@ -344,9 +335,9 @@ return
 ### Slurm Script <a name="2.2"></a>
 
 
-When using the `--partition dualGPU` flag on xena, you must also set `--cpus-per-task 2` and `-G 2` for MATLAB to correctly find and utilize the available GPUs.
+When requesting two GPUs, you must also set `--cpus-per-task 2` and `-G 2` for MATLAB to correctly find and utilize the available GPUs.
 These numbers should match, as MATLAB will use a CPU to access each GPU.
-For this partition, we ask for two CPUs and two GPUs.
+We ask for two CPUs and two GPUs.
 
 Create the following slurm scrpt called `gpu_logistic_map.sh`.
 Replace the `<DIR>` with the path to the directory containing the MATLAB script created above. 
@@ -364,7 +355,6 @@ Any output of the MATLAB script is redirected to `gpu_logistic_map.out`.
 #SBATCH --output gpu_logistic_map_job.out
 #SBATCH --error gpu_logistic_map_job.err
 #SBATCH --time 00:10:00
-#SBATCH --partition dualGPU
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 2
 #SBATCH -G 2
@@ -378,13 +368,13 @@ matlab -nodisplay -r gpu_logistic_map > gpu_logistic_map.out
 
 ### Submit Job to Queue <a name="2.3"></a>
 
-Now we can submit the job to the scheduler from the xena head node:
+Now we can submit the job to the scheduler from the head node:
 ```bash
-xena:~$ sbatch gpu_logistic_map.sh
+hopper:~$ sbatch gpu_logistic_map.sh
 ```
 View the results:
 ```bash
-xena:~$ cat gpu_logistic_map.out
+hopper:~$ cat gpu_logistic_map.out
 ```
 
 You can also view the `logistic_map.jpg` image using your preferred method.

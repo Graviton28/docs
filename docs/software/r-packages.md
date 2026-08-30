@@ -17,25 +17,12 @@ sources:
 
 # Installing R packages
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 ## Installing interactively
 
-This is the way that most of us are probably comfortable with installing packages with R since it is exactly the same way you install packages on your laptop. However, because the head node of CARC systems is a shared resource it is best practice to not compile binaries for R for an extended period of time because it can result in overhead on the head node. To avoid this we can request a compute node for interactive use, or even better, one of our debug nodes. The actual call to Torque, our job scheduler, will be explained in more depth later, but for now to request an interactive node type the following at the command prompt on Wheeler:
+This is the way that most of us are probably comfortable with installing packages with R since it is exactly the same way you install packages on your laptop. However, because the head node of CARC systems is a shared resource it is best practice to not compile binaries for R for an extended period of time because it can result in overhead on the head node. To avoid this we can request a compute node for interactive use, or even better, one of our debug nodes. The actual call to Slurm, our job scheduler, is explained in more depth later; for now, to request an interactive node type the following at the command prompt:
 
 ```
-yourusername@wheeler-sn$ qsub -I -l walltime=01:00:00 -l nodes=1:ppn=8
-qsub: waiting for job 201775.wheeler-sn.alliance.unm.edu to start
-qsub: job 201775.wheeler-sn.alliance.unm.edu ready
-
-Wheeler Portable Batch System Prologue
-Job Id: 201775.wheeler-sn.alliance.unm.edu
-Username: liphardt
-Job 201775.wheeler-sn.alliance.unm.edu running on nodes:
-wheeler272 
-
-prologue running on host: wheeler272
+yourusername@hopper$ srun --time=01:00:00 --ntasks=8 --pty bash
 ```
 Which will request a compute node and log you in once it is ready. Load a R software module with your preferred method and start a R session. If this is your first time installing a R package for one of the major versions you will be prompted to use a personal library.
 

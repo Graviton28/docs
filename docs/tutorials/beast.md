@@ -18,9 +18,6 @@ sources:
 
 # Bayesian phylogenetics with BEAST
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 Bayesian Evolutionary Analysis by Sampling Trees [(BEAST)](https://beast.community/index.html){target=_blank} is a software package that performs
 phylogenetic tree analysis with user specified molecular clock models using the widely popular Bayesian Markov chain Monte Carlo 
 (MCMC) methods. BEAST has its origins in modeling pathogen evolution in near real time but is also popular for other phylogenetic 
@@ -34,7 +31,7 @@ meta data and specific time modeling parameters, the graphical user interface [B
 allows users to upload nexus files and create .xml files with ease. Make sure that the version of beast in the module you load 
 matches the version of BEAUTi used to generate the .xml files. 
 
-## Running BEAST on Wheeler
+## Running BEAST on CARC systems
 
 Once a .xml file is generated, beast can be easily run on CARC. An example .pbs script is as follows: 
 

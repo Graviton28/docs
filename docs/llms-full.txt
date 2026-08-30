@@ -421,9 +421,6 @@ sources:
 
 # SSH keys and client configuration
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 Once you start computing you will be logging in to the CARC systems fairly often and having to type your username at the machine address will become tedious. In order to alleviate this tedium it is beneficial to generate ssh keys and a ssh config file. The ssh keys bypass the need to enter your password each time you log in, and the config file stores the addresses of all the machines you are logging in to. 
 
 ### SSH key generation
@@ -470,24 +467,17 @@ Since your home directory is shared across all machines at CARC you only need to
 To make logging in to CARC even easier we also recommend setting up a ssh config file which allows you to simply type `ssh machinename` instead of your username at the machine address. To set up this file simply copy the example below and save it to a text document in your `ssh` folder, which is found at `~/.ssh/`. Change the user to your CARC username and you are set to log in quickly and efficiently. You can add machines based on which ones you have access to. 
 
 
-    Host wheeler
-```bash
-hostname wheeler.alliance.unm.edu
-user CHANGEME
-port 22
 ```
-    Host hopper
-```bash
-hostname hopper.alliance.unm.edu
-user CHANGEME
-port 22
-```
-    Host xena
-```bash
-hostname xena.alliance.unm.edu
-user CHANGEME
-ForwardX11 yes
-port 22
+Host hopper
+    hostname hopper.alliance.unm.edu
+    user CHANGEME
+    port 22
+
+Host easley
+    hostname easley.alliance.unm.edu
+    user CHANGEME
+    ForwardX11 yes
+    port 22
 ```
 
 
@@ -500,7 +490,7 @@ Note that on the CARC clusters by default, your ssh configuration file will cont
     IdentityFile ~/.ssh/cluster
     StrictHostKeyChecking=no
 
-This helps ensure you're able to connect freely across all of the CARC clusters, for example while logged in to hopper you can just type `ssh xena`.
+This helps ensure you're able to connect freely across all of the CARC clusters, for example while logged in to hopper you can just type `ssh easley`.
 
 The issue here will arise if you need to add a new ssh key for some reason, say, you need to add an ssh key so you're able to make edits to a git repository from the CARC clusters. If this is the case, you can start by creating a new ssh key as explained in the previous steps of this tutorial. 
 
@@ -760,6 +750,30 @@ sources:
 | **CPU GHz** | 2.00 | 2.00 | 2.60 | 2.60 |
 | **GPU** | N/A | N/A | 2 x Nvidia Tesla<br>K40M per node | 1 x Nvidia Tesla<br>K40M per node |
 
+### Historical queue limits
+
+Queue limits in force when these systems were retired:
+
+#### Xena
+
+| Queue                | GPU                             | Bigmem                                | Debug    |
+|---:                  |:---:                            |:---:                                  |:---:     |
+| Number of Processors | 192                             | 128                                   | 8        |
+| Number of Nodes      | 12 (singleGPU) <br> 4 (dualGPU) | 1                                     | 2        |
+| Processors per Node  | 16                              | 32                                    | 4        |
+| Walltime(H:M:S)      | 48:00:00                        | 48:00:00                              | 04:00:00 |
+| Memory Limit         | 60 Gb (singleGPU and dualGPU)   | 1 Tb (bigmem-1TB)<br>3 Tb (bigmem-3TB)| 60 Gb    |
+
+#### Wheeler
+
+|                Queue: |   Default  |    Debug   |
+|----------------------:|:----------:|:----------:|
+| Number of Processors  |     400    |     32     |
+|      Number of Nodes  |     50     |      4     |
+|   Processors per Node |      8     |      8     |
+|       Walltime(H:M:S) |  48:00:00  |  04:00:00  |
+|         Memory Limit  |    44 Gb   |    44 Gb   |
+
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/webinfo/blob/master/systems_information.md){target=_blank} (last source update 2023-01-23). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
 ---8<--- https://unm-carc.github.io/docs/systems/overview/
@@ -871,47 +885,21 @@ sources:
 
 # Storage and compute usage policies
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](overview.md).
+Home directories have a soft limit of 100GB and a hard limit of 200GB. Once you exceed the soft limit we will ask you to reduce your usage. You will not be able to write data beyond the hard limit. Project space is limited to 250 GB. Scratch storage is limited to 1 TB. Center-wide project scratch space is limited to 1 TB and user scratch is limited to 100G (`/carc/scratch`). To purchase additional storage please see our [pricing spreadsheet](https://carc.unm.edu/research/premium-research-computing-services.html){target=_blank}.
 
-Home directories have a soft limit of 100GB and a hard limit of 200GB. Once you exceed the soft limit we will ask you to reduce your usage. You will not be able to write data beyond the hard limit. Project space is limited to 250 GB. Scratch storage is limited to 1 TB (2 TB on Xena). Center-wide project scratch space is limited to 1 TB and user scratch is limited to 100G (/carc/scratch). To purchase additional storage please see our [pricing spreadsheet](https://carc.unm.edu/research/premium-research-computing-services.html){target=_blank}.
+The `quotas` command shows your quota usage.
 
-The 'quotas' command shows your quota usage.
-
-# Compute Usage Policy
+## Compute usage policy
 
 To ensure that all research and class projects get their fair share of the clusters and to prevent any one group from using a disproportionate amount of resources, we utilize Slurm’s built-in job accounting and fairshare system.
 The cluster is a limited resource and Fairshare allows us to ensure everyone gets a fair opportunity to use it regardless of how big or small the group is.
 Your compute resource allocation is shared among everyone in the slurm account you select. 
 
-For more on slurm accounts see this quickbyte: [https://github.com/UNM-CARC/QuickBytes/blob/master/slurm_accounting.md](../running-jobs/slurm-accounting.md)
+For more on Slurm accounts see [Slurm accounting](../running-jobs/slurm-accounting.md).
 Note that your slurm account is not the same as your CARC login account.
 
 To see the predicted start time of your job based on your fairshare score, use the following command:
 `squeue --start --job <job_id>`
-
-## Xena Configuration
-
-| Queue                | GPU                             | Bigmem                                | Debug    |
-|---:                  |:---:                            |:---:                                  |:---:     |
-| Number of Processors | 192                             | 128                                   | 8        |
-| Number of Nodes      | 12 (singleGPU) <br> 4 (dualGPU) | 1                                     | 2        |
-| Processors per Node  | 16                              | 32                                    | 4        |
-| Walltime(H:M:S)      | 48:00:00                        | 48:00:00                              | 04:00:00 |
-| Memory Limit         | 60 Gb (singleGPU and dualGPU)   | 1 Tb (bigmem-1TB)<br>3 Tb (bigmem-3TB)| 60 Gb    |
-
-
-## Wheeler Configuration
-
-
-|                Queue: |   Default  |    Debug   |
-|----------------------:|:----------:|:----------:|
-| Number of Processors  |     400    |     32     |
-|      Number of Nodes  |     50     |      4     |
-|   Processors per Node |      8     |      8     |
-|       Walltime(H:M:S) |  48:00:00  |  04:00:00  |
-|         Memory Limit  |    44 Gb   |    44 Gb   |
-
 
 ## Hopper Configuration
 
@@ -1405,25 +1393,25 @@ sources:
 
 CARC provides home, project, and scratch directories on all compute systems.
 
-User home directories are subdirectories of /users. User project directories are subdirectories of /project. Scratch directories are subdirectories of the directory /scratch.
+User home directories are subdirectories of `/users`. User project directories are subdirectories of `/project`. Scratch directories are subdirectories of `/scratch`.
 
 ## Storage at CARC
 
-CARC supports a number of different storage devices for users to read, write, and store their data and results on.  The different devices vary in size, I/O speed (Figure 1), distance to the reading/writing process using them, whether they have quotas to limit their use, and whether they are backed up or not. Certain storage devices, like the home directories and machine-scratch’s, are shared resources, and serve multiple users simultaneously. This means that problems caused by poorly chosen storage locations could interrupt the work of other users as well as your own. Don’t hesitate to open a help ticket if you have any questions about, for example, where to store a large dataset, how to read it quickly, how to write a PBS script that first moves data onto the compute node in order to take advantage of the fast I/O, or any other issue related to storage at CARC.
+CARC supports a number of different storage devices for users to read, write, and store their data and results on.  The different devices vary in size, I/O speed (Figure 1), distance to the reading/writing process using them, whether they have quotas to limit their use, and whether they are backed up or not. Certain storage devices, like the home directories and machine-scratch’s, are shared resources, and serve multiple users simultaneously. This means that problems caused by poorly chosen storage locations could interrupt the work of other users as well as your own. Don’t hesitate to open a help ticket if you have any questions about, for example, where to store a large dataset, how to read it quickly, how to write a Slurm batch script that first moves data onto the compute node in order to take advantage of the fast I/O, or any other issue related to storage at CARC.
 
-For storage limits [see the resource policy page](https://github.com/UNM-CARC/QuickBytes/blob/master/Resource_usage.md){target=_blank}.
+For storage limits see the [resource limits page](resource-limits.md).
 
 ## Types of Storage
 
 At CARC, there are four different types of storage:
 
-* Home directory - /users/username - Upon logging into any CARC machine, you will find yourself in your home directory, in /user/username, replacing “username” with your actual username (note, the home directory also goes by “~” and “$HOME”). You may notice that regardless of which machine you login to, the contents of your home directory are identical. This is because they are not part of any specific machine, but rather they are stored on separate computer entirely, and are then mounted by every head and compute node at CARC.
+* Home directory - `/users/username` - Upon logging into any CARC machine, you will find yourself in your home directory, in `/users/username`, replacing “username” with your actual username (note, the home directory also goes by `~` and `$HOME`). You may notice that regardless of which machine you login to, the contents of your home directory are identical. This is because they are not part of any specific machine, but rather they are stored on separate computer entirely, and are then mounted by every head and compute node at CARC.
 
-* Machine-wide scratch disk  - ~/machine-scratch -> /machine/scratch/username - The most common place where data is stored after it is generated by running calculations, and before it is further analyses and then either downloaded, deleted, or moved when a long term data storage or archival plan is implemented. These are not backed up and CARC reserves the right to delete this data without advanced warning.
+* Machine-wide scratch disk - `~/machine-scratch` → `/machine/scratch/username` - The most common place where data is stored after it is generated by running calculations, and before it is further analyses and then either downloaded, deleted, or moved when a long term data storage or archival plan is implemented. These are not backed up and CARC reserves the right to delete this data without advanced warning.
 
-* Hard drive (only on the compute nodes) - /tmp - [On the machines that support these](https://carc.unm.edu/systems/Systems1.html){target=_blank}, compute nodes have their own hard drives installed and they can be accessed simply by creating a directory in /tmp and then placing data there (see sample PBS script below). Since the hard drive is dedicated to that compute node, this is one of the fastest places for I/O. Files stores here will be cleared at the end of the job.
+* Hard drive (only on the compute nodes) - `/tmp` - On the machines that support these, compute nodes have their own hard drives installed and they can be accessed simply by creating a directory in `/tmp` and then placing data there (see the sample script below). Since the hard drive is dedicated to that compute node, this is one of the fastest places for I/O. Files stores here will be cleared at the end of the job.
 
-* Shared memory (only on the compute nodes) - /dev/shm - This is actually direct access to the machine's memory for use in storage. The directory at /dev/shm appears to the user as a normal read/write accessible directory just like /tmp, but files written or read from any directory within are simply being stored into memory as if they were on a disk. This provides extremely fast I/O speeds, and is very useful if small temporary files are written and read often. Be careful with the amount of data you write here, however, because this competes directly with all processes using the compute nodes RAM, including yours. Like /tmp, /dev/shm is also cleared at the end of a PBS job, so you must move any data you want to keep off the compute node before the end of the calculation or walltime.
+* Shared memory (only on the compute nodes) - `/dev/shm` - This is actually direct access to the machine's memory for use in storage. The directory at `/dev/shm` appears to the user as a normal read/write accessible directory just like `/tmp`, but files written or read from any directory within are simply being stored into memory as if they were on a disk. This provides extremely fast I/O speeds, and is very useful if small temporary files are written and read often. Be careful with the amount of data you write here, however, because this competes directly with all processes using the compute nodes RAM, including yours. Like `/tmp`, `/dev/shm` is also cleared at the end of a job, so you must move any data you want to keep off the compute node before the end of the calculation or walltime.
 
 ![storage_img](../assets/images/quickbytes/storage_diagram.jpeg)
 
@@ -1441,24 +1429,27 @@ We recommend that the first type of data be stored in your home directory, which
 
 ## Example use of a node's hard drive
 
-This PBS script that will first copy an input file to the compute node (large_input_data.dat), perform calculations ("run_my_program"), and then copy all results of the calculation back into the directory where it was first taken:
+This Slurm script first copies an input file (large_input_data.dat) to the compute node, runs the calculation ("run_my_program"), and then copies all results back into the submission directory:
 
-```
-#PBS -l nodes=1:ppn=8
-#PBS -l walltime=1:00:00
-#PBS -N Local_storage
+```bash
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=8
+#SBATCH --time=1:00:00
+#SBATCH --job-name=local_storage
 
-# First define a directory location as a variable, create the directory once the job has started, move data there, then cd to it and run  
-TEMP_DIR=/tmp/$USER/$PBS_JOBID
-mkdir -p “$TEMP_DIR”
-cp -r ${PBS_O_WORKDIR}/large_input_data.dat “$TEMP_DIR” 
+# Define a directory on the node-local disk, create it once the job
+# has started, move data there, then cd to it and run
+TEMP_DIR=/tmp/$USER/$SLURM_JOB_ID
+mkdir -p "$TEMP_DIR"
+cp -r $SLURM_SUBMIT_DIR/large_input_data.dat "$TEMP_DIR"
 cd $TEMP_DIR
 
 # Now run my program
-run_my_program  
+run_my_program
 
-# Now job has finished, so mv data back to where it came
-cp -r  $TEMP_DIR/* $PBS_O_WORKDIR
+# The job has finished, so move data back to where it came from
+cp -r $TEMP_DIR/* $SLURM_SUBMIT_DIR
 
 # Finally clean up the temporary directory
 rm -r $TEMP_DIR
@@ -2985,9 +2976,6 @@ sources:
 
 # AlphaFold
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 Alphafold predicts the 3D structure of proteins from their amino acid sequence. A deep learning system that uses a combination of sequence alignment, evolutionary information, and physical principles to generate its predictions.
 Primarily written in python, the first version of alphafold was released in 2016, and has been updated as recently as 2022. There are two ways to run alphafold here at CARC. Option 1 is to use [localcolabfold.](https://github.com/YoshitakaMo/localcolabfold){target=_blank} You may find that Localcolabfold is easier to get running, however it will come with tradeoffs in certain areas, For Example, localcolabfold uses the pdb70 database, and there is not a great way to choose a different database to use. If you are unsure which version is best for you, we recommend you review the readme & issues for localcolabfold to determine if there are any features you may need. 
 
@@ -3042,64 +3030,13 @@ and move into that directory with
     cd alphafold
 
 ## Running Alphafold ##
-Inside the alphafold directory, you will be able to run the program using the slurm script, this script will differ based on the machine you are using. Xena is the machine at CARC that has GPU resources, so you will need to use xena if you hope to run using the gpus. 
+Inside the alphafold directory, you will be able to run the program using the slurm script, this script will differ based on the machine you are using. GPU nodes are available on the current CARC clusters — see the [systems overview](../systems/overview.md). 
 
-Choose one of the scripts below, in this case we will be using Hopper. Create a new file using your favorite editor. For example, 
+We will use the Hopper script below. Create a new file using your favorite editor. For example, 
 
     vim alphafold.sh
     
 then hit `i` to go into insert mode, and past the contents from the below script into this file. You can then add your email to get alerts about the run. When you are finished editing this file, type `ESC` to exit insert mode, followed by `:wq` to write & quite the file, this will save your changes. 
-
-### Xena Script ###
-Here, we are passing two additional flags when running the script, the first is `--partition=singleGPU` which will make sure we are assigned a node that only has a single gpu. The second is `-G 1` which is what tells the program to use the gpu. 
-While optimizing, you might find that switching to one of the nodes with multiple gpus will increase your speed. You can achieve this by instead adding the `--partition=dualGPU` as well as `-G 2`.
-
-    #SBATCH --job-name alphafold
-    #SBATCH --time=08:00:00
-    #SBATCH --ntasks=1
-    #SBATCH --cpus-per-task=8
-    #SBATCH --mem=20G
-    #SBATCH --partition=singleGPU
-    #SBATCH --output alphafold.out
-    #SBATCH --error alphafold.err
-    #SBATCH -G 1
-    
-    #SBATCH --mail-user < your email > 
-    #SBATCH --mail-type all
-    
-    module load singularity
-    
-    # Specify input/output paths
-    SINGULARITY_IMAGE_PATH=/projects/shared/singularity/
-    ALPHAFOLD_DATA_PATH=/carc/scratch/shared/alphafold/data/70
-    ALPHAFOLD_MODELS=$ALPHAFOLD_DATA_PATH/params
-    ALPHAFOLD_INPUT_FASTA=$SLURM_SUBMIT_DIR/input_test.fasta
-    NOW=$(date +"%Y_%m_%d_%H_%M_%S")
-    ALPHAFOLD_OUTPUT_DIR=$SLURM_SUBMIT_DIR/alphafold_output-$NOW
-    
-    mkdir -p $ALPHAFOLD_OUTPUT_DIR
-    
-    #Run the command
-    singularity run  --nv \
-     --bind $ALPHAFOLD_DATA_PATH:/data \
-     --bind $ALPHAFOLD_MODELS \
-     --bind $ALPHAFOLD_OUTPUT_DIR:/alphafold_output \
-     --bind $ALPHAFOLD_INPUT_FASTA:/input.fasta \
-     --bind .:/etc \
-     --pwd  /app/alphafold $SINGULARITY_IMAGE_PATH/alphafold-2.0.sif \
-     --fasta_paths=/input.fasta  \
-     --uniref90_database_path=/data/uniref90/uniref90.fasta  \
-     --data_dir=/data \
-     --mgnify_database_path=/data/mgnify/mgy_clusters.fa   \
-     --bfd_database_path=/data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt \
-     --uniclust30_database_path=/data/uniclust30/uniclust30_2018_08/uniclust30_2018_08 \
-     --pdb70_database_path=/data/pdb70/pdb70  \
-     --template_mmcif_dir=/data/pdb_mmcif/mmcif_files  \
-     --obsolete_pdbs_path=/data/pdb_mmcif/obsolete.dat \
-     --max_template_date=2020-05-14   \
-     --output_dir=/alphafold_output  \
-     --model_names='model_1' \
-     --preset=casp14
 
 ### Hopper Script ###
 
@@ -3211,9 +3148,6 @@ sources:
 ---
 
 # Conda channels and pip
-
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
 
 #### Installing packages with pip
 
@@ -3371,16 +3305,13 @@ sources:
 
 # Managing conda environments
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 ### What is Anaconda?
 
 Fundamentally, Anaconda is a distribution of Python and R with a collection of associated packages optimized for data science. The installation and management of these packages is handled with the Anaconda package manager Conda. Conda is more than just a package manager however, it also creates and manages the environments that packages are installed in to. The usage of environments means you can have multiple versions of certain software installed in different environments and avoid conflicts or incompatibilities between software or dependencies. This is accomplished by installing packages into a separate directory which is then appended to your `PATH` when that environment is activated.
 
 ### Creating a new conda environment
 
-Let's create an environment on Wheeler to run a python machine learning script that uses the TensorFlow library, python version 3.5, and the pandas library. Once you log in to Wheeler using `ssh` load the anaconda software module with the command:
+Let's create an environment on Hopper to run a python machine learning script that uses the TensorFlow library, python version 3.5, and the pandas library. Once you log in to Hopper using `ssh` load the anaconda software module with the command:
 
 `module load anaconda3`
 
@@ -3653,14 +3584,11 @@ sources:
 
 # Parallel Python with Dask and scikit-learn
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 [Dask](https://dask.org/){target=_blank} uses existing Python APIs and data structures to make it easy to switch between Numpy, Pandas, Scikit-learn to their Dask-powered equivalents. [SciKit-learn](https://scikit-learn.org/stable/){target=_blank} is a machine learning tool for Python.
 
 ### Log in to JupyterHub
 
-On a computer connected to ethernet on main campus, open an internet browser go to https://wheeler.alliance.unm.edu:8000 where you will be asked to log in. Use your carc username and password. This logs you into a compute node where your programs in Jupyter notebook will be running. Because it is beginning an interactive job it may not be instant depending on resources available at the time. Once logged in, you can see all the files in your home directory. 
+On a computer connected to ethernet on main campus, open an internet browser go to https://hopper.alliance.unm.edu where you will be asked to log in. Use your carc username and password. This logs you into a compute node where your programs in Jupyter notebook will be running. Because it is beginning an interactive job it may not be instant depending on resources available at the time. Once logged in, you can see all the files in your home directory. 
 
 To be kind to other users when you are finished with JupyterHub for the day, please be sure to go to "control panel" in the top righthand corner and click "stop my server". This will free up the node for other users. Otherwise, the default walltime is 12 hours. 
 
@@ -3861,12 +3789,10 @@ sources:
 
 # Installing deep learning packages
 
-!!! warning "Legacy content"
-    This guide was written for the retired Xena cluster and its NVIDIA K40
-    GPUs. The conda workflow below still applies, but choose framework builds
-    that match the GPUs on the [current clusters](../systems/overview.md)
-    (A100 on Hopper; L40S and H100 on Easley), and check exact package
-    versions before installing.
+!!! note "Match builds to current GPUs"
+    Choose framework builds that match the GPUs on the
+    [current clusters](../systems/overview.md) (A100 on Hopper; L40S and
+    H100 on Easley), and check exact package versions before installing.
 
 This step-by-step guide walks through installing deep learning and machine
 learning tools in a [conda environment](conda-intro.md) on CARC systems.
@@ -4012,9 +3938,6 @@ sources:
 
 # Getting R software
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 ## Getting R in the first place
 
 There are three options for accessing R at Carc and I will run through both approaches since there are pros and cons to each.
@@ -4022,7 +3945,7 @@ There are three options for accessing R at Carc and I will run through both appr
 The first option is to activate an installed R module. When logged in to a CARC system you can use the `module avail` command to see which R versions are available. If you have a CARC account open a terminal and log in to follow along. 
 
 ```
-yourusername@wheeler-sn$ module avail r-
+yourusername@hopper$ module avail r-
 ```
 
 which will print out the following (although I have truncated the output):
@@ -4053,11 +3976,11 @@ Use "module spider" to find all possible modules.
 Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
 ```
 
-These are all of the currently available R modules installed on Wheeler. In order to activate a R software module you use the `module load` command. For example:
+These are the R modules available on the cluster. In order to activate a R software module you use the `module load` command. For example:
 
 ```
-yourusername@wheeler-sn$ module load r-3.6.0-gcc-7.3.0-python2-7akol5t
-yourusername@wheeler-sn$ R
+yourusername@hopper$ module load r-3.6.0-gcc-7.3.0-python2-7akol5t
+yourusername@hopper$ R
 
 R version 3.6.0 (2019-04-26) -- "Planting of a Tree"
 Copyright (C) 2019 The R Foundation for Statistical Computing
@@ -4086,8 +4009,8 @@ Will load R-3.6.0 that has been compiled with GCC-7.3.0. Normally you will be ru
 The second option is to create a custom local Anaconda environment with the version of R that would like to run. In order to do this you need to first load an Anaconda software module and then create a new environment according to your specifications. For example, the following commands will create an Anaconda environment with R-3.4.3:
 
 ```
-yourusername@wheeler-sn$ module load anaconda3
-yourusername@wheeler-sn$ conda create --yes --name my_r_env r=3.4.3
+yourusername@hopper$ module load anaconda3
+yourusername@hopper$ conda create --yes --name my_r_env r=3.4.3
 Solving environment: done
 
 ## Package Plan ##
@@ -4243,9 +4166,9 @@ Executing transaction: done
 Then to use your newly created R environment you need to 1) make sure you have the Anaconda software module loaded, and 2), activate your conda envioronment.
 
 ```
-yourusername@wheeler-sn$ module load anaconda3
-yourusername@wheeler-sn$ source activate my_r_env
-yourusername@wheeler-sn$ R
+yourusername@hopper$ module load anaconda3
+yourusername@hopper$ source activate my_r_env
+yourusername@hopper$ R
 
 R version 3.4.3 (2017-11-30) -- "Kite-Eating Tree"
 Copyright (C) 2017 The R Foundation for Statistical Computing
@@ -4269,7 +4192,7 @@ Type 'q()' to quit R.
 ```
 ### Option 3
 
-The third option is to user JupyterHub. To do so direct your browser to https://wheeler.alliance.unm.edu:8000 and log in with your CARC credentials. Click on the "New" drop down menu and select "R". Now you have a R session running on Wheeler through JupyterHub.
+The third option is to user JupyterHub. To do so direct your browser to https://hopper.alliance.unm.edu and log in with your CARC credentials. Click on the "New" drop down menu and select "R". Now you have a R session running on the cluster through JupyterHub.
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_at_CARC/getting_R_software.md){target=_blank} (last source update 2019-12-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
@@ -4295,21 +4218,18 @@ sources:
 
 # Gurobi optimizer with R
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 [Gurobi optimizer](https://www.gurobi.com/products/gurobi-optimizer/){target=_blank} is a problem solving software that can be used within R. It can solve integer, linear, and quadratic
 programming optimizations. These techniques can help to find the answers to complex models. 
 
 
 ## Example of running Gurobi optimizer with R at CARC
 
-There are modules for both Gurobi and R on the wheeler cluster. All you need to do is load them, and then start an R
+There are modules for both Gurobi and R on the CARC clusters. All you need to do is load them, and then start an R
 session. This command is for version 8.1.0, however there are other versions of gurobi available (enter `module avail gurobi` to see a full list).
 ```
-username@wheeler-sn:~$ module load gurobi/8.1.0
-username@wheeler-sn:~$ module load r-3.6.0-gcc-7.3.0-python2-7akol5t
-username@wheeler-sn:~$ R
+username@hopper:~$ module load gurobi/8.1.0
+username@hopper:~$ module load r-3.6.0-gcc-7.3.0-python2-7akol5t
+username@hopper:~$ R
 ```
 Once you have started an R session, you can install packages just as you would in R. If you ever run into issues loading 
 packages in R at CARC, you can reach out for assistance by emailling help@carc.unm.edu. One piece of advice if you are using 
@@ -4377,9 +4297,6 @@ sources:
 
 # MPI parallelization from JupyterHub
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 The following steps will show you the steps to use MPI through ipython's ipyparallel interface. 
 
 ### Create a PBS profile on CARC 
@@ -4411,15 +4328,15 @@ watch qstat -tn -u <username>
 You should see something like the following:
 
 Every 2.0s: qstat -t -n -u $USER     Wed Oct 23 09:15:14 2019                                                                                      
-wheeler-sn.alliance.unm.edu:
+hopper.alliance.unm.edu:
                                                                                   Req'd       Req'd	  Elap
 Job ID                  Username    Queue    Jobname          SessID  NDS   TSK   Memory      Time    S   Time
 ----------------------- ----------- -------- ---------------- ------ ----- ------ --------- --------- - ---------
-258370.wheeler-sn.alli  mfricke     default  jupyterhub        21730     1	1	--   08:00:00 R  00:06:45
+258370.hopper.alli  mfricke     default  jupyterhub        21730     1	1	--   08:00:00 R  00:06:45
    wheeler291/1
-258371.wheeler-sn.alli  mfricke     default  ipython_controll  22553     1	1	--   01:00:00 R  00:06:11
+258371.hopper.alli  mfricke     default  ipython_controll  22553     1	1	--   01:00:00 R  00:06:11
    wheeler291/2
-258372.wheeler-sn.alli  mfricke     default  ipython_engine	3213     2     16	--   01:00:00 R  00:06:11
+258372.hopper.alli  mfricke     default  ipython_engine	3213     2     16	--   01:00:00 R  00:06:11
    wheeler176/0-7+wheeler175/0-7
 ```
 
@@ -4648,18 +4565,15 @@ sources:
 
 # MATLAB deep learning
 
-!!! warning "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 MATLAB has great tools for deep learning and convolutional neural networks (CNNs).
-These tools can make use of GPUs, which are available for use on the Xena cluster.
+These tools can make use of GPUs, which are available on the CARC clusters — see the [current systems](../systems/overview.md).
 This Quickbytes tutorial will mimic the official Mathworks tutorial on using deep learning for JPEG Image Deblocking.
 To see that tutorial, follow this [link.](https://www.mathworks.com/help/images/jpeg-image-deblocking-using-deep-learning.html#JPEGImageDeblockingUsingDeepLearningExample-2 "MathWorks Deep Learning Tutorial")
 
 Before we begin, create a directory named 'deepLearningExample' from within your home directory.
 ```bash
-xena:~$ cd ~
-xena:~$ mkdir deepLearningExample
+hopper:~$ cd ~
+hopper:~$ mkdir deepLearningExample
 ```
 
 ## Table of Contents
@@ -4695,26 +4609,26 @@ In order to fully train a model, please schedule a job using a slurm script and 
 
 ### Open MATLAB <a name="1.1"></a>
 
-It is highly reccommended to use the dualGPU partition and request two GPUs.
-The commands below will show you how to use both the single and dual GPU partitions.
+It is highly recommended to request two GPUs when available.
+The commands below show both single- and dual-GPU requests.
 
-Once logged into Xena with X11 fowarding, you can begin an interactive job on a compute node.
+Once logged in with X11 forwarding, you can begin an interactive job on a compute node.
 ```bash
-xena:~$ srun --partition singleGPU --x11 --mem 0 --ntasks 1 --cpus-per-task 16 -G 1 --pty bash
+hopper:~$ srun --x11 --mem 0 --ntasks 1 --cpus-per-task 16 -G 1 --pty bash
 ```
 
 This requests a single node and gpu with X11 forwarding.
 
 To use a machine with two gpus, use this command instead:
 ```bash
-xena:~$ srun --partition dualGPU --x11 --mem 0 --ntasks 1 --cpus-per-task 16 -G 2 --pty bash
+hopper:~$ srun --x11 --mem 0 --ntasks 1 --cpus-per-task 16 -G 2 --pty bash
 ```
 
 Once you are assigned a compute node, cd into our new directory, then start an interactive session of MATLAB:
 ```bash
-xena-01:~$ cd deepLearningExample/
-xena-01:~$ module load matlab
-xena-01:~$ matlab
+node:~$ cd deepLearningExample/
+node:~$ module load matlab
+node:~$ matlab
 ```
 
 This should bring up the MATLAB graphical user interface (GUI).
@@ -4750,19 +4664,19 @@ Follow these steps to copy the required example code into your new directory.
 
 1. Ssh into the compute node assigned to you (make sure the MATLAB module is loaded).
 ```bash
-xena:~$ ssh xena-01
+hopper:~$ ssh $NODE   # the compute node assigned to you
 ```
 2. Move into the MATLAB Examples directory.
 ```bash
-xena-01:~$ cd /tmp/Examples/R2021a/deeplearning_shared/JPEGImageDeblockingDeepLearningExample
+node:~$ cd /tmp/Examples/R2021a/deeplearning_shared/JPEGImageDeblockingDeepLearningExample
 ```
 3. Copy all the needed files.
 ```bash
-xena-01:~$ cp *.m ~/deepLearningExample
+node:~$ cp *.m ~/deepLearningExample
 ```
 4. (Optional) Copy the pretrained example CNN.
 ```bash
-xena-01:~$ cp pretrianedJPEGDnCNN.mat ~/deepLearningExample
+node:~$ cp pretrianedJPEGDnCNN.mat ~/deepLearningExample
 ```
 
 
@@ -4968,12 +4882,12 @@ matlab -nodisplay -r deep_learning_example > dncnn_dual_training.out
 
 To submit a job request using the single GPU script, use the following command:
 ```bash
-xena:~$ sbatch dncnn_single_gpu.sh
+hopper:~$ sbatch dncnn_single_gpu.sh
 ```
 
 To submit a job request using the dual GPU script, use the following command:
 ```bash
-xena:~$ sbatch dncnn_dual_gpu.sh
+hopper:~$ sbatch dncnn_dual_gpu.sh
 ```
 
 ### View Results <a name="2.3"></a>
@@ -4982,12 +4896,12 @@ While a network is being trained, you can see the results in real time with the 
 
 If you used the single GPU slurm script, use this command to view the output:
 ```bash
-xena:~$ cat ~/deepLearningExamples/dncnn_single_training.out
+hopper:~$ cat ~/deepLearningExamples/dncnn_single_training.out
 ```
 
 If you used the dual GPU slurm script, use this command to view the output:
 ```bash
-xena:~$ cat ~/deepLearningExamples/dncnn_dual_training.out
+hopper:~$ cat ~/deepLearningExamples/dncnn_dual_training.out
 ```
 
 ## Test the Model <a name="3"></a>
@@ -5143,10 +5057,7 @@ sources:
 
 # MATLAB on GPUs
 
-!!! warning "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
-1. [Using a single GPU on Xena](#1)
+1. [Using a single GPU](#1)
      1. [Use GPU in Interactive Session](#1.1)
           1. [Identify and Select GPU](#1.1.1)
           2. [Using Arrays on GPU](#1.1.2)
@@ -5159,28 +5070,28 @@ sources:
           2. [PBS Script](#1.2.2)
           3. [Slurm Script](#1.2.3)
           4. [Submit Job to Queue](#1.2.4)
-2. [Using Multiple GPUs on a single Xena node](#2)
+2. [Using multiple GPUs on a single node](#2)
     1. [MATLAB Script](#2.2)
     2. [Slurm Script](#2.2)
     3. [Submit Job to Queue](#2.3) 
 3. [Using Multiple Nodes with their own GPUs](#3)
 
 
-## Using a single GPU on Xena <a name="1"></a>
+## Using a single GPU <a name="1"></a>
 
 MATLAB allows the utilization of a single GPU that is part of a machine.
-The following sections show how to access and utilize a GPU on xena.
+The following sections show how to access and utilize a GPU.
 
 ### Use GPU in Interactive Session <a name="1.1"></a>
 
-First, we will open MATLAB in an interactive session on a xena compute node.
+First, we will open MATLAB in an interactive session on a GPU compute node.
 
 #### Identify and Select GPU <a name="1.1.1"></a>
 
 Start by requesting an interactive session:
 
 ```bash
-xena:~$ srun -G 1 --pty bash
+hopper:~$ srun -G 1 --pty bash
 ```
 
 Once you have a node allocated to you, load the MATLAB module and start a MATLAB session:
@@ -5209,7 +5120,7 @@ To get information about the available gpus, use this function:
 ```bash
 >> gpuDeviceTable
 ```
-That will print something that looks like this on Xena:
+That will print something like this:
 ```bash
 ans =
 
@@ -5396,26 +5307,20 @@ matlab -nodisplay -r gpu_matlab > gpu_matlab.out
 
 #### Submit Job to Queue <a name="1.2.4"></a>
 
-Now we can submit the job to the scheduler from the xena head node:
+Now we can submit the job to the scheduler from the head node:
 
-PBS script version:
 ```bash
-xena:~$ qsub gpu_matlab.pbs
-```
-
-Slurm script version:
-```bash
-xena:~$ sbatch gpu_matlab.sh
+hopper:~$ sbatch gpu_matlab.sh
 ```
 
 View the results:
 ```bash
-xena:~$ cat gpu_matlab.out
+hopper:~$ cat gpu_matlab.out
 ```
 
-## Using Multiple GPUs on a single Xena node <a name="2"></a>
+## Using multiple GPUs on a single node <a name="2"></a>
 
-Xena contains some nodes with two GPUs.
+Some CARC nodes contain multiple GPUs.
 MATLAB allows for the utilization of multiple GPUs on a single node in the same way you use multiple CPUs.
 To show how this works, below is an example MATLAB script that will create a logistic map using all available GPU's on the assigned node.
 
@@ -5468,9 +5373,9 @@ return
 ### Slurm Script <a name="2.2"></a>
 
 
-When using the `--partition dualGPU` flag on xena, you must also set `--cpus-per-task 2` and `-G 2` for MATLAB to correctly find and utilize the available GPUs.
+When requesting two GPUs, you must also set `--cpus-per-task 2` and `-G 2` for MATLAB to correctly find and utilize the available GPUs.
 These numbers should match, as MATLAB will use a CPU to access each GPU.
-For this partition, we ask for two CPUs and two GPUs.
+We ask for two CPUs and two GPUs.
 
 Create the following slurm scrpt called `gpu_logistic_map.sh`.
 Replace the `<DIR>` with the path to the directory containing the MATLAB script created above. 
@@ -5488,7 +5393,6 @@ Any output of the MATLAB script is redirected to `gpu_logistic_map.out`.
 #SBATCH --output gpu_logistic_map_job.out
 #SBATCH --error gpu_logistic_map_job.err
 #SBATCH --time 00:10:00
-#SBATCH --partition dualGPU
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 2
 #SBATCH -G 2
@@ -5502,13 +5406,13 @@ matlab -nodisplay -r gpu_logistic_map > gpu_logistic_map.out
 
 ### Submit Job to Queue <a name="2.3"></a>
 
-Now we can submit the job to the scheduler from the xena head node:
+Now we can submit the job to the scheduler from the head node:
 ```bash
-xena:~$ sbatch gpu_logistic_map.sh
+hopper:~$ sbatch gpu_logistic_map.sh
 ```
 View the results:
 ```bash
-xena:~$ cat gpu_logistic_map.out
+hopper:~$ cat gpu_logistic_map.out
 ```
 
 You can also view the `logistic_map.jpg` image using your preferred method.
@@ -5756,9 +5660,6 @@ sources:
 
 # MATLAB Parallel Server
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 MATLAB supports parallelization on desktop computers which can be used to increase the speed of analysis drastically. MATLAB also provides the MATLAB Parallel Server (previously the MATLAB Distributed Computing Server) which allows you to write MATLAB code on your local desktop or laptop computer and perform the computation using the CARC high-performance clusters. This QuickByte leads you through the steps needed to set this up. If you run into problems please send an email to help@carc.unm.edu and we will be happy to help.
 
 Please ensure you have the MATLAB Parallel Toolbox installed on your local comnputer.
@@ -5786,7 +5687,7 @@ Select no for shared job location.
 
 ![Wizard3](../assets/images/quickbytes/ParallelMatlabWizard3.png)
 
-Enter the address of the cluster you would like to use: for example, wheeler.alliance.unm.edu or xena.alliance.unm.edu.
+Enter the address of the cluster you would like to use: for example, hopper.alliance.unm.edu.
 
 Enter </users/> for the path to the PBS scripts (remote job storage location) that MATLAB will create on the cluster.
 
@@ -5796,8 +5697,8 @@ Select unique subfolders.
 
 Select the number of workers and number of threads per worker. This may depend on the program you are running but in general you should have one worker per core on the cluster. For set up and validation leave the number of workers at 1. Leave the threads per worker at 1 unless your software requires more threads.
 
-Specify the path to the matlab installation on the compute nodes: /opt/local/MATLAB/R2019a (or 2020a) for the Xena cluster, and /opt/local/MATLAB/R2019a for the Wheeler cluster. It is important that you are running the same version of MATLAB as you are 
-running on the wheeler cluster. 
+Specify the path to the MATLAB installation on the compute nodes (shown by `module show matlab` on the cluster). It is important that you are running the same version of MATLAB as you are 
+running on the cluster. 
 
 ![Wizard6](../assets/images/quickbytes/ParallelMatlabWizard6.png)
 
@@ -5888,7 +5789,7 @@ delete(p);                      % Clean up the worker pool
 To check that your jobs are indeed running at CARC, you can log in (ssh) to the cluster you have submitted your job to and check your job status. The command bellow shows only your jobs. 
 
 ```
-ssh username@wheeler.alliance.unm.edu 
+ssh username@hopper.alliance.unm.edu 
 
 qstat -u <username>
 ```
@@ -5919,14 +5820,11 @@ sources:
 
 # Parallel MATLAB: profile setup and batch submission
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 ### Setting up the cluster profile
-In order to submit a PBS script that takes advantage of MATLAB Parallel Server you first need to set up a new cluster profile specific to Wheeler. Thankfully this has already been done and all you need to do as a user is import the profile and that only needs to be done once. If you would like to do this interactively you can start an interactive session with the following:
+In order to submit a batch script that takes advantage of MATLAB Parallel Server you first need to set up a cluster profile. Thankfully this has already been done and all you need to do as a user is import the profile and that only needs to be done once. If you would like to do this interactively you can start an interactive session with the following:
 
 ```bash
-wheeler:~$ srun --pty bash
+hopper:~$ srun --pty bash
 ```
 Once you have a node allocated to you load the MATLAB module and start a MATLAB session:
 
@@ -5938,12 +5836,12 @@ To get started, type doc.
 For product information, visit www.mathworks.com.
 >>
 ```
-Now simply import the wheeler cluster profile availble in the root matlab folder:
+Now simply import the cluster profile available in the root MATLAB folder:
 
 ```
->> profile = parallel.importProfile('/opt/local/MATLAB/wheeler-normal.settings')
+>> profile = parallel.importProfile('/opt/local/MATLAB/<cluster>-normal.settings')
 ```
-With the settings imported you can now launch parallel pools for computation using the `wheeler` cluster profile. The code below is an example to test parallel computing across two nodes on Wheeler while timing execution:
+With the settings imported you can now launch parallel pools for computation using the imported cluster profile. The code below is an example to test parallel computing across two nodes while timing execution:
 
 ```
 >> poolobj = parpool(profile, 16)
@@ -5960,7 +5858,7 @@ With the settings imported you can now launch parallel pools for computation usi
 Even better is to do everything using a batch script and avoid the mistakes associated with interactive computing. Below is an example MATLAB script named `parallel_matlab.m` that will import our cluster profile and compare the time of computation for a sequential for loop and a parallel for loop with 16 cores ('workers' in MATLAB speak):
 
 ```
-profile = parallel.importProfile('/opt/local/MATLAB/wheeler-normal.settings')
+profile = parallel.importProfile('/opt/local/MATLAB/<cluster>-normal.settings')
 
 poolobj = parpool(profile, 16);
 
@@ -7071,14 +6969,11 @@ sources:
 
 # ParaView remote visualization
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 ParaView is an open-source, multi-platform data analysis and visualization application. ParaView users can quickly build visualizations to analyze their data using qualitative and quantitative techniques. The data exploration can be done interactively in 3D or programmatically using ParaView's batch processing capabilities.
 
 ParaView was developed to analyze extremely large datasets using distributed memory computing resources. It can be run on supercomputers to analyze datasets of petascale size.
 
-These steps will help you setup Paraview to work as a client/server mode, being your laptop/desktop computer a client and the cluster a server. Be sure that the ParaView version installed on your local computer matches the same one that is installed on Wheeler and Hopper clusters.
+These steps will help you setup Paraview to work as a client/server mode, being your laptop/desktop computer a client and the cluster a server. Be sure that the ParaView version installed on your local computer matches the same one that is installed on the CARC clusters.
 
 To see a current list of paraview versions installed on CARC clusters login to the cluster and run
 
@@ -7557,13 +7452,10 @@ sources:
 
 # PyTorch on CARC GPUs
 
-!!! warning "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
-### SSH in to Xena
-To connect to the Xena machine, you will need to use the secure shell command below with your username in place of $USERNAME. This will prompt you for your password. When typing your password, you will not get any visual feedback. If you have issues with connecting to the machine, please reach out to the CARC helpdesk. 
+### SSH in to the cluster
+To connect to a CARC cluster (Hopper in this example), you will need to use the secure shell command below with your username in place of $USERNAME. This will prompt you for your password. When typing your password, you will not get any visual feedback. If you have issues with connecting to the machine, please reach out to the CARC helpdesk. 
 ```
-ssh $USERNAME@xena.alliance.unm.edu
+ssh $USERNAME@hopper.alliance.unm.edu
 ```
 
 ### Create the Condarc File
@@ -7651,16 +7543,16 @@ pip3 install --user torch-1.9.0+cu11.1-cp39-cp39-linux_x86_64.whl
 After the installation is complete, we can confirm that the torch install was sucessful in JupyterHub. Follow the link below to the CARC website. 
 ```
 http://carc.unm.edu
-Navigate to Systems > JupyterHub Cluster Links > Xena
+Navigate to Systems > JupyterHub Cluster Links > Hopper
 ```
 <img width="1265" alt="Screenshot 2023-09-05 at 9 36 45 PM" src="https://github.com/UNM-CARC/QuickBytes/assets/130007104/eaeb6530-4627-4927-99c2-63b6cb34686f">
 
 Next, log in to JupyterHub with your CARC username and password. If you are logged in without being prompted to select a server, click on the control panel button in the upper right corner. Then select "Stop My Server", then select "Start Server"
 
-You will be prompted to choose a server. For this tutorial, I will choose a Xena server with 2 GPU's. 
+You will be prompted to choose a server. For this tutorial, I will choose a server option with GPUs. 
 ```
 Example:
-Xena 1 hour, 2 GPUs, 16 cores, 60 GB RAM
+1 hour, 2 GPUs, 16 cores, 60 GB RAM
 ```
 Create a new notebook by selecting new > Python [conda env:.conda-pytorch-1.9-cuda-11-K40]
 
@@ -7698,25 +7590,12 @@ sources:
 
 # Installing R packages
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 ## Installing interactively
 
-This is the way that most of us are probably comfortable with installing packages with R since it is exactly the same way you install packages on your laptop. However, because the head node of CARC systems is a shared resource it is best practice to not compile binaries for R for an extended period of time because it can result in overhead on the head node. To avoid this we can request a compute node for interactive use, or even better, one of our debug nodes. The actual call to Torque, our job scheduler, will be explained in more depth later, but for now to request an interactive node type the following at the command prompt on Wheeler:
+This is the way that most of us are probably comfortable with installing packages with R since it is exactly the same way you install packages on your laptop. However, because the head node of CARC systems is a shared resource it is best practice to not compile binaries for R for an extended period of time because it can result in overhead on the head node. To avoid this we can request a compute node for interactive use, or even better, one of our debug nodes. The actual call to Slurm, our job scheduler, is explained in more depth later; for now, to request an interactive node type the following at the command prompt:
 
 ```
-yourusername@wheeler-sn$ qsub -I -l walltime=01:00:00 -l nodes=1:ppn=8
-qsub: waiting for job 201775.wheeler-sn.alliance.unm.edu to start
-qsub: job 201775.wheeler-sn.alliance.unm.edu ready
-
-Wheeler Portable Batch System Prologue
-Job Id: 201775.wheeler-sn.alliance.unm.edu
-Username: liphardt
-Job 201775.wheeler-sn.alliance.unm.edu running on nodes:
-wheeler272 
-
-prologue running on host: wheeler272
+yourusername@hopper$ srun --time=01:00:00 --ntasks=8 --pty bash
 ```
 Which will request a compute node and log you in once it is ready. Load a R software module with your preferred method and start a R session. If this is your first time installing a R package for one of the major versions you will be prompted to use a personal library.
 
@@ -8615,9 +8494,6 @@ sources:
 
 # Multi-GPU TensorFlow
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 The relatively recent mainstream availability of complex algorithms and computationally efficient hardware has created a platform for innovations never before available to the scientific computing world. Since the development of early computer systems, computing times have been drastically reduced, making more complex computations feasible. The continuous cycle of improvements in computation speed and hardware, driving ever more complex computation goals, can be seen in how hardware has scaled to meet those goals. A key part of this cycle is the use of GPUs in high-performance computing for machine learning and deep learning algorithms.
 
 Most complex computing strategies can be simplified into basic linear algebra operations such as addition, multiplication, subtraction, and inversion. Of these, matrix multiplication and inversion are the most computationally expensive.
@@ -8628,11 +8504,11 @@ These gains in computation time give researchers good reason to move computation
 
 ### CARC Benchmarks
 
-To illustrate the CPU-vs-GPU performance gap, here are benchmarks run on the (legacy) Xena system at CARC using intensive linear algebra operations — matrix multiplication and matrix inversion — comparing CPU-only execution to GPU-accelerated execution.
+To illustrate the CPU-vs-GPU performance gap, here are benchmarks run on a previous CARC GPU system using intensive linear algebra operations — matrix multiplication and matrix inversion — comparing CPU-only execution to GPU-accelerated execution.
 
 The CPU version was deployed on a multicore processor with 16 cores and 64GB of RAM, using NumPy arrays in Python. The GPU version was deployed on an NVIDIA Tesla K40 with 11GB of GPU memory, using TensorFlow. The CPU implementations were tested with two different NumPy builds: `mkl_mul` refers to multiplication using NumPy compiled with Intel's Math Kernel Library (MKL), while `nomkl_mul` refers to NumPy without MKL. MKL-based NumPy was installed in a Conda environment, whereas NumPy installed via pip does not integrate MKL.
 
-The old Xena cluster had nodes with both single- and dual-GPU configurations. A dual-GPU node offered 2×11GB of GPU memory, allowing larger batch sizes and roughly double the cores for faster training of larger, more complex models. `gpu_mul` corresponds to multiplication on a single-GPU node, and `dualgpu_mul` corresponds to multiplication on a dual-GPU node. A similar benchmark was run for matrix inversion.
+That system had nodes with both single- and dual-GPU configurations. A dual-GPU node offered 2×11GB of GPU memory, allowing larger batch sizes and roughly double the cores for faster training of larger, more complex models. `gpu_mul` corresponds to multiplication on a single-GPU node, and `dualgpu_mul` corresponds to multiplication on a dual-GPU node. A similar benchmark was run for matrix inversion.
 
 ![](../assets/images/quickbytes/matrix_inverse.png)
 
@@ -8768,17 +8644,14 @@ sources:
 
 # TensorFlow on CARC GPUs
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 The relatively recent mainstream availability of complex algorithms and computationally efficient hardware is creating a platform for new innovations never before available to the scientific computing world. Since the development of computer systems, computing times have been drastically reduced, making more complex computations feasible. The continuous cycle of improvements in computation speeds and hardware leading to ever more complex computations can be seen in the scaling of hardware to meet these more complex computation goals. A resolution to this cycle can be found in the utilization of GPU's in high-performance computing for Machine learning and deep learning algorithms.
 Most of the complex computing strategies can be simplified into basic linear algebra operations such as addition, multiplication, subtraction, inversion and such. Out of the listed operations, matrix multiplication and inversion are the most computationally expensive operations.
 
 Most matrix operations are performed sequentially on the CPU resulting in computation time that scales with the size of the matrix as a factor &theta;(n<sup>3</sup>). Hence, computation cycles and duration of time to be allocated towards computation is proportional to the size of matrices under the constrained hardware with limited cache memory and RAM. The same problem still exists with multicore systems or distributed systems due to the threshold on the resources mentioned. On the other hand, a GPU is composed of several thousand cores, combining to provide the user with several GBs of computational memory compared to the MBs provided by CPU cache memory. The distributed computing this configuration provides enables parallelism across GPU cores and allows a super fast flow of data resulting from incredibly high bandwidth. This distribution across multiple cores amounts to massively reduced computation time as the device is able to scale its performance with data size.
 
-The enormous gains in computation time should give researchers a valid reason to switch from CPUs to GPUs for computationally heavy operations where the CPU-based operations do not scale with the data at a constant rate. Utilization of this methodology will provide enormous benefits for the computationally heavy domains such as machine learning, deep learning, linear algebra, optimization, data structures, etc. To illustrate this statement, we've included some benchmarks run on the Xena system at CARC using intensive linear algebra operations, i.e., matrix multiplication and matrix-inversion, on a CPU only compared to CPU utilizing the GPU as well.
+The enormous gains in computation time should give researchers a valid reason to switch from CPUs to GPUs for computationally heavy operations where the CPU-based operations do not scale with the data at a constant rate. Utilization of this methodology will provide enormous benefits for the computationally heavy domains such as machine learning, deep learning, linear algebra, optimization, data structures, etc. To illustrate this statement, we've included some benchmarks run on a previous CARC GPU system using intensive linear algebra operations, i.e., matrix multiplication and matrix-inversion, on a CPU only compared to CPU utilizing the GPU as well.
 
-The CPU version was deployed on a multicore processor with 16 cores and 64GB of RAM with using numpy arrays in python. The GPU Version was deployed on NVIDIA Tesla K40 with 11GB of GPU memory using Tensorflow.  Here the CPU implementations were carried with two different types of numpy compilations. mkl_mul stands for multiplication operation carried with numpy compiled with math kernel library. Nomkl_mul stands for the numpy without math kernel library. mkl based numpy was installed in an anaconda enviroment using conda to install numpy whereas the numpy installed with pip doesn't integrate math kernel library. Xena has nodes with single GPU and dual GPU. Dual GPU node offers users 2x11GB of computational GPU memory which allows the use of a larger batch size and double the number of cores for faster implementation of highly complex models with a large number of parameters. The GPU_mul corresponds to multiplication operations utilizing single GPU node and dualgpu_mul corresonds to the one utilizing a dual GPU node. Another interesting benchmark was performed for inversion operations similar to those done for multiplication
+The CPU version was deployed on a multicore processor with 16 cores and 64GB of RAM with using numpy arrays in python. The GPU Version was deployed on NVIDIA Tesla K40 with 11GB of GPU memory using Tensorflow.  Here the CPU implementations were carried with two different types of numpy compilations. mkl_mul stands for multiplication operation carried with numpy compiled with math kernel library. Nomkl_mul stands for the numpy without math kernel library. mkl based numpy was installed in an anaconda enviroment using conda to install numpy whereas the numpy installed with pip doesn't integrate math kernel library. That system had nodes with a single GPU and dual GPUs. Dual GPU node offers users 2x11GB of computational GPU memory which allows the use of a larger batch size and double the number of cores for faster implementation of highly complex models with a large number of parameters. The GPU_mul corresponds to multiplication operations utilizing single GPU node and dualgpu_mul corresonds to the one utilizing a dual GPU node. Another interesting benchmark was performed for inversion operations similar to those done for multiplication
 
 ![](https://raw.githubusercontent.com/ceodspspectrum/CARC_WORK/master/download2.png)
 
@@ -8924,9 +8797,6 @@ sources:
 
 # Bayesian phylogenetics with BEAST
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 Bayesian Evolutionary Analysis by Sampling Trees [(BEAST)](https://beast.community/index.html){target=_blank} is a software package that performs
 phylogenetic tree analysis with user specified molecular clock models using the widely popular Bayesian Markov chain Monte Carlo 
 (MCMC) methods. BEAST has its origins in modeling pathogen evolution in near real time but is also popular for other phylogenetic 
@@ -8940,7 +8810,7 @@ meta data and specific time modeling parameters, the graphical user interface [B
 allows users to upload nexus files and create .xml files with ease. Make sure that the version of beast in the module you load 
 matches the version of BEAUTi used to generate the .xml files. 
 
-## Running BEAST on Wheeler
+## Running BEAST on CARC systems
 
 Once a .xml file is generated, beast can be easily run on CARC. An example .pbs script is as follows: 
 
@@ -8987,16 +8857,13 @@ sources:
 
 # Variant calling with GATK
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 This QuickByte outlines how to run a pipeline based on Genome Analysis Toolkit v4 (GATK4) best practices, a common pipeline for processing genomic data from Illumina platforms. Major modifications from “true” best practices are done to facilitate using this pipeline for both model and non-model organisms. Additionally, we show how to best parallelize these steps on CARC. Here we outline the steps for a single sample without parallelization, then with parallelization for specific steps, and finally provide an example of a fully parallelized script. Extensive documentation (including other Best Practices pipelines) can be found [here](https://gatk.broadinstitute.org/hc/en-us/sections/360007226651-Best-Practices-Workflows){target=_blank}. Specifically, the Best Practices informing this pipeline are the [data pre-processing workflow](https://gatk.broadinstitute.org/hc/en-us/articles/360035535912-Data-pre-processing-for-variant-discovery){target=_blank} and the [germline short variant discovery workflow](https://gatk.broadinstitute.org/hc/en-us/articles/360035535932-Germline-short-variant-discovery-SNPs-Indels-){target=_blank}. We aim to give you sample commands to emulate these scripts workflows, which will also allow you to easily modify the pipeline.
 
 The goal of this pipeline is to output Single Nucleotide Polymorphisms (SNPs) and optionally indels for a given dataset. This same pipeline can be used for humans, model organisms, and non-model organisms. Spots that can leverage information from model organisms are noted, but those steps can be bypassed. Because sample size and depth of coverage are often lower in non-model organisms, filtering recommendations and memory requirements will vary. Note that this assumes you are using paired-end data and will differ slightly if you use unpaired.
 
 The basic steps are aligning and processing raw reads into binary alignment map (BAM) files, optionally getting descriptive metrics about the samples’ sequencing and alignment, calling variants to produce genomic variant call format (GVCF) files, genotyping those GVCFs to produce VCFs, and filtering those variants for analysis.
 
-For CARC users, we have provided some test data to run this on from a paper on [the conservation genomics of sagegrouse](https://academic.oup.com/gbe/article/11/7/2023/5499175){target=_blank}. It is two sets of gzipped fastq files per species (i.e. eight total, 4 read and 4 read 2), a file with adapter sequences to trim, and a reference genome. They are located at /projects/shared/tutorials/GATK/. Copy them into your space like "cp /projects/shared/tutorials/quickbytes/GATK/* ~/path/to/directory". A .pbs script for running the pipeline (seen below) is also included, but you may learn more by running each step individually. The whole process with the script with 4 nodes on wheeler takes about 5.5 hours. If you run this script, note that it should output a filtered VCF file that's ~350 Mb.
+For CARC users, we have provided some test data to run this on from a paper on [the conservation genomics of sagegrouse](https://academic.oup.com/gbe/article/11/7/2023/5499175){target=_blank}. It is two sets of gzipped fastq files per species (i.e. eight total, 4 read and 4 read 2), a file with adapter sequences to trim, and a reference genome. They are located at /projects/shared/tutorials/GATK/. Copy them into your space like "cp /projects/shared/tutorials/quickbytes/GATK/* ~/path/to/directory". A .pbs script for running the pipeline (seen below) is also included, but you may learn more by running each step individually. The whole process with the script with 4 nodes takes about 5.5 hours. If you run this script, note that it should output a filtered VCF file that's ~350 Mb.
 
 Please note that you must cite any program you use in a paper. At the end of this, we have provided citations you would include for the programs we ran here.
 
@@ -9047,7 +8914,7 @@ This following line will create an environment and install the most recent versi
 conda create -n gatk-env -c bioconda -c conda-forge gatk4 bwa samtools picard trimmomatic
 ```
 
-Alternatively, you can load these as modules if you are on Wheeler (Xena only has Samtools now), but they may not be the most recent versions:
+Alternatively, you can load these as modules, but they may not be the most recent versions:
 
 ```bash
 module load bwa-0.7.17-intel-18.0.2-7jvpfu2
@@ -9684,9 +9551,6 @@ sources:
 
 # Metabarcoding analysis
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 Metabarcoding is the process of using next-generation sequencing platforms (Illumina, PacBio, or Oxford Nanopore) to sequence amplicons and determine the ecological community that is present. The most common applications are microbiome analyses to study the community of bacteria or fungi. Given that metabarcoding relies upon PCR, biases do occur (e.g. primer biases, variation in loci copy number, incomplete lineage sorting, etc.). However, other techniques such as metagenomic sequencing cannot fully assemble larger genomes such as fungal genomes and fail to capture all of the species present in high diversity samples. Thus, metabarcoding remains the best option to characterize microbial communities. 
 
 This tutorial is designed to give you an example of how to take the sequences you get from the sequencing facility and generate:
@@ -9762,12 +9626,9 @@ For QIIME2, every file created is either uses a .qsv or .qsa extension. the .qsv
 ### install ###
 We will create a conda environment called qiime2-2021.4. 
 ```
-   # To install QIIME2 on the Wheeler, Xena, or Hopper clusters, use the following command:
+   # Load the conda module:
    module load miniconda3
-   
-   # To do a similar installation on the Taos cluster, use the following command instead:
-   module load miniconda3-4.10.3-gcc-10.2.0-gu6ytpa
-   
+
    #download the yml
    wget https://data.qiime2.org/distro/core/qiime2-2021.4-py38-linux-conda.yml
    
@@ -10179,9 +10040,6 @@ sources:
 
 # Parallel CASA for radio astronomy
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 ### A Bit About CASA
 
 [CASA](https://casa.nrao.edu/){target=_blank} is the premier software for reducing radio data coming off of a variety of telescopes around the world, including the Jansky Very Large Array (VLA) and Atacama Large Millimeter Array (ALMA). 
@@ -10203,8 +10061,8 @@ Do we want singleGPU? Can request more nodes obviously. tasks-per-node we don't 
 Might want to create aliases for casa and mpi casa, just to make things quick
 
 ```bash
-alias casa='/users/sbruzew/xena-scratch/casa-blah-blah/bin/casa'
-alias mpicasa='/users/sbruzew/xena-scratch/casa-blah-blah/bin/mpicasa'
+alias casa='/path/to/casa/bin/casa'
+alias mpicasa='/path/to/casa/bin/mpicasa'
 ```
 
 Actually it doesn't like the alias when you run the command
@@ -10489,44 +10347,9 @@ sources:
 
 # ORCA quantum chemistry
 
-!!! warning "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+### Submitting an Orca batch script
 
-### Submitting an Orca script on Wheeler
-
-Wheeler uses PBS (**P**ortable **B**atch **S**ystem) to submit jobs to the queue for execution. Below is an example script that can be used on Wheeler named `orca_submission.pbs`:
-
-```bash
-#!/usr/bin/bash
-
-## Setup your qsub flags here requesting resources.
-#PBS -l walltime=10:00:00
-#PBS -l nodes=1:ppn=8
-#PBS -N my_orca_job
-#PBS -M <YourNetID>@unm.edu
-#PBS -m bae
-
-## Change to the submission directory 
-## and load the Orca software module
-cd $PBS_O_WORKDIR
-module load orca/4.0.1
-
-## Set your input file for Orca
-input_file=my_orca_input.inp
-
-# Orca needs the full path when running in parallel
-full_orca_path=$(which orca)
-
-# Run Orca
-$full_orca_path $input_file
-```
-
-Now you can simply submit your Orca job to the queue with `qsub orca_submission.pbs`. 
-
-
-### Submitting on Orca script on Taos
-
-Taos uses Slurm (**S**imple **L**inux **U**tility for **R**esource **M**anagement) to submit jobs and manage resources. Slurm provides greater control over resource management and utilization which means one has to be more explicit in their submission script. Specifically, it is necessary to request sufficient memory for your task when submitting your job. Below is a sample script for submitting an Orca job on Taos named `orca_submission.sh`:
+CARC clusters use Slurm (**S**imple **L**inux **U**tility for **R**esource **M**anagement) to submit jobs and manage resources. Slurm provides greater control over resource management and utilization which means one has to be more explicit in their submission script. Specifically, it is necessary to request sufficient memory for your task when submitting your job. Below is a sample script for submitting an Orca job named `orca_submission.sh`:
 
 ```bash
 #!/usr/bin/bash
@@ -10553,7 +10376,7 @@ output_file=my_orca_output.log
 prefix=$(echo $input_file | cut -f1 -d".")
 
 # Set the scratch directory path
-scratch_dir=/taos/scratch/$USER/
+scratch_dir=/carc/scratch/$USER/
 
 # Set the input and output paths on the scratch file system
 mkdir $scratch_dir$prefix
@@ -10605,14 +10428,11 @@ sources:
 
 # Demographic inference with PSMC
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 The [pairwise sequentially Markovian coalescent model](https://www.nature.com/articles/nature10231){target=_blank} is a popular method of leveraging single high-quality diploid genomes to infer the demographic history of a lineage over thousands to hundreds of thousands of years. It can be a great exploratory tool for genomic data, and can help you understand and generate biogeographic and evolutionary hypotheses. It leverages heterozygosity information to estimate local times of most recent common ancestor across the genome, which is then used to reconstruct demographic "stairway plots".
 
 It is implemented [by the authors of the original paper on GitHub](https://github.com/lh3/psmc){target=_blank}, but the documentation is difficult to understand and the method of calling variants is a bit outdated. Here I'll outline a simple pipeline for generating a consensus sequence using [high coverage (>18x) reads and sites with a depth of at least 10 reads](https://onlinelibrary.wiley.com/doi/10.1111/mec.13540){target=_blank} and a reference genome. Then, I'll go over how to run PSMC and perform bootstrapping. Note that nothing but the bootstrapping can work across different nodes, so if you find bootstrapping takes too long you can run it as a seperate job with more nodes.
 
-The runtime and resource requirements will vary based on genome, but the only step that can work across nodes is bootstrap generation. Wheeler will work for some samples, but nodes with more cores may be needed for others due to wall time limits.
+The runtime and resource requirements will vary based on genome, but the only step that can work across nodes is bootstrap generation. Standard nodes will work for some samples, but nodes with more cores may be needed for others due to wall time limits.
 
 
 ## Installation and setup
@@ -10760,10 +10580,7 @@ sources:
 
 # SimCov epidemiological simulation
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
-This tutorial contains instructions for compiling and running the SimCov immunology model on the Wheeler cluster.
+This tutorial contains instructions for compiling and running the SimCov immunology model on CARC systems.
 
 ## Download the SimCov Source Code from GitHub
 
@@ -10777,7 +10594,7 @@ git clone --recurse-submodules https://github.com/AdaptiveComputationLab/simcov.
 ```
 
 ## Build SimCov from Source
-Load Wheeler modules and set UPCXX variables (NOTE: modules subject to change use 'module spider' to find availability):
+Load the required modules and set UPCXX variables (NOTE: modules subject to change use 'module spider' to find availability):
 ```
 export UPCXX_THREADMODE=seq
 export UPCXX_CODEMODE=opt
@@ -10794,7 +10611,7 @@ cd simcov
 The config files are in ~/simcov and end with ".config". You can edit them with a text editor.
 
 ## Submit a SimCov Job 
-A wheeler PBS script is provided for you. We have submitted the script below to the simcov developers - so hopefully by the time you pull simcov the code below will already be in the wheeler_simcov_run.pbs. If not update the script to contain the following: 
+A sample batch script is provided by the developers. We have submitted the script below to the simcov developers - so hopefully by the time you pull simcov the code below will already be in the repository's sample submission script. If not update the script to contain the following: 
  
 This PBS submission script will run simcov on a compute node using covid_default.config:
 ```
@@ -10851,12 +10668,9 @@ sources:
 
 # RAD-seq analysis with Stacks
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 Stacks is a common and [well documented](https://catchenlab.life.illinois.edu/stacks/){target=_blank} pipeline for processing RADseq data. RADseq data is a method of reduced representation genomic sequencing, where genomic DNA is cut up with restriction enzymes, which are then targeted by sequencing adapters. This allows a researcher to get thousands of loci randomly scattered across the genome, which can be sequenced at moderate depths for low prices. This is sufficient for many population genomic analyses, such as tests of population structure, phylogenetics, gene flow, and even coarse attempts to locate regions of the genome that are under selection. Stacks can be run with or without a reference genome, but using a reference genome is reccomended for improved accuracy.
 
-Stacks can easily be run on Wheeler with installed modules, and here we outline how with some simple "quality of life" adjustments and tips. We'll be focused on the reference based method, as the non-reference-based is sufficiently run through a driver script provided by the developers of Stacks (denovo_map.pl). We'll quickly mention it at the end. This can often be run on a single node on Wheeler, as the only intense step tends to be alignment, which is quick due to the small size of RADseq data. For example, a dataset of ~90 bird individuals with an average of 1 million reads/sample took four hours on one node. Organisms with larger genomes will take more time and memory.
+Stacks can easily be run on CARC systems with installed modules, and here we outline how with some simple "quality of life" adjustments and tips. We'll be focused on the reference based method, as the non-reference-based is sufficiently run through a driver script provided by the developers of Stacks (denovo_map.pl). We'll quickly mention it at the end. This can often be run on a single node, as the only intense step tends to be alignment, which is quick due to the small size of RADseq data. For example, a dataset of ~90 bird individuals with an average of 1 million reads/sample took four hours on one node. Organisms with larger genomes will take more time and memory.
 
 ## Preliminaries ##
 
@@ -10922,7 +10736,7 @@ mkdir stacks_out
 mkdir populations_out
 ```
 
-The modules you need are stacks, bwa, and samtools. All are availible on Conda, but you will almost certainly be running this on Wheeler (low resource use), which has recent versions of all three installed:
+The modules you need are stacks, bwa, and samtools. All are availible on Conda, but you will almost certainly be running this on a CARC cluster, which has recent versions of all three installed:
 
 ```bash
 module load stacks-2.41-gcc-7.4.0-7r6auk7
@@ -11484,18 +11298,6 @@ it straight through here, or jump to an episode:
 | [Computational Chemistry: Avogadro and Gaussian](https://www.youtube.com/watch?v=Jqyf7bodT4U){target=_blank} | 28:38 | — |
 | [CS491/591: SimCov Compilation and Submission](https://www.youtube.com/watch?v=7x3voqNX0QY){target=_blank} | 8:14 | [SimCov](../tutorials/simcov.md) |
 
-??? note "Legacy episodes (retired systems and schedulers)"
-
-    These recordings reference PBS/Torque or the retired Xena cluster. The
-    concepts still transfer, but commands and cluster names have changed —
-    see [PBS to Slurm](../running-jobs/pbs-to-slurm.md).
-
-    | Episode | Length |
-    | ------- | :----: |
-    | [Submitting PBS Jobs](https://www.youtube.com/watch?v=H_p_uGlXdxU){target=_blank} | 27:37 |
-    | [Submitting Jobs on Xena with Slurm](https://www.youtube.com/watch?v=aOqT49bpUe8){target=_blank} | 35:22 |
-    | [Parallelization 2: PBS Array Jobs and Embarrassingly Parallel Problems](https://www.youtube.com/watch?v=qSRDZ5JH6f4){target=_blank} | 15:34 |
-
 ## CARC Annual Meeting 2026
 
 Recorded talks from [CAM 2026](https://www.youtube.com/playlist?list=PLvr5gRBLi7VCveJGJHzQrtmI4Jw0AHVP7){target=_blank}:
@@ -11622,12 +11424,6 @@ Slides prepared for UNM courses that compute on CARC systems.
 | [CS/Math 471](../assets/files/workshops/CS_Math_471.pdf) | Scientific Computing |
 | [ENVS 352](../assets/files/workshops/ENVS352.pdf) | Environmental Science |
 | [EPS 522](../assets/files/workshops/EPS522.pdf) | Earth & Planetary Science |
-
-## Legacy material
-
-| Slides | Note |
-| ------ | ---- |
-| [PBS Parallel MPI](../assets/files/workshops/PBS_Parallel_MPI.pdf) | PBS-era; CARC schedulers now run [Slurm](../running-jobs/pbs-to-slurm.md) |
 
 !!! question "Want a workshop for your group or course?"
 
@@ -12168,6 +11964,14 @@ platforms. If you are unsure which platform fits your project, come to
 ---8<--- https://unm-carc.github.io/docs/log/
 
 # Documentation update log
+
+## 2026-08-30
+
+* **Update**: Completed the retirement of Wheeler, Taos, Gibbs, and Xena across the corpus. The "Legacy content" admonitions are gone, and every active page now reads against the current clusters: hostnames and prompts point at Hopper, retired-only sections were removed (the Wheeler/PBS Orca variant, the Xena AlphaFold script, Xena-specific partition flags), and the historical Xena and Wheeler queue tables moved from [resource limits](systems/resource-limits.md) into the [legacy cluster reference](systems/cluster-specifications.md). The migration pipeline now enforces this: it fails if a retired system name appears outside the sanctioned legacy pages (provenance frontmatter and the changelog stay truthful).
+
+* **Update**: Converted the remaining PBS-era material on active pages to Slurm ([storage](systems/storage.md) example script and wording, [R package installs](software/r-packages.md) interactive-session request) and fenced all file paths on the storage page. Fixed the [SSH config example](getting-started/ssh-keys.md) (now a single well-formed block covering Hopper and Easley).
+
+* **Update**: Footer social links: removed the X/Twitter icon (account no longer exists) and pointed YouTube at the [main UNM CARC channel](https://www.youtube.com/@UNMCARC).
 
 ## 2026-08-29
 

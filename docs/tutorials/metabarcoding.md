@@ -18,9 +18,6 @@ sources:
 
 # Metabarcoding analysis
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 Metabarcoding is the process of using next-generation sequencing platforms (Illumina, PacBio, or Oxford Nanopore) to sequence amplicons and determine the ecological community that is present. The most common applications are microbiome analyses to study the community of bacteria or fungi. Given that metabarcoding relies upon PCR, biases do occur (e.g. primer biases, variation in loci copy number, incomplete lineage sorting, etc.). However, other techniques such as metagenomic sequencing cannot fully assemble larger genomes such as fungal genomes and fail to capture all of the species present in high diversity samples. Thus, metabarcoding remains the best option to characterize microbial communities. 
 
 This tutorial is designed to give you an example of how to take the sequences you get from the sequencing facility and generate:
@@ -96,12 +93,9 @@ For QIIME2, every file created is either uses a .qsv or .qsa extension. the .qsv
 ### install ###
 We will create a conda environment called qiime2-2021.4. 
 ```
-   # To install QIIME2 on the Wheeler, Xena, or Hopper clusters, use the following command:
+   # Load the conda module:
    module load miniconda3
-   
-   # To do a similar installation on the Taos cluster, use the following command instead:
-   module load miniconda3-4.10.3-gcc-10.2.0-gu6ytpa
-   
+
    #download the yml
    wget https://data.qiime2.org/distro/core/qiime2-2021.4-py38-linux-conda.yml
    

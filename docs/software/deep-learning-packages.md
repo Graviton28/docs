@@ -20,12 +20,10 @@ sources:
 
 # Installing deep learning packages
 
-!!! warning "Legacy content"
-    This guide was written for the retired Xena cluster and its NVIDIA K40
-    GPUs. The conda workflow below still applies, but choose framework builds
-    that match the GPUs on the [current clusters](../systems/overview.md)
-    (A100 on Hopper; L40S and H100 on Easley), and check exact package
-    versions before installing.
+!!! note "Match builds to current GPUs"
+    Choose framework builds that match the GPUs on the
+    [current clusters](../systems/overview.md) (A100 on Hopper; L40S and
+    H100 on Easley), and check exact package versions before installing.
 
 This step-by-step guide walks through installing deep learning and machine
 learning tools in a [conda environment](conda-intro.md) on CARC systems.

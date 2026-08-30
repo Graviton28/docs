@@ -81,12 +81,6 @@ Slides prepared for UNM courses that compute on CARC systems.
 | [ENVS 352](../assets/files/workshops/ENVS352.pdf) | Environmental Science |
 | [EPS 522](../assets/files/workshops/EPS522.pdf) | Earth & Planetary Science |
 
-## Legacy material
-
-| Slides | Note |
-| ------ | ---- |
-| [PBS Parallel MPI](../assets/files/workshops/PBS_Parallel_MPI.pdf) | PBS-era; CARC schedulers now run [Slurm](../running-jobs/pbs-to-slurm.md) |
-
 !!! question "Want a workshop for your group or course?"
 
     CARC staff regularly deliver tailored sessions for research groups and

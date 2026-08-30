@@ -18,14 +18,11 @@ sources:
 
 # Parallel MATLAB: profile setup and batch submission
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 ### Setting up the cluster profile
-In order to submit a PBS script that takes advantage of MATLAB Parallel Server you first need to set up a new cluster profile specific to Wheeler. Thankfully this has already been done and all you need to do as a user is import the profile and that only needs to be done once. If you would like to do this interactively you can start an interactive session with the following:
+In order to submit a batch script that takes advantage of MATLAB Parallel Server you first need to set up a cluster profile. Thankfully this has already been done and all you need to do as a user is import the profile and that only needs to be done once. If you would like to do this interactively you can start an interactive session with the following:
 
 ```bash
-wheeler:~$ srun --pty bash
+hopper:~$ srun --pty bash
 ```
 Once you have a node allocated to you load the MATLAB module and start a MATLAB session:
 
@@ -37,12 +34,12 @@ To get started, type doc.
 For product information, visit www.mathworks.com.
 >>
 ```
-Now simply import the wheeler cluster profile availble in the root matlab folder:
+Now simply import the cluster profile available in the root MATLAB folder:
 
 ```
->> profile = parallel.importProfile('/opt/local/MATLAB/wheeler-normal.settings')
+>> profile = parallel.importProfile('/opt/local/MATLAB/<cluster>-normal.settings')
 ```
-With the settings imported you can now launch parallel pools for computation using the `wheeler` cluster profile. The code below is an example to test parallel computing across two nodes on Wheeler while timing execution:
+With the settings imported you can now launch parallel pools for computation using the imported cluster profile. The code below is an example to test parallel computing across two nodes while timing execution:
 
 ```
 >> poolobj = parpool(profile, 16)
@@ -59,7 +56,7 @@ With the settings imported you can now launch parallel pools for computation usi
 Even better is to do everything using a batch script and avoid the mistakes associated with interactive computing. Below is an example MATLAB script named `parallel_matlab.m` that will import our cluster profile and compare the time of computation for a sequential for loop and a parallel for loop with 16 cores ('workers' in MATLAB speak):
 
 ```
-profile = parallel.importProfile('/opt/local/MATLAB/wheeler-normal.settings')
+profile = parallel.importProfile('/opt/local/MATLAB/<cluster>-normal.settings')
 
 poolobj = parpool(profile, 16);
 

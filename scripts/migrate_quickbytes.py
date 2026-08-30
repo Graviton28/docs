@@ -427,6 +427,326 @@ PATCHES = {
     ],
 }
 
+# --- 2026-08-30 legacy purge -------------------------------------------------
+# Retired systems (Wheeler, Taos, Gibbs, Xena) and PBS/Torque-as-current
+# references are scrubbed from active pages. Anything historically valuable
+# lives on the legacy reference page (systems/cluster-specifications.md).
+# Literal fixes (applied with str.replace, so they hit every occurrence):
+
+LEGACY_FIXES = {
+    "systems/storage.md": [
+        ("subdirectories of /users. User project directories are subdirectories "
+         "of /project. Scratch directories are subdirectories of the directory /scratch.",
+         "subdirectories of `/users`. User project directories are subdirectories "
+         "of `/project`. Scratch directories are subdirectories of `/scratch`."),
+        ("how to write a PBS script that first moves data",
+         "how to write a Slurm batch script that first moves data"),
+        ("For storage limits [see the resource policy page]"
+         "(https://github.com/UNM-CARC/QuickBytes/blob/master/Resource_usage.md){target=_blank}.",
+         "For storage limits see the [resource limits page](resource-limits.md)."),
+        ("- /users/username - Upon", "- `/users/username` - Upon"),
+        ("in /user/username, replacing", "in `/users/username`, replacing"),
+        ("goes by “~” and “$HOME”", "goes by `~` and `$HOME`"),
+        ("* Machine-wide scratch disk  - ~/machine-scratch -> /machine/scratch/username - The",
+         "* Machine-wide scratch disk - `~/machine-scratch` → `/machine/scratch/username` - The"),
+        ("- /tmp - [On the machines that support these]"
+         "(https://carc.unm.edu/systems/Systems1.html){target=_blank}, compute nodes",
+         "- `/tmp` - On the machines that support these, compute nodes"),
+        ("(see sample PBS script below)", "(see the sample script below)"),
+        ("creating a directory in /tmp and then placing",
+         "creating a directory in `/tmp` and then placing"),
+        ("- /dev/shm - This is actually direct access",
+         "- `/dev/shm` - This is actually direct access"),
+        ("The directory at /dev/shm appears", "The directory at `/dev/shm` appears"),
+        ("just like /tmp,", "just like `/tmp`,"),
+        ("Like /tmp, /dev/shm is also cleared at the end of a PBS job",
+         "Like `/tmp`, `/dev/shm` is also cleared at the end of a job"),
+    ],
+    "systems/resource-limits.md": [
+        ("Scratch storage is limited to 1 TB (2 TB on Xena).",
+         "Scratch storage is limited to 1 TB."),
+        ("limited to 100G (/carc/scratch).", "limited to 100G (`/carc/scratch`)."),
+        ("The 'quotas' command shows", "The `quotas` command shows"),
+        ("# Compute Usage Policy", "## Compute usage policy"),
+        ("For more on slurm accounts see this quickbyte: "
+         "[https://github.com/UNM-CARC/QuickBytes/blob/master/slurm_accounting.md]"
+         "(../running-jobs/slurm-accounting.md)",
+         "For more on Slurm accounts see "
+         "[Slurm accounting](../running-jobs/slurm-accounting.md)."),
+    ],
+    "systems/cluster-specifications.md": [
+        ("| **GPU** | N/A | N/A | 2 x Nvidia Tesla<br>K40M per node | 1 x Nvidia Tesla<br>K40M per node |",
+         "| **GPU** | N/A | N/A | 2 x Nvidia Tesla<br>K40M per node | 1 x Nvidia Tesla<br>K40M per node |\n"
+         "\n"
+         "### Historical queue limits\n"
+         "\n"
+         "Queue limits in force when these systems were retired:\n"
+         "\n"
+         "#### Xena\n"
+         "\n"
+         "| Queue                | GPU                             | Bigmem                                | Debug    |\n"
+         "|---:                  |:---:                            |:---:                                  |:---:     |\n"
+         "| Number of Processors | 192                             | 128                                   | 8        |\n"
+         "| Number of Nodes      | 12 (singleGPU) <br> 4 (dualGPU) | 1                                     | 2        |\n"
+         "| Processors per Node  | 16                              | 32                                    | 4        |\n"
+         "| Walltime(H:M:S)      | 48:00:00                        | 48:00:00                              | 04:00:00 |\n"
+         "| Memory Limit         | 60 Gb (singleGPU and dualGPU)   | 1 Tb (bigmem-1TB)<br>3 Tb (bigmem-3TB)| 60 Gb    |\n"
+         "\n"
+         "#### Wheeler\n"
+         "\n"
+         "|                Queue: |   Default  |    Debug   |\n"
+         "|----------------------:|:----------:|:----------:|\n"
+         "| Number of Processors  |     400    |     32     |\n"
+         "|      Number of Nodes  |     50     |      4     |\n"
+         "|   Processors per Node |      8     |      8     |\n"
+         "|       Walltime(H:M:S) |  48:00:00  |  04:00:00  |\n"
+         "|         Memory Limit  |    44 Gb   |    44 Gb   |"),
+    ],
+    "getting-started/ssh-keys.md": [
+        ("    Host wheeler\n```bash\nhostname wheeler.alliance.unm.edu\nuser CHANGEME\nport 22\n```\n"
+         "    Host hopper\n```bash\nhostname hopper.alliance.unm.edu\nuser CHANGEME\nport 22\n```\n"
+         "    Host xena\n```bash\nhostname xena.alliance.unm.edu\nuser CHANGEME\nForwardX11 yes\nport 22\n```",
+         "```\nHost hopper\n    hostname hopper.alliance.unm.edu\n    user CHANGEME\n    port 22\n\n"
+         "Host easley\n    hostname easley.alliance.unm.edu\n    user CHANGEME\n    ForwardX11 yes\n    port 22\n```"),
+        ("you can just type `ssh xena`.", "you can just type `ssh easley`."),
+    ],
+    "software/conda-environments.md": [
+        ("environment on Wheeler to run", "environment on Hopper to run"),
+        ("log in to Wheeler using `ssh`", "log in to Hopper using `ssh`"),
+    ],
+    "software/pytorch.md": [
+        ("### SSH in to Xena\nTo connect to the Xena machine,",
+         "### SSH in to the cluster\nTo connect to a CARC cluster (Hopper in this example),"),
+        ("ssh $USERNAME@xena.alliance.unm.edu", "ssh $USERNAME@hopper.alliance.unm.edu"),
+        ("Navigate to Systems > JupyterHub Cluster Links > Xena",
+         "Navigate to Systems > JupyterHub Cluster Links > Hopper"),
+        ("I will choose a Xena server with 2 GPU's.",
+         "I will choose a server option with GPUs."),
+        ("Example:\nXena 1 hour, 2 GPUs, 16 cores, 60 GB RAM",
+         "Example:\n1 hour, 2 GPUs, 16 cores, 60 GB RAM"),
+    ],
+    "software/getting-r.md": [
+        ("yourusername@wheeler-sn$", "yourusername@hopper$"),
+        ("These are all of the currently available R modules installed on Wheeler.",
+         "These are the R modules available on the cluster."),
+        ("direct your browser to https://wheeler.alliance.unm.edu:8000 and log in",
+         "direct your browser to https://hopper.alliance.unm.edu and log in"),
+        ("R session running on Wheeler through JupyterHub",
+         "R session running on the cluster through JupyterHub"),
+    ],
+    "software/jupyterhub-mpi.md": [
+        ("wheeler-sn.alli", "hopper.alli"),
+    ],
+    "software/matlab-deep-learning.md": [
+        ("These tools can make use of GPUs, which are available for use on the Xena cluster.",
+         "These tools can make use of GPUs, which are available on the CARC clusters "
+         "— see the [current systems](../systems/overview.md)."),
+        ("It is highly reccommended to use the dualGPU partition and request two GPUs.\n"
+         "The commands below will show you how to use both the single and dual GPU partitions.",
+         "It is highly recommended to request two GPUs when available.\n"
+         "The commands below show both single- and dual-GPU requests."),
+        ("Once logged into Xena with X11 fowarding", "Once logged in with X11 forwarding"),
+        ("--partition singleGPU --x11", "--x11"),
+        ("--partition dualGPU --x11", "--x11"),
+        ("xena:~$ ssh xena-01", "hopper:~$ ssh $NODE   # the compute node assigned to you"),
+        ("xena:~$", "hopper:~$"),
+        ("xena-01:~$", "node:~$"),
+    ],
+    "software/matlab-gpu.md": [
+        ("1. [Using a single GPU on Xena](#1)", "1. [Using a single GPU](#1)"),
+        ("2. [Using Multiple GPUs on a single Xena node](#2)",
+         "2. [Using multiple GPUs on a single node](#2)"),
+        ("## Using a single GPU on Xena <a name=\"1\"></a>",
+         "## Using a single GPU <a name=\"1\"></a>"),
+        ("## Using Multiple GPUs on a single Xena node <a name=\"2\"></a>",
+         "## Using multiple GPUs on a single node <a name=\"2\"></a>"),
+        ("utilize a GPU on xena.", "utilize a GPU."),
+        ("interactive session on a xena compute node.",
+         "interactive session on a GPU compute node."),
+        ("That will print something that looks like this on Xena:",
+         "That will print something like this:"),
+        ("Xena contains some nodes with two GPUs.",
+         "Some CARC nodes contain multiple GPUs."),
+        ("PBS script version:\n```bash\nxena:~$ qsub gpu_matlab.pbs\n```\n\n"
+         "Slurm script version:\n```bash\nxena:~$ sbatch gpu_matlab.sh\n```",
+         "```bash\nhopper:~$ sbatch gpu_matlab.sh\n```"),
+        ("When using the `--partition dualGPU` flag on xena, you must also set "
+         "`--cpus-per-task 2` and `-G 2`",
+         "When requesting two GPUs, you must also set `--cpus-per-task 2` and `-G 2`"),
+        ("For this partition, we ask for two CPUs and two GPUs.",
+         "We ask for two CPUs and two GPUs."),
+        ("#SBATCH --partition dualGPU\n", ""),
+        ("from the xena head node", "from the head node"),
+        ("xena:~$", "hopper:~$"),
+    ],
+    "software/alphafold.md": [
+        ("Xena is the machine at CARC that has GPU resources, so you will need to "
+         "use xena if you hope to run using the gpus.",
+         "GPU nodes are available on the current CARC clusters — see the "
+         "[systems overview](../systems/overview.md)."),
+        ("Choose one of the scripts below, in this case we will be using Hopper.",
+         "We will use the Hopper script below."),
+    ],
+    "software/parallel-matlab.md": [
+        ("In order to submit a PBS script that takes advantage of MATLAB Parallel "
+         "Server you first need to set up a new cluster profile specific to Wheeler.",
+         "In order to submit a batch script that takes advantage of MATLAB Parallel "
+         "Server you first need to set up a cluster profile."),
+        ("wheeler:~$ srun --pty bash", "hopper:~$ srun --pty bash"),
+        ("Now simply import the wheeler cluster profile availble in the root matlab folder:",
+         "Now simply import the cluster profile available in the root MATLAB folder:"),
+        ("/opt/local/MATLAB/wheeler-normal.settings",
+         "/opt/local/MATLAB/<cluster>-normal.settings"),
+        ("using the `wheeler` cluster profile", "using the imported cluster profile"),
+        ("across two nodes on Wheeler while timing", "across two nodes while timing"),
+    ],
+    "software/matlab-parallel-server.md": [
+        ("for example, wheeler.alliance.unm.edu or xena.alliance.unm.edu.",
+         "for example, hopper.alliance.unm.edu."),
+        ("Specify the path to the matlab installation on the compute nodes: "
+         "/opt/local/MATLAB/R2019a (or 2020a) for the Xena cluster, and "
+         "/opt/local/MATLAB/R2019a for the Wheeler cluster.",
+         "Specify the path to the MATLAB installation on the compute nodes "
+         "(shown by `module show matlab` on the cluster)."),
+        ("running on the wheeler cluster", "running on the cluster"),
+        ("ssh username@wheeler.alliance.unm.edu", "ssh username@hopper.alliance.unm.edu"),
+    ],
+    "software/gurobi-r.md": [
+        ("There are modules for both Gurobi and R on the wheeler cluster.",
+         "There are modules for both Gurobi and R on the CARC clusters."),
+        ("username@wheeler-sn:~$", "username@hopper:~$"),
+    ],
+    "software/tensorflow.md": [
+        ("benchmarks run on the Xena system at CARC using",
+         "benchmarks run on a previous CARC GPU system using"),
+        ("Xena has nodes with single GPU and dual GPU.",
+         "That system had nodes with a single GPU and dual GPUs."),
+    ],
+    "software/tensorflow-multi-gpu.md": [
+        ("here are benchmarks run on the (legacy) Xena system at CARC using",
+         "here are benchmarks run on a previous CARC GPU system using"),
+        ("The old Xena cluster had nodes with both single- and dual-GPU configurations.",
+         "That system had nodes with both single- and dual-GPU configurations."),
+    ],
+    "software/dask-scikit-learn.md": [
+        ("go to https://wheeler.alliance.unm.edu:8000 where",
+         "go to https://hopper.alliance.unm.edu where"),
+    ],
+    "software/r-packages.md": [
+        ("The actual call to Torque, our job scheduler, will be explained in more "
+         "depth later, but for now to request an interactive node type the "
+         "following at the command prompt on Wheeler:",
+         "The actual call to Slurm, our job scheduler, is explained in more depth "
+         "later; for now, to request an interactive node type the following at "
+         "the command prompt:"),
+    ],
+    "software/paraview.md": [
+        ("matches the same one that is installed on Wheeler and Hopper clusters.",
+         "matches the same one that is installed on the CARC clusters."),
+    ],
+    "tutorials/simcov.md": [
+        ("running the SimCov immunology model on the Wheeler cluster.",
+         "running the SimCov immunology model on CARC systems."),
+        ("Load Wheeler modules and set", "Load the required modules and set"),
+        ("A wheeler PBS script is provided for you.",
+         "A sample batch script is provided by the developers."),
+        ("already be in the wheeler_simcov_run.pbs.",
+         "already be in the repository's sample submission script."),
+    ],
+    "tutorials/gatk.md": [
+        ("with 4 nodes on wheeler takes about 5.5 hours",
+         "with 4 nodes takes about 5.5 hours"),
+        ("Alternatively, you can load these as modules if you are on Wheeler "
+         "(Xena only has Samtools now), but",
+         "Alternatively, you can load these as modules, but"),
+    ],
+    "tutorials/stacks.md": [
+        ("Stacks can easily be run on Wheeler with installed modules,",
+         "Stacks can easily be run on CARC systems with installed modules,"),
+        ("This can often be run on a single node on Wheeler, as",
+         "This can often be run on a single node, as"),
+        ("you will almost certainly be running this on Wheeler (low resource use), "
+         "which has recent versions of all three installed:",
+         "you will almost certainly be running this on a CARC cluster, which has "
+         "recent versions of all three installed:"),
+    ],
+    "tutorials/psmc.md": [
+        ("Wheeler will work for some samples, but nodes",
+         "Standard nodes will work for some samples, but nodes"),
+    ],
+    "tutorials/beast.md": [
+        ("## Running BEAST on Wheeler", "## Running BEAST on CARC systems"),
+    ],
+    "tutorials/orca.md": [
+        ("Taos uses Slurm", "CARC clusters use Slurm"),
+        ("an Orca job on Taos named", "an Orca job named"),
+        ("scratch_dir=/taos/scratch/$USER/", "scratch_dir=/carc/scratch/$USER/"),
+    ],
+    "tutorials/mpi-casa.md": [
+        ("/users/sbruzew/xena-scratch/casa-blah-blah/bin/casa",
+         "/path/to/casa/bin/casa"),
+        ("/users/sbruzew/xena-scratch/casa-blah-blah/bin/mpicasa",
+         "/path/to/casa/bin/mpicasa"),
+    ],
+}
+
+# Regex fixes for multi-line regions (applied with re.sub, DOTALL):
+LEGACY_FIXES_RE = {
+    "systems/resource-limits.md": [
+        (r"## Xena Configuration.*?## Hopper Configuration",
+         "## Hopper Configuration"),
+    ],
+    "software/alphafold.md": [
+        (r"### Xena Script ###.*?### Hopper Script ###",
+         "### Hopper Script ###"),
+    ],
+    "tutorials/orca.md": [
+        (r"### Submitting an Orca script on Wheeler.*?### Submitting on Orca script on Taos",
+         "### Submitting an Orca batch script"),
+    ],
+    "software/r-packages.md": [
+        (r"```\nyourusername@wheeler-sn\$ qsub -I.*?prologue running on host: wheeler272\n```",
+         "```\nyourusername@hopper$ srun --time=01:00:00 --ntasks=8 --pty bash\n```"),
+    ],
+    "tutorials/metabarcoding.md": [
+        (r"[ \t]*# To install QIIME2 on the Wheeler, Xena, or Hopper clusters, "
+         r"use the following command:\n([ \t]*)module load miniconda3\n[ \t]*\n"
+         r"[ \t]*# To do a similar installation on the Taos cluster, use the "
+         r"following command instead:\n[ \t]*module load miniconda3-4\.10\.3-gcc-10\.2\.0-gu6ytpa\n[ \t]*\n",
+         "\\1# Load the conda module:\n\\1module load miniconda3\n\n"),
+    ],
+    "systems/storage.md": [
+        (r"This PBS script that will first copy an input file.*?rm -r \$TEMP_DIR\n```",
+         "This Slurm script first copies an input file (large_input_data.dat) to "
+         "the compute node, runs the calculation (\"run_my_program\"), and then "
+         "copies all results back into the submission directory:\n"
+         "\n"
+         "```bash\n"
+         "#!/bin/bash\n"
+         "#SBATCH --nodes=1\n"
+         "#SBATCH --ntasks=8\n"
+         "#SBATCH --time=1:00:00\n"
+         "#SBATCH --job-name=local_storage\n"
+         "\n"
+         "# Define a directory on the node-local disk, create it once the job\n"
+         "# has started, move data there, then cd to it and run\n"
+         "TEMP_DIR=/tmp/$USER/$SLURM_JOB_ID\n"
+         "mkdir -p \"$TEMP_DIR\"\n"
+         "cp -r $SLURM_SUBMIT_DIR/large_input_data.dat \"$TEMP_DIR\"\n"
+         "cd $TEMP_DIR\n"
+         "\n"
+         "# Now run my program\n"
+         "run_my_program\n"
+         "\n"
+         "# The job has finished, so move data back to where it came from\n"
+         "cp -r $TEMP_DIR/* $SLURM_SUBMIT_DIR\n"
+         "\n"
+         "# Finally clean up the temporary directory\n"
+         "rm -r $TEMP_DIR\n"
+         "```"),
+    ],
+}
+
 LIST_ITEM_RE = re.compile(r"^\s*(\d+\.|[-*+])\s")
 
 
@@ -528,10 +848,42 @@ def externalize_links(md: str) -> str:
     return "\n".join(out)
 
 
-LEGACY_RE = re.compile(r"\b(Wheeler|Taos|Gibbs|Xena)\b", re.IGNORECASE)
-LEGACY_NOTE = ("This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). "
-               "The workflow remains a useful example, but verify cluster names, partitions, "
-               "GPU types, and module versions against the [current systems](%s).")
+# Verification: retired system names may only appear on the sanctioned legacy
+# pages below. "Burrows-Wheeler" (the alignment algorithm) is not the cluster.
+LEGACY_RE = re.compile(
+    r"\b(Taos|Gibbs|Xena)\b"
+    r"|(?<!Burrows-)(?<!Burroughs-)(?<!Burrough-)\bWheeler\b",
+    re.IGNORECASE)
+LEGACY_OK = {
+    "systems/cluster-specifications.md",  # the legacy reference page
+    "running-jobs/pbs-to-slurm.md",       # scheduler transition guide
+    "software/r-pbs-jobs.md",             # deprecated, points at replacements
+    "systems/overview.md",                # pointer to the legacy reference
+    "systems/index.md",                   # lists the legacy reference page
+    "about/ai-agents.md",                 # tells agents these systems are retired
+    "log.md",                             # history (documents the retirement)
+}
+
+
+def check_legacy_mentions() -> int:
+    """After migration: fail if a retired system name survives in the content
+    of any page outside the sanctioned legacy set (LEGACY_OK). Frontmatter is
+    skipped — provenance must keep the true names of upstream source files."""
+    bad = 0
+    for path in sorted(DOCS.rglob("*.md")):
+        rel = str(path.relative_to(DOCS))
+        if rel in LEGACY_OK or rel.split("/")[0] == "assets":
+            continue
+        text = path.read_text(encoding="utf-8")
+        if text.startswith("---"):
+            m = re.match(r"^---\s*\n.*?\n---\s*\n", text, re.DOTALL)
+            if m:
+                text = text[m.end():]
+        for i, line in enumerate(text.splitlines(), 1):
+            if LEGACY_RE.search(line):
+                print(f"LEGACY MENTION: {rel}:+{i}: {line.strip()[:100]}", file=sys.stderr)
+                bad += 1
+    return bad
 
 
 def sh(cmd, cwd=None) -> str:
@@ -658,14 +1010,17 @@ def normalize_body(md: str, p: Page, image_names: set, asset_map: dict, link_map
     for old, new in PATCHES.get(p.dest, []):
         body = body.replace(old, new)
 
+    # Legacy purge: retire Wheeler/Taos/Gibbs/Xena and PBS-as-current wording.
+    for old, new in LEGACY_FIXES.get(p.dest, []):
+        body = body.replace(old, new)
+    for pat, repl in LEGACY_FIXES_RE.get(p.dest, []):
+        body = re.sub(pat, repl, body, flags=re.DOTALL)
+
     # Build the final document.
     out = [f"# {p.title}", ""]
     notes = []
     if p.note:
         notes.append(p.note)
-    elif p.status != "deprecated" and LEGACY_RE.search(body):
-        rel_overview = os.path.relpath("systems/overview.md", str(Path(p.dest).parent)).replace(os.sep, "/")
-        notes.append(LEGACY_NOTE % rel_overview)
     for n in notes:
         kind = "warning" if p.status in ("deprecated", "draft") else "note"
         title = "Legacy content" if "retired" in n else "Please note"
@@ -817,6 +1172,12 @@ def main():
         print("MISSING SOURCES:")
         for s in skipped:
             print(f"  - {s}")
+
+    bad = check_legacy_mentions()
+    if bad:
+        print(f"ERROR: {bad} retired-system mention(s) outside the sanctioned "
+              f"legacy pages — extend LEGACY_FIXES or LEGACY_OK.", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

@@ -18,44 +18,9 @@ sources:
 
 # ORCA quantum chemistry
 
-!!! warning "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
+### Submitting an Orca batch script
 
-### Submitting an Orca script on Wheeler
-
-Wheeler uses PBS (**P**ortable **B**atch **S**ystem) to submit jobs to the queue for execution. Below is an example script that can be used on Wheeler named `orca_submission.pbs`:
-
-```bash
-#!/usr/bin/bash
-
-## Setup your qsub flags here requesting resources.
-#PBS -l walltime=10:00:00
-#PBS -l nodes=1:ppn=8
-#PBS -N my_orca_job
-#PBS -M <YourNetID>@unm.edu
-#PBS -m bae
-
-## Change to the submission directory 
-## and load the Orca software module
-cd $PBS_O_WORKDIR
-module load orca/4.0.1
-
-## Set your input file for Orca
-input_file=my_orca_input.inp
-
-# Orca needs the full path when running in parallel
-full_orca_path=$(which orca)
-
-# Run Orca
-$full_orca_path $input_file
-```
-
-Now you can simply submit your Orca job to the queue with `qsub orca_submission.pbs`. 
-
-
-### Submitting on Orca script on Taos
-
-Taos uses Slurm (**S**imple **L**inux **U**tility for **R**esource **M**anagement) to submit jobs and manage resources. Slurm provides greater control over resource management and utilization which means one has to be more explicit in their submission script. Specifically, it is necessary to request sufficient memory for your task when submitting your job. Below is a sample script for submitting an Orca job on Taos named `orca_submission.sh`:
+CARC clusters use Slurm (**S**imple **L**inux **U**tility for **R**esource **M**anagement) to submit jobs and manage resources. Slurm provides greater control over resource management and utilization which means one has to be more explicit in their submission script. Specifically, it is necessary to request sufficient memory for your task when submitting your job. Below is a sample script for submitting an Orca job named `orca_submission.sh`:
 
 ```bash
 #!/usr/bin/bash
@@ -82,7 +47,7 @@ output_file=my_orca_output.log
 prefix=$(echo $input_file | cut -f1 -d".")
 
 # Set the scratch directory path
-scratch_dir=/taos/scratch/$USER/
+scratch_dir=/carc/scratch/$USER/
 
 # Set the input and output paths on the scratch file system
 mkdir $scratch_dir$prefix

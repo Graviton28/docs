@@ -18,9 +18,6 @@ sources:
 
 # SSH keys and client configuration
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 Once you start computing you will be logging in to the CARC systems fairly often and having to type your username at the machine address will become tedious. In order to alleviate this tedium it is beneficial to generate ssh keys and a ssh config file. The ssh keys bypass the need to enter your password each time you log in, and the config file stores the addresses of all the machines you are logging in to. 
 
 ### SSH key generation
@@ -67,24 +64,17 @@ Since your home directory is shared across all machines at CARC you only need to
 To make logging in to CARC even easier we also recommend setting up a ssh config file which allows you to simply type `ssh machinename` instead of your username at the machine address. To set up this file simply copy the example below and save it to a text document in your `ssh` folder, which is found at `~/.ssh/`. Change the user to your CARC username and you are set to log in quickly and efficiently. You can add machines based on which ones you have access to. 
 
 
-    Host wheeler
-```bash
-hostname wheeler.alliance.unm.edu
-user CHANGEME
-port 22
 ```
-    Host hopper
-```bash
-hostname hopper.alliance.unm.edu
-user CHANGEME
-port 22
-```
-    Host xena
-```bash
-hostname xena.alliance.unm.edu
-user CHANGEME
-ForwardX11 yes
-port 22
+Host hopper
+    hostname hopper.alliance.unm.edu
+    user CHANGEME
+    port 22
+
+Host easley
+    hostname easley.alliance.unm.edu
+    user CHANGEME
+    ForwardX11 yes
+    port 22
 ```
 
 
@@ -97,7 +87,7 @@ Note that on the CARC clusters by default, your ssh configuration file will cont
     IdentityFile ~/.ssh/cluster
     StrictHostKeyChecking=no
 
-This helps ensure you're able to connect freely across all of the CARC clusters, for example while logged in to hopper you can just type `ssh xena`.
+This helps ensure you're able to connect freely across all of the CARC clusters, for example while logged in to hopper you can just type `ssh easley`.
 
 The issue here will arise if you need to add a new ssh key for some reason, say, you need to add an ssh key so you're able to make edits to a git repository from the CARC clusters. If this is the case, you can start by creating a new ssh key as explained in the previous steps of this tutorial. 
 

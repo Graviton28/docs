@@ -57,18 +57,6 @@ it straight through here, or jump to an episode:
 | [Computational Chemistry: Avogadro and Gaussian](https://www.youtube.com/watch?v=Jqyf7bodT4U){target=_blank} | 28:38 | — |
 | [CS491/591: SimCov Compilation and Submission](https://www.youtube.com/watch?v=7x3voqNX0QY){target=_blank} | 8:14 | [SimCov](../tutorials/simcov.md) |
 
-??? note "Legacy episodes (retired systems and schedulers)"
-
-    These recordings reference PBS/Torque or the retired Xena cluster. The
-    concepts still transfer, but commands and cluster names have changed —
-    see [PBS to Slurm](../running-jobs/pbs-to-slurm.md).
-
-    | Episode | Length |
-    | ------- | :----: |
-    | [Submitting PBS Jobs](https://www.youtube.com/watch?v=H_p_uGlXdxU){target=_blank} | 27:37 |
-    | [Submitting Jobs on Xena with Slurm](https://www.youtube.com/watch?v=aOqT49bpUe8){target=_blank} | 35:22 |
-    | [Parallelization 2: PBS Array Jobs and Embarrassingly Parallel Problems](https://www.youtube.com/watch?v=qSRDZ5JH6f4){target=_blank} | 15:34 |
-
 ## CARC Annual Meeting 2026
 
 Recorded talks from [CAM 2026](https://www.youtube.com/playlist?list=PLvr5gRBLi7VCveJGJHzQrtmI4Jw0AHVP7){target=_blank}:

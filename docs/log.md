@@ -1,5 +1,13 @@
 # Documentation update log
 
+## 2026-08-30
+
+* **Update**: Completed the retirement of Wheeler, Taos, Gibbs, and Xena across the corpus. The "Legacy content" admonitions are gone, and every active page now reads against the current clusters: hostnames and prompts point at Hopper, retired-only sections were removed (the Wheeler/PBS Orca variant, the Xena AlphaFold script, Xena-specific partition flags), and the historical Xena and Wheeler queue tables moved from [resource limits](systems/resource-limits.md) into the [legacy cluster reference](systems/cluster-specifications.md). The migration pipeline now enforces this: it fails if a retired system name appears outside the sanctioned legacy pages (provenance frontmatter and the changelog stay truthful).
+
+* **Update**: Converted the remaining PBS-era material on active pages to Slurm ([storage](systems/storage.md) example script and wording, [R package installs](software/r-packages.md) interactive-session request) and fenced all file paths on the storage page. Fixed the [SSH config example](getting-started/ssh-keys.md) (now a single well-formed block covering Hopper and Easley).
+
+* **Update**: Footer social links: removed the X/Twitter icon (account no longer exists) and pointed YouTube at the [main UNM CARC channel](https://www.youtube.com/@UNMCARC).
+
 ## 2026-08-29
 
 * **Update**: Made the deployed site directly consumable by AI agents: every page's Markdown source (OKF frontmatter intact) is now served at its URL plus `index.md`; rendered pages advertise it via `link rel=alternate` and `okf:*` meta tags (type, status, trust tier, generated-at); `robots.txt` points crawlers at `llms.txt`, the full corpus, and the mirror convention (`scripts/postbuild_agent_surface.py`, wired into CI). Added the [For AI agents](about/ai-agents.md) guide and a repository `AGENTS.md`/`CLAUDE.md` for coding harnesses.

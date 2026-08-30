@@ -18,21 +18,18 @@ sources:
 
 # Gurobi optimizer with R
 
-!!! note "Legacy content"
-    This page mentions retired CARC systems (Wheeler, Taos, Gibbs, or Xena). The workflow remains a useful example, but verify cluster names, partitions, GPU types, and module versions against the [current systems](../systems/overview.md).
-
 [Gurobi optimizer](https://www.gurobi.com/products/gurobi-optimizer/){target=_blank} is a problem solving software that can be used within R. It can solve integer, linear, and quadratic
 programming optimizations. These techniques can help to find the answers to complex models. 
 
 
 ## Example of running Gurobi optimizer with R at CARC
 
-There are modules for both Gurobi and R on the wheeler cluster. All you need to do is load them, and then start an R
+There are modules for both Gurobi and R on the CARC clusters. All you need to do is load them, and then start an R
 session. This command is for version 8.1.0, however there are other versions of gurobi available (enter `module avail gurobi` to see a full list).
 ```
-username@wheeler-sn:~$ module load gurobi/8.1.0
-username@wheeler-sn:~$ module load r-3.6.0-gcc-7.3.0-python2-7akol5t
-username@wheeler-sn:~$ R
+username@hopper:~$ module load gurobi/8.1.0
+username@hopper:~$ module load r-3.6.0-gcc-7.3.0-python2-7akol5t
+username@hopper:~$ R
 ```
 Once you have started an R session, you can install packages just as you would in R. If you ever run into issues loading 
 packages in R at CARC, you can reach out for assistance by emailling help@carc.unm.edu. One piece of advice if you are using 

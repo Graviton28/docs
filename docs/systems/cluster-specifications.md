@@ -52,4 +52,28 @@ sources:
 | **CPU GHz** | 2.00 | 2.00 | 2.60 | 2.60 |
 | **GPU** | N/A | N/A | 2 x Nvidia Tesla<br>K40M per node | 1 x Nvidia Tesla<br>K40M per node |
 
+### Historical queue limits
+
+Queue limits in force when these systems were retired:
+
+#### Xena
+
+| Queue                | GPU                             | Bigmem                                | Debug    |
+|---:                  |:---:                            |:---:                                  |:---:     |
+| Number of Processors | 192                             | 128                                   | 8        |
+| Number of Nodes      | 12 (singleGPU) <br> 4 (dualGPU) | 1                                     | 2        |
+| Processors per Node  | 16                              | 32                                    | 4        |
+| Walltime(H:M:S)      | 48:00:00                        | 48:00:00                              | 04:00:00 |
+| Memory Limit         | 60 Gb (singleGPU and dualGPU)   | 1 Tb (bigmem-1TB)<br>3 Tb (bigmem-3TB)| 60 Gb    |
+
+#### Wheeler
+
+|                Queue: |   Default  |    Debug   |
+|----------------------:|:----------:|:----------:|
+| Number of Processors  |     400    |     32     |
+|      Number of Nodes  |     50     |      4     |
+|   Processors per Node |      8     |      8     |
+|       Walltime(H:M:S) |  48:00:00  |  04:00:00  |
+|         Memory Limit  |    44 Gb   |    44 Gb   |
+
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/webinfo/blob/master/systems_information.md){target=_blank} (last source update 2023-01-23). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
