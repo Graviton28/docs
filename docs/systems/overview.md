@@ -63,8 +63,12 @@ flexible computing environments.
 
 ## Status and downtime
 
-Planned maintenance and outage notices are posted on the
-[system status page](https://carc.unm.edu/systems/downtime-notices.html){ target=_blank }.
+Check the live monitors directly:
+
+* [Cluster login & website status](https://stats.uptimerobot.com/kqt0LYLwFd){ target=_blank } — per-system up/down and response times
+* [UNM IT alerts](https://italerts.unm.edu/){ target=_blank } — campus-wide IT outage notices
+* [Network performance](http://perfsonar.alliance.unm.edu){ target=_blank } — perfSONAR measurements for the CARC network
+* [Easley external DNS check](https://dnschecker.org/#A/easley.alliance.unm.edu){ target=_blank } — worldwide resolution of easley.alliance.unm.edu
 
 ## Networking
 

@@ -2,6 +2,8 @@
 
 ## 2026-08-30
 
+* **Update**: System-status links now point straight at the live monitors — the [cluster login & website status board](https://stats.uptimerobot.com/kqt0LYLwFd), [UNM IT alerts](https://italerts.unm.edu/), [perfSONAR network performance](http://perfsonar.alliance.unm.edu), and the [Easley DNS check](https://dnschecker.org/#A/easley.alliance.unm.edu) — instead of the intermediary carc.unm.edu downtime page. The landing button and troubleshooting steps use the cluster status board; the support card and systems overview list all four.
+
 * **Update**: The header logo is now a Googie starburst — the same 12-ray construction as the homepage hero's atomic bursts (alternating ray lengths, tip dots, cycling colors), in the cream/turquoise/white subset that reads on the cherry header.
 
 * **Update**: Completed the retirement of Wheeler, Taos, Gibbs, and Xena across the corpus. The "Legacy content" admonitions are gone, and every active page now reads against the current clusters: hostnames and prompts point at Hopper, retired-only sections were removed (the Wheeler/PBS Orca variant, the Xena AlphaFold script, Xena-specific partition flags), and the historical Xena and Wheeler queue tables moved from [resource limits](systems/resource-limits.md) into the [legacy cluster reference](systems/cluster-specifications.md). The migration pipeline now enforces this: it fails if a retired system name appears outside the sanctioned legacy pages (provenance frontmatter and the changelog stay truthful).

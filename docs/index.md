@@ -15,7 +15,7 @@ hide:
 [:material-rocket-launch: Get started](getting-started/index.md){ .md-button .md-button--primary }
 [:material-lifebuoy: Help ticket](https://support.alliance.unm.edu/){ .md-button target=_blank }
 [:material-monitor-dashboard: Open OnDemand](https://ood.alliance.unm.edu){ .md-button target=_blank }
-[:material-list-status: System status](https://carc.unm.edu/systems/downtime-notices.html){ .md-button target=_blank }
+[:material-list-status: System status](https://stats.uptimerobot.com/kqt0LYLwFd){ .md-button target=_blank }
 </div>
 
 </div>

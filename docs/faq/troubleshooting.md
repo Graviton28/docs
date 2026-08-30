@@ -24,7 +24,8 @@ that page — cluster, job ID, exact command, and full error message.
 ## I can't log in
 
 1. **Check for maintenance** on the
-   [system status page](https://carc.unm.edu/systems/downtime-notices.html){ target=_blank }.
+   [cluster status monitor](https://stats.uptimerobot.com/kqt0LYLwFd){ target=_blank }
+   and [UNM IT alerts](https://italerts.unm.edu/){ target=_blank }.
 2. **Password or OTP problems** — reset via the steps in
    [password reset](../getting-started/password-reset.md).
 3. **`Permission denied (publickey)`** — your SSH key setup is incomplete or
@@ -64,7 +65,7 @@ Common reason codes:
 | `Priority` | Others are ahead of you (fairshare) | Wait, or request fewer/shorter resources; see [fairshare](../running-jobs/slurm-accounting.md) |
 | `Resources` | Not enough free nodes for your request | Reduce cores/memory/GPUs or choose another partition |
 | `QOSMax*` / limits | You've hit a partition or account limit | Check [resource limits](../systems/resource-limits.md) |
-| `ReqNodeNotAvail` | Nodes down or reserved (often maintenance) | Check the [system status page](https://carc.unm.edu/systems/downtime-notices.html){ target=_blank } |
+| `ReqNodeNotAvail` | Nodes down or reserved (often maintenance) | Check the [cluster status monitor](https://stats.uptimerobot.com/kqt0LYLwFd){ target=_blank } |
 | `InvalidAccount` | Wrong `--account` | List yours: `sacctmgr show assoc user=$USER format=account` |
 
 ## My job failed or was killed

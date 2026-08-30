@@ -843,8 +843,12 @@ flexible computing environments.
 
 ## Status and downtime
 
-Planned maintenance and outage notices are posted on the
-[system status page](https://carc.unm.edu/systems/downtime-notices.html){ target=_blank }.
+Check the live monitors directly:
+
+* [Cluster login & website status](https://stats.uptimerobot.com/kqt0LYLwFd){ target=_blank } — per-system up/down and response times
+* [UNM IT alerts](https://italerts.unm.edu/){ target=_blank } — campus-wide IT outage notices
+* [Network performance](http://perfsonar.alliance.unm.edu){ target=_blank } — perfSONAR measurements for the CARC network
+* [Easley external DNS check](https://dnschecker.org/#A/easley.alliance.unm.edu){ target=_blank } — worldwide resolution of easley.alliance.unm.edu
 
 ## Networking
 
@@ -11147,7 +11151,8 @@ that page — cluster, job ID, exact command, and full error message.
 ## I can't log in
 
 1. **Check for maintenance** on the
-   [system status page](https://carc.unm.edu/systems/downtime-notices.html){ target=_blank }.
+   [cluster status monitor](https://stats.uptimerobot.com/kqt0LYLwFd){ target=_blank }
+   and [UNM IT alerts](https://italerts.unm.edu/){ target=_blank }.
 2. **Password or OTP problems** — reset via the steps in
    [password reset](../getting-started/password-reset.md).
 3. **`Permission denied (publickey)`** — your SSH key setup is incomplete or
@@ -11187,7 +11192,7 @@ Common reason codes:
 | `Priority` | Others are ahead of you (fairshare) | Wait, or request fewer/shorter resources; see [fairshare](../running-jobs/slurm-accounting.md) |
 | `Resources` | Not enough free nodes for your request | Reduce cores/memory/GPUs or choose another partition |
 | `QOSMax*` / limits | You've hit a partition or account limit | Check [resource limits](../systems/resource-limits.md) |
-| `ReqNodeNotAvail` | Nodes down or reserved (often maintenance) | Check the [system status page](https://carc.unm.edu/systems/downtime-notices.html){ target=_blank } |
+| `ReqNodeNotAvail` | Nodes down or reserved (often maintenance) | Check the [cluster status monitor](https://stats.uptimerobot.com/kqt0LYLwFd){ target=_blank } |
 | `InvalidAccount` | Wrong `--account` | List yours: `sacctmgr show assoc user=$USER format=account` |
 
 ## My job failed or was killed
@@ -11539,10 +11544,15 @@ student researchers.
 
     ---
 
-    Check planned maintenance windows and downtime notices before reporting
-    an outage.
+    Check the live monitors before reporting an outage.
 
-    [:octicons-arrow-right-24: Status and downtime](https://carc.unm.edu/systems/downtime-notices.html){ target=_blank }
+    [:octicons-arrow-right-24: Cluster login & website status](https://stats.uptimerobot.com/kqt0LYLwFd){ target=_blank }
+
+    [:octicons-arrow-right-24: UNM IT alerts](https://italerts.unm.edu/){ target=_blank }
+
+    [:octicons-arrow-right-24: Network performance (perfSONAR)](http://perfsonar.alliance.unm.edu){ target=_blank }
+
+    [:octicons-arrow-right-24: Easley external DNS check](https://dnschecker.org/#A/easley.alliance.unm.edu){ target=_blank }
 
 </div>
 
@@ -11966,6 +11976,8 @@ platforms. If you are unsure which platform fits your project, come to
 # Documentation update log
 
 ## 2026-08-30
+
+* **Update**: System-status links now point straight at the live monitors — the [cluster login & website status board](https://stats.uptimerobot.com/kqt0LYLwFd), [UNM IT alerts](https://italerts.unm.edu/), [perfSONAR network performance](http://perfsonar.alliance.unm.edu), and the [Easley DNS check](https://dnschecker.org/#A/easley.alliance.unm.edu) — instead of the intermediary carc.unm.edu downtime page. The landing button and troubleshooting steps use the cluster status board; the support card and systems overview list all four.
 
 * **Update**: The header logo is now a Googie starburst — the same 12-ray construction as the homepage hero's atomic bursts (alternating ray lengths, tip dots, cycling colors), in the cream/turquoise/white subset that reads on the cherry header.
 

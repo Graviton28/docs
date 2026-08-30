@@ -55,10 +55,15 @@ student researchers.
 
     ---
 
-    Check planned maintenance windows and downtime notices before reporting
-    an outage.
+    Check the live monitors before reporting an outage.
 
-    [:octicons-arrow-right-24: Status and downtime](https://carc.unm.edu/systems/downtime-notices.html){ target=_blank }
+    [:octicons-arrow-right-24: Cluster login & website status](https://stats.uptimerobot.com/kqt0LYLwFd){ target=_blank }
+
+    [:octicons-arrow-right-24: UNM IT alerts](https://italerts.unm.edu/){ target=_blank }
+
+    [:octicons-arrow-right-24: Network performance (perfSONAR)](http://perfsonar.alliance.unm.edu){ target=_blank }
+
+    [:octicons-arrow-right-24: Easley external DNS check](https://dnschecker.org/#A/easley.alliance.unm.edu){ target=_blank }
 
 </div>
 
