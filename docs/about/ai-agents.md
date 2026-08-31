@@ -8,7 +8,7 @@ tags:
   - OKF
 generated:
   by: "claude/fable-5"
-  at: "2026-08-29T00:00:00Z"
+  at: "2026-08-31T00:00:00Z"
 sources:
   - id: okf-spec
     resource: "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md"
@@ -70,6 +70,18 @@ before relying on content:
     **Easley** and **Hopper** — see the [systems overview](../systems/overview.md).
     Pages mentioning retired systems carry a legacy notice and should not be
     used as a source for current cluster names, partitions, or GPU types.
+
+## Related OKF bundles
+
+The [GPT 101 generative-AI workshop](https://tyson-swetnam.github.io/intro-gpt/){target=_blank},
+which CARC maintains and teaches, is published with the same agent
+conventions as this documentation:
+
+* [Workshop llms.txt](https://tyson-swetnam.github.io/intro-gpt/llms.txt){target=_blank} —
+  AI platform setup, prompt engineering, education, research, and ethics pages.
+* [Workshop agent guide](https://tyson-swetnam.github.io/intro-gpt/agents/){target=_blank} —
+  endpoints and trust signals. Note its raw-source convention differs: replace
+  a page URL's trailing `/` with `.md` (not `index.md` as on this site).
 
 ## Answering user questions
 
