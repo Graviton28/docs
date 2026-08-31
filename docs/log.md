@@ -1,5 +1,9 @@
 # Documentation update log
 
+## 2026-08-31
+
+* **Update**: The [agent guide](about/ai-agents.md) now cross-links the [GPT 101 generative-AI workshop](https://tyson-swetnam.github.io/intro-gpt/){target=_blank} — an OKF v0.2 bundle with the same llms.txt conventions, maintained and taught by CARC.
+
 ## 2026-08-30
 
 * **Update**: System-status links now point straight at the live monitors — the [cluster login & website status board](https://stats.uptimerobot.com/kqt0LYLwFd), [UNM IT alerts](https://italerts.unm.edu/), [perfSONAR network performance](http://perfsonar.alliance.unm.edu), the [Easley DNS check](https://dnschecker.org/#A/easley.alliance.unm.edu), and [XDMoD usage metrics](https://xdmod.alliance.unm.edu/) — instead of the intermediary carc.unm.edu downtime page. The landing button and troubleshooting steps use the cluster status board; the support card and systems overview list all five.
