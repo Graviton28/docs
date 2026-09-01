@@ -34,7 +34,7 @@ To load a module, use the `module load` command. For example, to load the module
 module load intel-oneapi-compilers
 ```
 
-Note that there's no plain `intel` module on Easley — `module load intel` fails with "The following module(s) are unknown." Easley's Intel software all lives under the `intel-oneapi-*` family instead (`intel-oneapi-compilers`, `intel-oneapi-mkl`, `intel-oneapi-mpi`, etc.).
+The current Intel toolchain on Easley lives under the `intel-oneapi-*` family (`intel-oneapi-compilers`, `intel-oneapi-mkl`, `intel-oneapi-mpi`, etc.). Older `intel/18.x`–`intel/20.x` compiler modules also remain available for rebuilding legacy software — `module avail intel` shows both families.
 
 Another useful command related to module management is `module spider`. For example, if you issue the command:
 

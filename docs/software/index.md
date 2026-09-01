@@ -42,3 +42,4 @@ Language environments, machine learning frameworks, containers, and applications
 * [Singularity / Apptainer containers](singularity.md) - Build, pull, and run software containers on CARC clusters.
 * [Apache Spark](spark.md) - Launch Apache Spark clusters inside Slurm allocations for large-scale data analysis.
 * [ParaView remote visualization](paraview.md) - Run the ParaView server on CARC compute nodes and connect from your desktop client.
+* [CUDA-aware MPI](cuda-aware-mpi.md) - Pass GPU device pointers directly to MPI calls with the CUDA-aware OpenMPI/UCX stack, and fix the mixed-environment segfault.

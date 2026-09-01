@@ -102,11 +102,13 @@ PAGES: list[Page] = [
          "Current CARC clusters (Easley and Hopper), storage tiers, and web portals such as JupyterHub, Open OnDemand, and XDMoD.",
          "Reference", ["Systems", "Hardware"], stale_after=HW_STALE, repo="hand"),
     Page("resource_limits.md", "systems/resource-limits.md", "Storage and compute usage policies",
-         "Storage quotas, Slurm fairshare policy, and per-cluster queue limits.",
-         "Policy", ["Policy", "Storage", "Slurm"], stale_after=HW_STALE, repo="webinfo"),
+         "Storage quotas, per-cluster partition and walltime limits, Slurm fairshare policy, and the job time-limit extension policy.",
+         "Policy", ["Policy", "Storage", "Slurm"], stale_after=HW_STALE, repo="webinfo",
+         frozen=True),  # 2026-09-01: curated against CARC-knowledge-store observed facts
     Page("storage_and_backup.md", "systems/storage.md", "Storage and backups",
-         "CARC storage spaces (home, project, scratch), where to compute from, and what is backed up.",
-         "Guide", ["Storage", "Data"], videos=[("WwsbLyl7d1A", "Storage Systems")]),
+         "CARC storage spaces (home, project, scratch), the real filesystem paths, retention windows, and what is backed up.",
+         "Guide", ["Storage", "Data"], videos=[("WwsbLyl7d1A", "Storage Systems")],
+         frozen=True),  # 2026-09-01: curated against CARC-knowledge-store observed facts
     Page("storage_permissions_BeeGFS.md", "systems/storage-permissions.md", "Storage permissions on BeeGFS",
          "Manage file and directory permissions, including ACLs, on CARC BeeGFS scratch storage.",
          "Guide", ["Storage", "Security"]),
@@ -168,6 +170,9 @@ PAGES: list[Page] = [
     Page("parallel_jupyterhub_with_dask_and_scikit-learn.md", "software/dask-scikit-learn.md", "Parallel Python with Dask and scikit-learn",
          "Scale scikit-learn workloads across cluster nodes from JupyterHub using Dask.",
          "Tutorial", ["Python", "Jupyter", "Parallel", "Dask"]),
+    Page("", "software/cuda-aware-mpi.md", "CUDA-aware MPI",
+         "Pass GPU device pointers directly to MPI calls with the CUDA-aware OpenMPI/UCX stack, and fix the mixed-environment segfault.",
+         "Guide", ["MPI", "GPU", "CUDA"], repo="hand"),
     Page("parallelization_with Jupyterhub_using_mpi.md", "software/jupyterhub-mpi.md", "MPI parallelization from JupyterHub",
          "Run MPI-parallel Python (mpi4py/ipyparallel) from CARC JupyterHub sessions.",
          "Tutorial", ["Python", "Jupyter", "MPI", "Parallel"]),
@@ -347,7 +352,7 @@ SOFTWARE_GROUPS = [
                 "matlab-deep-learning.md"]),
     ("AI & machine learning", ["pytorch.md", "pytorch-classifier.md", "tensorflow.md",
                                "tensorflow-multi-gpu.md", "alphafold.md"]),
-    ("Containers & tools", ["singularity.md", "spark.md", "paraview.md"]),
+    ("Containers & tools", ["singularity.md", "spark.md", "paraview.md", "cuda-aware-mpi.md"]),
 ]
 
 # Extra downloadable assets: (repo-relative source, docs/assets/files-relative dest)
@@ -424,6 +429,80 @@ PATCHES = {
          "    - create temporary files elsewhere and then move them into place\n"
          "    - use transfer behavior that bypasses the expected destination ownership\n\n"
          "    Because of this, always verify group ownership after large transfers."),
+    ],
+    # 2026-09-01 knowledge-store reconciliation: partition list corrected against
+    # observed cluster state (CARC-knowledge-store facts/raw/easley/2026-07-25 —
+    # debug is 1 hour, Easley has no "condo" partition) and the ticket-derived
+    # GPU-partition access path documented.
+    "running-jobs/slurm-intro.md": [
+        ("Key partitions you may have access to:\n\n"
+         "- **general** — The default community partition. Maximum wall time of 2 days. Use this if you are not a member of a specific condo group.\n"
+         "- **debug** — Short jobs only (4-hour limit). Useful for testing scripts before submitting long runs.\n"
+         "- **condo** — Purchased nodes available to specific research groups. If you are a member of a condo group, you likely already know your partition name. Check with your PI if you are unsure.\n"
+         "- **scavenger** - Whenever a purchased/reserved node is not in use, this partition grabs them and allows them to be used by the public, but be warned you will be kicked off if the owner begins a job on it.",
+         "Key partitions on Easley (limits as observed 2026-07-25 — `sinfo` or\n"
+         "`scontrol show partition <name>` always shows the current values):\n\n"
+         "- **general** — The default community partition. Maximum wall time of 2 days.\n"
+         "- **bigmem** — Two large-memory nodes (about 2 TB of RAM each) for jobs that need far more memory than a general node provides. Maximum wall time of 2 days.\n"
+         "- **h100** — GPU nodes with 2× NVIDIA H100 per node. Maximum wall time of 2 days.\n"
+         "- **l40s** — GPU nodes with 4× NVIDIA L40S per node. Maximum wall time of 2 days.\n"
+         "- **interactive** — Interactive sessions of up to 4 hours, scheduled at elevated priority.\n"
+         "- **debug** — Short test jobs only (1-hour limit — note the `1:00:00` in the `sinfo` output above). Useful for checking scripts before submitting long runs.\n"
+         "- **scavenger** — Runs on reserved nodes whenever they sit idle. Open to everyone, but preemptible: your job is killed if the owner submits work.\n"
+         "- **liulab** — A lab-restricted partition (7-day limit) belonging to a specific research group.\n\n"
+         "!!! warning \"GPU partitions are group-gated\"\n\n"
+         "    The `h100` and `l40s` partitions are restricted by group membership.\n"
+         "    Access is provisioned through a ColdFront allocation for the specific\n"
+         "    partition, requested by your project's PI — support cannot simply add\n"
+         "    you to the group on request. If a submission is rejected with\n"
+         "    `uid not in group permitted to use this partition`, see the\n"
+         "    [troubleshooting FAQ](../faq/troubleshooting.md#my-job-wont-start)."),
+        ("- Time limits use the format `D-HH:MM:SS` (e.g., `1-12:00:00` for 1 day and 12 hours) or `MM:SS` / `HH:MM:SS` for shorter jobs.",
+         "- Time limits use the format `D-HH:MM:SS` (e.g., `1-12:00:00` for 1 day and 12 hours) or `MM:SS` / `HH:MM:SS` for shorter jobs.\n"
+         "- If you omit `--time`, you do **not** get the partition maximum: `general` applies a default of 8 hours (`DefaultTime=08:00:00`). Check `scontrol show partition <name>` for the partition you use.\n"
+         "- If you omit `--mem`/`--mem-per-cpu`, memory defaults to an amount proportional to the CPUs you request (`DefMemPerCPU` — observed ≈3.7 GB per CPU on Easley's `general` partition, ≈2.9 GB on Hopper's). A small `--cpus-per-task` therefore caps your memory well below what the node physically has — the usual cause of jobs killed `OUT_OF_MEMORY` on nodes with plenty of free RAM. See [troubleshooting](../faq/troubleshooting.md#my-job-failed-or-was-killed)."),
+    ],
+    # 2026-09-01: plain intel/18–20 modules do exist on Easley
+    # (observed in module avail under /opt/local/modules).
+    "running-jobs/modules.md": [
+        ("Note that there's no plain `intel` module on Easley — `module load intel` fails with \"The following module(s) are unknown.\" Easley's Intel software all lives under the `intel-oneapi-*` family instead (`intel-oneapi-compilers`, `intel-oneapi-mkl`, `intel-oneapi-mpi`, etc.).",
+         "The current Intel toolchain on Easley lives under the `intel-oneapi-*` family (`intel-oneapi-compilers`, `intel-oneapi-mkl`, `intel-oneapi-mpi`, etc.). Older `intel/18.x`–`intel/20.x` compiler modules also remain available for rebuilding legacy software — `module avail intel` shows both families."),
+    ],
+    # 2026-09-01: ticket-derived login-failure guidance (knowledge store,
+    # fix-login-failure-password-reset).
+    "getting-started/password-reset.md": [
+        ("You can also log in with the above link to find other information about your CARC account",
+         "!!! tip \"If the reset doesn't seem to take\"\n\n"
+         "    - \"Forgot password\" needs your **exact CARC username** — confirm it first,\n"
+         "      and [open a ticket](../support/help.md) if you are unsure of your login name.\n"
+         "    - A freshly reset password can fail on the first attempt: Easley and Hopper\n"
+         "      share one authentication backend and the new password can take a little\n"
+         "      while to propagate. Try again shortly — and if needed, simply run the\n"
+         "      reset a second time.\n"
+         "    - If you can log into one cluster but not the other after a reset, SSH to\n"
+         "      the affected cluster *from* the working cluster's login node (e.g.\n"
+         "      `ssh easley` from a Hopper session) as a workaround, and\n"
+         "      [open a ticket](../support/help.md) if direct login keeps failing.\n\n"
+         "You can also log in with the above link to find other information about your CARC account"),
+    ],
+    # 2026-09-01: ticket-derived transfer-hang guidance (knowledge store,
+    # fix-large-rsync-transfer-hangs).
+    "getting-started/transferring-data.md": [
+        ("The `-vhatP` flags instruct rsync to print the progress of the transfer verbosely and in a human-readable format.",
+         "The `-vhatP` flags instruct rsync to print the progress of the transfer verbosely and in a human-readable format.\n\n"
+         "!!! tip \"Large transfer keeps hanging or timing out?\"\n\n"
+         "    A single huge `rsync` that repeatedly stalls usually points to network\n"
+         "    stability on the client side (wireless, VPN, off-campus path) rather than\n"
+         "    a problem at CARC:\n\n"
+         "    - **Chunk the transfer** — loop over subdirectories with separate `rsync`\n"
+         "      calls instead of one massive invocation. Since `rsync` skips files that\n"
+         "      have already arrived, re-running after a failure resumes where it left off.\n"
+         "    - Note whether it dies at the same file each run or at random, your client\n"
+         "      OS, wired vs. wireless, and on- vs. off-campus. Those details make a\n"
+         "      [support ticket](../support/help.md) much faster to resolve — support can\n"
+         "      also try reproducing the transfer to rule out a CARC-side issue.\n"
+         "    - Increase verbosity (`-v`/`-vv`) only on a **small subset** of the data\n"
+         "      while diagnosing, not on the full transfer."),
     ],
 }
 
@@ -513,6 +592,29 @@ LEGACY_FIXES = {
     "software/conda-environments.md": [
         ("environment on Wheeler to run", "environment on Hopper to run"),
         ("log in to Wheeler using `ssh`", "log in to Hopper using `ssh`"),
+        # 2026-09-01 knowledge-store reconciliation: the anaconda3 module is
+        # retired (only miniconda3 exists — observed module avail, both
+        # clusters); base-env limitation and interactive-session guidance from
+        # the ticket-derived python-conda-environment-slurm runbook.
+        ("load the anaconda software module with the command:\n\n`module load anaconda3`",
+         "load the conda software module with the command:\n\n`module load miniconda3`\n\n"
+         "!!! warning \"anaconda3 is retired, and the module only gives you `base`\"\n\n"
+         "    Old scripts that call `module load anaconda3` no longer work — that\n"
+         "    module has been retired; use `miniconda3` instead. Loading the module\n"
+         "    provides only conda's *base* environment, which does **not** include\n"
+         "    numpy, scipy, or other analysis packages: a Python `ModuleNotFoundError`\n"
+         "    right after loading the module means you need to create (and activate)\n"
+         "    your own environment, as shown below."),
+        ("We use `conda` to create new environments and install/upgrade packages within environments.",
+         "Build and test environments from an interactive compute session rather than a\n"
+         "login node — for example `srun --ntasks=1 --cpus-per-task=4 --time=01:00:00 --pty bash`\n"
+         "first ([interactive jobs](../running-jobs/submitting-jobs.md)); package installs are\n"
+         "exactly the kind of heavier work login nodes are not meant for.\n\n"
+         "We use `conda` to create new environments and install/upgrade packages within environments."),
+        ("Remember to include the lines below in your PBS script when working with Anaconda environments:\n\n"
+         "```bash\n# load anaconda software module\nmodule load anaconda3",
+         "Remember to include the lines below in your Slurm batch script when working with conda environments:\n\n"
+         "```bash\n# load conda software module\nmodule load miniconda3"),
     ],
     "software/pytorch.md": [
         ("### SSH in to Xena\nTo connect to the Xena machine,",
@@ -533,6 +635,43 @@ LEGACY_FIXES = {
          "direct your browser to https://hopper.alliance.unm.edu and log in"),
         ("R session running on Wheeler through JupyterHub",
          "R session running on the cluster through JupyterHub"),
+        # 2026-09-01 knowledge-store reconciliation: the r-3.x centos7 Spack
+        # tree is gone; current clusters serve r/4.x Lmod modules (observed
+        # module avail, Hopper 2026-07-25), and anaconda3 is retired.
+        ("module avail r-", "module avail r/"),
+        ("----------------------- /opt/spack/share/spack/modules/linux-centos7-x86_64 ------------------------\n"
+         "   ...\n"
+         "   r-3.4.1-gcc-4.8.5-python2-gzeg24m\n"
+         "   r-3.4.1-gcc-4.8.5-python2-zpkgqap\n"
+         "   r-3.4.1-intel-17.0.4-mkl-python2-67zsm3b\n"
+         "   r-3.4.1-intel-17.0.4-mkl-python2-gygkoab\n"
+         "   r-3.4.2-intel-18.0.2-python2-xsxuxwx\n"
+         "   r-3.4.3-gcc-4.8.5-python2-gk66fni\n"
+         "   r-3.4.3-gcc-4.8.5-python2-qv6gwz6\n"
+         "   r-3.4.3-gcc-6.1.0-python2-lyqiytq\n"
+         "   r-3.4.3-gcc-7.3.0-python2-zhxbajj\n"
+         "   r-3.4.3-intel-18.0.1-python2-3l4dkgz\n"
+         "   r-3.4.3-intel-18.0.1-python2-lr24ix6\n"
+         "   r-3.4.3-intel-18.0.2-python2-q3covk7\n"
+         "   r-3.5.0-gcc-4.8.5-python2-khqxja7\n"
+         "   r-3.5.0-gcc-7.3.0-python2-rvq3qk5\n"
+         "   r-3.5.0-intel-18.0.2-python2-mkl-r6lx6yy\n"
+         "   r-3.5.3-gcc-7.3.0-python2-ziiolp5\n"
+         "   r-3.6.0-gcc-4.8.5-python2-i4uimtp\n"
+         "   r-3.6.0-gcc-7.3.0-python2-7akol5t",
+         "-------------- /opt/spack/share/spack/lmod/linux-rocky8-x86_64/Core --------------\n"
+         "   ...\n"
+         "   r/4.2.0-vq7z\n"
+         "   r/4.2.2-oemu\n"
+         "   r/4.3.0-g353\n"
+         "   r/4.4.0-fyqw\n"
+         "   r/4.4.0-ytj2 (D)"),
+        ("Will load R-3.6.0 that has been compiled with GCC-7.3.0.",
+         "```\nyourusername@hopper$ module load r/4.4.0\n```\n\n"
+         "This will load R 4.4.0 — plain `module load r` loads the cluster's default R version."),
+        ("in your PBS script, but we will get to that later.",
+         "in your Slurm batch script, but we will get to that later."),
+        ("module load anaconda3", "module load miniconda3"),
     ],
     "software/jupyterhub-mpi.md": [
         ("wheeler-sn.alli", "hopper.alli"),
@@ -615,6 +754,9 @@ LEGACY_FIXES = {
         ("There are modules for both Gurobi and R on the wheeler cluster.",
          "There are modules for both Gurobi and R on the CARC clusters."),
         ("username@wheeler-sn:~$", "username@hopper:~$"),
+        # 2026-09-01: the r-3.x centos7 Spack tree is gone; r/4.x Lmod modules
+        # are current (observed module avail, Hopper 2026-07-25).
+        ("module load r-3.6.0-gcc-7.3.0-python2-7akol5t", "module load r"),
     ],
     "software/tensorflow.md": [
         ("benchmarks run on the Xena system at CARC using",

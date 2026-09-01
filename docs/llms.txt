@@ -22,9 +22,9 @@ Every page's Markdown source (OKF frontmatter included) is served at its URL plu
 
 - [Cluster specifications (legacy reference)](https://unm-carc.github.io/docs/systems/cluster-specifications/): Historical hardware tables for CARC clusters, including retired systems such as Wheeler, Taos, Gibbs, and Xena. (deprecated; kept for history)
 - [Systems overview](https://unm-carc.github.io/docs/systems/overview/): Current CARC clusters (Easley and Hopper), storage tiers, and web portals such as JupyterHub, Open OnDemand, and XDMoD.
-- [Storage and compute usage policies](https://unm-carc.github.io/docs/systems/resource-limits/): Storage quotas, Slurm fairshare policy, and per-cluster queue limits.
+- [Storage and compute usage policies](https://unm-carc.github.io/docs/systems/resource-limits/): Storage quotas, per-cluster partition and walltime limits, Slurm fairshare policy, and the job time-limit extension policy.
 - [Storage permissions on BeeGFS](https://unm-carc.github.io/docs/systems/storage-permissions/): Manage file and directory permissions, including ACLs, on CARC BeeGFS scratch storage.
-- [Storage and backups](https://unm-carc.github.io/docs/systems/storage/): CARC storage spaces (home, project, scratch), where to compute from, and what is backed up.
+- [Storage and backups](https://unm-carc.github.io/docs/systems/storage/): CARC storage spaces (home, project, scratch), the real filesystem paths, retention windows, and what is backed up.
 
 ## Running jobs
 
@@ -49,6 +49,7 @@ Every page's Markdown source (OKF frontmatter included) is served at its URL plu
 - [Managing conda environments](https://unm-carc.github.io/docs/software/conda-environments/): Create, activate, export, and remove conda environments on CARC clusters.
 - [Conda and Anaconda: introduction](https://unm-carc.github.io/docs/software/conda-intro/): What conda is, how environments work, and how to use Anaconda/Miniconda on CARC systems.
 - [Conda environments in JupyterHub](https://unm-carc.github.io/docs/software/conda-jupyterhub/): Make your conda environments available as kernels in CARC JupyterHub.
+- [CUDA-aware MPI](https://unm-carc.github.io/docs/software/cuda-aware-mpi/): Pass GPU device pointers directly to MPI calls with the CUDA-aware OpenMPI/UCX stack, and fix the mixed-environment segfault.
 - [Parallel Python with Dask and scikit-learn](https://unm-carc.github.io/docs/software/dask-scikit-learn/): Scale scikit-learn workloads across cluster nodes from JupyterHub using Dask.
 - [Installing deep learning packages](https://unm-carc.github.io/docs/software/deep-learning-packages/): Install GPU-enabled deep learning frameworks (PyTorch, TensorFlow) into conda environments. (draft)
 - [Getting R software](https://unm-carc.github.io/docs/software/getting-r/): Available R versions and how to load them with environment modules.

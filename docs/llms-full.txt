@@ -330,6 +330,11 @@ project, you can use every resource allocated to it.
    through ColdFront.
 3. **Add accounts** — the PI is responsible for adding collaborators' and
    students' accounts to the project.
+4. **Keep allocations current** — allocations have end dates, and ColdFront
+   emails automated renewal reminders and expiration warnings as they
+   approach. Renew in ColdFront (the PI or a designated project manager)
+   before the end date so the resources an allocation grants don't lapse —
+   see the [allocation FAQ](../faq/general.md#cost-and-allocations).
 
 For walkthroughs of project management and the annual review process, see the
 [video tutorials](../training/videos.md).
@@ -392,6 +397,19 @@ sources:
 To reset your password, you can use the link [here](https://mokey.alliance.unm.edu/auth/login){target=_blank}
 
 After entering your CARC username, you can follow the prompts and reset your password. 
+
+!!! tip "If the reset doesn't seem to take"
+
+    - "Forgot password" needs your **exact CARC username** — confirm it first,
+      and [open a ticket](../support/help.md) if you are unsure of your login name.
+    - A freshly reset password can fail on the first attempt: Easley and Hopper
+      share one authentication backend and the new password can take a little
+      while to propagate. Try again shortly — and if needed, simply run the
+      reset a second time.
+    - If you can log into one cluster but not the other after a reset, SSH to
+      the affected cluster *from* the working cluster's login node (e.g.
+      `ssh easley` from a Hopper session) as a workaround, and
+      [open a ticket](../support/help.md) if direct login keeps failing.
 
 You can also log in with the above link to find other information about your CARC account, see which groups you are a part of, activate two-factor authentication, and add SSH keys to your account.
 
@@ -573,6 +591,22 @@ rsync -vhatP your-username@easley.alliance.unm.edu:your-file /target-directory/
 ```
 
 The `-vhatP` flags instruct rsync to print the progress of the transfer verbosely and in a human-readable format.
+
+!!! tip "Large transfer keeps hanging or timing out?"
+
+    A single huge `rsync` that repeatedly stalls usually points to network
+    stability on the client side (wireless, VPN, off-campus path) rather than
+    a problem at CARC:
+
+    - **Chunk the transfer** — loop over subdirectories with separate `rsync`
+      calls instead of one massive invocation. Since `rsync` skips files that
+      have already arrived, re-running after a failure resumes where it left off.
+    - Note whether it dies at the same file each run or at random, your client
+      OS, wired vs. wireless, and on- vs. off-campus. Those details make a
+      [support ticket](../support/help.md) much faster to resolve — support can
+      also try reproducing the transfer to rule out a CARC-side issue.
+    - Increase verbosity (`-v`/`-vv`) only on a **small subset** of the data
+      while diagnosing, not on the full transfer.
 
 As you can see, the syntax for these two programs is very similar; however, the options for advanced usage are unique to each one. The examples above cover only basic data transfers — refer to the links provided, or use `man programname` for the CLI options, to optimize each tool for maximum data transfer efficiency and speed.
 
@@ -870,7 +904,7 @@ see the [Good Neighbor Use Policy](../getting-started/good-neighbor-policy.md).
 
 ---
 title: "Storage and compute usage policies"
-description: "Storage quotas, Slurm fairshare policy, and per-cluster queue limits."
+description: "Storage quotas, per-cluster partition and walltime limits, Slurm fairshare policy, and the job time-limit extension policy."
 type: Policy
 tags:
   - Policy
@@ -879,26 +913,60 @@ tags:
 stale_after: "2027-08-31T00:00:00Z"
 generated:
   by: "claude/fable-5"
-  at: "2026-08-29T00:00:00Z"
+  at: "2026-09-01T00:00:00Z"
 sources:
   - id: webinfo
     resource: "https://github.com/UNM-CARC/webinfo/blob/master/resource_limits.md"
     title: "UNM-CARC webinfo: resource_limits.md"
     author: "team:unm-carc"
     last_modified: "2023-04-21T16:04:29-06:00"
+  - id: knowledge-store
+    resource: "https://git.repo.alliance.unm.edu/CARC/CARC-knowledge-store"
+    title: "CARC knowledge store: kb/facts/easley.md, kb/facts/hopper.md, kb/policies/job-time-limit-extension-policy.md"
+    author: "team:unm-carc"
+    last_modified: "2026-07-25T00:00:00Z"
 ---
 
 # Storage and compute usage policies
 
-Home directories have a soft limit of 100GB and a hard limit of 200GB. Once you exceed the soft limit we will ask you to reduce your usage. You will not be able to write data beyond the hard limit. Project space is limited to 250 GB. Scratch storage is limited to 1 TB. Center-wide project scratch space is limited to 1 TB and user scratch is limited to 100G (`/carc/scratch`). To purchase additional storage please see our [pricing spreadsheet](https://carc.unm.edu/research/premium-research-computing-services.html){target=_blank}.
+The partition limits and quota numbers on this page reflect direct
+observation of the clusters on 2026-07-25. On the clusters themselves,
+`sinfo`, `scontrol show partition <name>`, and `quotas` always show the
+current values.
 
-The `quotas` command shows your quota usage.
+## Storage quotas
+
+| Storage tier | Path | Size quota | File-count quota | Available on | Backed up |
+| ------------ | ---- | ---------- | ---------------- | ------------ | --------- |
+| Home | `/users/<username>` | 100 GB soft / 200 GB hard | — | both clusters | yes |
+| Project storage | `/projects/...` | 250 GB default allocation | — | both clusters | yes |
+| Center-wide user scratch | `/carc/scratch/users/<username>` | 100 GB | 22,460 (soft) | both clusters | no |
+| Center-wide project scratch | `/carc/scratch/projects/...` | 1 TB | 625,000 | both clusters | no |
+| Easley-local user scratch | `/easley/scratch/users/<username>` | 1 TB | 100,000 soft / 120,000 hard | Easley only | no |
+| Easley-local project scratch | `/easley/scratch/projects/...` | 5 TB soft / 6 TB hard | 500,000 soft / 600,000 hard | Easley only | no |
+
+Once you exceed a soft limit we will ask you to reduce your usage; you
+cannot write beyond a hard limit. Note that the file-count limits are
+real quotas too — millions of tiny files will hit them long before the
+byte quota. Hopper has no machine-local scratch tier; see
+[storage and backups](storage.md) for the full layout, and files on
+Easley-local scratch are deleted automatically after 180 days without
+access. To purchase additional storage please see our
+[pricing spreadsheet](https://carc.unm.edu/research/premium-research-computing-services.html){target=_blank}.
+
+The `quotas` command shows your quota usage. The number in an automated
+quota warning email covers only one group — you can be near your
+personal limit while project groups you belong to have plenty of room,
+and vice versa — so check the full `quotas` breakdown before deleting
+data. If the reported usage doesn't match any files you can actually
+find, see [troubleshooting](../faq/troubleshooting.md#disk-quota-exceeded)
+before deleting anything else.
 
 ## Compute usage policy
 
 To ensure that all research and class projects get their fair share of the clusters and to prevent any one group from using a disproportionate amount of resources, we utilize Slurm’s built-in job accounting and fairshare system.
 The cluster is a limited resource and Fairshare allows us to ensure everyone gets a fair opportunity to use it regardless of how big or small the group is.
-Your compute resource allocation is shared among everyone in the slurm account you select. 
+Your compute resource allocation is shared among everyone in the slurm account you select.
 
 For more on Slurm accounts see [Slurm accounting](../running-jobs/slurm-accounting.md).
 Note that your slurm account is not the same as your CARC login account.
@@ -906,18 +974,64 @@ Note that your slurm account is not the same as your CARC login account.
 To see the predicted start time of your job based on your fairshare score, use the following command:
 `squeue --start --job <job_id>`
 
-## Hopper Configuration
+## Partition limits
 
+### Easley
 
-|                Queue: |   General  |    Debug   | Condo    | Private |
-|----------------------:|:----------:|:----------:| :---:    | :---:   |
-| Number of Processors  |     64     |     8      | 192      | Determined by <br> queue owner |
-|      Number of Nodes  |     2      |      2     | 6        |  |
-|   Processors per Node |    32      |      8     | 32       |  |
-|       Walltime(H:M:S) |  48:00:00  |  04:00:00  | 48:00:00 |  |
-|        Memory Limits  |    90 Gb   |    90 Gb   |          |  |
+| Partition | Max walltime | Notes |
+| --------- | ------------ | ----- |
+| general (default) | 2 days | Community CPU partition |
+| bigmem | 2 days | Two large-memory nodes (~2 TB RAM each) |
+| h100 | 2 days | 2× NVIDIA H100 per node; [group-gated](../faq/troubleshooting.md#my-job-wont-start) |
+| l40s | 2 days | 4× NVIDIA L40S per node; [group-gated](../faq/troubleshooting.md#my-job-wont-start) |
+| interactive | 4 hours | Interactive sessions, elevated scheduling priority |
+| debug | 1 hour | Short test jobs |
+| scavenger | 2 days | Idle reserved nodes; jobs are preemptible |
+| liulab | 7 days | Lab-restricted |
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/webinfo/blob/master/resource_limits.md){target=_blank} (last source update 2023-04-21). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
+A job on `general` that does not request `--time` gets a **default of 8
+hours**, not the maximum, and a job that does not request memory gets
+`DefMemPerCPU` — about **3.7 GB per requested CPU** on `general`
+(`bigmem` and the GPU partitions set their own, higher values). Check
+`scontrol show partition <name>` for the partition you use.
+
+### Hopper
+
+| Partition | Max walltime | Notes |
+| --------- | ------------ | ----- |
+| general (default) | 2 days | 10 community CPU nodes |
+| debug | 4 hours | 2 nodes; per-user QOS limits apply |
+| condo | 2 days | Group-restricted mixed CPU/GPU (A100, V100) nodes |
+| bugs, pcnc, pathogen, tc, gold, fishgen, neuro-hsc, pna, geodef, insar | 7 days | Lab-restricted |
+| cup-ecs, tid, biocomp, chakra | 7 days | Lab-restricted, GPU (A100/V100) |
+| quark, toadpole | 10 days | Lab-restricted, GPU (A100) |
+
+Hopper's `general` partition uses `DefMemPerCPU=2938` (about **2.9 GB
+per requested CPU** when `--mem` is unset). Access to the condo and lab
+partitions is restricted to their owning groups — check with your PI if
+you expect access to one.
+
+## Job time limits and extensions
+
+Walltime limits vary **partition by partition on both clusters** — from
+1 hour on Easley's `debug` to 10 days on some Hopper lab partitions —
+so never assume a blanket 48-hour limit; check your partition's limit in
+the tables above or with `scontrol show partition <name>`.
+
+If a specific, already-running job needs more time than you requested:
+
+- **One-time courtesy extension** — [open a ticket](../support/help.md)
+  with the job ID(s); support staff may extend a specific running job as
+  a one-off courtesy.
+- **Permanent or repeated increases** — changing a user's or project's
+  runtime limits, or extending jobs as a pattern rather than a one-off,
+  requires a written proposal justifying the increase, reviewed by the
+  CARC director. Shared partitions keep their default limits to stay
+  fair across all users, so anything beyond a single courtesy extension
+  goes through the same justification-and-review process as any other
+  allocation change.
+
+<p class="carc-provenance" markdown>Originally migrated from [UNM-CARC webinfo](https://github.com/UNM-CARC/webinfo/blob/master/resource_limits.md){target=_blank}; partition tables, quotas, and the extension policy reconciled 2026-09-01 against cluster state observed 2026-07-25 ([CARC knowledge store](https://git.repo.alliance.unm.edu/CARC/CARC-knowledge-store){target=_blank}). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/docs){target=_blank}.</p>
 
 ---8<--- https://unm-carc.github.io/docs/systems/storage-permissions/
 
@@ -1378,49 +1492,93 @@ Remember:
 
 ---
 title: "Storage and backups"
-description: "CARC storage spaces (home, project, scratch), where to compute from, and what is backed up."
+description: "CARC storage spaces (home, project, scratch), the real filesystem paths, retention windows, and what is backed up."
 type: Guide
 tags:
   - Storage
   - Data
 generated:
   by: "claude/fable-5"
-  at: "2026-08-29T00:00:00Z"
+  at: "2026-09-01T00:00:00Z"
 sources:
   - id: quickbytes
     resource: "https://github.com/UNM-CARC/QuickBytes/blob/master/storage_and_backup.md"
     title: "UNM-CARC QuickBytes: storage_and_backup.md"
     author: "team:unm-carc"
     last_modified: "2021-03-18T12:38:03-06:00"
+  - id: knowledge-store
+    resource: "https://git.repo.alliance.unm.edu/CARC/CARC-knowledge-store"
+    title: "CARC knowledge store: kb/facts/easley.md, kb/facts/hopper.md (observed cluster state)"
+    author: "team:unm-carc"
+    last_modified: "2026-07-25T00:00:00Z"
 ---
 
 # Storage and backups
 
-CARC provides home, project, and scratch directories on all compute systems.
+CARC provides home, project, and scratch storage on all compute systems.
+The paths and quotas on this page reflect direct observation of the
+clusters on 2026-07-25; the `quotas` command always shows the current
+numbers for your own account.
 
-User home directories are subdirectories of `/users`. User project directories are subdirectories of `/project`. Scratch directories are subdirectories of `/scratch`.
+- **Home** — `/users/<username>`. The same filesystem on every CARC
+  machine, so your home directory is identical wherever you log in.
+- **Project storage** — under `/projects`, allocated per project through
+  [ColdFront](https://coldfront.alliance.unm.edu){target=_blank}.
+- **Scratch** — two distinct tiers:
+    - **Center-wide scratch** — `/carc/scratch/users/<username>` and
+      `/carc/scratch/projects/...`, mounted on **both** Easley and Hopper
+      (one shared BeeGFS filesystem, physically hosted on Hopper).
+    - **Easley-local scratch** — `/easley/scratch/users/<username>` and
+      `/easley/scratch/projects/...`, a separate, larger GPFS tier that
+      exists **only on Easley**. Files not accessed for 180 days are
+      automatically deleted (cleanup by last-access time).
+
+!!! note "Hopper has no machine-local scratch"
+
+    There is no `/hopper/scratch`. On Hopper your only scratch tier is
+    center-wide `/carc/scratch` — a real asymmetry between the two
+    clusters, not just a naming difference.
 
 ## Storage at CARC
 
-CARC supports a number of different storage devices for users to read, write, and store their data and results on.  The different devices vary in size, I/O speed (Figure 1), distance to the reading/writing process using them, whether they have quotas to limit their use, and whether they are backed up or not. Certain storage devices, like the home directories and machine-scratch’s, are shared resources, and serve multiple users simultaneously. This means that problems caused by poorly chosen storage locations could interrupt the work of other users as well as your own. Don’t hesitate to open a help ticket if you have any questions about, for example, where to store a large dataset, how to read it quickly, how to write a Slurm batch script that first moves data onto the compute node in order to take advantage of the fast I/O, or any other issue related to storage at CARC.
+CARC supports a number of different storage devices for users to read, write, and store their data and results on. The different devices vary in size, I/O speed (Figure 1), distance to the reading/writing process using them, whether they have quotas to limit their use, and whether they are backed up or not. Certain storage devices, like the home directories and the scratch filesystems, are shared resources, and serve multiple users simultaneously. This means that problems caused by poorly chosen storage locations could interrupt the work of other users as well as your own. Don’t hesitate to open a help ticket if you have any questions about, for example, where to store a large dataset, how to read it quickly, how to write a Slurm batch script that first moves data onto the compute node in order to take advantage of the fast I/O, or any other issue related to storage at CARC.
 
-For storage limits see the [resource limits page](resource-limits.md).
+For quota numbers and file-count limits see the [resource limits page](resource-limits.md).
 
 ## Types of Storage
 
 At CARC, there are four different types of storage:
 
-* Home directory - `/users/username` - Upon logging into any CARC machine, you will find yourself in your home directory, in `/users/username`, replacing “username” with your actual username (note, the home directory also goes by `~` and `$HOME`). You may notice that regardless of which machine you login to, the contents of your home directory are identical. This is because they are not part of any specific machine, but rather they are stored on separate computer entirely, and are then mounted by every head and compute node at CARC.
+* Home directory - `/users/username` - Upon logging into any CARC machine, you will find yourself in your home directory (which also goes by `~` and `$HOME`). Home directories are not part of any specific machine: they live on separate enterprise storage mounted by every login and compute node at CARC, which is why their contents are identical on every cluster. Home is backed up and is the right place for source code, scripts, and other hard-to-reproduce files — not for heavy job I/O.
 
-* Machine-wide scratch disk - `~/machine-scratch` → `/machine/scratch/username` - The most common place where data is stored after it is generated by running calculations, and before it is further analyses and then either downloaded, deleted, or moved when a long term data storage or archival plan is implemented. These are not backed up and CARC reserves the right to delete this data without advanced warning.
+* Scratch - the working space for data generated by running calculations, before it is analyzed and then either downloaded, deleted, or moved when a long-term storage or archival plan is implemented. Every user has center-wide scratch at `/carc/scratch/users/username` (available on both clusters); on Easley you additionally have the larger Easley-local tier at `/easley/scratch/users/username`. Scratch is **not backed up**, and Easley-local scratch is automatically cleaned: files unused for 180 days (by last-access time) are deleted and cannot be recovered. Treat every scratch tier as temporary space.
 
-* Hard drive (only on the compute nodes) - `/tmp` - On the machines that support these, compute nodes have their own hard drives installed and they can be accessed simply by creating a directory in `/tmp` and then placing data there (see the sample script below). Since the hard drive is dedicated to that compute node, this is one of the fastest places for I/O. Files stores here will be cleared at the end of the job.
+* Project storage - allocated through [ColdFront](https://coldfront.alliance.unm.edu){target=_blank} by your project's PI (or a user the PI has designated as a manager on the project). It comes in two flavors with a real tradeoff: **backed-up project storage** (under `/projects`; protected against loss, the safe default for data that must persist) and **non-backed-up project scratch** (under `/carc/scratch/projects/...` or `/easley/scratch/projects/...`; larger, but carries the same "not protected" caveat as personal scratch). See the [FAQ on long-term storage](../faq/general.md#storage-and-data).
 
-* Shared memory (only on the compute nodes) - `/dev/shm` - This is actually direct access to the machine's memory for use in storage. The directory at `/dev/shm` appears to the user as a normal read/write accessible directory just like `/tmp`, but files written or read from any directory within are simply being stored into memory as if they were on a disk. This provides extremely fast I/O speeds, and is very useful if small temporary files are written and read often. Be careful with the amount of data you write here, however, because this competes directly with all processes using the compute nodes RAM, including yours. Like `/tmp`, `/dev/shm` is also cleared at the end of a job, so you must move any data you want to keep off the compute node before the end of the calculation or walltime.
+* Node-local storage (only on the compute nodes) - `/tmp` and `/dev/shm`. On machines that support it, compute nodes have their own hard drives, accessed by creating a directory in `/tmp` (see the sample script below); since the drive is dedicated to that node, this is one of the fastest places for I/O. `/dev/shm` is direct access to the node's memory presented as a filesystem — extremely fast for small temporary files that are written and read often, but it competes directly with the RAM your processes use. Both are cleared at the end of the job, so move anything you want to keep off the compute node before the job or its walltime ends.
 
 ![storage_img](../assets/images/quickbytes/storage_diagram.jpeg)
 
 Figure 1. The various storage locations plotted by their relative size and I/O speed.
+
+## Finding your project space path
+
+Project allocations follow these observed path shapes:
+
+- **Easley-local project scratch**:
+  `/easley/scratch/projects/<pi-username>/<pi-username><project-id>` —
+  consistent for every allocation checked.
+- **Center-wide project scratch**: usually
+  `/carc/scratch/projects/<pi-username>/<pi-username><project-id>`, but
+  the naming is **not** consistently nested — some allocations sit
+  directly under `/carc/scratch/projects/` with no PI subfolder. Don't
+  construct this path by analogy; look it up.
+
+If a newly approved allocation's path doesn't exist yet, provisioning may
+not have finished — check the allocation's status in
+[ColdFront](https://coldfront.alliance.unm.edu){target=_blank}, and
+[open a ticket](../support/help.md) if you can't find or can't access
+your space.
 
 ## Choosing a storage type
 
@@ -1430,7 +1588,18 @@ In order to determine which storage type to use, it may be helpful to consider w
 
 2. Results and temporary data - This is data that is produced by your calculations such as simulation logs and are typically further analyzed or have some data of interest extracted and summarized, perhaps even reported in a publication. This data can be regenerated relatively easily, by rerunning the calculation that produced it, and is often deleted once further processed or at most, at the end of a project.
 
-We recommend that the first type of data be stored in your home directory, which is available from everywhere inside the CARC network, and is backed up each week. The second kind of data is best produced/stored on the machine-scratch drives. In cases of very high I/O, that data can temporarily be moved to the compute node and onto either the hard drive (if the machine in use has an internal hard drive) or onto shared memory (if the files are very small). An obvious benifit to using devices that are very close to the CPU and are typically only used by a single user at a time, is the high read and write speed availible (Figure 1). The cost of this speed is the fact that the data must be moved to the compute node, read in by the calculation, and anything that is intended to be saved must be moved back off the compute node before the end of walltime or before the job ends, when the compute node is returned to the general resource pool.
+We recommend that the first type of data be stored in your home directory, which is available from everywhere inside the CARC network and is backed up. The second kind of data is best produced/stored on the scratch filesystems. In cases of very high I/O, that data can temporarily be moved to the compute node and onto either the hard drive (if the machine in use has an internal hard drive) or onto shared memory (if the files are very small). An obvious benefit to using devices that are very close to the CPU and are typically only used by a single user at a time, is the high read and write speed available (Figure 1). The cost of this speed is the fact that the data must be moved to the compute node, read in by the calculation, and anything that is intended to be saved must be moved back off the compute node before the end of walltime or before the job ends, when the compute node is returned to the general resource pool.
+
+## What is backed up
+
+- **Home and backed-up project storage** live on enterprise (NetApp)
+  storage with automated snapshots (hourly to monthly, retained up to
+  four months). To recover a deleted file, [open a ticket](../support/help.md).
+- **Scratch is never backed up** — neither the center-wide nor the
+  Easley-local tier — and Easley-local scratch is additionally cleaned
+  up automatically after 180 days without access. No published cleanup
+  window exists for center-wide scratch; don't assume it is kept
+  indefinitely.
 
 ## Example use of a node's hard drive
 
@@ -1466,7 +1635,7 @@ rm -r $TEMP_DIR
 
 <iframe class="carc-video" src="https://www.youtube-nocookie.com/embed/WwsbLyl7d1A" title="Storage Systems" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/storage_and_backup.md){target=_blank} (last source update 2021-03-18). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
+<p class="carc-provenance" markdown>Originally migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/storage_and_backup.md){target=_blank}; paths, tiers, and retention reconciled 2026-09-01 against cluster state observed 2026-07-25 ([CARC knowledge store](https://git.repo.alliance.unm.edu/CARC/CARC-knowledge-store){target=_blank}). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/docs){target=_blank}.</p>
 
 ---8<--- https://unm-carc.github.io/docs/running-jobs/example-slurm-scripts/
 
@@ -2121,7 +2290,7 @@ To load a module, use the `module load` command. For example, to load the module
 module load intel-oneapi-compilers
 ```
 
-Note that there's no plain `intel` module on Easley — `module load intel` fails with "The following module(s) are unknown." Easley's Intel software all lives under the `intel-oneapi-*` family instead (`intel-oneapi-compilers`, `intel-oneapi-mkl`, `intel-oneapi-mpi`, etc.).
+The current Intel toolchain on Easley lives under the `intel-oneapi-*` family (`intel-oneapi-compilers`, `intel-oneapi-mkl`, `intel-oneapi-mpi`, etc.). Older `intel/18.x`–`intel/20.x` compiler modules also remain available for rebuilding legacy software — `module avail intel` shows both families.
 
 Another useful command related to module management is `module spider`. For example, if you issue the command:
 
@@ -2611,12 +2780,26 @@ scavenger      up 2-00:00:00     41  alloc easley[001,005-007,009-011,017,019,02
 scavenger      up 2-00:00:00      1   down easley045
 ```
 
-Key partitions you may have access to:
+Key partitions on Easley (limits as observed 2026-07-25 — `sinfo` or
+`scontrol show partition <name>` always shows the current values):
 
-- **general** — The default community partition. Maximum wall time of 2 days. Use this if you are not a member of a specific condo group.
-- **debug** — Short jobs only (4-hour limit). Useful for testing scripts before submitting long runs.
-- **condo** — Purchased nodes available to specific research groups. If you are a member of a condo group, you likely already know your partition name. Check with your PI if you are unsure.
-- **scavenger** - Whenever a purchased/reserved node is not in use, this partition grabs them and allows them to be used by the public, but be warned you will be kicked off if the owner begins a job on it.
+- **general** — The default community partition. Maximum wall time of 2 days.
+- **bigmem** — Two large-memory nodes (about 2 TB of RAM each) for jobs that need far more memory than a general node provides. Maximum wall time of 2 days.
+- **h100** — GPU nodes with 2× NVIDIA H100 per node. Maximum wall time of 2 days.
+- **l40s** — GPU nodes with 4× NVIDIA L40S per node. Maximum wall time of 2 days.
+- **interactive** — Interactive sessions of up to 4 hours, scheduled at elevated priority.
+- **debug** — Short test jobs only (1-hour limit — note the `1:00:00` in the `sinfo` output above). Useful for checking scripts before submitting long runs.
+- **scavenger** — Runs on reserved nodes whenever they sit idle. Open to everyone, but preemptible: your job is killed if the owner submits work.
+- **liulab** — A lab-restricted partition (7-day limit) belonging to a specific research group.
+
+!!! warning "GPU partitions are group-gated"
+
+    The `h100` and `l40s` partitions are restricted by group membership.
+    Access is provisioned through a ColdFront allocation for the specific
+    partition, requested by your project's PI — support cannot simply add
+    you to the group on request. If a submission is rejected with
+    `uid not in group permitted to use this partition`, see the
+    [troubleshooting FAQ](../faq/troubleshooting.md#my-job-wont-start).
 
 To see detailed node information including CPU count, memory, and disk:
 
@@ -2654,6 +2837,8 @@ scancel --me             # Cancel all of your jobs
 - The more constraints you add to a job (e.g., requiring all tasks on the same node with `--ntasks-per-node`), the longer your queue time may be. Requesting resources spread across nodes often results in faster scheduling.
 - Memory is specified per CPU with `--mem-per-cpu` (in MB) or for the whole job with `--mem`.
 - Time limits use the format `D-HH:MM:SS` (e.g., `1-12:00:00` for 1 day and 12 hours) or `MM:SS` / `HH:MM:SS` for shorter jobs.
+- If you omit `--time`, you do **not** get the partition maximum: `general` applies a default of 8 hours (`DefaultTime=08:00:00`). Check `scontrol show partition <name>` for the partition you use.
+- If you omit `--mem`/`--mem-per-cpu`, memory defaults to an amount proportional to the CPUs you request (`DefMemPerCPU` — observed ≈3.7 GB per CPU on Easley's `general` partition, ≈2.9 GB on Hopper's). A small `--cpus-per-task` therefore caps your memory well below what the node physically has — the usual cause of jobs killed `OUT_OF_MEMORY` on nodes with plenty of free RAM. See [troubleshooting](../faq/troubleshooting.md#my-job-failed-or-was-killed).
 
 ---
 
@@ -3316,9 +3501,23 @@ Fundamentally, Anaconda is a distribution of Python and R with a collection of a
 
 ### Creating a new conda environment
 
-Let's create an environment on Hopper to run a python machine learning script that uses the TensorFlow library, python version 3.5, and the pandas library. Once you log in to Hopper using `ssh` load the anaconda software module with the command:
+Let's create an environment on Hopper to run a python machine learning script that uses the TensorFlow library, python version 3.5, and the pandas library. Once you log in to Hopper using `ssh` load the conda software module with the command:
 
-`module load anaconda3`
+`module load miniconda3`
+
+!!! warning "anaconda3 is retired, and the module only gives you `base`"
+
+    Old scripts that call `module load anaconda3` no longer work — that
+    module has been retired; use `miniconda3` instead. Loading the module
+    provides only conda's *base* environment, which does **not** include
+    numpy, scipy, or other analysis packages: a Python `ModuleNotFoundError`
+    right after loading the module means you need to create (and activate)
+    your own environment, as shown below.
+
+Build and test environments from an interactive compute session rather than a
+login node — for example `srun --ntasks=1 --cpus-per-task=4 --time=01:00:00 --pty bash`
+first ([interactive jobs](../running-jobs/submitting-jobs.md)); package installs are
+exactly the kind of heavier work login nodes are not meant for.
 
 We use `conda` to create new environments and install/upgrade packages within environments. To create our machine learning environment we type:
 
@@ -3457,11 +3656,11 @@ Executing transaction: done
 #
 ```
 
-Now we have our machine learning environment created to run our machine learning python script. To activate the environment we just created you use the command `source activate my_environment_name`, which is `source activate TensorFlow` for this example. Remember to include the lines below in your PBS script when working with Anaconda environments:
+Now we have our machine learning environment created to run our machine learning python script. To activate the environment we just created you use the command `source activate my_environment_name`, which is `source activate TensorFlow` for this example. Remember to include the lines below in your Slurm batch script when working with conda environments:
 
 ```bash
-# load anaconda software module
-module load anaconda3
+# load conda software module
+module load miniconda3
 
 # activate your desired anaconda environment
 source activate environment_name
@@ -3564,6 +3763,86 @@ After your environments have been modified to include the ipykernal, you can ope
 ![term_Jup](../assets/images/quickbytes/JupHub_envi.png)
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Conda_JupyterHub.md){target=_blank} (last source update 2023-06-27). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
+
+---8<--- https://unm-carc.github.io/docs/software/cuda-aware-mpi/
+
+---
+title: "CUDA-aware MPI"
+description: "Pass GPU device pointers directly to MPI calls with the CUDA-aware OpenMPI/UCX stack, and fix the mixed-environment segfault."
+type: Guide
+tags:
+  - MPI
+  - GPU
+  - CUDA
+generated:
+  by: "claude/fable-5"
+  at: "2026-09-01T00:00:00Z"
+sources:
+  - id: knowledge-store
+    resource: "https://git.repo.alliance.unm.edu/CARC/CARC-knowledge-store"
+    title: "CARC knowledge store: kb/ticket-solutions/fix-cuda-aware-mpi-segfault.md (staff-reviewed, fix confirmed by the reporting user)"
+    author: "team:unm-carc"
+    last_modified: "2026-07-25T00:00:00Z"
+---
+
+# CUDA-aware MPI
+
+CARC provides a CUDA-aware OpenMPI build with a matching UCX (including the
+`cuda_copy`/`cuda_ipc` transports), so multi-GPU MPI codes can pass **device
+(GPU) pointers directly** to `MPI_Send`/`MPI_Recv` and friends — no staging
+copy through host memory required.
+
+## The symptom: device-pointer MPI segfaults
+
+Your OpenMPI reports CUDA support, but calling `MPI_Send`/`MPI_Recv` on a
+device pointer crashes with a segmentation fault. The common workaround —
+an extra `cudaMemcpy` to a host staging buffer before each MPI call — works
+but costs performance and a code change you shouldn't need.
+
+This is usually an **environment problem, not a missing feature**.
+
+## 1. Confirm the CUDA-aware stack exists
+
+Check the module listing for the OpenMPI and UCX versions built against
+CUDA:
+
+```bash
+module spider openmpi
+module spider ucx
+```
+
+Look for an OpenMPI/UCX pair built with CUDA support and load them
+together. (See [environment modules](../running-jobs/modules.md) for module
+basics.)
+
+## 2. Fix the usual cause: a mixed runtime environment
+
+The segfault is most often caused by an unrelated OpenMPI or UCX install
+appearing earlier in `PATH`/`LD_LIBRARY_PATH` and shadowing the CUDA-aware
+stack — for example one pulled in by a conda environment or a personal
+install. Explicitly put the matched UCX ahead of everything else, loaded
+together with the matching OpenMPI module:
+
+```bash
+export UCX_HOME=<path to the CUDA-aware UCX install>
+export PATH=$UCX_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$UCX_HOME/lib:$UCX_HOME/lib/ucx:$LD_LIBRARY_PATH
+```
+
+## 3. Verify
+
+Re-run with direct device-pointer `MPI_Send`/`MPI_Recv` calls — with no
+`cudaMemcpy` staging workaround — and confirm the segfault is gone.
+
+## Still segfaulting?
+
+If the crash continues after you've confirmed that a single, matched
+OpenMPI/UCX stack is loaded (no environment mixing), it may be an
+application-side pointer bug or a genuine gap in the CUDA-aware build —
+[open a ticket](../support/help.md) with your module list, the exact MPI
+call, and the backtrace.
+
+<p class="carc-provenance" markdown>Distilled from a staff-reviewed, user-confirmed support-ticket resolution in the [CARC knowledge store](https://git.repo.alliance.unm.edu/CARC/CARC-knowledge-store){target=_blank}. Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/docs){target=_blank}.</p>
 
 ---8<--- https://unm-carc.github.io/docs/software/dask-scikit-learn/
 
@@ -3804,10 +4083,11 @@ learning tools in a [conda environment](conda-intro.md) on CARC systems.
 
 ## Set up the conda environment
 
-1. Load the Anaconda module to get the `conda` command:
+1. Load the conda module to get the `conda` command (the old `anaconda3`
+   module has been retired — use `miniconda3`):
 
     ```bash
-    module load anaconda3
+    module load miniconda3
     ```
 
 2. Create a conda environment with a name:
@@ -3950,32 +4230,19 @@ There are three options for accessing R at Carc and I will run through both appr
 The first option is to activate an installed R module. When logged in to a CARC system you can use the `module avail` command to see which R versions are available. If you have a CARC account open a terminal and log in to follow along. 
 
 ```
-yourusername@hopper$ module avail r-
+yourusername@hopper$ module avail r/
 ```
 
 which will print out the following (although I have truncated the output):
 
 ```
------------------------ /opt/spack/share/spack/modules/linux-centos7-x86_64 ------------------------
+-------------- /opt/spack/share/spack/lmod/linux-rocky8-x86_64/Core --------------
    ...
-   r-3.4.1-gcc-4.8.5-python2-gzeg24m
-   r-3.4.1-gcc-4.8.5-python2-zpkgqap
-   r-3.4.1-intel-17.0.4-mkl-python2-67zsm3b
-   r-3.4.1-intel-17.0.4-mkl-python2-gygkoab
-   r-3.4.2-intel-18.0.2-python2-xsxuxwx
-   r-3.4.3-gcc-4.8.5-python2-gk66fni
-   r-3.4.3-gcc-4.8.5-python2-qv6gwz6
-   r-3.4.3-gcc-6.1.0-python2-lyqiytq
-   r-3.4.3-gcc-7.3.0-python2-zhxbajj
-   r-3.4.3-intel-18.0.1-python2-3l4dkgz
-   r-3.4.3-intel-18.0.1-python2-lr24ix6
-   r-3.4.3-intel-18.0.2-python2-q3covk7
-   r-3.5.0-gcc-4.8.5-python2-khqxja7
-   r-3.5.0-gcc-7.3.0-python2-rvq3qk5
-   r-3.5.0-intel-18.0.2-python2-mkl-r6lx6yy
-   r-3.5.3-gcc-7.3.0-python2-ziiolp5
-   r-3.6.0-gcc-4.8.5-python2-i4uimtp
-   r-3.6.0-gcc-7.3.0-python2-7akol5t
+   r/4.2.0-vq7z
+   r/4.2.2-oemu
+   r/4.3.0-g353
+   r/4.4.0-fyqw
+   r/4.4.0-ytj2 (D)
    ...
 Use "module spider" to find all possible modules.
 Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
@@ -4008,13 +4275,17 @@ Type 'q()' to quit R.
 > 
 ```
 
-Will load R-3.6.0 that has been compiled with GCC-7.3.0. Normally you will be running R jobs in batch mode as oppposed to interactively, which means you will have the `module load` command in your PBS script, but we will get to that later. 
+```
+yourusername@hopper$ module load r/4.4.0
+```
+
+This will load R 4.4.0 — plain `module load r` loads the cluster's default R version. Normally you will be running R jobs in batch mode as oppposed to interactively, which means you will have the `module load` command in your Slurm batch script, but we will get to that later. 
 
 ### Option 2
 The second option is to create a custom local Anaconda environment with the version of R that would like to run. In order to do this you need to first load an Anaconda software module and then create a new environment according to your specifications. For example, the following commands will create an Anaconda environment with R-3.4.3:
 
 ```
-yourusername@hopper$ module load anaconda3
+yourusername@hopper$ module load miniconda3
 yourusername@hopper$ conda create --yes --name my_r_env r=3.4.3
 Solving environment: done
 
@@ -4171,7 +4442,7 @@ Executing transaction: done
 Then to use your newly created R environment you need to 1) make sure you have the Anaconda software module loaded, and 2), activate your conda envioronment.
 
 ```
-yourusername@hopper$ module load anaconda3
+yourusername@hopper$ module load miniconda3
 yourusername@hopper$ source activate my_r_env
 yourusername@hopper$ R
 
@@ -4233,7 +4504,7 @@ There are modules for both Gurobi and R on the CARC clusters. All you need to do
 session. This command is for version 8.1.0, however there are other versions of gurobi available (enter `module avail gurobi` to see a full list).
 ```
 username@hopper:~$ module load gurobi/8.1.0
-username@hopper:~$ module load r-3.6.0-gcc-7.3.0-python2-7akol5t
+username@hopper:~$ module load r
 username@hopper:~$ R
 ```
 Once you have started an R session, you can install packages just as you would in R. If you ever run into issues loading 
@@ -11067,6 +11338,21 @@ sources:
     opportunity. See [resource limits](../systems/resource-limits.md) and
     [Slurm accounting](../running-jobs/slurm-accounting.md).
 
+??? question "Do allocations expire? How do I renew?"
+
+    Yes — ColdFront allocations have end dates, and ColdFront emails
+    automated `[coldfront]` notices as they approach: renewal reminders and
+    expiration warnings need action from the PI (or a project manager),
+    while request confirmations ("allocation request submitted", "quota
+    increase request submitted") are informational. Renewals, like new
+    requests, are handled in
+    [ColdFront](https://coldfront.alliance.unm.edu){ target=_blank } —
+    renew before the end date so the resources an allocation grants don't
+    lapse. The
+    [Annual Project Review walkthrough](https://www.youtube.com/watch?v=MGxMfmShVWk){ target=_blank }
+    video covers the yearly review; unsure what a notice means?
+    [Open a ticket](../support/help.md).
+
 ??? question "What if I need more than CARC can provide?"
 
     National platforms are the next step — ACCESS-CI allocations, the
@@ -11082,6 +11368,32 @@ sources:
     for active job I/O. Quotas and the `quotas` command are covered in
     [resource limits](../systems/resource-limits.md), and the layout in
     [storage and backups](../systems/storage.md).
+
+??? question "Where is my project's scratch space?"
+
+    Easley-local project scratch follows
+    `/easley/scratch/projects/<pi-username>/<pi-username><project-id>`.
+    Center-wide project scratch usually follows
+    `/carc/scratch/projects/<pi-username>/<pi-username><project-id>`, but
+    is **not consistently nested** — some allocations sit directly under
+    `projects/`. If a newly approved allocation's path doesn't exist yet,
+    check its status in
+    [ColdFront](https://coldfront.alliance.unm.edu){ target=_blank } (it may
+    still be provisioning), and [open a ticket](../support/help.md) to get
+    the exact path. See [storage and backups](../systems/storage.md).
+
+??? question "How do I keep data longer than scratch allows?"
+
+    Scratch is sized for active job I/O, not retention — files on
+    Easley-local scratch are auto-deleted after 180 days without access.
+    For data that must persist, ask your PI (or a project **manager** the
+    PI has designated) to request **project storage** in
+    [ColdFront](https://coldfront.alliance.unm.edu){ target=_blank },
+    choosing between the backed-up flavor (protected against loss) and
+    non-backed-up project scratch (larger, unprotected). Estimate your
+    current and projected size first — it's the first thing support will
+    ask. Urgent need that can't wait for approval?
+    [Open a ticket](../support/help.md).
 
 ??? question "Is my data backed up?"
 
@@ -11107,10 +11419,16 @@ sources:
 
 ??? question "What GPUs are available?"
 
-    Easley has NVIDIA L40S and H100 GPUs, and Hopper has A100s — see the
-    [systems overview](../systems/overview.md). Request GPU partitions in
-    your job script; examples are in
+    Easley has NVIDIA L40S and H100 GPUs, and Hopper has A100s (and some
+    V100s) — see the [systems overview](../systems/overview.md). Request GPU
+    partitions in your job script; examples are in
     [example Slurm scripts](../running-jobs/example-slurm-scripts.md).
+
+    Note that Easley's `h100` and `l40s` partitions are **group-gated**:
+    access comes from an approved ColdFront allocation for the specific
+    partition, requested by your PI. If a submission is rejected with
+    `uid not in group permitted to use this partition`, see
+    [troubleshooting](troubleshooting.md#my-job-wont-start).
 
 ??? question "Can I use CARC from my browser?"
 
@@ -11155,7 +11473,10 @@ that page — cluster, job ID, exact command, and full error message.
    [cluster status monitor](https://stats.uptimerobot.com/kqt0LYLwFd){ target=_blank }
    and [UNM IT alerts](https://italerts.unm.edu/){ target=_blank }.
 2. **Password or OTP problems** — reset via the steps in
-   [password reset](../getting-started/password-reset.md).
+   [password reset](../getting-started/password-reset.md). A fresh reset can
+   take a little while to propagate (try again shortly, or reset twice), and
+   if one cluster works but the other doesn't, SSH to the broken one *from*
+   the working cluster's login node while you sort it out.
 3. **`Permission denied (publickey)`** — your SSH key setup is incomplete or
    has wrong permissions; see [SSH keys](../getting-started/ssh-keys.md)
    (`~/.ssh` must be `700`, private keys `600`).
@@ -11178,6 +11499,18 @@ Clean up, move bulk data to scratch or project space
 Remember conda environments and pip caches grow quietly — `conda clean --all`
 and `pip cache purge` often free gigabytes.
 
+Two quota surprises worth knowing:
+
+* **Files in a project directory can still count against you** — quota is
+  charged by *group ownership*, not location, so files you copied into a
+  project space may still bill your personal quota; see
+  [storage permissions](../systems/storage-permissions.md) for finding and
+  fixing ownership.
+* **The warning email covers only one group** — run `quotas` for the full
+  per-tier breakdown before deleting anything. If the reported usage doesn't
+  match any files you can actually find, the accounting itself may be stale —
+  [open a ticket](../support/help.md) instead of deleting more data.
+
 ## My job won't start
 
 ```bash
@@ -11196,6 +11529,23 @@ Common reason codes:
 | `ReqNodeNotAvail` | Nodes down or reserved (often maintenance) | Check the [cluster status monitor](https://stats.uptimerobot.com/kqt0LYLwFd){ target=_blank } |
 | `InvalidAccount` | Wrong `--account` | List yours: `sacctmgr show assoc user=$USER format=account` |
 
+**Rejected with `uid not in group permitted to use this partition`** — the
+partition is group-gated (on Easley that includes the `h100` and `l40s` GPU
+partitions). Access is provisioned through a **ColdFront allocation for that
+specific partition, requested by your PI** — support cannot simply add you to
+the group. If no allocation exists yet, ask your PI to submit one in
+[ColdFront](https://coldfront.alliance.unm.edu){ target=_blank }; after
+approval, allow some time for group membership to propagate to the cluster.
+Need to run something right now? The `scavenger` partition doesn't have this
+gate (jobs there are preemptible). If the error persists well after an
+approved allocation, [open a ticket](../support/help.md) — that's a
+provisioning problem, not a normal delay.
+
+**Stuck in `CG` (completing)** — a few minutes in `CG` after a job finishes
+is normal cleanup. If it persists, `scancel` will not clear it — the job is
+stuck in Slurm's own cleanup, which needs admin action — so don't keep
+retrying; [open a ticket](../support/help.md) with the job ID.
+
 ## My job failed or was killed
 
 ```bash
@@ -11203,9 +11553,19 @@ sacct -j <id> --format=JobID,State,ExitCode,Elapsed,MaxRSS,ReqMem
 seff <id>     # efficiency summary after completion
 ```
 
-* **`OUT_OF_MEMORY` / `oom-kill`** — request more memory (`--mem` or
-  `--mem-per-cpu`) or use fewer tasks per node; `seff` shows what you
-  actually used.
+* **`OUT_OF_MEMORY` / `oom-kill`** (often just a bare `Killed` from your
+  program) — Slurm enforces the memory your **job requested**, not what the
+  node has free, so a job on a shared node can be killed while the node
+  itself shows plenty of RAM. If you never set `--mem`, the default is
+  proportional to the CPUs you requested (`DefMemPerCPU` — ≈3.7 GB/CPU on
+  Easley `general`, ≈2.9 GB/CPU on Hopper `general`), so a small
+  `--cpus-per-task` silently caps memory. Resubmit with `--mem` (or
+  `--mem-per-cpu`) sized to your data's actual working set — well above the
+  raw data size for tools that process in memory. For variable workloads,
+  run `seff` on a smaller successful run first to calibrate. If `seff`
+  shows the state was **not** `OUT_OF_MEMORY`, or memory used was well
+  under what you requested, more memory is not the fix — suspect an
+  application bug and [open a ticket](../support/help.md).
 * **`TIMEOUT`** — raise `--time` within partition limits, or checkpoint and
   restart.
 * **Immediate crash** — check the job's `.out`/`.err` files in the submit
@@ -11217,6 +11577,12 @@ seff <id>     # efficiency summary after completion
 
 * **`command not found`** — load the module first (`module spider <name>`
   to find it; [modules guide](../running-jobs/modules.md)).
+* **Python `ModuleNotFoundError` after `module load miniconda3`** — the
+  module provides only conda's *base* environment, which doesn't include
+  numpy, scipy, or other packages: create and activate your own
+  [conda environment](../software/conda-environments.md). Old scripts that
+  `module load anaconda3` must switch to `miniconda3` — that module is
+  retired. Build environments from an interactive job, not a login node.
 * **Conda is slow or conflicts** — prefer clean per-project environments and
   the conda-forge channel; see [channels and pip](../software/conda-channels-pip.md).
 * **GPU code can't see the GPU** — did you request one in the job
@@ -11237,6 +11603,14 @@ visualization, use [ParaView client–server](../software/paraview.md) or an
 Use `rsync` with resume (`rsync -avP`) rather than `scp` for large trees,
 and transfer to the right storage tier — see
 [transferring data](../getting-started/transferring-data.md).
+
+A large transfer that **repeatedly hangs or times out** usually points to
+client-side network stability (wireless, VPN, off-campus path) rather than
+CARC. Chunk it: loop over subdirectories with separate `rsync` calls instead
+of one massive invocation — reruns resume where they left off. Still stuck?
+[Open a ticket](../support/help.md) noting whether it dies at the same file
+or at random, wired vs. wireless, and on- vs. off-campus; support can try
+reproducing the transfer to rule out a CARC-side issue.
 
 ## Still stuck?
 
@@ -11990,7 +12364,11 @@ platforms. If you are unsure which platform fits your project, come to
 
 # Documentation update log
 
-## 2026-08-31
+## 2026-09-01
+
+* **Update**: Reconciled the corpus against the [CARC knowledge store](https://git.repo.alliance.unm.edu/CARC/CARC-knowledge-store){target=_blank} — staff-reviewed articles distilled from real support tickets plus cluster state observed directly over SSH on 2026-07-25. Corrected stale facts: [Slurm intro](running-jobs/slurm-intro.md) now lists Easley's real partitions (debug is 1 hour, not 4; there is no Easley `condo` partition) plus the group-gated `h100`/`l40s` GPU partitions and the default time/memory behavior; [resource limits](systems/resource-limits.md) (now curated in-repo) carries observed per-cluster partition tables — the old Hopper table was a hardware generation stale — full storage quotas with file-count limits, and the job time-limit extension policy; [storage and backups](systems/storage.md) (now curated in-repo) documents the real paths (`/carc/scratch`, `/easley/scratch`, `/projects`), the 180-day Easley scratch cleanup, that Hopper has no machine-local scratch, and how to find a project's path; the retired `anaconda3` module was replaced with `miniconda3` across [conda environments](software/conda-environments.md), [getting R](software/getting-r.md), and [deep-learning packages](software/deep-learning-packages.md); [getting R](software/getting-r.md) and [Gurobi with R](software/gurobi-r.md) now show the current `r/4.x` module tree; and [modules](running-jobs/modules.md) no longer claims plain `intel` modules don't exist.
+* **Creation**: Added [CUDA-aware MPI](software/cuda-aware-mpi.md) — passing GPU device pointers directly to MPI and fixing the mixed OpenMPI/UCX environment segfault, distilled from a staff-reviewed, user-confirmed ticket resolution.
+* **Update**: Folded ticket-derived answers into the FAQ and guides: [troubleshooting](faq/troubleshooting.md) covers the `uid not in group permitted to use this partition` rejection and the ColdFront path to GPU-partition access, jobs stuck in `CG`, a full out-of-memory diagnosis (per-job memory enforcement, `DefMemPerCPU` defaults, calibrating with `seff`), Python `ModuleNotFoundError` after loading `miniconda3`, quota surprises (group-ownership accounting, stale warnings), hanging transfers, and password-reset propagation; the [general FAQ](faq/general.md) answers where project scratch lives, how to keep data past scratch retention, GPU-partition gating, and allocation expiration/renewal; [password reset](getting-started/password-reset.md) and [transferring data](getting-started/transferring-data.md) carry the matching tips; [getting started](getting-started/overview.md) tells PIs to keep allocations current.
 
 * **Update**: The [agent guide](about/ai-agents.md) now cross-links the [GPT 101 generative-AI workshop](https://tyson-swetnam.github.io/intro-gpt/){target=_blank} — an OKF v0.2 bundle with the same llms.txt conventions, maintained and taught by CARC.
 
