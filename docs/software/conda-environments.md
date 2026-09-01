@@ -24,9 +24,23 @@ Fundamentally, Anaconda is a distribution of Python and R with a collection of a
 
 ### Creating a new conda environment
 
-Let's create an environment on Hopper to run a python machine learning script that uses the TensorFlow library, python version 3.5, and the pandas library. Once you log in to Hopper using `ssh` load the anaconda software module with the command:
+Let's create an environment on Hopper to run a python machine learning script that uses the TensorFlow library, python version 3.5, and the pandas library. Once you log in to Hopper using `ssh` load the conda software module with the command:
 
-`module load anaconda3`
+`module load miniconda3`
+
+!!! warning "anaconda3 is retired, and the module only gives you `base`"
+
+    Old scripts that call `module load anaconda3` no longer work — that
+    module has been retired; use `miniconda3` instead. Loading the module
+    provides only conda's *base* environment, which does **not** include
+    numpy, scipy, or other analysis packages: a Python `ModuleNotFoundError`
+    right after loading the module means you need to create (and activate)
+    your own environment, as shown below.
+
+Build and test environments from an interactive compute session rather than a
+login node — for example `srun --ntasks=1 --cpus-per-task=4 --time=01:00:00 --pty bash`
+first ([interactive jobs](../running-jobs/submitting-jobs.md)); package installs are
+exactly the kind of heavier work login nodes are not meant for.
 
 We use `conda` to create new environments and install/upgrade packages within environments. To create our machine learning environment we type:
 
@@ -165,11 +179,11 @@ Executing transaction: done
 #
 ```
 
-Now we have our machine learning environment created to run our machine learning python script. To activate the environment we just created you use the command `source activate my_environment_name`, which is `source activate TensorFlow` for this example. Remember to include the lines below in your PBS script when working with Anaconda environments:
+Now we have our machine learning environment created to run our machine learning python script. To activate the environment we just created you use the command `source activate my_environment_name`, which is `source activate TensorFlow` for this example. Remember to include the lines below in your Slurm batch script when working with conda environments:
 
 ```bash
-# load anaconda software module
-module load anaconda3
+# load conda software module
+module load miniconda3
 
 # activate your desired anaconda environment
 source activate environment_name

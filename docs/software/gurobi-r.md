@@ -28,7 +28,7 @@ There are modules for both Gurobi and R on the CARC clusters. All you need to do
 session. This command is for version 8.1.0, however there are other versions of gurobi available (enter `module avail gurobi` to see a full list).
 ```
 username@hopper:~$ module load gurobi/8.1.0
-username@hopper:~$ module load r-3.6.0-gcc-7.3.0-python2-7akol5t
+username@hopper:~$ module load r
 username@hopper:~$ R
 ```
 Once you have started an R session, you can install packages just as you would in R. If you ever run into issues loading 

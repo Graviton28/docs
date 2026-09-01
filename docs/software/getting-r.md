@@ -25,32 +25,19 @@ There are three options for accessing R at Carc and I will run through both appr
 The first option is to activate an installed R module. When logged in to a CARC system you can use the `module avail` command to see which R versions are available. If you have a CARC account open a terminal and log in to follow along. 
 
 ```
-yourusername@hopper$ module avail r-
+yourusername@hopper$ module avail r/
 ```
 
 which will print out the following (although I have truncated the output):
 
 ```
------------------------ /opt/spack/share/spack/modules/linux-centos7-x86_64 ------------------------
+-------------- /opt/spack/share/spack/lmod/linux-rocky8-x86_64/Core --------------
    ...
-   r-3.4.1-gcc-4.8.5-python2-gzeg24m
-   r-3.4.1-gcc-4.8.5-python2-zpkgqap
-   r-3.4.1-intel-17.0.4-mkl-python2-67zsm3b
-   r-3.4.1-intel-17.0.4-mkl-python2-gygkoab
-   r-3.4.2-intel-18.0.2-python2-xsxuxwx
-   r-3.4.3-gcc-4.8.5-python2-gk66fni
-   r-3.4.3-gcc-4.8.5-python2-qv6gwz6
-   r-3.4.3-gcc-6.1.0-python2-lyqiytq
-   r-3.4.3-gcc-7.3.0-python2-zhxbajj
-   r-3.4.3-intel-18.0.1-python2-3l4dkgz
-   r-3.4.3-intel-18.0.1-python2-lr24ix6
-   r-3.4.3-intel-18.0.2-python2-q3covk7
-   r-3.5.0-gcc-4.8.5-python2-khqxja7
-   r-3.5.0-gcc-7.3.0-python2-rvq3qk5
-   r-3.5.0-intel-18.0.2-python2-mkl-r6lx6yy
-   r-3.5.3-gcc-7.3.0-python2-ziiolp5
-   r-3.6.0-gcc-4.8.5-python2-i4uimtp
-   r-3.6.0-gcc-7.3.0-python2-7akol5t
+   r/4.2.0-vq7z
+   r/4.2.2-oemu
+   r/4.3.0-g353
+   r/4.4.0-fyqw
+   r/4.4.0-ytj2 (D)
    ...
 Use "module spider" to find all possible modules.
 Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
@@ -83,13 +70,17 @@ Type 'q()' to quit R.
 > 
 ```
 
-Will load R-3.6.0 that has been compiled with GCC-7.3.0. Normally you will be running R jobs in batch mode as oppposed to interactively, which means you will have the `module load` command in your PBS script, but we will get to that later. 
+```
+yourusername@hopper$ module load r/4.4.0
+```
+
+This will load R 4.4.0 — plain `module load r` loads the cluster's default R version. Normally you will be running R jobs in batch mode as oppposed to interactively, which means you will have the `module load` command in your Slurm batch script, but we will get to that later. 
 
 ### Option 2
 The second option is to create a custom local Anaconda environment with the version of R that would like to run. In order to do this you need to first load an Anaconda software module and then create a new environment according to your specifications. For example, the following commands will create an Anaconda environment with R-3.4.3:
 
 ```
-yourusername@hopper$ module load anaconda3
+yourusername@hopper$ module load miniconda3
 yourusername@hopper$ conda create --yes --name my_r_env r=3.4.3
 Solving environment: done
 
@@ -246,7 +237,7 @@ Executing transaction: done
 Then to use your newly created R environment you need to 1) make sure you have the Anaconda software module loaded, and 2), activate your conda envioronment.
 
 ```
-yourusername@hopper$ module load anaconda3
+yourusername@hopper$ module load miniconda3
 yourusername@hopper$ source activate my_r_env
 yourusername@hopper$ R
 
