@@ -1,6 +1,6 @@
 [project]
 site_name = "CARC Documentation"
-site_url = "https://docs.carc.unm.edu/"
+site_url = "https://carc.unm.edu/docs/"
 site_description = "User and researcher documentation for the UNM Center for Advanced Research Computing (CARC): high-performance computing, storage, software, tutorials, and training."
 site_author = "UNM Center for Advanced Research Computing"
 copyright = "&copy; 2026 The University of New Mexico &mdash; Center for Advanced Research Computing"

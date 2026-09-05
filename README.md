@@ -94,7 +94,7 @@ zensical build --clean && python scripts/postbuild_agent_surface.py
 Pushing to `main` on [UNM-CARC/docs](https://github.com/UNM-CARC/docs) runs
 OKF validation, checks the llms.txt indexes for drift, builds the site, adds
 the agent surface, and deploys to GitHub Pages at
-<https://docs.carc.unm.edu/> via `.github/workflows/docs.yml`. The
+<https://carc.unm.edu/docs/> via `.github/workflows/docs.yml`. The
 workflow enables Pages automatically (`configure-pages` with
 `enablement: true`); if the first deploy fails on permissions, set
 Settings → Pages → Source to "GitHub Actions" once.

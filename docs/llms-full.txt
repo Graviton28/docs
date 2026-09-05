@@ -2,7 +2,7 @@
 
 Each page below begins with its canonical URL followed by its original Markdown, OKF frontmatter included.
 
----8<--- https://docs.carc.unm.edu/getting-started/good-neighbor-policy/
+---8<--- https://carc.unm.edu/docs/getting-started/good-neighbor-policy/
 
 ---
 title: "Good Neighbor Use Policy"
@@ -90,7 +90,7 @@ resources should [acknowledge CARC](../support/acknowledging-carc.md), and
 should be added to your project's publication list in
 [ColdFront](https://coldfront.alliance.unm.edu){ target=_blank }.
 
----8<--- https://docs.carc.unm.edu/getting-started/learning-linux/
+---8<--- https://carc.unm.edu/docs/getting-started/learning-linux/
 
 ---
 title: "Learning Linux resources"
@@ -137,7 +137,7 @@ In addition to these more modern languages, a decent foundation in the classics 
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/learning_linux.md){target=_blank} (last source update 2020-01-28). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/getting-started/linux-intro/
+---8<--- https://carc.unm.edu/docs/getting-started/linux-intro/
 
 ---
 title: "Introduction to Linux"
@@ -209,7 +209,7 @@ If you have any trouble please reach out to us at help@carc.unm.edu.
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/linux_intro.md){target=_blank} (last source update 2026-06-17). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/getting-started/logging-in/
+---8<--- https://carc.unm.edu/docs/getting-started/logging-in/
 
 ---
 title: "Logging in to CARC systems"
@@ -262,7 +262,7 @@ If you are unsure of your current password, please reference [the password reset
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/logging_in.md){target=_blank} (last source update 2026-06-25). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/getting-started/overview/
+---8<--- https://carc.unm.edu/docs/getting-started/overview/
 
 ---
 title: "Getting started at CARC"
@@ -372,7 +372,7 @@ Submit a help request to <help@carc.unm.edu>, open a ticket at
 [support.alliance.unm.edu](https://support.alliance.unm.edu/){ target=_blank },
 or visit [office and consultation hours](../support/help.md).
 
----8<--- https://docs.carc.unm.edu/getting-started/password-reset/
+---8<--- https://carc.unm.edu/docs/getting-started/password-reset/
 
 ---
 title: "Password reset and one-time passwords"
@@ -417,7 +417,7 @@ You can also log in with the above link to find other information about your CAR
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/password_reset.md){target=_blank} (last source update 2026-06-22). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/getting-started/ssh-keys/
+---8<--- https://carc.unm.edu/docs/getting-started/ssh-keys/
 
 ---
 title: "SSH keys and client configuration"
@@ -525,7 +525,7 @@ This will ensure git will use the default key on the system when cloning with ss
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/ssh_keygen_config.md){target=_blank} (last source update 2025-03-27). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/getting-started/transferring-data/
+---8<--- https://carc.unm.edu/docs/getting-started/transferring-data/
 
 ---
 title: "Transferring data"
@@ -620,7 +620,7 @@ As you can see, the syntax for these two programs is very similar; however, the 
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/transfer_data.md){target=_blank} (last source update 2026-06-22). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/getting-started/x11-forwarding/
+---8<--- https://carc.unm.edu/docs/getting-started/x11-forwarding/
 
 ---
 title: "X11 forwarding"
@@ -728,7 +728,7 @@ If you have any trouble at any point, please reach out to us at help@carc.unm.ed
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/X11_forwarding.md){target=_blank} (last source update 2026-06-17). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/systems/cluster-specifications/
+---8<--- https://carc.unm.edu/docs/systems/cluster-specifications/
 
 ---
 title: "Cluster specifications (legacy reference)"
@@ -810,7 +810,7 @@ Queue limits in force when these systems were retired:
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/webinfo/blob/master/systems_information.md){target=_blank} (last source update 2023-01-23). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/systems/overview/
+---8<--- https://carc.unm.edu/docs/systems/overview/
 
 ---
 title: "Systems overview"
@@ -900,7 +900,7 @@ requires prior written approval from
 [UNM Export Control](https://carc.unm.edu/systems/export-control.html){ target=_blank } —
 see the [Good Neighbor Use Policy](../getting-started/good-neighbor-policy.md).
 
----8<--- https://docs.carc.unm.edu/systems/resource-limits/
+---8<--- https://carc.unm.edu/docs/systems/resource-limits/
 
 ---
 title: "Storage and compute usage policies"
@@ -1033,7 +1033,7 @@ If a specific, already-running job needs more time than you requested:
 
 <p class="carc-provenance" markdown>Originally migrated from [UNM-CARC webinfo](https://github.com/UNM-CARC/webinfo/blob/master/resource_limits.md){target=_blank}; partition tables, quotas, and the extension policy reconciled 2026-09-01 against cluster state observed 2026-07-25 ([CARC knowledge store](https://git.repo.alliance.unm.edu/CARC/CARC-knowledge-store){target=_blank}). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/docs){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/systems/storage-permissions/
+---8<--- https://carc.unm.edu/docs/systems/storage-permissions/
 
 ---
 title: "Storage permissions on BeeGFS"
@@ -1488,7 +1488,7 @@ Remember:
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/storage_permissions_BeeGFS.md){target=_blank} (last source update 2026-06-17). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/systems/storage/
+---8<--- https://carc.unm.edu/docs/systems/storage/
 
 ---
 title: "Storage and backups"
@@ -1637,7 +1637,7 @@ rm -r $TEMP_DIR
 
 <p class="carc-provenance" markdown>Originally migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/storage_and_backup.md){target=_blank}; paths, tiers, and retention reconciled 2026-09-01 against cluster state observed 2026-07-25 ([CARC knowledge store](https://git.repo.alliance.unm.edu/CARC/CARC-knowledge-store){target=_blank}). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/docs){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/running-jobs/example-slurm-scripts/
+---8<--- https://carc.unm.edu/docs/running-jobs/example-slurm-scripts/
 
 ---
 title: "Example Slurm scripts"
@@ -1862,7 +1862,7 @@ When you are finished, type `exit` to release the node back to the pool.
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/submitting_sbatch_jobs.md){target=_blank} (last source update 2026-06-17). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/running-jobs/gnu-parallel/
+---8<--- https://carc.unm.edu/docs/running-jobs/gnu-parallel/
 
 ---
 title: "GNU Parallel"
@@ -2252,7 +2252,7 @@ sbatch python_parallel.slurm
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/GNU%20Parallel.md){target=_blank} (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/running-jobs/modules/
+---8<--- https://carc.unm.edu/docs/running-jobs/modules/
 
 ---
 title: "Environment modules"
@@ -2381,7 +2381,7 @@ module purge
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/module_management.md){target=_blank} (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/running-jobs/pbs-to-slurm/
+---8<--- https://carc.unm.edu/docs/running-jobs/pbs-to-slurm/
 
 ---
 title: "PBS to Slurm migration"
@@ -2553,7 +2553,7 @@ sbatch job_script.slurm
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/pbs2slurm.md){target=_blank} (last source update 2026-06-25). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/running-jobs/slurm-accounting/
+---8<--- https://carc.unm.edu/docs/running-jobs/slurm-accounting/
 
 ---
 title: "Slurm accounting and fairshare"
@@ -2707,7 +2707,7 @@ sacctmgr show account yourIdNumber
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/slurm_accounting.md){target=_blank} (last source update 2026-06-24). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/running-jobs/slurm-intro/
+---8<--- https://carc.unm.edu/docs/running-jobs/slurm-intro/
 
 ---
 title: "Introduction to Slurm"
@@ -2859,7 +2859,7 @@ scancel --me             # Cancel all of your jobs
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Intro_to_slurm.md){target=_blank} (last source update 2026-07-06). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/running-jobs/slurm-reference/
+---8<--- https://carc.unm.edu/docs/running-jobs/slurm-reference/
 
 ---
 title: "Slurm command reference"
@@ -2896,7 +2896,7 @@ After your Slurm instructions, you then load your software modules (refer to the
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/slurm-sbatch.md){target=_blank} (last source update 2026-06-22). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/running-jobs/submitting-jobs/
+---8<--- https://carc.unm.edu/docs/running-jobs/submitting-jobs/
 
 ---
 title: "Submitting jobs"
@@ -2970,7 +2970,7 @@ ran the commands found within our `helloworld_parallel.sbatch` script.
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/submitting_jobs.md){target=_blank} (last source update 2025-12-03). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/interactive/jupyterhub/
+---8<--- https://carc.unm.edu/docs/interactive/jupyterhub/
 
 ---
 title: "JupyterHub"
@@ -3042,7 +3042,7 @@ Notebooks don't have to stay single-threaded:
 * [Installing deep learning packages](../software/deep-learning-packages.md) - GPU-ready PyTorch/TensorFlow environments.
 * [Getting help](../support/help.md) - stuck server or missing kernel? Open a ticket.
 
----8<--- https://docs.carc.unm.edu/interactive/open-ondemand/
+---8<--- https://carc.unm.edu/docs/interactive/open-ondemand/
 
 ---
 title: "Open OnDemand"
@@ -3143,7 +3143,7 @@ behalf. That means:
 * [Introduction to Slurm](../running-jobs/slurm-intro.md) - understand what OnDemand submits for you.
 * [Getting help](../support/help.md) - if the portal misbehaves, open a ticket.
 
----8<--- https://docs.carc.unm.edu/software/alphafold/
+---8<--- https://carc.unm.edu/docs/software/alphafold/
 
 ---
 title: "AlphaFold"
@@ -3317,7 +3317,7 @@ Now that it is on your local computer, you can now view this file on your comput
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/alphafold.md){target=_blank} (last source update 2024-07-23). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/conda-channels-pip/
+---8<--- https://carc.unm.edu/docs/software/conda-channels-pip/
 
 ---
 title: "Conda channels and pip"
@@ -3473,7 +3473,7 @@ For more information on managing channels and installing with pip please refer t
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/anaconda_pip_channels.md){target=_blank} (last source update 2020-01-28). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/conda-environments/
+---8<--- https://carc.unm.edu/docs/software/conda-environments/
 
 ---
 title: "Managing conda environments"
@@ -3675,7 +3675,7 @@ For more information on managing environments visit the Conda documentation site
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/anaconda_intro.md){target=_blank} (last source update 2020-01-28). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/conda-intro/
+---8<--- https://carc.unm.edu/docs/software/conda-intro/
 
 ---
 title: "Conda and Anaconda: introduction"
@@ -3709,7 +3709,7 @@ For more information on the usage and various features of Conda, please visit th
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/anaconda_general_intro.md){target=_blank} (last source update 2020-01-28). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/conda-jupyterhub/
+---8<--- https://carc.unm.edu/docs/software/conda-jupyterhub/
 
 ---
 title: "Conda environments in JupyterHub"
@@ -3764,7 +3764,7 @@ After your environments have been modified to include the ipykernal, you can ope
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Conda_JupyterHub.md){target=_blank} (last source update 2023-06-27). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/cuda-aware-mpi/
+---8<--- https://carc.unm.edu/docs/software/cuda-aware-mpi/
 
 ---
 title: "CUDA-aware MPI"
@@ -3844,7 +3844,7 @@ call, and the backtrace.
 
 <p class="carc-provenance" markdown>Distilled from a staff-reviewed, user-confirmed support-ticket resolution in the [CARC knowledge store](https://git.repo.alliance.unm.edu/CARC/CARC-knowledge-store){target=_blank}. Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/docs){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/dask-scikit-learn/
+---8<--- https://carc.unm.edu/docs/software/dask-scikit-learn/
 
 ---
 title: "Parallel Python with Dask and scikit-learn"
@@ -4049,7 +4049,7 @@ print(search)
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/parallel_jupyterhub_with_dask_and_scikit-learn.md){target=_blank} (last source update 2019-10-23). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/deep-learning-packages/
+---8<--- https://carc.unm.edu/docs/software/deep-learning-packages/
 
 ---
 title: "Installing deep learning packages"
@@ -4201,7 +4201,7 @@ conda install numpy pandas matplotlib scikit-learn
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Install%20deep%20learning%20packages.md){target=_blank} (last source update 2021-10-15), then restructured with fenced code blocks and curated in this repository. Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/getting-r/
+---8<--- https://carc.unm.edu/docs/software/getting-r/
 
 ---
 title: "Getting R software"
@@ -4472,7 +4472,7 @@ The third option is to user JupyterHub. To do so direct your browser to https://
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_at_CARC/getting_R_software.md){target=_blank} (last source update 2019-12-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/gurobi-r/
+---8<--- https://carc.unm.edu/docs/software/gurobi-r/
 
 ---
 title: "Gurobi optimizer with R"
@@ -4549,7 +4549,7 @@ Now let's runs a quick model as an example of what Gurobi can do and to see if e
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Gurobi%20optimizer%20with%20R.md){target=_blank} (last source update 2021-02-17). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/jupyterhub-mpi/
+---8<--- https://carc.unm.edu/docs/software/jupyterhub-mpi/
 
 ---
 title: "MPI parallelization from JupyterHub"
@@ -4817,7 +4817,7 @@ inlinesum()
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/parallelization_with%20Jupyterhub_using_mpi.md){target=_blank} (last source update 2019-10-23). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/matlab-deep-learning/
+---8<--- https://carc.unm.edu/docs/software/matlab-deep-learning/
 
 ---
 title: "MATLAB deep learning"
@@ -5310,7 +5310,7 @@ The results are also saved to an image ('results_roi.tif') that can be viewed in
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/MATLAB%20Deep%20Learning%20on%20Xena.md){target=_blank} (last source update 2022-05-25). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/matlab-gpu/
+---8<--- https://carc.unm.edu/docs/software/matlab-gpu/
 
 ---
 title: "MATLAB on GPUs"
@@ -5700,7 +5700,7 @@ Coming Soon! (Maybe)
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Using%20GPUs%20on%20Xena%20with%20MATLAB.md){target=_blank} (last source update 2022-05-25). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/matlab-jobs/
+---8<--- https://carc.unm.edu/docs/software/matlab-jobs/
 
 ---
 title: "Running MATLAB jobs"
@@ -5914,7 +5914,7 @@ Monitor job output.
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/running_matlab_jobs.md){target=_blank} (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/matlab-parallel-server/
+---8<--- https://carc.unm.edu/docs/software/matlab-parallel-server/
 
 ---
 title: "MATLAB Parallel Server"
@@ -6074,7 +6074,7 @@ If you are testing small scripts, they may run before you can type qstat. To wat
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/ParallelMatlabServer.md){target=_blank} (last source update 2021-02-24). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/parallel-matlab/
+---8<--- https://carc.unm.edu/docs/software/parallel-matlab/
 
 ---
 title: "Parallel MATLAB: profile setup and batch submission"
@@ -6177,7 +6177,7 @@ Submit your PBS script with `qsub parallel_matlab.pbs` and hopefully all goes sw
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Parallel%20MATLAB%20profile%20setup%20and%20batch%20submission.md){target=_blank} (last source update 2022-05-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/parallel-r-future/
+---8<--- https://carc.unm.edu/docs/software/parallel-r-future/
 
 ---
 title: "Parallel R with the future package"
@@ -7223,7 +7223,7 @@ The future package will offer the best performance when there are fewer iteratio
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Parallel_R_with_Future.ipynb){target=_blank} (last source update 2021-08-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/paraview/
+---8<--- https://carc.unm.edu/docs/software/paraview/
 
 ---
 title: "ParaView remote visualization"
@@ -7360,7 +7360,7 @@ ParaView comes with several executables that serve different purposes. These are
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/paraview.md){target=_blank} (last source update 2024-06-09). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/pytorch-classifier/
+---8<--- https://carc.unm.edu/docs/software/pytorch-classifier/
 
 ---
 title: "PyTorch image classifier walkthrough"
@@ -7703,7 +7703,7 @@ inputs, labels = data[0].to(device), data[1].to(device)
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/PyTorch_Classifier_Xena%20.ipynb){target=_blank} (last source update 2023-09-20). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/pytorch/
+---8<--- https://carc.unm.edu/docs/software/pytorch/
 
 ---
 title: "PyTorch on CARC GPUs"
@@ -7845,7 +7845,7 @@ With 2 GPUs, you should get an output of 2.
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/PyTorch_1.9_Xena.md){target=_blank} (last source update 2023-09-20). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/r-packages/
+---8<--- https://carc.unm.edu/docs/software/r-packages/
 
 ---
 title: "Installing R packages"
@@ -7928,7 +7928,7 @@ The first two lines are only necessary when you have not created a personal libr
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_at_CARC/installing_packages.md){target=_blank} (last source update 2019-12-11). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/r-pbs-jobs/
+---8<--- https://carc.unm.edu/docs/software/r-pbs-jobs/
 
 ---
 title: "R batch jobs with PBS (retired)"
@@ -8037,7 +8037,7 @@ Rscript my_script.R
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_at_CARC/PBS_job_submission.md){target=_blank} (last source update 2019-12-03). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/r-usage/
+---8<--- https://carc.unm.edu/docs/software/r-usage/
 
 ---
 title: "R on CARC systems"
@@ -8140,7 +8140,7 @@ Execute the script again and the look at the new output.
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/R_usage.md){target=_blank} (last source update 2019-03-20). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/singularity/
+---8<--- https://carc.unm.edu/docs/software/singularity/
 
 ---
 title: "Singularity / Apptainer containers"
@@ -8412,7 +8412,7 @@ We have several modules with different singularity versions. Enter the following
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/singularity-markdown-version.md){target=_blank} (last source update 2020-03-26). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/spark/
+---8<--- https://carc.unm.edu/docs/software/spark/
 
 ---
 title: "Apache Spark"
@@ -8746,7 +8746,7 @@ Since the dataset is generated with a fixed seed, the counts are deterministic �
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/spark_tutorial.md){target=_blank} (last source update 2026-07-07). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/tensorflow-multi-gpu/
+---8<--- https://carc.unm.edu/docs/software/tensorflow-multi-gpu/
 
 ---
 title: "Multi-GPU TensorFlow"
@@ -8896,7 +8896,7 @@ A good starting point is the [TensorFlow 2 quickstart for beginners](https://www
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/multiGPU_tensorflow_tutorial.md){target=_blank} (last source update 2026-06-24). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/software/tensorflow/
+---8<--- https://carc.unm.edu/docs/software/tensorflow/
 
 ---
 title: "TensorFlow on CARC GPUs"
@@ -9051,7 +9051,7 @@ For scalable variables for performing operations we can use `tf.placeholder` whi
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Tensorflow_documentation.md){target=_blank} (last source update 2019-03-06). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/tutorials/beast/
+---8<--- https://carc.unm.edu/docs/tutorials/beast/
 
 ---
 title: "Bayesian phylogenetics with BEAST"
@@ -9111,7 +9111,7 @@ with BEAST at CARC please email help@carc.unm.edu.
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Beast_at_CARC.md){target=_blank} (last source update 2019-10-15). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/tutorials/gatk/
+---8<--- https://carc.unm.edu/docs/tutorials/gatk/
 
 ---
 title: "Variant calling with GATK"
@@ -9805,7 +9805,7 @@ Tange, O. (2018). GNU Parallel 2018 [Computer software]. https://doi.org/10.5281
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/GATK_QuickByte.md){target=_blank} (last source update 2023-01-18). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/tutorials/metabarcoding/
+---8<--- https://carc.unm.edu/docs/tutorials/metabarcoding/
 
 ---
 title: "Metabarcoding analysis"
@@ -10294,7 +10294,7 @@ gunzip rdp_16s_v16.fa.gz
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Metabarcoding.md){target=_blank} (last source update 2022-09-29). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/tutorials/mpi-casa/
+---8<--- https://carc.unm.edu/docs/tutorials/mpi-casa/
 
 ---
 title: "Parallel CASA for radio astronomy"
@@ -10358,7 +10358,7 @@ Actually it doesn't like the alias when you run the command
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/mpiCASA.md){target=_blank} (last source update 2021-03-08). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/tutorials/msprime/
+---8<--- https://carc.unm.edu/docs/tutorials/msprime/
 
 ---
 title: "Coalescent simulation with msprime"
@@ -10601,7 +10601,7 @@ Tange, O. (2018). GNU Parallel 2018 [Computer software]. https://doi.org/10.5281
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/msprime_quickbyte.md){target=_blank} (last source update 2021-04-28). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/tutorials/orca/
+---8<--- https://carc.unm.edu/docs/tutorials/orca/
 
 ---
 title: "ORCA quantum chemistry"
@@ -10682,7 +10682,7 @@ Now you can simply submit your job to the queue with `sbatch orca_submission.sh`
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/orca_wheeler_taos.md){target=_blank} (last source update 2020-07-15). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/tutorials/psmc/
+---8<--- https://carc.unm.edu/docs/tutorials/psmc/
 
 ---
 title: "Demographic inference with PSMC"
@@ -10834,7 +10834,7 @@ Tange, O. (2018). GNU Parallel 2018. https://doi.org/10.5281/ZENODO.1146014
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/psmc_quickbyte.md){target=_blank} (last source update 2021-08-16). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/tutorials/simcov/
+---8<--- https://carc.unm.edu/docs/tutorials/simcov/
 
 ---
 title: "SimCov epidemiological simulation"
@@ -10922,7 +10922,7 @@ Outputs will be in a results folder by default
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/SimCov.md){target=_blank} (last source update 2022-09-21). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/tutorials/stacks/
+---8<--- https://carc.unm.edu/docs/tutorials/stacks/
 
 ---
 title: "RAD-seq analysis with Stacks"
@@ -11098,7 +11098,7 @@ As I mentioned above, I mostly included this to demystify DeNovo Stacks, please 
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/Stacks_quickbyte.md){target=_blank} (last source update 2021-03-03). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/tutorials/vasp/
+---8<--- https://carc.unm.edu/docs/tutorials/vasp/
 
 ---
 title: "VASP materials simulation"
@@ -11272,7 +11272,7 @@ If the `cat` command prints that you need to be in the "vasp6" group, please ema
 
 <p class="carc-provenance" markdown>Migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/blob/master/test_vasp_quickbyte.md){target=_blank} (last source update 2026-07-06). Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/faq/general/
+---8<--- https://carc.unm.edu/docs/faq/general/
 
 ---
 title: "General FAQ"
@@ -11442,7 +11442,7 @@ sources:
     Use the statement on [acknowledging CARC](../support/acknowledging-carc.md)
     and add the publication to your project's list in ColdFront.
 
----8<--- https://docs.carc.unm.edu/faq/troubleshooting/
+---8<--- https://carc.unm.edu/docs/faq/troubleshooting/
 
 ---
 title: "Troubleshooting"
@@ -11617,7 +11617,7 @@ reproducing the transfer to rule out a CARC-side issue.
 [Open a ticket](../support/help.md) or bring it to office hours — include
 your cluster, job ID, command, and the complete error text.
 
----8<--- https://docs.carc.unm.edu/training/videos/
+---8<--- https://carc.unm.edu/docs/training/videos/
 
 ---
 title: "Video tutorials"
@@ -11720,7 +11720,7 @@ Recorded talks from CAM 2025:
     during [office hours](../support/help.md). Slides from live workshops are
     on the [workshops page](workshops.md).
 
----8<--- https://docs.carc.unm.edu/training/workshops/
+---8<--- https://carc.unm.edu/docs/training/workshops/
 
 ---
 title: "Workshops and slides"
@@ -11813,7 +11813,7 @@ Slides prepared for UNM courses that compute on CARC systems.
 
 <p class="carc-provenance" markdown>Slide decks migrated from [UNM-CARC QuickBytes](https://github.com/UNM-CARC/QuickBytes/tree/master/workshop_slides){target=_blank}; page curated in this repository. Spotted a problem? [Open an issue or pull request](https://github.com/UNM-CARC/QuickBytes){target=_blank}.</p>
 
----8<--- https://docs.carc.unm.edu/support/acknowledging-carc/
+---8<--- https://carc.unm.edu/docs/support/acknowledging-carc/
 
 ---
 title: "Acknowledging CARC"
@@ -11860,7 +11860,7 @@ publication list in [ColdFront](https://coldfront.alliance.unm.edu){ target=_bla
 Browse the [Google Scholar listing of publications that mention CARC](https://scholar.google.com/scholar?q=%22Center+for+Advanced+Research+Computing%22+AND+%28UNM+OR+%22University+of+New+Mexico%22%29){ target=_blank } —
 a snapshot of the broad spectrum of computational research at UNM.
 
----8<--- https://docs.carc.unm.edu/support/help/
+---8<--- https://carc.unm.edu/docs/support/help/
 
 ---
 title: "Getting help"
@@ -11943,7 +11943,7 @@ Help us help you faster — include:
 4. The path to your **batch script** and log files (we can read them with
    your permission).
 
----8<--- https://docs.carc.unm.edu/about/ai-agents/
+---8<--- https://carc.unm.edu/docs/about/ai-agents/
 
 ---
 title: "For AI agents"
@@ -12038,7 +12038,7 @@ does not answer a question, direct users to the humans: open a ticket at
 or email <help@carc.unm.edu> — do not guess cluster-specific facts such as
 partition names, quotas, or module versions.
 
----8<--- https://docs.carc.unm.edu/about/contributing/
+---8<--- https://carc.unm.edu/docs/about/contributing/
 
 ---
 title: "Contributing to these docs"
@@ -12147,7 +12147,7 @@ python3 scripts/gen_llms_txt.py        # regenerate llms.txt indexes
 * Put images in `docs/assets/images/` and downloadable files in
   `docs/assets/files/`.
 
----8<--- https://docs.carc.unm.edu/about/facilities/
+---8<--- https://carc.unm.edu/docs/about/facilities/
 
 ---
 title: "Facilities description"
@@ -12236,7 +12236,7 @@ Network through the Albuquerque Gigapop.
 Physical access to the machine room is restricted and managed through UNM's
 Electronic Network Access Control system.
 
----8<--- https://docs.carc.unm.edu/about/mission/
+---8<--- https://carc.unm.edu/docs/about/mission/
 
 ---
 title: "Mission and vision"
@@ -12281,7 +12281,7 @@ computing centers in the State of New Mexico. Its services are available to
 faculty, staff, and student researchers free of charge through support from
 the UNM Office of the Vice President for Research.
 
----8<--- https://docs.carc.unm.edu/about/partners/
+---8<--- https://carc.unm.edu/docs/about/partners/
 
 ---
 title: "Partner cyberinfrastructure"
@@ -12360,7 +12360,7 @@ data management (iRODS) services that interoperate with these national
 platforms. If you are unsure which platform fits your project, come to
 [office hours](../support/help.md) and we'll map it out together.
 
----8<--- https://docs.carc.unm.edu/log/
+---8<--- https://carc.unm.edu/docs/log/
 
 # Documentation update log
 
