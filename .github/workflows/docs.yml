@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  # Validation (incl. the llms.txt drift check) and a trial build on PRs,
+  # so problems surface before merge rather than after.
+  pull_request:
   workflow_dispatch:
     inputs:
       mode:
@@ -39,6 +42,7 @@ jobs:
 
   deploy:
     needs: okf-conformance
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
