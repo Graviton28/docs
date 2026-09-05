@@ -98,6 +98,12 @@ def main():
         sys.exit(2)
     base = site_url()
 
+    # 0. Zensical writes an empty objects.inv (a Sphinx inventory stub); Cascade
+    # cannot store a zero-byte file and no consumer reads it, so drop it.
+    inv = site / "objects.inv"
+    if inv.exists() and inv.stat().st_size == 0:
+        inv.unlink()
+
     # 1. Mirror Markdown sources at pretty URLs.
     mirrored = 0
     fms: dict[Path, dict] = {}
