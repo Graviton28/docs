@@ -115,3 +115,8 @@ pymdownx.tabbed.alternate_style = true
 pymdownx.tabbed.combine_header_slug = true
 pymdownx.tasklist.custom_checkbox = true
 pymdownx.tilde = {}
+
+# Google Analytics 4 — CARC's property, shared with the main carc.unm.edu site.
+[project.extra.analytics]
+provider = "google"
+property = "G-4N7W3PW5BF"
