@@ -1,5 +1,9 @@
 # Documentation update log
 
+## 2026-09-08
+
+* **Update**: Linked [CARC Video Tutorials](training/videos.md) directly to the QuickBytes playlist.
+
 ## 2026-09-01
 
 * **Update**: Reconciled the corpus against the [CARC knowledge store](https://git.repo.alliance.unm.edu/CARC/CARC-knowledge-store){target=_blank} — staff-reviewed articles distilled from real support tickets plus cluster state observed directly over SSH on 2026-07-25. Corrected stale facts: [Slurm intro](running-jobs/slurm-intro.md) now lists Easley's real partitions (debug is 1 hour, not 4; there is no Easley `condo` partition) plus the group-gated `h100`/`l40s` GPU partitions and the default time/memory behavior; [resource limits](systems/resource-limits.md) (now curated in-repo) carries observed per-cluster partition tables — the old Hopper table was a hardware generation stale — full storage quotas with file-count limits, and the job time-limit extension policy; [storage and backups](systems/storage.md) (now curated in-repo) documents the real paths (`/carc/scratch`, `/easley/scratch`, `/projects`), the 180-day Easley scratch cleanup, that Hopper has no machine-local scratch, and how to find a project's path; the retired `anaconda3` module was replaced with `miniconda3` across [conda environments](software/conda-environments.md), [getting R](software/getting-r.md), and [deep-learning packages](software/deep-learning-packages.md); [getting R](software/getting-r.md) and [Gurobi with R](software/gurobi-r.md) now show the current `r/4.x` module tree; and [modules](running-jobs/modules.md) no longer claims plain `intel` modules don't exist.
