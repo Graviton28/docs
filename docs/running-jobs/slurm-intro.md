@@ -37,58 +37,36 @@ When you run `sinfo` on Easley, you will see output similar to the following:
 
 ```
 PARTITION   AVAIL  TIMELIMIT  NODES  STATE NODELIST
-general*       up 2-00:00:00      1   comp easley002
-general*       up 2-00:00:00      4   mix- easley[008,015,018,044]
-general*       up 2-00:00:00      8    mix easley[003-004,012-014,016,020,023]
-general*       up 2-00:00:00     34  alloc easley[001,005-007,009-011,017,019,021-022,024-043,046-048]
-general*       up 2-00:00:00      1   down easley045
+general*       up 2-00:00:00      2   mix- easley[005-006]
+general*       up 2-00:00:00      2  drain easley[011,033]
+general*       up 2-00:00:00     20    mix easley[002-003,008,017,021-024,026-027,030-031,038-042,046-048]
+general*       up 2-00:00:00     24  alloc easley[001,004,007,009-010,012-016,018-020,025,028-029,032,034-037,043-045]
+bigmem         up 2-00:00:00      1  drain easley049
 bigmem         up 2-00:00:00      1    mix easley050
-bigmem         up 2-00:00:00      1  alloc easley049
-h100           up 2-00:00:00      1   mix- easley051
-h100           up 2-00:00:00      1   plnd easley054
-h100           up 2-00:00:00      2  alloc easley[052-053]
+h100           up 2-00:00:00      1    mix easley054
+h100           up 2-00:00:00      3  alloc easley[051-053]
 l40s           up 2-00:00:00      1    mix easley055
 l40s           up 2-00:00:00      2  alloc easley[056-057]
-interactive    up    4:00:00      1   comp easley002
-interactive    up    4:00:00      5   mix- easley[008,015,018,044,051]
-interactive    up    4:00:00      1   plnd easley054
-interactive    up    4:00:00     10    mix easley[003-004,012-014,016,020,023,050,055]
-interactive    up    4:00:00     39  alloc easley[001,005-007,009-011,017,019,021-022,024-043,046-049,052-053,056-057]
-interactive    up    4:00:00      1   down easley045
-debug          up    1:00:00      1   comp easley002
-debug          up    1:00:00      5   mix- easley[008,015,018,044,051]
-debug          up    1:00:00      1   plnd easley054
-debug          up    1:00:00     10    mix easley[003-004,012-014,016,020,023,050,055]
-debug          up    1:00:00     39  alloc easley[001,005-007,009-011,017,019,021-022,024-043,046-049,052-053,056-057]
-debug          up    1:00:00      1   down easley045
-scavenger      up 2-00:00:00      1   comp easley002
-scavenger      up 2-00:00:00      9   mix- easley[008,015,018,044,051,060-063]
-scavenger      up 2-00:00:00      1   plnd easley054
-scavenger      up 2-00:00:00     10    mix easley[003-004,012-014,016,020,023,050,055]
-scavenger      up 2-00:00:00     41  alloc easley[001,005-007,009-011,017,019,021-022,024-043,046-049,052-053,056-059]
-scavenger      up 2-00:00:00      1   down easley045
+interactive    up    4:00:00      2   mix- easley[005-006]
+interactive    up    4:00:00      3  drain easley[011,033,049]
+interactive    up    4:00:00     23    mix easley[002-003,008,017,021-024,026-027,030-031,038-042,046-048,050,054-055]
+interactive    up    4:00:00     29  alloc easley[001,004,007,009-010,012-016,018-020,025,028-029,032,034-037,043-045,051-053,056-057]
+debug          up    1:00:00      2   mix- easley[005-006]
+debug          up    1:00:00      3  drain easley[011,033,049]
+debug          up    1:00:00     23    mix easley[002-003,008,017,021-024,026-027,030-031,038-042,046-048,050,054-055]
+debug          up    1:00:00     29  alloc easley[001,004,007,009-010,012-016,018-020,025,028-029,032,034-037,043-045,051-053,056-057]
+scavenger      up 2-00:00:00      2   mix- easley[005-006]
+scavenger      up 2-00:00:00      3  drain easley[011,033,049]
+scavenger      up 2-00:00:00     28    mix easley[002-003,008,017,021-024,026-027,030-031,038-042,046-048,050,054-055,058,060-063]
+scavenger      up 2-00:00:00     30  alloc easley[001,004,007,009-010,012-016,018-020,025,028-029,032,034-037,043-045,051-053,056-057,059]
 ```
 
-Key partitions on Easley (limits as observed 2026-07-25 — `sinfo` or
-`scontrol show partition <name>` always shows the current values):
+Key partitions you may have access to:
 
-- **general** — The default community partition. Maximum wall time of 2 days.
-- **bigmem** — Two large-memory nodes (about 2 TB of RAM each) for jobs that need far more memory than a general node provides. Maximum wall time of 2 days.
-- **h100** — GPU nodes with 2× NVIDIA H100 per node. Maximum wall time of 2 days.
-- **l40s** — GPU nodes with 4× NVIDIA L40S per node. Maximum wall time of 2 days.
-- **interactive** — Interactive sessions of up to 4 hours, scheduled at elevated priority.
-- **debug** — Short test jobs only (1-hour limit — note the `1:00:00` in the `sinfo` output above). Useful for checking scripts before submitting long runs.
-- **scavenger** — Runs on reserved nodes whenever they sit idle. Open to everyone, but preemptible: your job is killed if the owner submits work.
-- **liulab** — A lab-restricted partition (7-day limit) belonging to a specific research group.
-
-!!! warning "GPU partitions are group-gated"
-
-    The `h100` and `l40s` partitions are restricted by group membership.
-    Access is provisioned through a ColdFront allocation for the specific
-    partition, requested by your project's PI — support cannot simply add
-    you to the group on request. If a submission is rejected with
-    `uid not in group permitted to use this partition`, see the
-    [troubleshooting FAQ](../faq/troubleshooting.md#my-job-wont-start).
+- **general** — The default community partition. Maximum wall time of 2 days. Use this if you are not a member of a specific condo group.
+- **debug** — Short jobs only (1-hour limit). Useful for testing scripts before submitting long runs.
+- **condo** — Purchased nodes available to specific research groups. If you are a member of a condo group, you likely already know your partition name. Check with your PI if you are unsure.
+- **scavenger** - Whenever a purchased/reserved node is not in use, this partition grabs them and allows them to be used by the public, but be warned you will be kicked off if the owner begins a job on it.
 
 To see detailed node information including CPU count, memory, and disk:
 
@@ -138,7 +116,7 @@ scancel --me             # Cancel all of your jobs
 - For help, contact the CARC support team or visit the CARC user portal.
 
 
-*This quickbyte was validated on 6/22/2026.*
+*This quickbyte was validated on 8/3/2026.*
 
 ## Video walkthrough
 
