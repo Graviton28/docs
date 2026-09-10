@@ -54,6 +54,8 @@ Every page's Markdown source (OKF frontmatter included) is served at its URL plu
 - [Installing deep learning packages](https://carc.unm.edu/docs/software/deep-learning-packages/): Install GPU-enabled deep learning frameworks (PyTorch, TensorFlow) into conda environments. (draft)
 - [Getting R software](https://carc.unm.edu/docs/software/getting-r/): Available R versions and how to load them with environment modules.
 - [Gurobi optimizer with R](https://carc.unm.edu/docs/software/gurobi-r/): Use the Gurobi optimization solver from R on CARC clusters.
+- [Haskell at CARC](https://carc.unm.edu/docs/software/haskell/): Install GHC with ghcup and build a Stack project on CARC clusters.
+- [Julia in JupyterHub](https://carc.unm.edu/docs/software/julia-jupyterhub/): Register a Julia kernel and use Julia notebooks in CARC JupyterHub.
 - [MPI parallelization from JupyterHub](https://carc.unm.edu/docs/software/jupyterhub-mpi/): Run MPI-parallel Python (mpi4py/ipyparallel) from CARC JupyterHub sessions.
 - [MATLAB deep learning](https://carc.unm.edu/docs/software/matlab-deep-learning/): Train deep learning models in MATLAB using CARC GPU nodes. (draft)
 - [MATLAB on GPUs](https://carc.unm.edu/docs/software/matlab-gpu/): Accelerate MATLAB computations with GPUs on CARC clusters. (draft)
@@ -62,6 +64,7 @@ Every page's Markdown source (OKF frontmatter included) is served at its URL plu
 - [Parallel MATLAB: profile setup and batch submission](https://carc.unm.edu/docs/software/parallel-matlab/): Configure a cluster profile and submit parallel MATLAB jobs.
 - [Parallel R with the future package](https://carc.unm.edu/docs/software/parallel-r-future/): Parallelize R code across cores and nodes using the future framework.
 - [ParaView remote visualization](https://carc.unm.edu/docs/software/paraview/): Run the ParaView server on CARC compute nodes and connect from your desktop client.
+- [Installing Perl libraries](https://carc.unm.edu/docs/software/perl-libraries/): Install Perl modules into your own home directory with cpan.
 - [PyTorch image classifier walkthrough](https://carc.unm.edu/docs/software/pytorch-classifier/): End-to-end example: train an image classifier with PyTorch on a CARC GPU node. (draft)
 - [PyTorch on CARC GPUs](https://carc.unm.edu/docs/software/pytorch/): Install and run GPU-enabled PyTorch on CARC clusters. (draft)
 - [Installing R packages](https://carc.unm.edu/docs/software/r-packages/): Install R packages into your user library on CARC systems.
@@ -76,10 +79,11 @@ Every page's Markdown source (OKF frontmatter included) is served at its URL plu
 
 - [Bayesian phylogenetics with BEAST](https://carc.unm.edu/docs/tutorials/beast/): Run BEAST Bayesian evolutionary analyses on CARC clusters.
 - [Variant calling with GATK](https://carc.unm.edu/docs/tutorials/gatk/): A genomics variant-calling workflow using GATK best practices on CARC systems.
+- [Genome assembly evaluation with QUAST and BUSCO](https://carc.unm.edu/docs/tutorials/genome-evaluation/): Evaluate genome assembly quality and completeness with QUAST and BUSCO.
 - [Metabarcoding analysis](https://carc.unm.edu/docs/tutorials/metabarcoding/): Process environmental DNA metabarcoding data on CARC clusters.
 - [Parallel CASA for radio astronomy](https://carc.unm.edu/docs/tutorials/mpi-casa/): Run mpiCASA for parallel radio astronomy imaging on CARC clusters.
 - [Coalescent simulation with msprime](https://carc.unm.edu/docs/tutorials/msprime/): Simulate genealogical histories and genome sequences with msprime.
-- [ORCA quantum chemistry](https://carc.unm.edu/docs/tutorials/orca/): Run ORCA quantum chemistry calculations in parallel on CARC clusters. (draft)
+- [ORCA quantum chemistry](https://carc.unm.edu/docs/tutorials/orca/): Run ORCA quantum chemistry calculations in parallel on CARC clusters.
 - [Demographic inference with PSMC](https://carc.unm.edu/docs/tutorials/psmc/): Infer population size history from diploid genomes using PSMC.
 - [SimCov epidemiological simulation](https://carc.unm.edu/docs/tutorials/simcov/): Run the SimCov agent-based model of SARS-CoV-2 infection dynamics in lung tissue.
 - [RAD-seq analysis with Stacks](https://carc.unm.edu/docs/tutorials/stacks/): Analyze restriction-site associated DNA sequencing (RAD-seq) data with Stacks.
