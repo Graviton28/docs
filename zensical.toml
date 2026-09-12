@@ -3,7 +3,7 @@ site_name = "CARC Documentation"
 site_url = "https://carc.unm.edu/docs/"
 site_description = "User and researcher documentation for the UNM Center for Advanced Research Computing (CARC): high-performance computing, storage, software, tutorials, and training."
 site_author = "UNM Center for Advanced Research Computing"
-copyright = "&copy; 2026 The University of New Mexico &mdash; Center for Advanced Research Computing"
+copyright = "&copy; 2026 The University of New Mexico &mdash; Center for Advanced Research Computing. For AI agents: <a href=\"https://carc.unm.edu/docs/llms.txt\">llms.txt</a> &middot; <a href=\"https://carc.unm.edu/docs/llms-full.txt\">llms-full.txt</a> &middot; <a href=\"https://carc.unm.edu/docs/about/ai-agents/\">agent guide</a>."
 
 repo_url = "https://github.com/UNM-CARC/docs"
 repo_name = "UNM-CARC/docs"
