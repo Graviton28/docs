@@ -1,5 +1,9 @@
 # Documentation update log
 
+## 2026-09-12
+
+* **Update**: Made the Markdown behind every page easier for AI agents to find, following the conventions of the [DUST 2026](https://unm-carc.github.io/dust-2026/about/ai-agents/){target=_blank} site: each rendered page now carries a "View this page as Markdown" button beside the edit and view-source buttons and a "Machine-readable versions" line at the end of the article (Markdown twin, raw source on GitHub, `llms.txt`, `llms-full.txt`); the site footer links `llms.txt`, `llms-full.txt`, and the agent guide; `llms.txt` is now built from the site nav and lists the Markdown twin and raw GitHub source of every page plus the corpus size; `llms-full.txt` and the per-page Markdown mirror have relative links rewritten to absolute URLs; `robots.txt` names the raw-source convention; and the [agent guide](about/ai-agents.md) explains the raw-source fallback for sandboxes that cannot reach carc.unm.edu and warns that `<head>` tags are invisible to text-extracting fetchers. Scripts now share `scripts/okf_common.py`.
+
 ## 2026-09-08
 
 * **Update**: Linked [CARC Video Tutorials](training/videos.md) directly to the QuickBytes playlist.
